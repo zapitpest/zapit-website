@@ -1,12 +1,9 @@
 import Link from 'next/link';
 import { SITE_CONFIG, FOOTER_LINKS } from '@/lib/constants';
-import { Phone, Mail, MapPin, ChevronRight, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, ChevronRight } from 'lucide-react';
 
 const MAPS_EMBED_SRC =
   'https://maps.google.com/maps?q=80+Porter+Rd,+Heidelberg+Heights+VIC+3081,+Australia&t=m&z=15&output=embed&iwloc=near';
-
-const companyIntro =
-  'Zap It Pest & Termite Control Melbourne is a full-service pest management company providing professional inspections, treatments, and ongoing protection for homes and businesses across the greater Melbourne area.';
 
 function SocialIconInstagram(props: { className?: string }) {
   return (
@@ -32,139 +29,124 @@ function SocialIconTiktok(props: { className?: string }) {
   );
 }
 
+const WORKING_HOURS = [
+  'Tuesday: Open 24 hours',
+  'Wednesday: Open 24 hours',
+  'Thursday: Open 24 hours',
+  'Friday: Open 24 hours',
+  'Saturday: Open 24 hours',
+  'Sunday: Open 24 hours',
+  'Monday : Open 24 hours',
+] as const;
+
 export default function Footer() {
   return (
-    <footer className="bg-zapit-dark-bg font-sans text-white">
-      {/* Main Footer */}
-      <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-6 md:px-8 lg:px-[50px] lg:py-[70px] lg:pb-[75px]">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-          {/* Column 1: Our Company */}
-          <div>
-            <h3 className="mb-4 font-sans text-[22px] font-semibold text-white">Our Company</h3>
-            <p className="mb-6 text-[15px] leading-relaxed text-white/85">{companyIntro}</p>
-            <h4 className="mb-3 font-sans text-[22px] font-semibold text-white">Working Hours:</h4>
-            <ul className="space-y-2 text-[18px] text-white/90">
-              <li className="flex items-start gap-2">
-                <Clock className="mt-0.5 h-[22px] w-[22px] shrink-0 text-zapit-green" aria-hidden />
-                <span>Monday to Sunday: Open 24/7</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Clock className="mt-0.5 h-[22px] w-[22px] shrink-0 text-zapit-green" aria-hidden />
-                <span>Including Public Holidays: Yes</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 2: Useful Links */}
-          <div>
-            <h3 className="mb-4 font-sans text-[22px] font-semibold text-white">Useful Links</h3>
-            <ul className="space-y-2">
-              {FOOTER_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="inline-flex items-center gap-2 text-[18px] font-normal text-white transition-colors hover:text-zapit-green"
-                  >
-                    <ChevronRight className="h-[22px] w-[22px] shrink-0 text-zapit-green" aria-hidden />
-                    {link.label}
-                  </Link>
+    <>
+      <footer className="bg-[#2b2b2b] font-sans text-white">
+        <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-6 md:px-8 lg:px-[50px] lg:py-[60px]">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] lg:gap-8">
+            <div>
+              <h3 className="mb-4 text-[20px] font-semibold italic text-[#0DC429]">Our Company</h3>
+              <p className="mb-6 text-[14px] leading-relaxed text-white/85">
+                We&apos;re dedicated to your peace of mind. With expert solutions and customized service, we keep your space
+                pest-free. Join us in saying goodbye to pests today.
+              </p>
+              <h4 className="mb-3 text-[18px] font-semibold italic text-[#0DC429]">Working Hours:</h4>
+              <ul className="space-y-1 text-[13px] text-white/85">
+                {WORKING_HOURS.map((h) => (
+                  <li key={h}>{h}</li>
+                ))}
+              </ul>
+              <ul className="mt-5 flex items-center gap-3" aria-label="Social media">
+                <li>
+                  <a href={SITE_CONFIG.social.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="Instagram">
+                    <SocialIconInstagram className="h-[18px] w-[18px]" />
+                  </a>
                 </li>
-              ))}
-            </ul>
-          </div>
+                <li>
+                  <a href={SITE_CONFIG.social.tiktok} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="TikTok">
+                    <SocialIconTiktok className="h-[18px] w-[18px]" />
+                  </a>
+                </li>
+                <li>
+                  <a href={SITE_CONFIG.social.facebook} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="Facebook">
+                    <SocialIconFacebook className="h-[18px] w-[18px]" />
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          {/* Column 3: Get in touch */}
-          <div>
-            <h3 className="mb-4 font-sans text-[22px] font-semibold text-white">Get in touch</h3>
-            <ul className="mb-6 space-y-3 text-[18px] text-white/90">
-              <li>
-                <a
-                  href={SITE_CONFIG.phoneTel}
-                  className="inline-flex items-start gap-2 transition-colors hover:text-zapit-green"
-                >
-                  <Phone className="mt-0.5 h-[22px] w-[22px] shrink-0 text-zapit-green" aria-hidden />
-                  {SITE_CONFIG.phone}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${SITE_CONFIG.email}`}
-                  className="inline-flex items-start gap-2 break-all transition-colors hover:text-zapit-green"
-                >
-                  <Mail className="mt-0.5 h-[22px] w-[22px] shrink-0 text-zapit-green" aria-hidden />
-                  {SITE_CONFIG.email}
-                </a>
-              </li>
-              <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-[22px] w-[22px] shrink-0 text-zapit-green" aria-hidden />
-                <span>{SITE_CONFIG.address.full}</span>
-              </li>
-            </ul>
-            <ul className="flex flex-wrap items-center gap-3" aria-label="Social media">
-              <li>
-                <a
-                  href={SITE_CONFIG.social.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white transition-opacity hover:opacity-80"
-                  aria-label="Instagram"
-                >
-                  <SocialIconInstagram className="h-[18px] w-[18px]" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SITE_CONFIG.social.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white transition-opacity hover:opacity-80"
-                  aria-label="Facebook"
-                >
-                  <SocialIconFacebook className="h-[18px] w-[18px]" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SITE_CONFIG.social.tiktok}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white transition-opacity hover:opacity-80"
-                  aria-label="TikTok"
-                >
-                  <SocialIconTiktok className="h-[18px] w-[18px]" />
-                </a>
-              </li>
-            </ul>
-          </div>
+            <div>
+              <h3 className="mb-4 text-[20px] font-semibold italic text-[#0DC429]">Useful Links</h3>
+              <ul className="space-y-2">
+                {FOOTER_LINKS.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="inline-flex items-center gap-2 text-[14px] text-white transition-colors hover:text-[#0DC429]"
+                    >
+                      <ChevronRight className="h-4 w-4 shrink-0 text-[#0DC429]" aria-hidden />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Column 4: Google Maps */}
-          <div className="min-w-0 md:col-span-2 lg:col-span-1">
-            <iframe
-              title="Zap It Pest & Termite Control Melbourne on Google Maps"
-              src={MAPS_EMBED_SRC}
-              className="h-[336px] w-full rounded-[10px] border-0 md:h-[640px] lg:h-[200px]"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
+            <div>
+              <h3 className="mb-4 text-[20px] font-semibold italic text-[#0DC429]">Get in touch</h3>
+              <ul className="mb-5 space-y-3 text-[14px] text-white/90">
+                <li className="flex items-start gap-2">
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[#0DC429]" aria-hidden />
+                  <a href={SITE_CONFIG.phoneTel} className="hover:text-[#0DC429]">{SITE_CONFIG.phone}</a>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#0DC429]" aria-hidden />
+                  <a href={`mailto:${SITE_CONFIG.email}`} className="break-all hover:text-[#0DC429]">{SITE_CONFIG.email}</a>
+                </li>
+                <li className="flex items-start gap-2">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#0DC429]" aria-hidden />
+                  <span>{SITE_CONFIG.address.full}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="min-w-0 md:col-span-2 lg:col-span-1 lg:w-[200px]">
+              <iframe
+                title="Zap It Pest & Termite Control Melbourne on Google Maps"
+                src={MAPS_EMBED_SRC}
+                className="h-[200px] w-full rounded-lg border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Copyright Bar */}
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 px-4 py-[15px] text-center sm:flex-row sm:items-center sm:px-6 sm:text-left">
-          <p className="font-[Verdana,sans-serif] text-[13px] text-white">
-            Copyright &copy; 2024 {SITE_CONFIG.name} | Designed by Apex AI
-          </p>
-          <Link
-            href="/privacy-policy"
-            className="font-[Verdana,sans-serif] text-[13px] text-white transition-colors hover:text-zapit-green"
-          >
-            Privacy Policies
-          </Link>
+        <div className="border-t border-white/10">
+          <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 px-4 py-[15px] text-center sm:flex-row sm:items-center sm:px-6 sm:text-left">
+            <p className="text-[13px] text-white/80">
+              Copyright &copy; 2024 {SITE_CONFIG.name} | Designed by Apex AI
+            </p>
+            <Link
+              href="/privacy-policy"
+              className="text-[13px] text-white/80 transition-colors hover:text-[#0DC429]"
+            >
+              Privacy Policies
+            </Link>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+
+      <a
+        href={SITE_CONFIG.phoneTel}
+        className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-[#0DC429] px-5 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:scale-105"
+        aria-label="Call Now"
+      >
+        <Phone className="h-4 w-4" aria-hidden />
+        CALL NOW!
+      </a>
+    </>
   );
 }

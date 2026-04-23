@@ -13,26 +13,31 @@ const WP = '/images/wp-assets';
 
 const REVIEWS: {
   name: string;
-  avatar: string;
+  initial: string;
+  initialBg: string;
+  timeAgo: string;
   text: string;
 }[] = [
   {
-    name: 'Matthew Partridge',
-    avatar:
-      'https://lh3.googleusercontent.com/a/ACg8ocIlGdu43KPIyivb8y8bWMehf8xDKI3KOSuAdQQvMTcWRMRViA=w40-h40-c-rp-mo-br100',
-    text: 'Very quick and efficient service. They were courteous and respectful in our home. Report was emailed within minutes of completing the inspection',
-  },
-  {
-    name: 'Ummah',
-    avatar:
-      'https://lh3.googleusercontent.com/a/ACg8ocLMhmLn3Omr8TpM5tmRUQOHA2QRpnZgrrA2GhTO2m2iBhS8Pw=w40-h40-c-rp-mo-br100',
-    text: 'Best Pest control in Melbourne, did our cafe on Burgundy street. Keep up the good work!',
-  },
-  {
     name: 'Margo Kelly',
-    avatar:
-      'https://lh3.googleusercontent.com/a/ACg8ocLTUjvoOey5MRRvwTVx9FyN-cwPCq--uAop-uNz6NgbCnxpew=w40-h40-c-rp-mo-ba3-br100',
+    initial: 'M',
+    initialBg: 'bg-[#1a73e8]',
+    timeAgo: '2 months ago',
     text: 'Fantastic pest control service in Melbourne. We contacted them for our commercial pest control and were impressed with how quickly they identified and treated the problem. They assisted us with rodent control and the improvement was noticeable straight away. Professional, friendly, and extremely effective.',
+  },
+  {
+    name: 'Jemi Audi',
+    initial: 'J',
+    initialBg: 'bg-[#0f9d58]',
+    timeAgo: '3 months ago',
+    text: "Amazing job honestly I've never had pest control that can get rid of all type of bugs, insects and or booklice like this company. Thorough, professional, and the difference was clear from the first visit.",
+  },
+  {
+    name: 'Tammy Fox',
+    initial: 'T',
+    initialBg: 'bg-[#5f6368]',
+    timeAgo: '1 month ago',
+    text: 'Excellent experience with Zap It Pest Control. Professional, reliable, and easy to deal with. The technician was friendly, on time, and explained the treatment in plain language. We would book again in a heartbeat.',
   },
 ];
 
@@ -88,35 +93,6 @@ const PEST_TABS = [
 ] as const;
 
 const TAB_IMAGE = `${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`;
-
-function ReviewCard({ rev }: { rev: (typeof REVIEWS)[number] }) {
-  return (
-    <div className="ti-review-card min-w-[min(100%,300px)] md:min-w-0 flex-shrink-0 snap-center">
-      <div className="flex items-start gap-3 mb-2">
-        <Image
-          src={rev.avatar}
-          alt=""
-          width={40}
-          height={40}
-          className="h-10 w-10 rounded-full object-cover flex-shrink-0"
-        />
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1 flex-wrap">
-            <span className="ti-review-author">{rev.name}</span>
-            <Image src="/images/logo/google-g.png" alt="" width={14} height={14} className="h-3.5 w-3.5" />
-          </div>
-          <div className="ti-review-stars mt-0.5 !flex !items-center gap-0.5">
-            {[0, 1, 2, 3, 4].map((s) => (
-              <Star key={s} className="h-[18px] w-[18px] fill-amber-400 text-amber-400" />
-            ))}
-            <BadgeCheck className="h-4 w-4 text-blue-500 flex-shrink-0 ml-0.5" aria-label="Verified" />
-          </div>
-        </div>
-      </div>
-      <p className="ti-review-text">&ldquo;{rev.text}&rdquo;</p>
-    </div>
-  );
-}
 
 export function HomepageReviews() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -187,6 +163,43 @@ export function HomepageReviews() {
   );
 }
 
+function ReviewCard({ rev }: { rev: (typeof REVIEWS)[number] }) {
+  return (
+    <div className="ti-review-card min-w-[min(100%,300px)] md:min-w-0 flex-shrink-0 snap-center flex flex-col h-full">
+      <div className="flex items-start gap-3 mb-2">
+        <div
+          className={`h-10 w-10 rounded-full ${rev.initialBg} flex items-center justify-center text-white text-lg font-bold flex-shrink-0`}
+          aria-hidden
+        >
+          {rev.initial}
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-1 flex-wrap">
+            <span className="ti-review-author">{rev.name}</span>
+            <Image src="/images/logo/google-g.png" alt="" width={14} height={14} className="h-3.5 w-3.5" />
+          </div>
+          <p className="ti-review-meta">{rev.timeAgo}</p>
+          <div className="ti-review-stars mt-1 !flex !items-center gap-0.5">
+            {[0, 1, 2, 3, 4].map((s) => (
+              <Star key={s} className="h-[18px] w-[18px] fill-amber-400 text-amber-400" />
+            ))}
+            <BadgeCheck className="h-4 w-4 text-blue-500 flex-shrink-0 ml-0.5" aria-label="Verified" />
+          </div>
+        </div>
+      </div>
+      <p className="ti-review-text flex-1">&ldquo;{rev.text}&rdquo;</p>
+      <a
+        href={GOOGLE_REVIEWS_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm font-semibold text-[#0DC429] hover:underline mt-3"
+      >
+        Read more
+      </a>
+    </div>
+  );
+}
+
 export function HomepagePestServiceTabs() {
   const [active, setActive] = useState(0);
   const [sectionEl, setSectionEl] = useState<HTMLDivElement | null>(null);
@@ -200,16 +213,16 @@ export function HomepagePestServiceTabs() {
   };
 
   return (
-    <div ref={setSectionEl} className="zapit-tabs-section max-w-[1200px] mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center mb-10">
+    <div ref={setSectionEl} className="max-w-[1200px] mx-auto bg-[#f9fafb] rounded-xl overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center p-6 md:p-8">
         <div>
           <h3 className="text-[22px] font-bold text-black mb-4">{tab.title}</h3>
-          <p className="text-[18px] leading-[25px] text-[#636363] mb-6">{tab.copy}</p>
+          <p className="text-[16px] leading-[1.6] text-[#636363] mb-6">{tab.copy}</p>
           <Link
             href={tab.href}
-            className="inline-flex items-center justify-center min-h-[48px] bg-[#0DC429] hover:bg-[#0aab22] text-white text-base font-semibold uppercase tracking-wide px-10 py-3 rounded-lg shadow-[0px_0px_10px_0px_rgba(0,0,0,0.2)]"
+            className="zapit-learn-more-btn"
           >
-            LEARN MORE
+            Learn More
           </Link>
         </div>
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.2)]">
@@ -217,16 +230,16 @@ export function HomepagePestServiceTabs() {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-2 max-w-5xl mx-auto">
+      <div className="flex w-full border-t border-gray-200">
         {PEST_TABS.map((t, idx) => (
           <button
             key={t.id}
             type="button"
             onClick={() => onTab(idx)}
-            className={`px-3 py-2.5 text-sm font-semibold rounded-md border-2 transition-colors ${
+            className={`flex-1 py-3 px-1 text-xs sm:text-sm font-semibold text-center transition-colors border-r last:border-r-0 border-gray-200 ${
               active === idx
-                ? 'bg-[#0DC429] text-white border-[#0DC429]'
-                : 'bg-white text-[#0DC429] border-[#0DC429] hover:bg-[#0DC42936]'
+                ? 'bg-[#0DC429] text-white'
+                : 'bg-white text-[#0DC429] hover:bg-[#0DC429]/10'
             }`}
           >
             {t.label}
@@ -241,24 +254,26 @@ export function HomepageFAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div className="w-full max-w-3xl mx-auto space-y-0">
+    <div className="w-full max-w-4xl mx-auto">
       {HOMEPAGE_FAQS.map((faq, i) => {
         const isOpen = open === i;
         return (
-          <div key={faq.question} className="border-0">
+          <div key={faq.question} className="border-b border-gray-200 last:border-b-0">
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
-              className="flex items-center justify-between w-full text-left py-4 gap-3 bg-transparent border-0"
+              className="flex items-center w-full text-left py-5 gap-3 bg-transparent"
               aria-expanded={isOpen}
             >
-              <span className="text-[18px] font-semibold text-[#252c33] pr-2">{faq.question}</span>
-              <span className="text-[#0DC429] flex-shrink-0">
-                {isOpen ? <Minus className="h-5 w-5" strokeWidth={2} /> : <Plus className="h-5 w-5" strokeWidth={2} />}
+              <span className="text-[#252c33] flex-shrink-0 w-5 flex items-center justify-center">
+                {isOpen ? <Minus className="h-4 w-4" strokeWidth={2.5} /> : <Plus className="h-4 w-4" strokeWidth={2.5} />}
               </span>
+              <span className="text-[17px] font-semibold text-[#252c33]">{faq.question}</span>
             </button>
             {isOpen && (
-              <p className="text-[18px] leading-[25px] text-[#636363] pb-4 pr-2">{faq.answer}</p>
+              <div className="ml-8 mb-5 border border-gray-200 rounded-lg p-5 bg-white">
+                <p className="text-[16px] leading-[1.7] text-[#636363]">{faq.answer}</p>
+              </div>
             )}
           </div>
         );
@@ -300,6 +315,246 @@ export function HomepageCtaChecklist() {
         </li>
       ))}
     </ul>
+  );
+}
+
+type RegionId = 'inner' | 'north' | 'southeast' | 'east' | 'west';
+
+const MELBOURNE_REGIONS: {
+  id: RegionId;
+  label: string;
+  heading: string;
+  description: string;
+  features: string[];
+}[] = [
+  {
+    id: 'inner',
+    label: 'Melbourne Inner',
+    heading: 'CBD & Inner City Melbourne - Pest Specialists',
+    description:
+      "It doesn't matter if you are living in a high-rise or a suburb; cockroaches and other pests know the best way to your space. That's why you need our effective and affordable pest control solutions in Melbourne to save your high-rise and heritage properties.",
+    features: [
+      'CBD Coverage',
+      'High-rise Specialists',
+      '24/7 Emergency',
+      'Heritage Properties',
+      'Discreet Service',
+      'Commercial Focus',
+    ],
+  },
+  {
+    id: 'north',
+    label: 'Melbourne North',
+    heading: 'Melbourne North',
+    description:
+      'From Brunswick to Preston, Melbourne North suburbs need targeted pest management for both residential and industrial zones.',
+    features: [
+      'Brunswick Coverage',
+      'Residential Services',
+      'Industrial Areas',
+      'Family-safe Treatments',
+      'Neighborhood Focus',
+      'Quick Response',
+    ],
+  },
+  {
+    id: 'southeast',
+    label: 'Melbourne South East',
+    heading: 'Melbourne South East',
+    description:
+      'High-end suburbs in Melbourne South East including St Kilda and Brighton, require premium pest control services tailored for luxury homes.',
+    features: [
+      'Premium Suburbs',
+      'Coastal Management',
+      'Luxury Homes',
+      'Discreet Approach',
+      'Quality Focus',
+      'Property Protection',
+    ],
+  },
+  {
+    id: 'east',
+    label: 'Melbourne East',
+    heading: 'Melbourne East',
+    description:
+      'In Melbourne East, places like Richmond and Glen Waverley have everything from heritage homes to modern builds—and each one needs pest control that fits just right.',
+    features: [
+      'Diverse Properties',
+      'Family Homes',
+      'Apartment Services',
+      'Suburban Areas',
+      'Flexible Solutions',
+      'Local Expertise',
+    ],
+  },
+  {
+    id: 'west',
+    label: 'Melbourne West',
+    heading: 'Melbourne West',
+    description:
+      'Communities across Melbourne West, including Footscray and Altona, require reliable and comprehensive pest management for both new and older homes.',
+    features: [
+      'Growing Suburbs',
+      'New Developments',
+      'Community Focus',
+      'All Property Types',
+      'Comprehensive Service',
+      'Local Knowledge',
+    ],
+  },
+];
+
+export function HomepageMelbourneCoverage() {
+  const [region, setRegion] = useState<RegionId>('inner');
+  const data = MELBOURNE_REGIONS.find((r) => r.id === region) ?? MELBOURNE_REGIONS[0];
+  const stats = SITE_CONFIG.stats;
+
+  return (
+    <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
+      <div className="bg-[#252C33] text-white rounded-xl p-6 md:p-8 shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
+        <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight">
+          Why Choose Zap It Pest &amp; Termite Control Melbourne Services?
+        </h3>
+        <p className="mt-3 text-sm md:text-base text-white/85 leading-relaxed">
+          Melbourne&apos;s most experienced pest control experts with licenses and certifications are available to provide
+          emergency pest control services across Melbourne within hours of the call.
+        </p>
+        <div className="mt-6 grid grid-cols-2 gap-3">
+          <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
+            <p className="text-2xl md:text-3xl font-bold text-[#0DC429]">{stats.emergenciesSolved}</p>
+            <p className="text-xs md:text-sm text-white/80 mt-1">Pest Emergencies Solved</p>
+          </div>
+          <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
+            <p className="text-2xl md:text-3xl font-bold text-[#0DC429]">{stats.yearsExperience}</p>
+            <p className="text-xs md:text-sm text-white/80 mt-1">Years of Experience in Protecting Homes</p>
+          </div>
+          <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
+            <p className="text-2xl md:text-3xl font-bold text-[#0DC429]">{stats.firstVisitSuccess}</p>
+            <p className="text-xs md:text-sm text-white/80 mt-1">First Visit Success Rate</p>
+          </div>
+          <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
+            <p className="text-2xl md:text-3xl font-bold text-[#0DC429]">{stats.availability}</p>
+            <p className="text-xs md:text-sm text-white/80 mt-1">Emergency Response Team</p>
+          </div>
+        </div>
+        <div className="mt-4 rounded-lg bg-[#0DC429]/15 border border-[#0DC429]/20 px-4 py-4 text-center">
+          <div className="flex items-center justify-center gap-2 text-white/80 text-sm mb-1">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#0DC429] text-white text-lg">⚡</span>
+            <span>Average Response Time</span>
+          </div>
+          <p className="text-2xl md:text-3xl font-bold text-[#0DC429] italic">{stats.responseTime}</p>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl border border-gray-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.06)] p-6 md:p-8 flex flex-col">
+        <div className="flex flex-wrap gap-2 mb-4">
+          {MELBOURNE_REGIONS.map((r) => (
+            <button
+              key={r.id}
+              type="button"
+              onClick={() => setRegion(r.id)}
+              className={`px-2.5 py-1.5 text-xs sm:text-sm font-semibold rounded-md border-2 transition-colors ${
+                region === r.id
+                  ? 'bg-[#0DC429] text-white border-[#0DC429]'
+                  : 'bg-white text-zapit-heading-dark border-zapit-body-text/30 hover:border-[#0DC429]/50'
+              }`}
+            >
+              {r.label}
+            </button>
+          ))}
+        </div>
+        <h4 className="text-lg md:text-xl font-bold text-zapit-heading-dark">{data.heading}</h4>
+        <p className="mt-2 text-zapit-body-text text-[15px] md:text-[17px] leading-relaxed">{data.description}</p>
+        <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-zapit-heading-dark">
+          {data.features.map((f) => (
+            <li key={f} className="flex items-center gap-2 before:content-['✓'] before:text-[#0DC429] before:font-bold">
+              {f}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
+          <a
+            href={SITE_CONFIG.booking.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[48px] items-center justify-center bg-[#0DC429] hover:bg-[#0aab22] text-white text-sm font-semibold uppercase tracking-wide px-6 py-3 rounded-lg shadow-sm text-center"
+          >
+            Get a Free Quote Now
+          </a>
+          <Link
+            href="/service-areas"
+            className="inline-flex min-h-[48px] items-center justify-center bg-[#0DC429] hover:bg-[#0aab22] text-white text-sm font-semibold uppercase tracking-wide px-6 py-3 rounded-lg shadow-sm text-center"
+          >
+            Explore Service Areas
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const PRICING_DATA = [
+  { service: 'Clothes & Carpet Moth Treatment', type: 'All', price: '$385', duration: '90' },
+  { service: 'German Cockroach Treatment', type: 'All', price: '$249.99', duration: '60' },
+  { service: 'Bed Bugs', type: 'All', price: '$450', duration: '60' },
+  { service: 'Ant Treatment', type: 'All', price: '$239', duration: '45' },
+  { service: 'Specialised Ant Elimination', type: 'All', price: '$450', duration: '60' },
+  { service: 'Silverfish Treatment', type: 'All', price: '$299.99', duration: '40' },
+  { service: 'Mosquitos, Flies Treatment', type: 'All', price: '$385', duration: '60' },
+  { service: 'Fleas Treatment', type: 'All', price: '$385', duration: '45' },
+  { service: 'Termite Inspections', type: 'All', price: '$399', duration: '120' },
+  { service: 'Mice & Rat Treatment', type: 'All', price: '$200', duration: '40' },
+  { service: 'Cobweb Removal (Extra Service)', type: 'Single-story', price: '$125', duration: '30' },
+  { service: '', type: 'Double-story', price: '$250', duration: '60' },
+  { service: 'General Inspection', type: 'All', price: '$100', duration: '30' },
+  { service: 'Rodent Removal', type: 'All', price: '$380', duration: '30' },
+  { service: 'Initial Business Setup', type: 'All', price: '$129', duration: '60' },
+  { service: 'Wasp Control', type: 'All', price: '$250', duration: '60' },
+  { service: 'Possum Treatment', type: 'Single-story', price: '$450', duration: '30' },
+  { service: '', type: 'Double-story', price: '$630', duration: '60' },
+  { service: 'Bird Control', type: 'Single-story', price: '$450', duration: '30' },
+  { service: '', type: 'Double-story', price: '$650', duration: '60' },
+  { service: 'Bird Nest Removal', type: 'Single-story', price: '$450', duration: '30' },
+  { service: '', type: 'Double-story', price: '$650', duration: '60' },
+  { service: 'Spider & General Pest Treatment', type: 'Single-story', price: '$290', duration: '60' },
+  { service: '', type: 'Double-story', price: '$335', duration: '60' },
+  { service: '', type: 'Other', price: '$275', duration: '60' },
+] as const;
+
+export function HomepagePricing() {
+  return (
+    <div className="w-full max-w-[1200px] mx-auto">
+      <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="bg-[#0DC429] text-white">
+              <th className="px-4 py-3 text-sm font-semibold">Service Name</th>
+              <th className="px-4 py-3 text-sm font-semibold text-center">Property Type</th>
+              <th className="px-4 py-3 text-sm font-semibold text-center">Price (AUD) without GST</th>
+              <th className="px-4 py-3 text-sm font-semibold text-center">Duration (Minutes)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {PRICING_DATA.map((row, i) => (
+              <tr
+                key={`${row.service || 'sub'}-${row.type}-${i}`}
+                className={`border-b border-gray-100 ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-[#0DC429]/5 transition-colors`}
+              >
+                <td className="px-4 py-3 text-sm text-[#252c33] font-medium">{row.service}</td>
+                <td className="px-4 py-3 text-sm text-[#636363] text-center">{row.type}</td>
+                <td className="px-4 py-3 text-sm text-[#252c33] font-semibold text-center">{row.price}</td>
+                <td className="px-4 py-3 text-sm text-[#636363] text-center">{row.duration}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-[#252c33]">
+        <p><strong>Note:</strong> Prices shown are base rates (before discounts &amp; GST).</p>
+        <p><strong>Discounts:</strong> 2 services → 22.5% off | 3+ services → 27.5% off</p>
+        <p><strong>GST:</strong> Add 10% when selecting &quot;Inc GST&quot;.</p>
+      </div>
+    </div>
   );
 }
 
@@ -380,7 +635,7 @@ export function HomepagePestCards() {
   };
 
   return (
-    <div className="pest-cards max-w-[1200px] mx-auto px-3 sm:px-4">
+    <div className="pest-cards max-w-[1200px] mx-auto px-0 sm:px-0">
       <h2 className="our-services-heading">Who Can Benefit From Our Pest Control Melbourne Services?</h2>
       {cards.map((c, idx) => (
         <div

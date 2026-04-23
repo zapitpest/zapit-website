@@ -1,79 +1,125 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SITE_CONFIG, NAV_LINKS, type NavLink } from '@/lib/constants';
-import {
-  Phone,
-  Menu,
-  X,
-  ChevronDown,
-  Home,
-  Building2,
-  Bug,
-  MapPin,
-  HelpCircle,
-  Star,
-} from 'lucide-react';
 
 const MAIN_NAV_LINKS = NAV_LINKS.filter((item) => item.label !== 'Contact Us');
 const CONTACT_LINK = NAV_LINKS.find((item) => item.label === 'Contact Us')!;
 
-const navIconClass = 'h-4 w-4 shrink-0 text-zapit-green';
+const NAV_LOGO = '/images/logo/ZAPITLOGO.png';
+const iconFill = '#0DC429';
 
-const NAV_LOGO = '/images/logo/zapit-logo-nav.png';
+function PhoneSvg({ className }: { className?: string }) {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill={iconFill}>
+      <path d="m30.035 22.594c-.053-.044-6.049-4.31-7.668-4.049-.781.138-1.227.671-2.122 1.737-.144.172-.491.583-.759.876a12.458 12.458 0 0 1 -1.651-.672 13.7 13.7 0 0 1 -6.321-6.321 12.458 12.458 0 0 1 -.672-1.651c.294-.269.706-.616.882-.764 1.061-.89 1.593-1.337 1.731-2.119.283-1.619-4.005-7.613-4.049-7.667a2.289 2.289 0 0 0 -1.706-.964c-1.738 0-6.7 6.436-6.7 7.521 0 .063.091 6.467 7.988 14.5 8.024 7.888 14.428 7.979 14.491 7.979 1.084 0 7.521-4.962 7.521-6.7a2.291 2.291 0 0 0 -.965-1.706z" />
+    </svg>
+  );
+}
 
-function NavItemIcon({ item }: { item: NavLink }) {
-  switch (item.label) {
-    case 'Residential':
-      return <Home className={navIconClass} aria-hidden />;
-    case 'Commercial':
-      return <Building2 className={navIconClass} aria-hidden />;
-    case 'Termites':
-    case 'Pest Solutions':
-      return <Bug className={navIconClass} aria-hidden />;
-    case 'Service Areas':
-      return <MapPin className={navIconClass} aria-hidden />;
-    case 'FAQs':
-      return <HelpCircle className={navIconClass} aria-hidden />;
-    default:
-      return null;
+function ResidentialIcon() {
+  return (
+    <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </svg>
+  );
+}
+
+function CommercialIcon() {
+  return (
+    <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
+      <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z" />
+    </svg>
+  );
+}
+
+function TermiteIcon() {
+  return (
+    <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
+      <path d="M12 2C10.34 2 9 3.34 9 5v1.07C7.3 6.56 6 8.14 6 10v1H4v2h2v1c0 .34.03.67.08 1H4v2h2.68C7.84 19.36 9.72 21 12 21s4.16-1.64 5.32-4H20v-2h-2.08c.05-.33.08-.66.08-1v-1h2v-2h-2v-1c0-1.86-1.3-3.44-3-3.93V5c0-1.66-1.34-3-3-3zm-2 8c0-1.1.9-2 2-2s2 .9 2 2v5c0 1.1-.9 2-2 2s-2-.9-2-2v-5z" />
+    </svg>
+  );
+}
+
+function PestSolutionsIcon() {
+  return (
+    <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
+      <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.488.488 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94L14.4 2.81c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.44.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1115.6 12 3.611 3.611 0 0112 15.6z" />
+    </svg>
+  );
+}
+
+function ServiceAreasIcon() {
+  return (
+    <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
+      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+    </svg>
+  );
+}
+
+function FaqsIcon() {
+  return (
+    <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
+    </svg>
+  );
+}
+
+function ContactIcon() {
+  return (
+    <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
+      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+    </svg>
+  );
+}
+
+function NavItemIcon({ label }: { label: string }) {
+  switch (label) {
+    case 'Residential': return <ResidentialIcon />;
+    case 'Commercial': return <CommercialIcon />;
+    case 'Termites': return <TermiteIcon />;
+    case 'Pest Solutions': return <PestSolutionsIcon />;
+    case 'Service Areas': return <ServiceAreasIcon />;
+    case 'FAQs': return <FaqsIcon />;
+    case 'Contact Us': return <ContactIcon />;
+    default: return null;
   }
+}
+
+function HamburgerIcon({ open }: { open: boolean }) {
+  return (
+    <div className="flex flex-col justify-center gap-[5px]">
+      <span className={`block h-0.5 w-[22px] bg-[#252525] transition-all duration-300 ${open ? 'translate-y-[7px] rotate-45' : ''}`} />
+      <span className={`block h-0.5 w-[22px] bg-[#252525] transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
+      <span className={`block h-0.5 w-[22px] bg-[#252525] transition-all duration-300 ${open ? '-translate-y-[7px] -rotate-45' : ''}`} />
+    </div>
+  );
 }
 
 function CommercialDropdown({ item }: { item: NavLink }) {
   if (!item.childGroups?.length) return null;
   return (
-    <div className="group relative">
+    <li className="group relative">
       <Link
         href={item.href}
-        className="flex items-center gap-1.5 text-sm font-medium text-zapit-heading-dark hover:text-zapit-green transition-colors py-2"
+        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#0DC429] group-hover:text-[#0DC429]"
       >
-        <NavItemIcon item={item} />
+        <NavItemIcon label={item.label} />
         {item.label}
-        <ChevronDown
-          className="h-3 w-3 transition-transform group-hover:rotate-180"
-          aria-hidden
-        />
+        <span className="ml-1 text-[10px] text-[#0DC429]">▼</span>
       </Link>
-      <div
-        className="invisible absolute left-0 top-full z-50 min-w-[280px] rounded-lg border border-zapit-border bg-white py-3 px-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100"
-        role="region"
-        aria-label={`${item.label} submenu`}
-      >
+      <div className="invisible absolute left-1/2 top-full z-[1000] flex w-[480px] -translate-x-1/2 gap-[25px] rounded-lg border border-[#e5e5e5] bg-white p-5 opacity-0 shadow-[0_8px_16px_rgba(0,0,0,0.1)] transition-all duration-200 group-hover:visible group-hover:opacity-100">
         {item.childGroups.map((group) => (
-          <div key={group.title} className="mb-3 last:mb-0">
-            <p className="px-3 py-1 text-xs font-semibold uppercase tracking-wide text-zapit-green">
-              {group.title}
-            </p>
+          <div key={group.title} className="flex-1">
+            <h4 className="mb-2 border-b border-[#e5e5e5] pb-2 text-[16px] font-bold text-[#252525]">
+              <Link href={group.items[0]?.href ?? item.href} className="hover:text-[#0DC429]">{group.title}</Link>
+            </h4>
             <ul>
-              {group.items.map((child) => (
+              {group.items.slice(group.title === 'Properties' ? 1 : 0).map((child) => (
                 <li key={child.href + child.label}>
-                  <Link
-                    href={child.href}
-                    className="block rounded-md px-3 py-2 text-sm text-zapit-text transition-colors hover:bg-zapit-light hover:text-zapit-green"
-                  >
+                  <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:text-[#0DC429]">
                     {child.label}
                   </Link>
                 </li>
@@ -82,7 +128,7 @@ function CommercialDropdown({ item }: { item: NavLink }) {
           </div>
         ))}
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -92,292 +138,330 @@ function PestSolutionsMega({ item }: { item: NavLink }) {
   const col1 = item.children.slice(0, mid);
   const col2 = item.children.slice(mid);
   return (
-    <div className="group relative">
+    <li className="group relative">
       <Link
         href={item.href}
-        className="flex items-center gap-1.5 text-sm font-medium text-zapit-heading-dark hover:text-zapit-green transition-colors py-2"
+        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#0DC429] group-hover:text-[#0DC429]"
       >
-        <NavItemIcon item={item} />
+        <NavItemIcon label={item.label} />
         {item.label}
-        <ChevronDown
-          className="h-3 w-3 transition-transform group-hover:rotate-180"
-          aria-hidden
-        />
+        <span className="ml-1 text-[10px] text-[#0DC429]">▼</span>
       </Link>
-      <div
-        className="invisible absolute left-1/2 top-full z-50 w-max max-w-[min(100vw-2rem,640px)] -translate-x-1/2 rounded-lg border border-zapit-border bg-white p-4 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100"
-        role="region"
-        aria-label={`${item.label} mega menu`}
-      >
-        <div className="grid grid-cols-2 gap-x-6 gap-y-0">
-          <ul>
-            {col1.map((child) => (
-              <li key={child.href}>
-                <Link
-                  href={child.href}
-                  className="block whitespace-nowrap py-1.5 text-sm text-zapit-text transition-colors hover:text-zapit-green"
-                >
-                  {child.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <ul>
-            {col2.map((child) => (
-              <li key={child.href}>
-                <Link
-                  href={child.href}
-                  className="block whitespace-nowrap py-1.5 text-sm text-zapit-text transition-colors hover:text-zapit-green"
-                >
-                  {child.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+      <div className="invisible absolute left-1/2 top-full z-[1000] flex w-[480px] -translate-x-1/2 gap-[25px] rounded-lg border border-[#e5e5e5] bg-white p-5 opacity-0 shadow-[0_8px_16px_rgba(0,0,0,0.1)] transition-all duration-200 group-hover:visible group-hover:opacity-100">
+        <ul className="flex-1">
+          {col1.map((child) => (
+            <li key={child.href}>
+              <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:bg-[#f8f9fa] hover:text-[#0DC429]">
+                {child.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <ul className="flex-1">
+          {col2.map((child) => (
+            <li key={child.href}>
+              <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:bg-[#f8f9fa] hover:text-[#0DC429]">
+                {child.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
+    </li>
   );
 }
 
 function SimpleNavLink({ item }: { item: NavLink }) {
   return (
-    <Link
-      href={item.href}
-      className="flex items-center gap-1.5 text-sm font-medium text-zapit-heading-dark hover:text-zapit-green transition-colors py-2"
-    >
-      <NavItemIcon item={item} />
-      {item.label}
-    </Link>
+    <li>
+      <Link
+        href={item.href}
+        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#0DC429]"
+      >
+        <NavItemIcon label={item.label} />
+        {item.label}
+      </Link>
+    </li>
   );
-}
-
-function DesktopNavItem({ item }: { item: NavLink }) {
-  if (item.label === 'Commercial' && item.childGroups) {
-    return <CommercialDropdown key={item.href} item={item} />;
-  }
-  if (item.label === 'Pest Solutions' && item.children) {
-    return <PestSolutionsMega key={item.href} item={item} />;
-  }
-  return <SimpleNavLink item={item} />;
 }
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
+  const [isSticky, setIsSticky] = useState(false);
+  const bannerRef = useRef<HTMLDivElement>(null);
+
+  const closeMobile = useCallback(() => {
+    setMobileOpen(false);
+    setExpandedMobile(null);
+    document.body.classList.remove('overflow-hidden');
+  }, []);
+
+  useEffect(() => {
+    if (!bannerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsSticky(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(bannerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+    return () => document.body.classList.remove('overflow-hidden');
+  }, [mobileOpen]);
 
   return (
-    <header className="font-sans">
-      {/* Top Bar */}
-      <div className="bg-zapit-heading-dark text-xs text-white sm:text-sm">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-2 px-4 py-2 sm:px-6">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3" aria-label="Google rating">
-            <div className="flex items-center gap-0.5" role="img" aria-label="5 out of 5 stars">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className="h-3.5 w-3.5 fill-amber-400 text-amber-400 sm:h-4 sm:w-4"
-                  strokeWidth={0}
-                  aria-hidden
-                />
-              ))}
-            </div>
-            <span className="text-white/95">
-              Rated {SITE_CONFIG.rating.value} | {SITE_CONFIG.rating.count} reviews
-            </span>
+    <header className="font-sans" style={{ fontFamily: "'Roboto', Arial, sans-serif" }}>
+      {/* ===== TOP BAR ===== */}
+      <div className="bg-[#1a1a1a] text-[14px] text-[#f0f0f0]">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-2 px-[10px] py-2 sm:flex-row sm:justify-between">
+          <div className="flex flex-wrap items-center gap-2">
+            <span>⭐⭐⭐⭐⭐ {SITE_CONFIG.rating.count}+ 5-Star Google Reviews</span>
+            <a
+              href="https://www.google.com/search?q=Zap+It+Pest+%26+Termite+Control+Melbourne+Reviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden font-medium text-[#0DC429] hover:underline sm:inline"
+            >
+              View Testimonials
+            </a>
           </div>
           <a
             href={SITE_CONFIG.phoneTel}
-            className="inline-flex items-center gap-1.5 font-medium text-zapit-green transition-colors hover:text-white"
-            aria-label={`Call ${SITE_CONFIG.phone}`}
+            className="flex items-center gap-1.5 font-bold text-[#f0f0f0] hover:text-[#0DC429]"
           >
-            <Phone className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" aria-hidden />
-            {SITE_CONFIG.phone}
+            <PhoneSvg className="h-4 w-4" />
+            CALL US NOW – {SITE_CONFIG.phoneRaw}
           </a>
         </div>
       </div>
 
-      {/* Sticky Nav Bar */}
-      <div className="sticky top-0 z-40 bg-white shadow-sm">
-        <div className="mx-auto flex h-[70px] max-w-[1400px] items-center justify-between gap-3 px-4 sm:px-6">
-          <Link href="/" className="shrink-0" aria-label={`${SITE_CONFIG.shortName} home`}>
+      {/* ===== MAIN NAV ===== */}
+      <nav className="relative z-[1000] border-t border-[#e5e5e5] bg-white">
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-[10px] py-[15px]">
+          <Link href="/" className="shrink-0" aria-label="Zap It home">
             <Image
               src={NAV_LOGO}
-              alt={SITE_CONFIG.shortName}
-              width={200}
-              height={50}
+              alt="Zap It Pest Control"
+              width={100}
+              height={49}
               priority
-              className="h-[50px] w-auto"
+              className="h-[49px] w-auto"
             />
           </Link>
 
-          <nav
-            className="hidden min-w-0 items-center justify-center gap-3 lg:flex lg:gap-4 xl:gap-5"
-            aria-label="Primary"
-          >
-            {MAIN_NAV_LINKS.map((item) => (
-              <DesktopNavItem key={item.href + item.label} item={item} />
-            ))}
-          </nav>
+          {/* Desktop menu */}
+          <ul className="hidden list-none items-center justify-center lg:flex" aria-label="Primary">
+            {MAIN_NAV_LINKS.map((item) => {
+              if (item.label === 'Commercial' && item.childGroups)
+                return <CommercialDropdown key={item.href} item={item} />;
+              if (item.label === 'Pest Solutions' && item.children)
+                return <PestSolutionsMega key={item.href} item={item} />;
+              return <SimpleNavLink key={item.href} item={item} />;
+            })}
+          </ul>
 
-          <div className="hidden shrink-0 lg:block">
-            <Link
-              href={CONTACT_LINK.href}
-              className="inline-flex items-center justify-center rounded-lg bg-zapit-green px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-zapit-green-dark"
-            >
-              Contact Us
-            </Link>
-          </div>
+          <Link
+            href={CONTACT_LINK.href}
+            className="hidden rounded-[5px] bg-[#75E083] px-6 py-3 text-[16px] font-bold text-black transition-colors hover:bg-[#63cf72] lg:inline-flex"
+          >
+            Contact Us
+          </Link>
 
           {/* Mobile controls */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-[10px] lg:hidden">
             <a
               href={SITE_CONFIG.phoneTel}
-              className="inline-flex items-center gap-1 rounded-lg bg-zapit-green px-2.5 py-1.5 text-[11px] font-semibold text-white transition-colors hover:bg-zapit-green-dark sm:px-3 sm:text-xs"
-              aria-label={`Call ${SITE_CONFIG.phone}`}
+              className="inline-flex items-center gap-2 rounded-full border border-[#75E083] bg-[#75E083] px-3 py-1.5 text-[12px] font-bold text-black transition-colors hover:bg-[#63cf72]"
             >
-              <Phone className="h-3 w-3 shrink-0" aria-hidden />
-              Call
+              <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z" />
+              </svg>
+              <span className="uppercase tracking-[0.5px]">Call Now</span>
             </a>
             <button
               type="button"
               onClick={() => setMobileOpen((o) => !o)}
-              className="p-2 text-zapit-heading-dark"
+              className="flex items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3 py-1.5 text-[12px] font-medium text-[#252525] transition-colors hover:bg-[#e9e9e9]"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
             >
-              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <HamburgerIcon open={mobileOpen} />
+              <span className="uppercase tracking-[0.5px]">MENU</span>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* ===== GREEN INFO BANNER ===== */}
+      <div ref={bannerRef} className="bg-[#75E083] py-2 text-center text-[14px] font-normal text-black">
+        <div className="mx-auto max-w-[1280px] px-[10px]">
+          Book Same-Day Pest Control in Melbourne –{' '}
+          <a href={SITE_CONFIG.phoneTel} className="font-semibold text-black hover:underline">
+            CALL NOW!
+          </a>
+        </div>
+      </div>
+
+      {/* ===== MOBILE STICKY NAV ===== */}
+      <div
+        className={`fixed left-0 top-0 z-[1000] w-full border-b border-[#e5e5e5] bg-white shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-transform duration-150 lg:hidden ${
+          isSticky ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-[10px] py-[10px]">
+          <Link href="/" aria-label="Zap It home">
+            <Image src={NAV_LOGO} alt="Zap It" width={100} height={35} className="h-[35px] w-auto" />
+          </Link>
+          <div className="flex items-center gap-[10px]">
+            <a
+              href={SITE_CONFIG.phoneTel}
+              className="inline-flex items-center gap-2 rounded-full border border-[#75E083] bg-[#75E083] px-3 py-1.5 text-[12px] font-bold text-black hover:bg-[#63cf72]"
+            >
+              <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z" />
+              </svg>
+              <span className="uppercase tracking-[0.5px]">Call Now</span>
+            </a>
+            <button
+              type="button"
+              onClick={() => setMobileOpen((o) => !o)}
+              className="flex items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3 py-1.5 text-[12px] font-medium text-[#252525] hover:bg-[#e9e9e9]"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileOpen}
+            >
+              <HamburgerIcon open={mobileOpen} />
+              <span className="uppercase tracking-[0.5px]">MENU</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Green CTA Sub-bar */}
-      <div className="bg-zapit-green text-center text-xs font-medium text-white sm:text-sm">
-        <div className="mx-auto max-w-[1400px] px-4 py-2 sm:px-6">
-          <p>
-            Book Same-Day Pest Control &mdash; CALL NOW!{' '}
-            <a
-              href={SITE_CONFIG.phoneTel}
-              className="whitespace-nowrap font-bold underline decoration-white/80 underline-offset-2 hover:decoration-white"
-            >
-              {SITE_CONFIG.phone}
-            </a>
-          </p>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
+      {/* ===== MOBILE MENU OVERLAY ===== */}
       {mobileOpen && (
-        <div className="max-h-[80vh] overflow-y-auto border-b border-zapit-border bg-white shadow-lg lg:hidden">
-          <nav
-            className="mx-auto flex max-w-[1400px] flex-col gap-1 px-4 py-4"
-            aria-label="Primary mobile"
-          >
+        <div
+          className="fixed inset-x-0 z-[998] overflow-y-auto overscroll-contain bg-white lg:hidden"
+          style={{ top: isSticky ? '57px' : '0', maxHeight: isSticky ? 'calc(100vh - 57px)' : '100vh', paddingBottom: '24px' }}
+        >
+          <ul className="list-none border-t border-[#e5e5e5]">
             {MAIN_NAV_LINKS.map((item) => {
-              if (item.label === 'Commercial' && item.childGroups) {
+              const hasDropdown =
+                (item.label === 'Commercial' && item.childGroups) ||
+                (item.label === 'Pest Solutions' && item.children);
+
+              if (hasDropdown) {
+                const key = item.label === 'Commercial' ? 'commercial' : 'pest';
+                const isExpanded = expandedMobile === key;
                 return (
-                  <div key={item.href} className="mb-1 border-b border-zapit-border/60 pb-2">
+                  <li key={item.href} className="border-b border-[#e5e5e5]">
                     <button
                       type="button"
-                      onClick={() =>
-                        setExpandedMobile(expandedMobile === 'commercial' ? null : 'commercial')
-                      }
-                      className="flex w-full items-center justify-between rounded-lg py-2.5 pl-2 pr-2 text-left text-sm font-medium text-zapit-heading-dark transition-colors hover:bg-zapit-light"
-                      aria-expanded={expandedMobile === 'commercial'}
+                      onClick={() => setExpandedMobile(isExpanded ? null : key)}
+                      className="flex w-full items-center justify-between px-5 py-[15px] text-left text-[16px] font-medium text-[#333]"
+                      aria-expanded={isExpanded}
                     >
-                      <span className="flex items-center gap-2">
-                        <NavItemIcon item={item} />
+                      <span className="flex items-center gap-3">
+                        <NavItemIcon label={item.label} />
                         {item.label}
                       </span>
-                      <ChevronDown
-                        className={`h-4 w-4 transition-transform ${expandedMobile === 'commercial' ? 'rotate-180' : ''}`}
-                        aria-hidden
-                      />
+                      <span className={`text-[12px] text-[#0DC429] transition-transform ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
                     </button>
-                    {expandedMobile === 'commercial' &&
-                      item.childGroups.map((group) => (
-                        <div key={group.title} className="mb-2 ml-2 mt-1">
-                          <p className="px-2 py-1 text-xs font-semibold text-zapit-green">
-                            {group.title}
-                          </p>
-                          <ul className="ml-2 border-l-2 border-zapit-green/20 pl-2">
-                            {group.items.map((child) => (
-                              <li key={child.href}>
-                                <Link
-                                  href={child.href}
-                                  onClick={() => setMobileOpen(false)}
-                                  className="block py-1.5 text-sm text-zapit-text hover:text-zapit-green"
-                                >
-                                  {child.label}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                  </div>
-                );
-              }
-              if (item.label === 'Pest Solutions' && item.children) {
-                return (
-                  <div key={item.href} className="mb-1 border-b border-zapit-border/60 pb-2">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setExpandedMobile(expandedMobile === 'pest' ? null : 'pest')
-                      }
-                      className="flex w-full items-center justify-between rounded-lg py-2.5 pl-2 pr-2 text-left text-sm font-medium text-zapit-heading-dark transition-colors hover:bg-zapit-light"
-                      aria-expanded={expandedMobile === 'pest'}
-                    >
-                      <span className="flex items-center gap-2">
-                        <NavItemIcon item={item} />
-                        {item.label}
-                      </span>
-                      <ChevronDown
-                        className={`h-4 w-4 transition-transform ${expandedMobile === 'pest' ? 'rotate-180' : ''}`}
-                        aria-hidden
-                      />
-                    </button>
-                    {expandedMobile === 'pest' && (
-                      <div className="ml-2 mt-1 grid grid-cols-1 gap-y-0 border-l-2 border-zapit-green/20 pl-1 sm:grid-cols-2 sm:gap-x-3">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            onClick={() => setMobileOpen(false)}
-                            className="block py-1.5 pl-2 text-sm text-zapit-text hover:text-zapit-green"
-                          >
-                            {child.label}
-                          </Link>
+                    {isExpanded && item.label === 'Commercial' && item.childGroups && (
+                      <div className="bg-[#f8f9fa] py-2">
+                        {item.childGroups.map((group) => (
+                          <div key={group.title}>
+                            <h4 className="px-[52px] py-2 text-[14px] font-bold uppercase text-[#888]">{group.title}</h4>
+                            <ul>
+                              {group.items.map((child) => (
+                                <li key={child.href} className="border-b border-[#e5e5e5]">
+                                  <Link href={child.href} onClick={closeMobile} className="block px-[52px] py-[15px] text-[16px] text-[#333] hover:text-[#0DC429]">
+                                    {child.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         ))}
                       </div>
                     )}
-                  </div>
+                    {isExpanded && item.label === 'Pest Solutions' && item.children && (
+                      <div className="bg-[#f8f9fa] py-2">
+                        <ul>
+                          {item.children.map((child) => (
+                            <li key={child.href} className="border-b border-[#e5e5e5]">
+                              <Link href={child.href} onClick={closeMobile} className="block px-[52px] py-[15px] text-[16px] text-[#333] hover:text-[#0DC429]">
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </li>
                 );
               }
+
               return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center gap-2 rounded-lg py-2.5 pl-2 pr-2 text-sm font-medium text-zapit-heading-dark transition-colors hover:bg-zapit-light"
-                >
-                  <NavItemIcon item={item} />
-                  {item.label}
-                </Link>
+                <li key={item.href} className="border-b border-[#e5e5e5]">
+                  <Link
+                    href={item.href}
+                    onClick={closeMobile}
+                    className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#333] hover:text-[#0DC429]"
+                  >
+                    <NavItemIcon label={item.label} />
+                    {item.label}
+                  </Link>
+                </li>
               );
             })}
-            <Link
-              href={CONTACT_LINK.href}
-              onClick={() => setMobileOpen(false)}
-              className="mt-2 inline-flex items-center justify-center rounded-lg bg-zapit-green px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-zapit-green-dark"
-            >
-              Contact Us
-            </Link>
-          </nav>
+            {/* Mobile-only Contact Us */}
+            <li className="border-b border-[#e5e5e5]">
+              <Link
+                href={CONTACT_LINK.href}
+                onClick={closeMobile}
+                className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#333] hover:text-[#0DC429]"
+              >
+                <NavItemIcon label="Contact Us" />
+                Contact Us
+              </Link>
+            </li>
+          </ul>
         </div>
       )}
+
+      {/* ===== DESKTOP STICKY HEADER ===== */}
+      <div
+        className={`fixed left-0 top-0 z-[1000] hidden w-full border-b border-[#e5e5e5] bg-white shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-transform duration-150 lg:block ${
+          isSticky ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-0">
+          <Link href="/" aria-label="Zap It home">
+            <Image src={NAV_LOGO} alt="Zap It" width={100} height={35} className="h-[40px] w-auto" />
+          </Link>
+          <ul className="flex list-none items-center">
+            {MAIN_NAV_LINKS.map((item) => {
+              if (item.label === 'Commercial' && item.childGroups)
+                return <CommercialDropdown key={item.href + '-sticky'} item={item} />;
+              if (item.label === 'Pest Solutions' && item.children)
+                return <PestSolutionsMega key={item.href + '-sticky'} item={item} />;
+              return <SimpleNavLink key={item.href + '-sticky'} item={item} />;
+            })}
+          </ul>
+          <Link
+            href={CONTACT_LINK.href}
+            className="rounded-[5px] bg-[#75E083] px-6 py-3 text-[16px] font-bold text-black hover:bg-[#63cf72]"
+          >
+            Contact Us
+          </Link>
+        </div>
+      </div>
     </header>
   );
 }
