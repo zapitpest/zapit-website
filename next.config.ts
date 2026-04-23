@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
         hostname: 'zapitpestmelbourne.com.au',
         pathname: '/wp-content/**',
       },
+      { protocol: 'https', hostname: 'lh3.googleusercontent.com', pathname: '/**' },
     ],
     formats: ['image/webp'],
   },

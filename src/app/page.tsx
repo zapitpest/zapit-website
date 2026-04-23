@@ -1,72 +1,86 @@
+import type { CSSProperties } from 'react';
 import type { Metadata } from 'next';
+import type { LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import {
-  Building2,
-  Check,
-  Mail,
-  Phone,
-  UtensilsCrossed,
-  Warehouse,
-  ShoppingCart,
-  PartyPopper,
-  Beer,
-  Dumbbell,
-  Landmark,
-  Zap,
-} from 'lucide-react';
+import { Home, Warehouse, UtensilsCrossed, ShoppingCart, Cake, Beer, Box, Building2, Mail, Phone } from 'lucide-react';
 import { SITE_CONFIG, HOMEPAGE_FAQS } from '@/lib/constants';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateProductSchema, generateFAQSchema } from '@/lib/schema';
-import { TREATMENTS, PROPERTY_TYPES } from '@/lib/pricing-data';
-import { BLOG_LIST_POSTS } from '@/lib/blog-list';
-import FAQAccordion from '@/components/sections/FAQAccordion';
-import StatsCounter from '@/components/sections/StatsCounter';
-import { HomepagePestServiceTabs, HomepageReviewsBlock } from '@/components/sections/HomepageReviewsAndPestTabs';
+import {
+  HomepageCtaChecklist,
+  HomepageFAQ,
+  HomepagePestCards,
+  HomepagePestServiceTabs,
+  HomepageReviews,
+} from '@/components/sections/HomepageReviewsAndPestTabs';
 
-const money = new Intl.NumberFormat('en-AU', {
-  style: 'currency',
-  currency: 'AUD',
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 2,
-});
+const HERO_BG =
+  'https://zapitpestmelbourne.com.au/wp-content/uploads/2025/09/imgi_73_WhatsApp-Image-2025-09-17-at-3.05.27-PM.jpg';
 
-type PricingRow = {
-  service: string;
-  propertyType: string;
-  price: number;
-  duration: number;
-};
+const WP = '/images/wp-assets';
 
-function buildPricingTableRows(): PricingRow[] {
-  const rows: PricingRow[] = [];
-  for (const t of TREATMENTS) {
-    if (t.requiresPropertyType && t.propertyPricing) {
-      for (const pt of PROPERTY_TYPES) {
-        const price = pt === 'Double-story' ? t.propertyPricing.doubleStory : t.propertyPricing.singleStory;
-        rows.push({ service: t.name, propertyType: pt, price, duration: t.duration });
-      }
-    } else {
-      rows.push({
-        service: t.name,
-        propertyType: 'All properties',
-        price: t.basePrice,
-        duration: t.duration,
-      });
-    }
-  }
-  return rows;
+const INDUSTRY_TILES: { title: string; href: string; Icon: LucideIcon }[] = [
+  { title: 'Property Pest Control', href: '/commercial/property-pest-control', Icon: Home },
+  { title: 'Warehousing and Storage', href: '/commercial-pest-control/warehousing-and-storage', Icon: Warehouse },
+  { title: 'Restaurants Pest Control', href: '/commercial-pest-control/restaurants-pest-control', Icon: UtensilsCrossed },
+  { title: 'Supermarkets Pest Control', href: '/commercial-pest-control/pest-control-in-supermarkets', Icon: ShoppingCart },
+  { title: 'Function Vanues', href: '/commercial/function-venues', Icon: Cake },
+  { title: 'Brewhouses and Distilleries', href: '/commercial/brewhouses-and-distilleries', Icon: Beer },
+  { title: 'Recreational Facilities', href: '/commercial-pest-control/recreational-facilities-pest-control', Icon: Box },
+  { title: 'Government Buildings', href: '/commercial/government-buildings', Icon: Building2 },
+];
+
+const BLOG_CARDS: {
+  href: string;
+  image: string;
+  title: string;
+  excerpt: string;
+  w: number;
+  h: number;
+}[] = [
+  {
+    href: '/blogs#how-to-prepare-your-home-for-a-pest-control-visit',
+    image: `${WP}/2026-01-How-to-Prepare-Your-Home-for-a-Pest-Control-Visit-img-300x200.jpg`,
+    title: 'How to Prepare Your Home for a Pest Control Visit?',
+    excerpt: 'Preparing your home before a pest control visit improves...',
+    w: 300,
+    h: 200,
+  },
+  {
+    href: '/blogs#what-happens-during-a-professional-pest-inspection',
+    image: `${WP}/2026-01-What-Happens-During-a-Professional-Pest-Inspection-img-300x200.jpg`,
+    title: 'What Happens During a Professional Pest Inspection?',
+    excerpt: 'A professional pest inspection is a detailed process...',
+    w: 300,
+    h: 200,
+  },
+  {
+    href: '/blogs#pest-control-checklist-for-new-homeowners-in-melbourne',
+    image: `${WP}/2025-12-Pest-Control-300x168.jpg`,
+    title: 'Pest Control Checklist for New Homeowners in Melbourne',
+    excerpt: 'Moving into a new home is an exciting milestone, yet...',
+    w: 300,
+    h: 168,
+  },
+];
+
+function GreenDivider({ className = 'w-[9%] min-w-[80px] mx-auto' }: { className?: string }) {
+  return <div className={`h-0.5 bg-[#7DD958] ${className}`} role="presentation" aria-hidden />;
 }
 
-const PRICING_ROWS = buildPricingTableRows();
+const btnZapit =
+  'inline-flex min-h-[48px] items-center justify-center bg-[#0DC429] text-white text-base font-semibold uppercase tracking-wide px-10 py-3 rounded-lg shadow-[0px_0px_10px_0px_rgba(0,0,0,0.2)] hover:bg-[#0aab22]';
+const btnBlack =
+  'inline-flex min-h-[48px] items-center justify-center bg-black text-white text-base font-semibold uppercase tracking-wide px-10 py-3 rounded-lg shadow-[0px_0px_10px_0px_rgba(0,0,0,0.2)] hover:bg-neutral-900';
 
 export const metadata: Metadata = {
-  title: `Pest Control Melbourne | ${SITE_CONFIG.name}`,
-  description: `Melbourne's trusted pest & termite control. 5000+ emergencies solved, 24/7 same-day service. Safe for pets & people. Call ${SITE_CONFIG.phone} for a free quote.`,
+  title: 'Pest Control Melbourne | Zap It Pest Control Services',
+  description: `Zap It delivers fast, licensed pest & termite control across Melbourne, safe for pets & people, protecting homes & businesses from pests. Call ${SITE_CONFIG.phone}.`,
   alternates: { canonical: '/' },
   openGraph: {
-    title: `Pest Control Melbourne | ${SITE_CONFIG.name}`,
-    description: `Melbourne's trusted pest & termite control. 5000+ emergencies solved, 24/7 same-day service. Safe for pets & people.`,
+    title: 'Pest Control Melbourne | Zap It Pest Control Services',
+    description: `Zap It delivers fast, licensed pest & termite control across Melbourne, safe for pets & people, protecting homes & businesses from pests. Call ${SITE_CONFIG.phone}.`,
     url: SITE_CONFIG.url,
     siteName: SITE_CONFIG.name,
     locale: 'en_AU',
@@ -74,496 +88,300 @@ export const metadata: Metadata = {
   },
 };
 
-const INDUSTRY_TILES = [
-  { title: 'Property Pest Control', href: '/commercial-pest-control', Icon: Building2 },
-  { title: 'Warehousing and Storage', href: '/commercial-pest-control#warehousing', Icon: Warehouse },
-  { title: 'Restaurants Pest Control', href: '/commercial-pest-control#restaurants', Icon: UtensilsCrossed },
-  { title: 'Supermarkets Pest Control', href: '/commercial-pest-control#supermarkets', Icon: ShoppingCart },
-  { title: 'Function Venues', href: '/commercial-pest-control#venues', Icon: PartyPopper },
-  { title: 'Brewhouses and Distilleries', href: '/commercial-pest-control#brewhouses', Icon: Beer },
-  { title: 'Recreational Facilities', href: '/commercial-pest-control#recreational', Icon: Dumbbell },
-  { title: 'Government Buildings', href: '/commercial-pest-control#government', Icon: Landmark },
-] as const;
-
-const CBD_CHECKS = [
-  'CBD Coverage',
-  'High-rise Specialists',
-  '24/7 Emergency',
-  'Heritage Properties',
-  'Discreet Service',
-  'Commercial Focus',
-] as const;
-
 export default function HomePage() {
   const faqSchema = generateFAQSchema(HOMEPAGE_FAQS.map((f) => ({ question: f.question, answer: f.answer })));
   const productSchema = generateProductSchema();
   const schemas = [productSchema, ...(faqSchema ? [faqSchema] : [])];
 
-  // Explicit no-op: StatsCounter is imported per spec but not used (stats are inline).
-  void StatsCounter;
-
   return (
     <>
       <JsonLd data={schemas} />
 
-      {/* 1. Hero */}
-      <section className="relative min-h-[min(85vh,720px)] flex items-center text-white overflow-hidden">
-        <div
-          className="absolute inset-0 bg-[url('/images/hero/pest-service-melbourne.webp')] bg-cover bg-center"
-          aria-hidden
+      <section className="relative min-h-[450px] flex flex-col items-center text-white pt-[115px] pb-12 overflow-hidden">
+        <Image
+          src={HERO_BG}
+          alt=""
+          fill
+          priority
+          className="object-cover object-bottom -z-20"
+          sizes="100vw"
         />
-        <div className="absolute inset-0 bg-zapit-dark/45" aria-hidden />
-        <div className="relative w-full max-w-5xl mx-auto px-4 py-24 md:py-32 text-center">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight uppercase">
-            <span className="inline-block bg-[#0DC429] px-3 py-1.5 mb-1">ZAP IT PEST &amp; TERMITE CONTROL</span>
-            <br />
-            <span className="inline-block bg-[#0DC429] px-3 py-1.5">MELBOURNE</span>
+        <div className="absolute inset-0 bg-black/20 -z-10" aria-hidden />
+        <div className="relative w-full max-w-[1200px] mx-auto px-3 sm:px-4 text-center z-0">
+          <h1
+            className="text-3xl sm:text-[42px] md:text-[51px] font-semibold leading-[1.2] text-white drop-shadow-sm px-1"
+            style={{ textWrap: 'balance' } as CSSProperties}
+          >
+            <span className="inline bg-[#0dc429] [box-decoration-break:clone] px-2.5 text-white">ZAP IT PEST &amp; TERMITE CONTROL MELBOURNE</span>
           </h1>
-          <div className="mt-6 flex justify-center px-2">
-            <p className="w-full max-w-3xl text-base md:text-lg text-white/95 bg-zapit-green/60 backdrop-blur-[2px] px-4 py-3 md:px-6 md:py-3 rounded">
-              Quick and professional, 5-star pest control Melbourne services in Melbourne.
-            </p>
-          </div>
-          <div className="mt-10">
-            <Link
-              href={SITE_CONFIG.phoneTel}
-              className="inline-flex items-center justify-center bg-zapit-dark hover:bg-black text-white font-bold px-10 py-4 rounded-lg text-base md:text-lg transition-colors shadow-lg"
-            >
-              CALL NOW
+          <p className="mt-5 inline-block text-left sm:text-center text-[18px] leading-[25px] text-white bg-[#0DC4294D] px-4 py-3 max-w-3xl">
+            Quick and professional, 5-star pest control Melbourne services in Melbourne.
+          </p>
+          <div className="mt-8">
+            <Link href={SITE_CONFIG.phoneTel} className={btnBlack}>
+              Call Now{' '}
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 2. Reviews */}
-      <section id="reviews" className="py-14 lg:py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-zapit-dark text-center">
+      <section className="py-14 md:py-20 bg-white text-[#2B2B2B]">
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-4">
+          <h2 className="text-center text-[32px] md:text-[38px] font-semibold text-[#252c33] max-w-4xl mx-auto">
             How Customers Rate Zap It Pest &amp; Termite Control Services
           </h2>
-          <div className="w-20 h-1 bg-zapit-green mx-auto my-4" />
-          <HomepageReviewsBlock />
-        </div>
-      </section>
-
-      {/* 3. Who can benefit */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark mb-12 max-w-4xl mx-auto">
-            Who Can Benefit From Our Pest Control Melbourne Services?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {[
-              {
-                title: 'Residential Property Owners',
-                sub: 'Pest-Free Home Guaranteed',
-                body: "Whether you own a house, townhouse, or unit, we tailor treatments to your property so pests are controlled at the source—without cutting corners on safety for your family and pets.",
-                href: '/residential',
-                img: '/images/icons/residential.webp',
-                alt: 'Residential',
-              },
-              {
-                title: 'Commercial Business Owners',
-                sub: 'Customer-Friendly Environment Guaranteed',
-                body: "Restaurants, offices, and retail need discreet, compliant pest management that protects your brand. We work around your hours and keep documentation clear for your team.",
-                href: '/commercial-pest-control',
-                img: '/images/icons/business.webp',
-                alt: 'Commercial',
-              },
-              {
-                title: 'Termite Risk Structures',
-                sub: 'Healthy-Property Protection Guaranteed',
-                body: "Timber-heavy builds and subfloor voids are prime termite risk. We pair inspections with treatment plans so you're not caught out by hidden damage or silent entry points.",
-                href: '/termite-control-melbourne',
-                img: '/images/icons/termite-risk.webp',
-                alt: 'Termite risk icon',
-              },
-            ].map((card) => (
-              <div
-                key={card.title}
-                className="relative border-l-4 border-zapit-green border-t border-r border-b border-zapit-border/80 rounded-r-xl p-6 pt-7 min-h-[320px] md:min-h-[340px] shadow-sm bg-white"
-              >
-                <h3 className="text-lg font-bold text-zapit-dark pr-20">{card.title}</h3>
-                <p className="text-zapit-green font-semibold text-sm mt-1">{card.sub}</p>
-                <p className="text-sm text-zapit-text mt-3 leading-relaxed pr-2">{card.body}</p>
-                <Link
-                  href={card.href}
-                  className="inline-flex mt-5 bg-zapit-green hover:bg-zapit-green-dark text-white text-sm font-semibold px-5 py-2.5 rounded-md transition-colors"
-                >
-                  Learn More
-                </Link>
-                <div className="absolute bottom-4 right-3 w-20 h-20 flex items-end justify-end pointer-events-none">
-                  <Image
-                    src={card.img}
-                    alt={card.alt}
-                    width={80}
-                    height={80}
-                    className="object-contain w-16 h-16 md:w-20 md:h-20"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Link
-              href="/pest-solutions"
-              className="inline-flex bg-zapit-green hover:bg-zapit-green-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
-            >
-              Explore All Services
-            </Link>
+          <GreenDivider className="w-[9%] min-w-[80px] mx-auto mt-4" />
+          <div className="mt-8">
+            <HomepageReviews />
           </div>
         </div>
       </section>
 
-      {/* 4. Melbourne's Best — tabs */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark mb-10">
+      <section className="py-14 md:py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-4">
+          <h2 className="text-center text-[32px] md:text-[38px] font-semibold text-[#252c33]">
             Melbourne&apos;s Best One-In-All Pest Control Services
           </h2>
-          <HomepagePestServiceTabs />
+          <GreenDivider className="w-[9%] min-w-[80px] mx-auto mt-4" />
+          <div className="mt-8">
+            <HomepagePestServiceTabs />
+          </div>
         </div>
       </section>
 
-      {/* 5. Industry solutions */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark">
+      <section className="py-14 md:py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-4">
+          <h2 className="text-center text-[32px] md:text-[38px] font-semibold text-[#252c33]">
             Tailored Pest Control Melbourne Solutions For Every Industry
           </h2>
-          <div className="w-20 h-1 bg-zapit-green mx-auto my-4" />
-          <p className="text-center text-zapit-text max-w-3xl mx-auto mb-10 leading-relaxed">
-            Our inspection team takes time to assess your site, identify risk areas, and build a program that matches how your
-            business actually operates day to day—so treatments stay effective without slowing you down.
+          <GreenDivider className="w-[9%] min-w-[80px] mx-auto mt-4" />
+          <p className="text-center text-[18px] leading-[25px] text-[#636363] max-w-3xl mx-auto mt-6">
+            Our inspection team takes time and figures out the issues you are actually facing, like termite or bee attacks,
+            and so on. We will use the right treatment method to remove the insects from your place.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
             {INDUSTRY_TILES.map((tile) => (
               <Link
                 key={tile.title}
                 href={tile.href}
-                className="flex flex-col items-center text-center p-4 rounded-lg border border-zapit-border/80 bg-white shadow-sm hover:shadow-md transition-shadow"
+                className="flex flex-col items-center justify-center text-center min-h-[120px] rounded-xl border border-gray-200/80 bg-white p-4 shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-colors hover:bg-[#0DC42936] hover:border-[#0DC429]/30"
               >
-                <tile.Icon className="h-8 w-8 text-zapit-green mb-2" strokeWidth={1.75} />
-                <span className="text-sm font-semibold text-zapit-dark leading-snug">{tile.title}</span>
+                <tile.Icon className="h-8 w-8 text-[#0DC429] mb-2" strokeWidth={1.75} />
+                <span className="text-sm font-semibold text-[#252c33] leading-snug">{tile.title}</span>
               </Link>
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link
-              href="/commercial-pest-control"
-              className="inline-flex bg-zapit-green hover:bg-zapit-green-dark text-white font-semibold px-8 py-3 rounded-md transition-colors"
-            >
+            <Link href="/commercial-pest-control" className={btnZapit}>
               Find Your Industry
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 6. All over Melbourne + CBD */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-zapit-dark text-left mb-2">
-                All Over Melbourne Pest Control Coverage
+      <section className="py-14 md:py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <h2 className="text-[32px] md:text-[38px] font-semibold text-[#252c33]">
+                Fully Insured &amp; Licensed By The Victorian DHHS
               </h2>
-              <h3 className="text-lg font-semibold text-zapit-text mb-6">Why Choose Zap It Pest &amp; Termite Control Melbourne Services?</h3>
-              <div className="grid grid-cols-2 gap-3 max-w-md">
-                <div className="rounded-xl bg-zapit-dark text-white p-4 text-center">
-                  <p className="text-2xl font-extrabold text-zapit-green">{SITE_CONFIG.stats.emergenciesSolved}</p>
-                  <p className="text-xs text-gray-300 mt-1">Emergencies solved</p>
-                </div>
-                <div className="rounded-xl bg-zapit-dark text-white p-4 text-center">
-                  <p className="text-2xl font-extrabold text-white">{SITE_CONFIG.stats.yearsExperience}</p>
-                  <p className="text-xs text-gray-300 mt-1">Years experience</p>
-                </div>
-                <div className="rounded-xl bg-zapit-dark text-white p-4 text-center">
-                  <p className="text-2xl font-extrabold text-white">{SITE_CONFIG.stats.firstVisitSuccess}</p>
-                  <p className="text-xs text-gray-300 mt-1">First-visit success</p>
-                </div>
-                <div className="rounded-xl bg-zapit-dark text-white p-4 text-center">
-                  <p className="text-2xl font-extrabold text-white">{SITE_CONFIG.stats.availability}</p>
-                  <p className="text-xs text-gray-300 mt-1">Support</p>
-                </div>
-                <div className="col-span-2 rounded-xl bg-zapit-dark text-white p-4 flex items-center gap-3">
-                  <Zap className="h-9 w-9 text-zapit-green flex-shrink-0" />
-                  <div>
-                    <p className="text-sm text-gray-300">Average Response Time</p>
-                    <p className="text-lg font-bold text-zapit-green">{SITE_CONFIG.stats.responseTime}</p>
-                  </div>
-                </div>
+              <GreenDivider className="w-[15%] min-w-[72px] mt-4" />
+              <div className="mt-4">
+                <Image
+                  src={`${WP}/2025-04-WhatsApp-Image-2025-04-27-at-20.43.22_e51c5930-Photoroom-e1745768720629.png`}
+                  alt="Victoria State Government Logo"
+                  width={477}
+                  height={280}
+                  className="w-full max-w-[194px] h-auto"
+                />
               </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-zapit-dark mb-3">CBD &amp; Inner City Melbourne - Pest Specialists</h3>
-              <p className="text-zapit-text leading-relaxed mb-6">
-                High-rise living and heritage facades need discreet access, clear communication, and plans that work with body corporate rules.
-                We service apartments, retail, and offices across the CBD and inner ring with the same fast response and licensed technicians.
+              <p className="mt-5 text-[18px] leading-[25px] text-[#636363]">
+                Zap It adheres to Australian health standards and complies with pest control service protocols. As a
+                top-rated pest control Melbourne service We are licensed by the Department of Health and Human Services
+                Victoria (DHHS) to provide quality services using authorised pest control products. We treat your home and
+                workplace as our own, using high-quality, eco-friendly products to deliver long-lasting solutions. Choose
+                Licensed. Choose Safe. Choose Zap It.
               </p>
-              <ul className="space-y-2 mb-8">
-                {CBD_CHECKS.map((c) => (
-                  <li key={c} className="flex items-center gap-2 text-zapit-dark text-sm">
-                    <Check className="h-5 w-5 text-zapit-green flex-shrink-0" />
-                    {c}
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap gap-3">
+              <div className="mt-6">
                 <Link
                   href={SITE_CONFIG.booking.url}
+                  className={btnZapit}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex bg-zapit-green hover:bg-zapit-green-dark text-white font-semibold px-5 py-2.5 rounded-md transition-colors"
                 >
-                  Get a Free Quote Now
-                </Link>
-                <Link
-                  href="/service-areas"
-                  className="inline-flex bg-zapit-green hover:bg-zapit-green-dark text-white font-semibold px-5 py-2.5 rounded-md transition-colors"
-                >
-                  Explore Service Areas
+                  BOOK OUR SERVICE TODAY!{' '}
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. About / founding story */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden">
-              <Image
-                src="/images/hero/about-pest-control.png"
-                alt="Zap It pest control Melbourne"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-              />
-            </div>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-zapit-dark mb-4">
-                Zap It Pest &amp; Termite Control Melbourne - Licensed &amp; Quick Controllers
-              </h2>
-              <p className="text-zapit-text leading-relaxed mb-4">
-                Zap It is a leading pest control Melbourne company helping residential and commercial property owners keep spaces
-                healthy and pest-free. Adam Balli founded Zap It in 2020, and since then we have delivered fast, professional
-                treatments using modern tools and up-to-date products.
-              </p>
-              <p className="text-zapit-text leading-relaxed mb-6">
-                Our team focuses on long-lasting results, clear communication, and safe application—whether you are dealing with
-                termites, spiders, ants, or rodents. Book a visit and we will tailor a plan to your property.
-              </p>
-              <Link href="/about-us" className="inline-flex bg-zapit-green hover:bg-zapit-green-dark text-white font-semibold px-6 py-3 rounded-md transition-colors">
-                Discover Zap It
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Pest strategy */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark mb-10">
-            Concerned About Pests? Don&apos;t Panic &amp; Follow This Strategy
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                n: '1',
-                t: "Stop! Don't Spray Anything",
-                p: "Store-bought sprays can scatter pests, mask where they're nesting, and make professional treatment less effective. Leave products on the shelf and avoid disturbing nests or droppings until we can assess the situation properly.",
-              },
-              {
-                n: '2',
-                t: 'Contain The Area',
-                p: "Close off the space where you've seen activity where safe to do so, keep food sealed, and reduce clutter that gives pests places to hide. This helps limit spread while you wait for a technician to arrive and map the real extent of the issue.",
-              },
-              {
-                n: '3',
-                t: 'Let Professionals Handle The Situation',
-                p: 'Our licensed team identifies the species, locates entry points, and applies the right treatment for your property type. You get a clear plan, follow-up if needed, and advice to help prevent the problem from returning.',
-              },
-            ].map((s) => (
-              <div key={s.n} className="rounded-xl border border-zapit-border/90 bg-white p-6 shadow-sm">
-                <p className="text-3xl font-extrabold text-zapit-green mb-2">{s.n}</p>
-                <h3 className="text-lg font-bold text-zapit-dark mb-3">{s.t}</h3>
-                <p className="text-sm text-zapit-text leading-relaxed">{s.p}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 9. Licensed DHHS */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <Image
-                src="/images/certifications/victoria-state-govt.png"
-                alt="Victoria State Government"
-                width={200}
-                height={80}
-                className="h-14 w-auto mb-5"
-              />
-              <h2 className="text-2xl md:text-3xl font-bold text-zapit-dark mb-4">Fully Insured &amp; Licensed By The Victorian DHHS</h2>
-              <p className="text-zapit-text leading-relaxed mb-4">
-                Zap It adheres to Australian health standards and follows pest control service protocols. We are licensed by the
-                Department of Health and Human Services Victoria (DHHS) to deliver treatments using approved products and methods.
-              </p>
-              <p className="text-zapit-text leading-relaxed mb-6">
-                We treat your home and workplace with care, prioritising clear communication and safe application. Licensed. Safe. Zap It.
-              </p>
-              <Link
-                href={SITE_CONFIG.booking.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex bg-zapit-green hover:bg-zapit-green-dark text-white font-bold px-6 py-3 rounded-md transition-colors"
-              >
-                BOOK OUR SERVICE TODAY!
-              </Link>
-            </div>
-            <div className="relative aspect-[5/4] w-full rounded-xl overflow-hidden">
-              <Image
-                src="/images/hero/zapit-social.webp"
-                alt="Zap It team"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. Our blogs */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark mb-10">Our Blogs</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {BLOG_LIST_POSTS.slice(0, 3).map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blogs#${post.slug}`}
-                className="group border border-zapit-border/90 rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col"
-              >
-                <div className="relative h-48 w-full">
-                  <Image src={post.image} alt={post.title} fill className="object-cover" sizes="(min-width: 768px) 33vw, 100vw" />
-                </div>
-                <div className="p-5 flex flex-col flex-1">
-                  <h3 className="font-bold text-zapit-dark group-hover:text-zapit-green transition-colors line-clamp-2 mb-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-zapit-text line-clamp-3 flex-1">{post.excerpt}</p>
-                  <span className="text-zapit-green font-semibold text-sm mt-3">Read More</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 11. Certifications */}
-      <section className="py-14 lg:py-16 bg-zapit-light">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark mb-10">Certifications &amp; Compliance</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            {[
-              { src: '/images/certifications/aempa-v2.png', alt: 'AEMPA', label: 'AUSTRALIAN ENVIRONMENTAL PEST MANAGERS ASSOCIATION' },
-              { src: '/images/certifications/guarantee-200d.png', alt: 'Unrivalled service', label: 'UNRIVALLED SERVICE AND SUPPORT' },
-              { src: '/images/certifications/dhhs-cert.jpg', alt: 'HACCP', label: 'HACCP FOOD SAFETY CERTIFICATION' },
-              { src: '/images/certifications/victoria-state-govt.png', alt: 'Wildlife', label: 'WILDLIFE LICENCE' },
-            ].map((c) => (
-              <div key={c.label} className="flex flex-col items-center text-center">
-                <Image src={c.src} alt={c.alt} width={80} height={80} className="h-16 w-auto object-contain mb-3" />
-                <p className="text-[10px] md:text-xs font-bold text-zapit-dark uppercase leading-tight">{c.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 12. FAQs */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark mb-10">Frequently Asked Questions</h2>
-          <FAQAccordion faqs={HOMEPAGE_FAQS} />
-        </div>
-      </section>
-
-      {/* 13. Pricing table */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark mb-10">Our Prices</h2>
-          <div className="overflow-x-auto rounded-xl border border-zapit-border bg-white shadow-sm -mx-2 sm:mx-0">
-            <table className="w-full min-w-[640px] text-left text-sm">
-              <thead>
-                <tr className="bg-zapit-dark text-white">
-                  <th className="px-4 py-3 font-bold">Service name</th>
-                  <th className="px-4 py-3 font-bold">Property type</th>
-                  <th className="px-4 py-3 font-bold text-right">Price (AUD) ex. GST</th>
-                  <th className="px-4 py-3 font-bold text-right">Duration (min)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PRICING_ROWS.map((row, i) => (
-                  <tr key={`${row.service}-${row.propertyType}-${i}`} className={i % 2 === 0 ? 'bg-white' : 'bg-zapit-light/50'}>
-                    <td className="px-4 py-2.5 text-zapit-dark font-medium border-t border-zapit-border/60">{row.service}</td>
-                    <td className="px-4 py-2.5 text-zapit-text border-t border-zapit-border/60">{row.propertyType}</td>
-                    <td className="px-4 py-2.5 text-right text-zapit-dark font-semibold border-t border-zapit-border/60">
-                      {money.format(row.price)}
-                    </td>
-                    <td className="px-4 py-2.5 text-right text-zapit-text border-t border-zapit-border/60">{row.duration}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* 14. CTA bar */}
-      <section className="relative bg-zapit-dark text-white overflow-hidden">
-        <div className="container mx-auto px-4 py-10 lg:py-14 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
-            <div className="relative flex justify-center md:justify-start">
-              <div className="relative w-full max-w-sm aspect-[3/4] max-h-[320px]">
+            <div className="order-1 lg:order-2">
+              <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-[0_0_10px_rgba(0,0,0,0.2)]">
                 <Image
-                  src="/images/cta/pest-worker-cta.webp"
-                  alt="Pest control technician"
+                  src={`${WP}/elementor-thumbs-ZAP-IT-SOCIALIETTA-508022-r7s5ckhcmh43u3l9w3juc3wy7mr5k12y7bz7xs4tbk.webp`}
+                  alt="ZAP IT - SOCIALIETTA-508022"
                   fill
-                  className="object-contain object-bottom"
-                  sizes="(min-width: 768px) 40vw, 100vw"
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                 />
               </div>
             </div>
-            <div className="relative text-center md:text-left pb-4">
-              <div className="absolute -top-4 right-0 md:right-4 md:top-0 w-24 h-24 md:w-28 md:h-28 z-10">
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-4">
+          <h2 className="text-center text-[32px] md:text-[38px] font-semibold text-[#252c33]">Our Blogs</h2>
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {BLOG_CARDS.map((b) => (
+              <Link
+                key={b.title}
+                href={b.href}
+                className="group flex flex-col rounded-xl overflow-hidden bg-white shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:bg-[#0DC42936] transition-colors"
+              >
+                <div className={`relative w-full ${b.h === 168 ? 'h-[200px]' : 'h-[200px]'}`}>
+                  <Image
+                    src={b.image}
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-[30px] bg-[#eeeeee]">
+                  <h3 className="text-[21px] font-normal text-[#252c33] group-hover:text-[#0DC429] transition-colors leading-snug">
+                    {b.title}
+                  </h3>
+                  <p className="mt-3 text-[18px] leading-[25px] text-[#636363] flex-1 line-clamp-3">{b.excerpt}</p>
+                  <span className="mt-4 inline-flex w-fit items-center justify-center min-h-10 bg-[#0DC429] text-white text-sm font-semibold px-5 rounded-lg shadow-sm uppercase tracking-wide">
+                    Read More
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-20 bg-[#F7F7F7]">
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-4">
+          <h2 className="text-center text-[32px] md:text-[38px] font-semibold text-[#252c33]">Certifications &amp; Compliance</h2>
+          <GreenDivider className="w-[9%] min-w-[80px] mx-auto mt-4" />
+          <div className="mt-10 flex flex-wrap justify-center gap-8 md:gap-12 text-center">
+            {[
+              {
+                w: 280,
+                h: 120,
+                src: `${WP}/2024-07-aempa-v2-1-e1745687358594-768x321.png`,
+                label: 'AUSTRALIAN ENVIRONMENTAL PEST MANAGERS ASSOCIATION',
+              },
+              {
+                w: 150,
+                h: 150,
+                src: `${WP}/2024-07-200dguarantee-e1745687539942-300x300.png`,
+                label: 'UNRIVALLED SERVICE AND SUPPORT',
+              },
+              {
+                w: 173,
+                h: 300,
+                src: `${WP}/2024-07-aempa-v2-1-1-e1745687916424-173x300.png`,
+                label: 'HACCP FOOD SAFETY CERTIFICATION',
+              },
+              {
+                w: 300,
+                h: 300,
+                src: `${WP}/2025-04-WhatsApp-Image-2025-04-25-at-23.36.21_3d87ac70-300x300.jpg`,
+                label: 'WILDIFE LICENCE',
+              },
+            ].map((c) => (
+              <div key={c.label} className="flex max-w-[240px] flex-col items-center">
+                <div className="relative h-28 w-full">
+                  <Image src={c.src} alt="" fill className="object-contain" sizes="200px" />
+                </div>
+                <p className="mt-3 text-xs font-medium text-black leading-tight max-w-[220px]">{c.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-4">
+          <h2 className="text-center text-[32px] md:text-[38px] font-semibold text-[#252c33]">Frequently Asked Questions ​</h2>
+          <GreenDivider className="w-[45%] min-w-[120px] max-w-md mx-auto mt-4" />
+          <div className="mt-4">
+            <HomepageFAQ />
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-4 text-center">
+          <HomepagePestCards />
+          <div className="mt-10">
+            <Link href="/pest-solutions" className={btnZapit}>
+              Explore All Services
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="relative text-white overflow-hidden py-12 md:py-16"
+        style={{
+          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+        }}
+      >
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-4">
+          <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-10">
+            <div className="relative w-full max-w-[min(100%,420px)] mx-auto md:mx-0 flex-shrink-0 self-center md:self-end">
+              <Image
+                src={`${WP}/2025-07-imgi_23_—Pngtree—pest-control-worker-in-protective_15020351-2-1-768x768.webp`}
+                alt="Pest Control Worker"
+                width={768}
+                height={768}
+                className="w-full h-auto object-contain max-w-[min(100%,1204px)]"
+              />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                 <Image
-                  src="/images/cta/200-guarantee.png"
-                  alt="200% guarantee"
-                  width={112}
-                  height={112}
-                  className="object-contain drop-shadow-lg"
+                  src={`${WP}/2024-07-200-colour.png`}
+                  alt="200% Guarantee Badge"
+                  width={160}
+                  height={166}
+                  className="w-28 sm:w-36 h-auto flex-shrink-0"
                 />
+                <div>
+                  <p
+                    className="text-lg sm:text-xl font-bold tracking-wide text-white/95"
+                    style={{ fontFamily: 'Verdana, Geneva, sans-serif' }}
+                  >
+                    WE&apos;RE NOT HAPPY UNLESS YOU&apos;RE HAPPY
+                  </p>
+                  <p
+                    className="mt-3 text-[18px] md:text-[20px] leading-[1.6] text-white/90"
+                    style={{ fontFamily: 'Verdana, Geneva, sans-serif' }}
+                  >
+                    Talk to us about pest control for your home or business
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl sm:text-2xl font-extrabold tracking-wide pr-20 md:pr-28 pt-2">
-                WE&apos;RE NOT HAPPY UNLESS YOU&apos;RE HAPPY
-              </h3>
-              <p className="text-gray-200 mt-3 mb-6">Talk to us about pest control for your home or business</p>
-              <div className="space-y-3">
-                <Link href={SITE_CONFIG.phoneTel} className="flex items-center justify-center md:justify-start gap-2 text-lg font-semibold text-white">
-                  <Phone className="h-5 w-5 text-zapit-green" />
-                  {SITE_CONFIG.phoneRaw}
-                </Link>
-                <Link href={`mailto:${SITE_CONFIG.email}`} className="flex items-center justify-center md:justify-start gap-2 text-sm md:text-base text-gray-200 break-all">
-                  <Mail className="h-5 w-5 text-zapit-green flex-shrink-0" />
-                  {SITE_CONFIG.email}
-                </Link>
-              </div>
+              <ul className="mt-4 space-y-2 text-white/95 text-[18px]">
+                <li>
+                  <a href={SITE_CONFIG.phoneTel} className="inline-flex items-center gap-2 hover:underline">
+                    <Phone className="h-4 w-4 text-[#0DC429] flex-shrink-0" aria-hidden />
+                    0391260555
+                  </a>
+                </li>
+                <li>
+                  <a href={`mailto:${SITE_CONFIG.email}`} className="inline-flex items-center gap-2 hover:underline break-all">
+                    <Mail className="h-4 w-4 text-[#0DC429] flex-shrink-0" aria-hidden />
+                    {SITE_CONFIG.email}
+                  </a>
+                </li>
+              </ul>
+              <HomepageCtaChecklist />
             </div>
           </div>
         </div>
