@@ -41,10 +41,16 @@ export const SITE_CONFIG = {
   },
 } as const;
 
+export type NavChild = { label: string; href: string };
+
+export type NavChildGroup = { title: string; items: NavChild[] };
+
 export type NavLink = {
   label: string;
   href: string;
-  children?: { label: string; href: string }[];
+  children?: NavChild[];
+  /** Commercial-style menu: "Properties" and "Industries" sections */
+  childGroups?: NavChildGroup[];
 };
 
 export const NAV_LINKS: NavLink[] = [
@@ -52,15 +58,23 @@ export const NAV_LINKS: NavLink[] = [
   {
     label: 'Commercial',
     href: '/commercial-pest-control',
-    children: [
-      { label: 'Properties', href: '/commercial-pest-control' },
-      { label: 'Warehousing and Storage', href: '/commercial-pest-control#warehousing' },
-      { label: 'Restaurants', href: '/commercial-pest-control#restaurants' },
-      { label: 'Supermarkets', href: '/commercial-pest-control#supermarkets' },
-      { label: 'Function Venues', href: '/commercial-pest-control#venues' },
-      { label: 'Brewhouses and Distilleries', href: '/commercial-pest-control#brewhouses' },
-      { label: 'Recreational Facilities', href: '/commercial-pest-control#recreational' },
-      { label: 'Government Buildings', href: '/commercial-pest-control#government' },
+    childGroups: [
+      {
+        title: 'Properties',
+        items: [{ label: 'Properties', href: '/commercial-pest-control' }],
+      },
+      {
+        title: 'Industries',
+        items: [
+          { label: 'Warehousing and Storage', href: '/commercial-pest-control#warehousing' },
+          { label: 'Restaurants', href: '/commercial-pest-control#restaurants' },
+          { label: 'Supermarkets', href: '/commercial-pest-control#supermarkets' },
+          { label: 'Function Venues', href: '/commercial-pest-control#venues' },
+          { label: 'Brewhouses and Distilleries', href: '/commercial-pest-control#brewhouses' },
+          { label: 'Recreational Facilities', href: '/commercial-pest-control#recreational' },
+          { label: 'Government Buildings', href: '/commercial-pest-control#government' },
+        ],
+      },
     ],
   },
   { label: 'Termites', href: '/termite-control-melbourne' },
