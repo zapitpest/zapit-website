@@ -11,10 +11,12 @@ Run this audit after building or modifying any page template.
 
 ### 1. Meta Tags Audit
 For each page, verify:
-- `title` is unique, 50-60 chars, format: `[Name] | Zap It Pest & Termite Control`
+- `title` is unique, 50-60 chars, format: `[Name] | Zap It Pest & Termite Control Melbourne`
 - `description` is unique, 140-155 chars, contains target keyword
+- Description uses `SITE_CONFIG.phone` — never hardcoded phone string
 - No duplicate titles across pages (53 pages had wrong suburb names)
 - No duplicate descriptions (22 pages had copy-paste "Aspendale" text)
+- NO contact form references anywhere — client removed it
 
 ### 2. Schema Audit
 Check each page type has correct JSON-LD:

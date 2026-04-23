@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // SEO workbook 301 redirects (7 explicit mappings)
+      // SEO workbook 301 redirects
       {
         source: '/pest-control-melbourne/general-pest-control',
         destination: '/residential',
@@ -32,6 +32,28 @@ const nextConfig: NextConfig = {
       {
         source: '/about-us-new',
         destination: '/about-us',
+        permanent: true,
+      },
+      // Client-requested URL changes (23 Apr 2026)
+      {
+        source: '/pest-control-werribee',
+        destination: '/coburg',
+        permanent: true,
+      },
+      {
+        source: '/pest-control-ringwood-east',
+        destination: '/reservoir',
+        permanent: true,
+      },
+      // Old suburb URL patterns → new clean URLs
+      {
+        source: '/pest-control-coburg',
+        destination: '/coburg',
+        permanent: true,
+      },
+      {
+        source: '/pest-control-reservoir',
+        destination: '/reservoir',
         permanent: true,
       },
     ];

@@ -9,8 +9,10 @@ alwaysApply: false
 ## Meta Tags (via generateMetadata)
 - Every page MUST have unique `title` and `description`
 - Title format: `[Page Name] | Zap It Pest & Termite Control Melbourne`
-- Suburb pages: `Pest Control [Suburb] | Zap It Pest & Termite Control`
+- Suburb pages: `Pest Control [Suburb] | Zap It Pest & Termite Control Melbourne`
+- Template in layout.tsx: `%s | Zap It Pest & Termite Control Melbourne`
 - Titles: 50-60 chars max, descriptions: 140-155 chars max
+- NEVER hardcode phone in description — use `SITE_CONFIG.phone`
 - Include `openGraph` and `twitter` card metadata
 - Set `alternates.canonical` on every page
 
@@ -43,6 +45,18 @@ alwaysApply: false
 - Use descriptive anchor text, never "click here"
 
 ## NAP Consistency
-- Phone: `03 9126 0555` (primary, consistent everywhere)
+- Phone: `03 9126 0555` — **ONLY** phone number (client confirmed, all others removed)
 - Address: `80 Porter Rd, Heidelberg Heights, VIC 3081, Australia`
 - Name: `Zap It Pest & Termite Control Melbourne`
+- **NO 1800 808 149** — dead number, remove everywhere
+- **NO 0432 040 404** — old number, remove everywhere
+
+## Contact Form
+- **NO contact form on the new site** — client explicitly removed it (23 Apr 2026)
+- Contact page should have: phone number, email, address, map, booking link (Square)
+- Do NOT build any form components or form submission API routes
+
+## Suburb URL Strategy
+- Client wants cleaner URLs: `/coburg` instead of `/pest-control-coburg`
+- Redirects from old patterns to new in `next.config.ts`
+- New dedicated pages: Coburg, Reservoir (client-requested 23 Apr)

@@ -2,6 +2,12 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import './globals.css';
 import { SITE_CONFIG } from '@/lib/constants';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import StickyCallButton from '@/components/layout/StickyCallButton';
+import GTMScript from '@/components/layout/GTMScript';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { generateOrganizationSchema, generateWebSiteSchema, generateLocalBusinessSchema } from '@/lib/schema';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -13,11 +19,10 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: `${SITE_CONFIG.shortName} | Pest Control Melbourne`,
-    template: `%s | ${SITE_CONFIG.shortName}`,
+    default: `Pest Control Melbourne | ${SITE_CONFIG.name}`,
+    template: `%s | ${SITE_CONFIG.name}`,
   },
-  description:
-    'Zap It delivers fast, licensed pest & termite control across Melbourne, safe for pets & people, protecting homes & businesses from pests. Call 03 9126 0555.',
+  description: `Zap It delivers fast, licensed pest & termite control across Melbourne, safe for pets & people, protecting homes & businesses from pests. Call ${SITE_CONFIG.phone}.`,
   openGraph: {
     type: 'website',
     locale: 'en_AU',
@@ -43,7 +48,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-AU" className={`${roboto.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <GTMScript />
+        <JsonLd data={[generateWebSiteSchema(), generateOrganizationSchema(), generateLocalBusinessSchema()]} />
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+        <StickyCallButton />
+      </body>
     </html>
   );
 }

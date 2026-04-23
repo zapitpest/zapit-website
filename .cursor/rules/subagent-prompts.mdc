@@ -1,0 +1,135 @@
+---
+description: Subagent prompts for parallel QA and development workflows
+globs: 
+alwaysApply: false
+---
+
+# Subagent Prompts for Zap It Website
+
+## How to Run Subagents
+
+In Cursor Agent mode, use the Task tool with these prompts. Launch multiple in parallel for maximum speed.
+
+Example usage:
+```
+Task tool → subagent_type: "generalPurpose"
+prompt: [paste the prompt below]
+```
+
+---
+
+## 1. SEO Audit Subagent
+
+```
+You are an SEO auditor for the Zap It Pest Control Melbourne website at /Users/muhammadsharjeel/Documents/Zap/zapit-website/
+
+AUDIT CHECKLIST:
+1. Read src/app/layout.tsx — verify metadata title template is "%s | Zap It Pest & Termite Control Melbourne"
+2. Read src/app/page.tsx — verify H1 exists, meta description uses SITE_CONFIG.phone
+3. Read src/lib/schema.ts — verify JSON-LD: WebSite, Organization, LocalBusiness, Product, FAQ schemas
+4. Read src/lib/constants.ts — verify phone is "03 9126 0555", NO old numbers (1800 808 149, 0432 040 404)
+5. Read next.config.ts — verify all 301 redirects exist
+6. Read src/app/sitemap.ts — verify dynamic sitemap generation
+7. Read src/app/robots.ts — verify robots.txt configuration
+8. Check ALL page.tsx files for generateMetadata exports
+9. Verify NO contact form exists anywhere in the codebase
+10. Verify suburb URLs use clean format (/coburg not /pest-control-coburg)
+
+REPORT FORMAT:
+- PASS/FAIL for each check
+- List any missing items
+- Suggest fixes with exact file paths
+```
+
+## 2. Code Quality Subagent
+
+```
+You are a code quality auditor for the Zap It Pest Control Melbourne website at /Users/muhammadsharjeel/Documents/Zap/zapit-website/
+
+AUDIT CHECKLIST:
+1. Run: npx tsc --noEmit (must pass with zero errors)
+2. Run: npm run lint (must pass)
+3. Check all components use SITE_CONFIG constants — NO hardcoded phone/email/address
+4. Check all images use next/image with width/height/alt
+5. Check no "any" types exist in TypeScript files
+6. Check all client components have 'use client' directive
+7. Check no console.log statements in production code
+8. Check all links use next/link, not <a> tags for internal links
+9. Verify proper error boundaries exist
+10. Check accessibility: all buttons have aria-labels, all images have alt text
+
+REPORT: Pass/fail each check with file:line references.
+```
+
+## 3. Security Audit Subagent
+
+```
+You are a security auditor for the Zap It Pest Control Melbourne website at /Users/muhammadsharjeel/Documents/Zap/zapit-website/
+
+AUDIT CHECKLIST:
+1. Read next.config.ts — verify security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy)
+2. Check .env.local.example exists and .env*.local is in .gitignore
+3. Verify NO API keys or secrets in any source file
+4. Check dangerouslySetInnerHTML is ONLY used in JsonLd.tsx component
+5. Verify Supabase client uses NEXT_PUBLIC_ prefix for browser vars only
+6. Check NO server-side secrets exposed to client components
+7. Verify forms (if any) have CSRF protection
+8. Check external links use rel="noopener noreferrer"
+9. Verify images have proper Content-Security-Policy considerations
+10. Confirm NO contact form exists (client requirement)
+
+REPORT: Pass/fail each check with severity level.
+```
+
+## 4. Design Fidelity Subagent
+
+```
+You are a design fidelity auditor comparing the new site to the WordPress original at https://zapitpestmelbourne.com.au/
+
+AUDIT CHECKLIST:
+1. Read src/app/globals.css — verify brand colors: #0DC429 (green), #252525 (dark), #333 (text), #f8f9fa (light)
+2. Verify Roboto font is configured in layout.tsx
+3. Check header height is 70px (h-[70px])
+4. Verify sticky Call Now button exists (green, rounded-full, fixed position)
+5. Check top bar matches: stars + review count + phone number
+6. Verify homepage sections order matches WordPress:
+   - Hero → Reviews banner → Who Can Benefit → Pest Services → Industry Solutions
+   - Melbourne Coverage + Stats → CBD Specialists → Pest Strategy → Licensed/DHHS
+   - Certifications → FAQs → Pricing Calculator
+7. Check footer: 4 columns (Company, Operating Hours, Useful Links, Contact)
+8. Verify all images from WordPress are downloaded to public/images/
+9. Check pricing calculator has all 18 treatments with correct prices
+10. Verify FAQ accordion has all 7 questions matching WordPress
+
+REPORT: Section-by-section comparison with MATCH/MISMATCH status.
+```
+
+## 5. Performance Subagent
+
+```
+You are a performance auditor for the Zap It Pest Control Melbourne website at /Users/muhammadsharjeel/Documents/Zap/zapit-website/
+
+AUDIT CHECKLIST:
+1. Run: npm run build — check bundle sizes, verify no warnings
+2. Check images use WebP format and next/image optimization
+3. Verify fonts use next/font with display: 'swap'
+4. Check client components are minimal ('use client' only where needed)
+5. Verify static pages use ISR or full static generation where possible
+6. Check no unnecessary dependencies in package.json
+7. Verify lazy loading for below-fold images
+8. Check GTM script uses strategy="afterInteractive"
+9. Verify CSS uses Tailwind (no custom CSS bloat)
+10. Check no blocking resources in <head>
+
+REPORT: Performance score estimate and optimization suggestions.
+```
+
+## Running All Subagents in Parallel
+
+To run a full QA sweep, launch all 5 subagents simultaneously:
+
+```
+[In a single message, create 5 Task tool calls with subagent_type: "generalPurpose"]
+```
+
+This gives you a comprehensive report in ~30 seconds covering SEO, code quality, security, design fidelity, and performance.

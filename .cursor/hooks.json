@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/post-edit-check.sh",
+        "matcher": "Write",
+        "timeout": 15
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": ".cursor/hooks/safety-guard.sh",
+        "matcher": "rm\\s+-rf|drop\\s+table|git\\s+push.*--force|git\\s+reset.*--hard",
+        "failClosed": true
+      }
+    ]
+  }
+}

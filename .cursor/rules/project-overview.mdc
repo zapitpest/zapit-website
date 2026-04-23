@@ -36,3 +36,17 @@ Sizes: 13px / 20px / 36px / 42px
 - ISR for static pages with revalidation
 - All SEO metadata stored in Supabase, rendered server-side
 - No hardcoded content — everything from database
+- **NO contact form** — client explicitly removed it
+- **ONLY phone number:** 03 9126 0555 (confirmed by client, all others are dead)
+- **New URL scheme for suburbs:** `/coburg` not `/pest-control-coburg` (client requested cleaner URLs)
+
+## Client Decisions Log
+- 23 Apr: Phone confirmed as ONLY `03 9126 0555` — remove all other numbers (1800, 0432)
+- 23 Apr: NO contact form on new site — client explicitly said "don't do any contact us forums"
+- 23 Apr: New suburb pages needed: `/coburg` (Zap It Pest Control Coburg)
+- 23 Apr: URL change: `/pest-control-werribee` → `/coburg` (new page, not redirect)
+- 23 Apr: URL change: `/pest-control-ringwood-east` → `/reservoir` (new page, not redirect)
+- 23 Apr: Price calculator from Manus (https://zapitpest-5cxtmddn.manus.space) must be included
+- 23 Apr: 18 treatments with pricing in `lib/pricing-data.ts`
+- 23 Apr: Multi-booking discount: 22.5% for 2 services, 27.5% for 3+
+- 23 Apr: Property types: Townhouse, Single-story, Double-story (affects Spider, Possum, Bird pricing)
