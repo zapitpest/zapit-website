@@ -91,11 +91,10 @@ export default function Header() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              href={SITE_CONFIG.phoneTel}
-              className="inline-flex items-center gap-2 bg-zapit-green hover:bg-zapit-green-dark text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors"
+              href="/contact-us"
+              className="inline-flex items-center gap-2 bg-zapit-green hover:bg-zapit-green-dark text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors"
             >
-              <Phone className="h-4 w-4" />
-              Call Now
+              Contact Us
             </Link>
           </div>
 
@@ -116,6 +115,13 @@ export default function Header() {
               {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
+        </div>
+
+        {/* Green sub-bar - matching WordPress */}
+        <div className="bg-zapit-green text-white text-center text-sm font-medium py-2">
+          <Link href={SITE_CONFIG.phoneTel} className="hover:underline">
+            Book Same-Day Pest Control in Melbourne - <strong>CALL NOW!</strong>
+          </Link>
         </div>
 
         {/* Mobile nav */}

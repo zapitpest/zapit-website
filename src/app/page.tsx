@@ -86,52 +86,96 @@ export default function HomePage() {
     <>
       <JsonLd data={schemas} />
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-zapit-dark to-zapit-dark/95 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/hero/pest-treatment-melbourne.webp')] bg-cover bg-center opacity-20" />
-        <div className="relative container mx-auto px-4 py-16 lg:py-24">
-          <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
-              ZAP IT PEST &amp; TERMITE CONTROL MELBOURNE
-            </h1>
-            <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
+      {/* Hero Section - matching WordPress layout */}
+      <section className="relative text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/hero/pest-treatment-melbourne.webp')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-gradient-to-r from-zapit-dark/80 via-zapit-dark/60 to-zapit-dark/40" />
+        <div className="relative container mx-auto px-4 py-20 lg:py-32 text-center">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+            <span className="bg-zapit-green px-3 py-1 inline-block mb-2">ZAP IT PEST &amp; TERMITE CONTROL</span>
+            <br />
+            <span className="bg-zapit-green px-3 py-1 inline-block">MELBOURNE</span>
+          </h1>
+          <div className="max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl mb-8 bg-zapit-green/80 inline-block px-6 py-2">
               Quick and professional, 5-star pest control Melbourne services in Melbourne.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href={SITE_CONFIG.phoneTel}
-                className="inline-flex items-center gap-2 bg-zapit-green hover:bg-zapit-green-dark text-white font-bold px-8 py-4 rounded-full text-lg transition-colors shadow-lg"
-              >
-                <Phone className="h-5 w-5" />
-                CALL NOW!
-              </Link>
-              <Link
-                href={SITE_CONFIG.booking.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-full text-lg transition-colors border border-white/20"
-              >
-                Book Online
-              </Link>
-            </div>
+          </div>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href={SITE_CONFIG.phoneTel}
+              className="inline-flex items-center gap-2 bg-zapit-dark/80 hover:bg-zapit-dark text-white font-bold px-8 py-4 rounded text-lg transition-colors border border-white/20"
+            >
+              CALL NOW
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Reviews Banner */}
-      <section id="reviews" className="bg-zapit-green text-white py-4">
+      {/* Reviews Section - matching WordPress Trustindex layout */}
+      <section id="reviews" className="py-14 lg:py-16 bg-white">
         <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-yellow-300 text-yellow-300" />
-              ))}
-            </div>
-            <h2 className="text-lg font-bold">
-              How Customers Rate Zap It Pest &amp; Termite Control Services
-            </h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-zapit-dark mb-2">
+            How Customers Rate Zap It Pest &amp; Termite Control Services
+          </h2>
+          <div className="w-12 h-0.5 bg-zapit-green mx-auto mb-8" />
+
+          {/* Trustindex-style review cards */}
+          <div className="flex items-center justify-center gap-1 mb-2">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+            ))}
           </div>
-          <p className="text-sm mt-1 opacity-90">{SITE_CONFIG.rating.count}+ verified 5-star Google reviews</p>
+          <p className="text-sm text-gray-500 font-semibold mb-8">
+            <strong>EXCELLENT</strong> &middot; Based on <strong>{SITE_CONFIG.rating.count} reviews</strong>
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {[
+              {
+                name: 'Margo Kelly',
+                initial: 'M',
+                color: 'bg-purple-500',
+                review: 'Fantastic pest control service in Melbourne. We contacted them for our commercial pest control and were impressed with how quickly they identified and treated the problem.',
+              },
+              {
+                name: 'Jemi Audi',
+                initial: 'J',
+                color: 'bg-blue-500',
+                review: "Amazing job honestly I've never had pest control that can get rid of all type of bugs, insects and or booklice like this company (Zap it) highly recommended",
+              },
+              {
+                name: 'Tammy Fox',
+                initial: 'T',
+                color: 'bg-red-500',
+                review: 'Excellent experience with Zap It Pest Control. Professional, reliable, and easy to deal with. The technician was friendly and gave helpful advice.',
+              },
+            ].map((r) => (
+              <div key={r.name} className="bg-white rounded-xl border border-gray-200 p-6 text-left shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className={`h-10 w-10 rounded-full ${r.color} text-white flex items-center justify-center font-bold text-sm`}>
+                    {r.initial}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-zapit-dark text-sm">{r.name}</p>
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+                  </div>
+                  <Image
+                    src="/images/logo/google-g.png"
+                    alt="Google"
+                    width={20}
+                    height={20}
+                    className="ml-auto h-5 w-5"
+                  />
+                </div>
+                <p className="text-sm text-zapit-text leading-relaxed">{r.review}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -357,11 +401,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Licensed Section */}
-      <section className="py-16 lg:py-20 bg-zapit-green/5">
+      {/* Licensed Section - matching WordPress layout */}
+      <section className="py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div>
+              <Image
+                src="/images/certifications/victoria-state-govt.png"
+                alt="Victoria State Government"
+                width={200}
+                height={80}
+                className="h-14 w-auto mb-6"
+              />
               <h2 className="text-2xl md:text-3xl font-bold text-zapit-dark mb-4">
                 Fully Insured &amp; Licensed By The Victorian DHHS
               </h2>
@@ -379,30 +430,42 @@ export default function HomePage() {
                 href={SITE_CONFIG.booking.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-zapit-green hover:bg-zapit-green-dark text-white font-semibold px-6 py-3 rounded-full transition-colors"
+                className="inline-flex items-center gap-2 bg-zapit-green hover:bg-zapit-green-dark text-white font-bold px-6 py-3 rounded-full transition-colors"
               >
                 BOOK OUR SERVICE TODAY!
               </Link>
             </div>
-            <div className="flex items-center justify-center gap-6 flex-wrap">
-              <Image src="/images/certifications/aempa.png" alt="AEMPA Certified" width={80} height={80} className="h-16 w-auto" />
-              <Image src="/images/certifications/guarantee.png" alt="200 Day Guarantee" width={80} height={80} className="h-16 w-auto" />
-              <Image src="/images/certifications/200-colour.png" alt="200 Day Guarantee Color" width={80} height={80} className="h-16 w-auto" />
+            <div className="relative">
+              <Image
+                src="/images/hero/zapit-social.webp"
+                alt="Zap It Pest Control team"
+                width={500}
+                height={400}
+                className="rounded-2xl shadow-lg"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Certifications */}
+      {/* Certifications - matching WordPress 4-logo layout */}
       <section className="py-12 bg-zapit-light">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark mb-8">
             Certifications &amp; Compliance
           </h2>
-          <div className="flex items-center justify-center gap-8 flex-wrap">
-            <Image src="/images/certifications/aempa.png" alt="AEMPA Member" width={100} height={100} className="h-20 w-auto" />
-            <Image src="/images/certifications/dhhs-cert.jpg" alt="DHHS Licensed" width={100} height={100} className="h-20 w-auto rounded" />
-            <Image src="/images/certifications/aempa-v2.png" alt="AEMPA Certification" width={100} height={100} className="h-20 w-auto" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            {[
+              { src: '/images/certifications/aempa-v2.png', alt: 'AEMPA Member', label: 'AUSTRALIAN ENVIRONMENTAL PEST MANAGERS ASSOCIATION' },
+              { src: '/images/certifications/guarantee-200d.png', alt: 'Unrivalled Service', label: 'UNRIVALLED SERVICE AND SUPPORT' },
+              { src: '/images/certifications/dhhs-cert.jpg', alt: 'HACCP Food Safety', label: 'HACCP FOOD SAFETY CERTIFICATION' },
+              { src: '/images/certifications/victoria-state-govt.png', alt: 'Wildlife Licence', label: 'WILDLIFE LICENCE' },
+            ].map((cert) => (
+              <div key={cert.label} className="flex flex-col items-center text-center">
+                <Image src={cert.src} alt={cert.alt} width={80} height={80} className="h-16 w-auto mb-3" />
+                <p className="text-xs font-semibold text-zapit-dark uppercase leading-tight">{cert.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
