@@ -3,10 +3,11 @@ import Image from 'next/image';
 import { SITE_CONFIG, HOMEPAGE_FAQS } from '@/lib/constants';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateProductSchema, generateFAQSchema } from '@/lib/schema';
-import { Phone, Shield, Star, Zap, ChevronRight } from 'lucide-react';
+import { Phone, Shield, Star, Zap, ChevronRight, Mail } from 'lucide-react';
 import FAQAccordion from '@/components/sections/FAQAccordion';
 import StatsCounter from '@/components/sections/StatsCounter';
 import PriceCalculatorPreview from '@/components/sections/PriceCalculatorPreview';
+import { BLOG_LIST_POSTS } from '@/lib/blog-list';
 
 const PEST_SERVICES = [
   {
@@ -301,19 +302,72 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Licensed Section */}
+      {/* About / Founding Story */}
       <section className="py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-zapit-dark mb-4">
+                {SITE_CONFIG.name} - Licensed &amp; Quick Controllers
+              </h2>
+              <p className="text-zapit-text leading-relaxed mb-4">
+                Zap It is the leading pest control Melbourne company, helping residential and commercial
+                property owners maintain a pest-free, healthy environment. Adam Balli founded Zap It in
+                2020, and since that day, we have been providing fast, chemical-free pest control solutions
+                using modern tools and advanced technology.
+              </p>
+              <p className="text-zapit-text leading-relaxed mb-6">
+                Our effective, eco-friendly, and long-lasting pest removal results have made us the leading
+                pest controllers in Melbourne. We&apos;re ready to protect your environment and provide a
+                pest-free home or commercial space. Book our same-day service and receive personalised care
+                and solutions for termites, spiders, ants, rodents, mosquitoes, and more.
+              </p>
+              <Link
+                href="/about-us"
+                className="inline-flex items-center gap-2 bg-zapit-green hover:bg-zapit-green-dark text-white font-semibold px-6 py-3 rounded-full transition-colors"
+              >
+                Discover Zap It
+              </Link>
+            </div>
+            <div className="relative">
+              <Image
+                src="/images/hero/zapit-social.webp"
+                alt="Zap It Pest Control team"
+                width={500}
+                height={400}
+                className="rounded-2xl shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Licensed Section */}
+      <section className="py-16 lg:py-20 bg-zapit-green/5">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-zapit-dark mb-4">
                 Fully Insured &amp; Licensed By The Victorian DHHS
               </h2>
-              <p className="text-zapit-text leading-relaxed mb-6">
-                We take safety seriously. Our team is fully licensed and insured by the Victorian
-                Department of Health and Human Services, ensuring every treatment meets the highest
-                industry standards.
+              <p className="text-zapit-text leading-relaxed mb-4">
+                Zap It adheres to Australian health standards and complies with pest control service
+                protocols. As a top-rated pest control Melbourne service, we are licensed by the Department
+                of Health and Human Services Victoria (DHHS) to provide quality services using authorised
+                pest control products.
               </p>
+              <p className="text-zapit-text leading-relaxed mb-6">
+                We treat your home and workplace as our own, using high-quality, eco-friendly products to
+                deliver long-lasting solutions. Choose Licensed. Choose Safe. Choose Zap It.
+              </p>
+              <Link
+                href={SITE_CONFIG.booking.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-zapit-green hover:bg-zapit-green-dark text-white font-semibold px-6 py-3 rounded-full transition-colors"
+              >
+                BOOK OUR SERVICE TODAY!
+              </Link>
             </div>
             <div className="flex items-center justify-center gap-6 flex-wrap">
               <Image src="/images/certifications/aempa.png" alt="AEMPA Certified" width={80} height={80} className="h-16 w-auto" />
@@ -338,8 +392,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FAQs */}
+      {/* Our Blogs */}
       <section className="py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark mb-12">
+            Our Blogs
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {BLOG_LIST_POSTS.slice(0, 3).map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blogs#${post.slug}`}
+                className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-zapit-border"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-bold text-zapit-dark mb-2 group-hover:text-zapit-green transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-zapit-text line-clamp-2">{post.excerpt}</p>
+                  <span className="inline-flex items-center gap-1 text-sm font-semibold text-zapit-green mt-3">
+                    Read More <ChevronRight className="h-4 w-4" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section className="py-16 lg:py-20 bg-zapit-light">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark mb-12">
             Frequently Asked Questions
@@ -357,6 +447,43 @@ export default function HomePage() {
             Our Prices
           </h2>
           <PriceCalculatorPreview />
+        </div>
+      </section>
+
+      {/* Green CTA Bar */}
+      <section className="py-12 bg-zapit-green text-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <Image
+              src="/images/certifications/guarantee.png"
+              alt="200% Guarantee"
+              width={60}
+              height={60}
+              className="h-14 w-auto brightness-0 invert"
+            />
+            <h2 className="text-2xl md:text-3xl font-bold">
+              WE&apos;RE NOT HAPPY UNLESS YOU&apos;RE HAPPY
+            </h2>
+          </div>
+          <p className="text-lg mb-6 opacity-90">
+            Talk to us about pest control for your home or business
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <Link
+              href={SITE_CONFIG.phoneTel}
+              className="inline-flex items-center gap-2 bg-white text-zapit-green font-bold px-8 py-3 rounded-full text-lg hover:bg-gray-100 transition-colors"
+            >
+              <Phone className="h-5 w-5" />
+              {SITE_CONFIG.phoneRaw}
+            </Link>
+            <Link
+              href={`mailto:${SITE_CONFIG.email}`}
+              className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white font-semibold px-8 py-3 rounded-full text-lg transition-colors"
+            >
+              <Mail className="h-5 w-5" />
+              {SITE_CONFIG.email}
+            </Link>
+          </div>
         </div>
       </section>
     </>
