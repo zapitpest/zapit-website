@@ -1,0 +1,42 @@
+---
+description: Supabase database patterns and data access conventions
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Supabase Patterns
+
+## Client Setup
+- Server components: use `createServerClient` from `@supabase/ssr`
+- Client components: use `createBrowserClient` (rare — avoid when possible)
+- API routes: use `createRouteHandlerClient`
+- Never import `supabase` directly — always use factory functions from `lib/supabase/`
+
+## Query Patterns
+```typescript
+// lib/supabase/queries.ts — centralized queries
+export async function getSuburbBySlug(slug: string) {
+  const supabase = createServerClient();
+  const { data, error } = await supabase
+    .from('suburbs')
+    .select('*')
+    .eq('slug', slug)
+    .eq('is_published', true)
+    .single();
+  if (error) throw new Error(`Suburb not found: ${slug}`);
+  return data;
+}
+```
+
+## Tables
+- `suburbs`: slug, name, region, meta_title, meta_description, h1, content, faq_json, schema_json
+- `services`: slug, name, type, parent_slug, meta_title, meta_description, content, faq_json, pricing_json
+- `blog_posts`: slug, title, meta_title, meta_description, content, excerpt, featured_image, published_at
+- `pages`: slug, title, template, meta_title, meta_description, content, schema_json
+- `images`: url, alt_text, original_filename, size_kb, page_type
+- `regions`: slug, name, meta_title, content, suburbs (TEXT[])
+
+## Row Level Security
+- Enable RLS on ALL tables
+- Public read policy: `USING (is_published = true)` for all content tables
+- No public write access — writes only via service key in server functions

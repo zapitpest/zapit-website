@@ -1,0 +1,48 @@
+---
+description: SEO standards for Zap It Pest Control — meta tags, schema, sitemap, performance
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# SEO Standards
+
+## Meta Tags (via generateMetadata)
+- Every page MUST have unique `title` and `description`
+- Title format: `[Page Name] | Zap It Pest & Termite Control Melbourne`
+- Suburb pages: `Pest Control [Suburb] | Zap It Pest & Termite Control`
+- Titles: 50-60 chars max, descriptions: 140-155 chars max
+- Include `openGraph` and `twitter` card metadata
+- Set `alternates.canonical` on every page
+
+## Schema / JSON-LD
+- Generate ALL schema from `lib/schema.ts` — one source of truth
+- Homepage: WebSite + Organization + LocalBusiness + Product/AggregateRating + FAQPage
+- Suburb pages: LocalBusiness + FAQPage (from `faq_json` column)
+- Service pages: Service schema + FAQPage
+- Blog posts: Article schema with author, datePublished, dateModified
+- Never duplicate schema types on the same page
+- Use `dangerouslySetInnerHTML` for JSON-LD `<script>` tags
+
+## Technical SEO
+- Dynamic XML sitemap via `app/sitemap.ts` — include ALL published pages
+- `app/robots.ts` — allow all, point to sitemap
+- 301 redirects in `next.config.ts` (20 redirects from SEO workbook)
+- `<link rel="canonical">` on every page
+- Structured breadcrumbs with BreadcrumbList schema
+
+## Images
+- ALL images must have descriptive `alt` text — never empty
+- Use next/image with WebP format, quality 80
+- Max 100KB per image after optimization
+- Use `sizes` prop for responsive images
+
+## Internal Linking
+- Every suburb page links to parent region + 2-3 nearby suburbs
+- Every service page links to related services
+- Blog posts link to relevant service/suburb pages
+- Use descriptive anchor text, never "click here"
+
+## NAP Consistency
+- Phone: `03 9126 0555` (primary, consistent everywhere)
+- Address: `80 Porter Rd, Heidelberg Heights, VIC 3081, Australia`
+- Name: `Zap It Pest & Termite Control Melbourne`

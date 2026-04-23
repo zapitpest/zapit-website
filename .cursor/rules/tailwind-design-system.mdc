@@ -1,0 +1,43 @@
+---
+description: Tailwind CSS design system using Zapit brand tokens
+globs: "**/*.{ts,tsx,css}"
+alwaysApply: false
+---
+
+# Tailwind Design System
+
+## Brand Colors (in tailwind.config.ts)
+```
+zapit-green: #0DC429     — primary CTAs, highlights, sticky call button
+zapit-dark: #252525      — headings, dark sections
+zapit-text: #333333      — body text
+zapit-light: #f8f9fa     — section backgrounds
+zapit-border: #e5e5e5    — dividers, card borders
+white: #ffffff            — cards, overlays
+```
+
+## Typography
+- Font: Roboto via `next/font/google` — never CDN link
+- Headings: font-bold, tracking-tight
+- H1: text-4xl md:text-5xl (42px desktop)
+- H2: text-3xl md:text-4xl (36px)
+- H3: text-xl md:text-2xl
+- Body: text-base (16px), leading-relaxed
+- Small: text-sm (13px)
+
+## Spacing
+- Section padding: py-16 md:py-24
+- Container: max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
+- Card gap: gap-6 md:gap-8
+- Stack spacing: space-y-4 or space-y-6
+
+## Components
+- Buttons: rounded-lg px-6 py-3, primary uses bg-zapit-green text-white
+- Cards: rounded-xl border border-zapit-border bg-white shadow-sm
+- Sticky Call Button: fixed bottom-4 right-4 z-50 bg-zapit-green rounded-full shadow-lg
+
+## Mobile-First
+- Always write mobile styles first, then add md: and lg: breakpoints
+- Test at 375px width (iPhone SE) as minimum
+- Navigation: hamburger on mobile, horizontal on desktop
+- Touch targets: minimum 44x44px

@@ -1,0 +1,52 @@
+---
+description: Code quality, security, and maintainability standards
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Code Quality Standards
+
+## TypeScript
+- Strict mode enabled — no `any` types
+- Define interfaces for all data shapes (Suburb, Service, BlogPost, Page)
+- Use `satisfies` for type checking object literals
+- Export types from `types/` directory
+
+## No Hardcoded Strings
+- No hardcoded phone numbers — use `SITE_CONFIG.phone`
+- No hardcoded emails — use `SITE_CONFIG.email`
+- No hardcoded addresses — use `SITE_CONFIG.address`
+- No hardcoded business name — use `SITE_CONFIG.name`
+- All config in `lib/constants.ts`
+
+```typescript
+// lib/constants.ts
+export const SITE_CONFIG = {
+  name: 'Zap It Pest & Termite Control Melbourne',
+  phone: '03 9126 0555',
+  phoneTel: 'tel:0391260555',
+  email: 'info@zapitpestmelbourne.com.au',
+  address: '80 Porter Rd, Heidelberg Heights, VIC 3081',
+  url: 'https://zapitpestmelbourne.com.au',
+} as const;
+```
+
+## Security
+- Never expose Supabase service key in client code
+- Use `NEXT_PUBLIC_` prefix only for truly public env vars
+- Sanitize all user inputs (contact form, search)
+- Use Supabase RLS for all tables
+- No `eval()`, no `innerHTML` except for JSON-LD schema
+
+## Error Handling
+- Every async function must have try/catch
+- Use error.tsx boundary for route segments
+- Log errors with context, never swallow silently
+- Return user-friendly fallback UI on error
+
+## Component Patterns
+- One component per file
+- Props interface defined above component
+- Destructure props in function signature
+- Use `cn()` from `lib/utils` for conditional classes
+- Prefer composition over prop drilling

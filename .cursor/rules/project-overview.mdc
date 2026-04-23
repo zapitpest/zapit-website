@@ -1,0 +1,38 @@
+---
+description: Zapit Pest Control project context — always loaded for full project awareness
+alwaysApply: true
+---
+
+# Zap It Pest Control Melbourne — Project Context
+
+## Client
+- **Business:** Zap It Pest & Termite Control Melbourne
+- **Owner:** Zayen ("Zen") — 80 Porter Rd, Heidelberg Heights VIC 3081
+- **Phone:** 03 9126 0555 (primary)
+- **Emails:** info@zapitpestmelbourne.com.au, wo@zapitpestmelbourne.com.au
+- **Traffic:** 100% organic Google — SEO is critical
+
+## Stack
+- Next.js 15 (App Router), React 19, Tailwind CSS 4, shadcn/ui
+- Supabase (PostgreSQL — data layer only)
+- Vercel (hosting + serverless)
+- GitHub for version control
+
+## Design Tokens
+```
+--zapit-green: #0DC429
+--zapit-dark: #252525
+--zapit-text: #333
+--zapit-light-gray: #f8f9fa
+--zapit-border-color: #e5e5e5
+Font: 'Roboto', Arial, sans-serif
+Sizes: 13px / 20px / 36px / 42px
+```
+
+## Key Architecture Rules
+- Mobile-first (80% mobile traffic)
+- Data-driven pages: 1 template + Supabase = 250 suburb pages
+- Schema generated from code (`lib/schema.ts`), never plugins
+- ISR for static pages with revalidation
+- All SEO metadata stored in Supabase, rendered server-side
+- No hardcoded content — everything from database
