@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SITE_CONFIG, HOMEPAGE_FAQS } from '@/lib/constants';
@@ -8,6 +9,20 @@ import FAQAccordion from '@/components/sections/FAQAccordion';
 import StatsCounter from '@/components/sections/StatsCounter';
 import PriceCalculatorPreview from '@/components/sections/PriceCalculatorPreview';
 import { BLOG_LIST_POSTS } from '@/lib/blog-list';
+
+export const metadata: Metadata = {
+  title: `Pest Control Melbourne | ${SITE_CONFIG.name}`,
+  description: `Melbourne's trusted pest & termite control. 5000+ emergencies solved, 24/7 same-day service. Safe for pets & people. Call ${SITE_CONFIG.phone} for a free quote.`,
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: `Pest Control Melbourne | ${SITE_CONFIG.name}`,
+    description: `Melbourne's trusted pest & termite control. 5000+ emergencies solved, 24/7 same-day service. Safe for pets & people.`,
+    url: SITE_CONFIG.url,
+    siteName: SITE_CONFIG.name,
+    locale: 'en_AU',
+    type: 'website',
+  },
+};
 
 const PEST_SERVICES = [
   {
