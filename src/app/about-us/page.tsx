@@ -1,19 +1,20 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Check, Phone } from 'lucide-react';
+import { Truck } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/schema';
+import PageInfoFooterBlock from '@/components/layout/PageInfoFooterBlock';
 
-const HERO_IMAGE =
-  '/images/wp-assets/2025-06-Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp';
+const WP = '/images/wp-assets';
 
-const TRUST_BADGES = [
+const HERO_IMAGE = `${WP}/2025-06-Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`;
+
+const TRUST_PILLS = [
   'Child safe',
   'Pet safe',
   'Eco friendly',
-  'Gov accredited',
+  'Accredited',
   'Insured',
   'DHHS Licensed',
   'Online compliance certificates',
@@ -46,101 +47,63 @@ export default function AboutUsPage() {
       <JsonLd data={jsonLd} />
 
       <div className="font-sans text-white">
-        {/* Hero + in-page bar (Figma: logo + phone on dark) */}
-        <header className="bg-zapit-dark">
-          <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-            <Link href="/" className="shrink-0" aria-label="Zap It home">
-              <Image
-                src={SITE_CONFIG.logoWhite}
-                alt="Zap It Pest & Termite Control"
-                width={120}
-                height={58}
-                className="h-10 w-auto sm:h-11"
-                priority
-              />
-            </Link>
-            <a
-              href={SITE_CONFIG.phoneTel}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold tracking-tight text-white transition-colors hover:text-[#3fa535] sm:text-base"
-            >
-              <Phone className="h-4 w-4 text-[#3fa535] sm:h-5 sm:w-5" aria-hidden />
-              {SITE_CONFIG.phone}
-            </a>
-          </div>
-        </header>
-
-        <section className="bg-zapit-dark px-4 pb-10 pt-2 sm:px-6 sm:pb-12">
-          <div className="mx-auto max-w-6xl">
-            <p className="mb-3 text-sm text-white/85 sm:text-base">{SITE_CONFIG.tagline}</p>
-            <h1 className="mb-5 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">About us</h1>
-            <p className="max-w-3xl text-base leading-relaxed text-white/90 sm:text-lg">
+        {/* Hero */}
+        <section className="bg-[#0d402e]">
+          <div className="mx-auto max-w-6xl px-4 pb-6 pt-4 sm:px-6 sm:pb-8 sm:pt-5">
+            <h1 className="mb-3 text-[22px] font-bold leading-tight text-[#f8f5f2] sm:text-[26px]">About us</h1>
+            <p className="max-w-3xl text-base leading-[1.6] text-[#f8f5f2]">
               Built on trust, with an uncompromising commitment to customer satisfaction and professional standards.
             </p>
           </div>
         </section>
 
-        {/* Trust badges */}
-        <section className="bg-zapit-dark px-4 pb-10 sm:px-6 sm:pb-12">
+        {/* Trust pills */}
+        <section className="bg-[#0d402e] px-4 pb-8 sm:px-6 sm:pb-10">
           <div className="mx-auto max-w-6xl">
-            <div className="rounded-2xl bg-[#3fa535] px-4 py-5 sm:px-6 sm:py-6">
-              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5">
-                {TRUST_BADGES.map((label) => (
-                  <li key={label} className="flex items-start gap-3 text-sm font-medium text-white sm:text-base">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/20">
-                      <Check className="h-3.5 w-3.5 text-white" strokeWidth={2.5} />
-                    </span>
-                    {label}
-                  </li>
-                ))}
-              </ul>
+            <div className="flex flex-wrap gap-2 sm:gap-2.5">
+              {TRUST_PILLS.map((label) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#1cdc38] px-3 py-2 text-sm font-medium text-white sm:px-4 sm:py-2.5 sm:text-[15px]"
+                >
+                  <svg className="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  {label}
+                </span>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Committed + CTA */}
-        <section className="bg-zapit-dark px-4 pb-10 sm:px-6 sm:pb-14">
+        {/* Committed section */}
+        <section className="bg-[#0d402e] px-4 pb-10 sm:px-6 sm:pb-12">
           <div className="mx-auto max-w-6xl">
-            <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="max-w-2xl text-2xl font-bold leading-snug sm:text-3xl">
-                Committed to protecting what&apos;s important to you
-              </h2>
-              <a
-                href={SITE_CONFIG.phoneTel}
-                className="inline-flex w-full max-w-min shrink-0 items-center justify-center gap-2 rounded-full bg-[#3fa535] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-zapit-green-dark sm:w-auto"
-              >
-                <Phone className="h-4 w-4" aria-hidden />
-                Call Now
-              </a>
-            </div>
-
-            <div className="max-w-none space-y-4 text-base leading-relaxed text-white/90 sm:text-lg">
+            <h2 className="mb-4 max-w-2xl text-[18px] font-bold leading-snug text-[#f8f5f2] sm:text-[20px]">
+              Committed to protecting what&apos;s important to you
+            </h2>
+            <div className="max-w-none space-y-4 text-sm leading-[1.6] text-[#f8f5f2] sm:text-[15px]">
               <p>
                 Your health and safety are at the heart of everything we do, supported by industry-leading pest protection
                 technology and customer care.
               </p>
               <p>
-                We understand that every home and business is different — a compact apartment, a growing family, a
-                high-traffic workplace — and that each comes with its own set of concerns. We take the time to listen, assess
-                what matters to you, and apply treatments that are appropriate for the people, pets, and environment involved.
+                We understand the different risks all types of pests pose to people, pets and property. Whether you live in a flat with a much-loved
+                pet, have a family of five, or run a business, we tailor the best pest protection solution to suit your needs.
               </p>
               <p>
-                We work alongside families, pet owners, and business operators every day, and we treat every property with
-                the same care and respect we would want for our own. That means clear communication, careful application,
-                and follow-up you can count on.
+                We treat your home and business with the same care as our own. Our service extends beyond the initial treatment by providing you
+                practical guidance to help prevent future infestations.
               </p>
-              <p>
-                Our relationship with you does not end when the first service is done. We help you stay protected with
-                practical advice, scheduled visits where needed, and a team you can call when something changes.{' '}
-                <span className="text-white">We&apos;re here for you, now and into the future.</span>
-              </p>
+              <p>We&apos;re here for you now and into the future.</p>
             </div>
           </div>
         </section>
 
-        {/* Image: pest control in action */}
-        <section className="bg-zapit-dark">
-          <div className="relative w-full max-w-6xl mx-auto px-0 sm:px-6">
-            <div className="relative aspect-[4/3] w-full overflow-hidden sm:rounded-2xl sm:aspect-[16/9] max-sm:min-h-[220px]">
+        {/* Technician image */}
+        <section className="bg-[#0d402e]">
+          <div className="relative mx-auto w-full max-w-6xl px-0 sm:px-6">
+            <div className="relative aspect-[4/3] w-full overflow-hidden max-sm:min-h-[220px] sm:aspect-[16/9] sm:rounded-2xl">
               <Image
                 src={HERO_IMAGE}
                 alt="Zap It technician providing professional pest treatment at a Melbourne home"
@@ -156,134 +119,114 @@ export default function AboutUsPage() {
           </div>
         </section>
 
-        {/* Our story */}
-        <section className="bg-zapit-dark px-4 py-10 sm:px-6 sm:py-14">
+        {/* Same day CTA */}
+        <section className="bg-[#0d402e] px-4 py-8 text-center sm:px-6 sm:py-10" aria-label="Same day service">
+          <div className="mx-auto max-w-3xl">
+            <Truck className="mx-auto mb-3 h-10 w-10 text-[#1cdc38] sm:h-12 sm:w-12" strokeWidth={1.5} aria-hidden />
+            <a href={SITE_CONFIG.phoneTel} className="text-lg font-bold italic leading-tight text-[#1cdc38] sm:text-xl">
+              Same day service available. Call now!
+            </a>
+          </div>
+        </section>
+
+        {/* Our Story */}
+        <section className="bg-[#2b2b2b] px-4 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-6xl">
-            <h2 className="mb-6 text-2xl font-bold sm:text-3xl">Our story</h2>
-            <div className="space-y-4 text-base leading-relaxed text-white/90 sm:text-lg">
+            <h2 className="mb-5 text-[18px] font-bold leading-snug text-[#f8f5f2] sm:text-[20px]">Our story</h2>
+            <div className="space-y-4 text-sm leading-[1.65] text-[#f8f5f2]/95 sm:text-[15px]">
               <p>
-                Zap It was founded in 2020 by Adam Balli, starting out with a single van and a clear focus on doing right by
-                customers across Melbourne. From those early days in the northern suburbs, the business has grown to a team
-                of 30+ trade-qualified professionals serving homes and businesses across the wider metropolitan area and
-                beyond.
+                Founded in 2020 by Adam Balli, the business started with a single van and a strong commitment to honest,
+                reliable pest control in Melbourne&apos;s northern suburbs and beyond.
               </p>
               <p>
-                Adam built the company on personal accountability: turning up when promised, explaining options honestly,
-                and only recommending what the situation truly needs. That approach still guides how we train our technicians
-                and how we work with you on site.
+                Within a short period, Adam invested in trade-qualified technicians, advanced tools, and environmentally
+                conscious methods to deliver the same level of care and accountability to every customer — from everyday
+                residential treatments to complex commercial programs.
               </p>
               <p>
-                Within a short time, our reputation for dependable service and five-star support saw demand grow well beyond
-                our first routes. We now employ licensed pest managers with real trade experience, and we invest in the tools
-                and methods needed to protect Melbourne properties — from pre-purchase termite work to after-hours
-                call-outs.
-              </p>
-              <p>
-                Our story is still being written: every new suburb we serve, and every returning customer, reinforces our
-                belief that long-term success comes from trust — not from quick fixes.
+                Today, Zap It protects more than 5,000 residential customers and more than 500 commercial sites across
+                Melbourne, with the same personal approach Adam started with.
               </p>
             </div>
           </div>
         </section>
       </div>
 
-      {/* Insured, licensed, accredited — light section */}
-      <section className="bg-zapit-light px-4 py-10 sm:px-6 sm:py-16">
+      {/* Insured, licensed, accredited */}
+      <section className="bg-[#f8f5f2] px-4 py-10 sm:px-6 sm:py-16">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-5 text-2xl font-bold text-zapit-text sm:mb-6 sm:text-3xl">
+          <h2 className="mb-4 text-[18px] font-bold leading-snug text-[#414042] sm:mb-5 sm:text-[20px]">
             Insured, licensed, accredited and legally compliant
           </h2>
-          <div className="mb-6 space-y-4 text-zapit-text leading-relaxed sm:text-base">
+          <div className="mb-6 space-y-4 text-sm leading-[1.65] text-[#414042] sm:text-base">
             <p>
-              {SITE_CONFIG.name} carries appropriate insurance and operates under the licensing and record-keeping
-              expectations that apply to professional pest management in Victoria. We maintain memberships and training
-              that reflect national best practice, so you can be confident the work on your property is done safely and
-              lawfully.
-            </p>
-            <p>
-              We hold relevant wildlife and general pest authorisations where required, use approved products in line with
-              label directions, and document treatments so you have a clear record for your home, tenancy, or food-safety
-              program.
+              {SITE_CONFIG.name} operates with appropriate insurance and meets the licensing and record-keeping
+              expectations for professional pest management in Victoria. Our memberships and training follow national
+              best practice so you can trust that work on your property is safe and lawful.
             </p>
           </div>
 
-          <ul className="mb-8 list-none space-y-2 text-sm text-zapit-text sm:text-base">
-            <li>
-              <strong className="text-zapit-dark">Australian Environmental Pest Managers Association (AEMPA / AEPMA)</strong>
-              — aligned with industry environmental and best-practice standards.
+          <ul className="mb-8 list-none space-y-3 text-sm text-[#414042] sm:text-base">
+            <li className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3fa535] text-xs text-white" aria-hidden>✓</span>
+              <span><strong className="text-[#131a1c]">The Australian Environmental Pest Managers Association</strong></span>
             </li>
-            <li>
-              <strong className="text-zapit-dark">HACCP food safety &amp; commercial hygiene</strong> — we support businesses
-              that need verifiable, audit-friendly pest control documentation.
+            <li className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3fa535] text-xs text-white" aria-hidden>✓</span>
+              <span><strong className="text-[#131a1c]">HACCP Food Safety Certificate</strong></span>
             </li>
-            <li>
-              <strong className="text-zapit-dark">Victorian Government wildlife compliance</strong> — where possums and
-              protected species are involved, we work within licensed wildlife frameworks.
-            </li>
-            <li>
-              <strong className="text-zapit-dark">DHHS licensing &amp; public health expectations</strong> — our treatments
-              are delivered in line with Victorian public health and pest-management licensing requirements.
-            </li>
-            <li>
-              <strong className="text-zapit-dark">General liability &amp; online compliance records</strong> — certificates
-              and treatment notes can be provided to landlords, site managers, and auditors on request.
+            <li className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3fa535] text-xs text-white" aria-hidden>✓</span>
+              <span><strong className="text-[#131a1c]">VIC Government Wildlife Licence</strong></span>
             </li>
           </ul>
 
-          <div className="flex flex-wrap items-center justify-center gap-6 border-t border-zapit-border pt-8 sm:gap-10 sm:pt-10">
-            <Image
-              src="/images/certifications/aempa.png"
-              alt="Australian Environmental Pest Managers Association"
-              width={120}
-              height={80}
-              className="h-14 w-auto object-contain sm:h-16"
-            />
-            <Image
-              src="/images/wp-assets/2024-07-aempa-v2-1-1-e1745687916424.png"
-              alt="Australian environmental pest management certification mark"
-              width={140}
-              height={80}
-              className="h-14 w-auto object-contain sm:h-16"
-            />
-            <Image
-              src="/images/certifications/victoria-state-govt.png"
-              alt="Victoria state government and wildlife licensing"
-              width={100}
-              height={80}
-              className="h-14 w-auto object-contain sm:h-16"
-            />
-            <Image
-              src="/images/certifications/dhhs-cert.jpg"
-              alt="DHHS licensed pest control"
-              width={100}
-              height={80}
-              className="h-14 w-auto rounded object-contain sm:h-16"
-            />
-            <Image
-              src="/images/certifications/200-colour.png"
-              alt="200 day guarantee and quality commitment"
-              width={100}
-              height={80}
-              className="h-14 w-auto object-contain sm:h-16"
-            />
+          <div className="grid grid-cols-2 gap-6 border-t border-[#e5e5e5] pt-8 sm:grid-cols-4 sm:gap-4 sm:pt-10">
+            <figure className="flex flex-col items-center text-center">
+              <Image
+                src={`${WP}/2025-04-WhatsApp-Image-2025-04-25-at-23.36.21_3d87ac70-300x300.jpg`}
+                alt="Wildlife Licensed"
+                width={120}
+                height={80}
+                className="h-16 w-auto object-contain sm:h-20"
+              />
+              <figcaption className="mt-2 text-xs font-medium text-[#414042] sm:text-sm">Wildlife Licensed</figcaption>
+            </figure>
+            <figure className="flex flex-col items-center text-center">
+              <Image
+                src={`${WP}/2024-07-aempa-v2-1-1-e1745687916424-173x300.png`}
+                alt="HACCP Food Safety Certification"
+                width={140}
+                height={80}
+                className="h-16 w-auto object-contain sm:h-20"
+              />
+              <figcaption className="mt-2 text-xs font-medium text-[#414042] sm:text-sm">HACCP Food Safety</figcaption>
+            </figure>
+            <figure className="flex flex-col items-center text-center">
+              <Image
+                src={`${WP}/2024-07-aempa-v2-1-e1745687358594-768x321.png`}
+                alt="Australian Environmental Pest Managers Association"
+                width={120}
+                height={80}
+                className="h-16 w-auto object-contain sm:h-20"
+              />
+              <figcaption className="mt-2 text-xs font-medium text-[#414042] sm:text-sm">Australian Environmental Pest Managers Association</figcaption>
+            </figure>
+            <figure className="flex flex-col items-center text-center">
+              <Image
+                src={`${WP}/2024-07-200dguarantee-e1745687539942-300x300.png`}
+                alt="Pest Managers Association"
+                width={120}
+                height={80}
+                className="h-16 w-auto object-contain sm:h-20"
+              />
+              <figcaption className="mt-2 text-xs font-medium text-[#414042] sm:text-sm">Pest Managers Association</figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
-      {/* Pre-footer CTA (green button; site global Footer follows) */}
-      <section className="bg-zapit-dark px-4 py-12 sm:px-6 sm:py-16">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="mb-2 text-sm text-white/80">Questions? We&apos;re here to help — day or night.</p>
-          <p className="mb-6 text-lg font-semibold text-white sm:text-xl">{SITE_CONFIG.operatingHours}</p>
-          <a
-            href={SITE_CONFIG.phoneTel}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#3fa535] px-8 py-3.5 text-base font-bold text-white transition-colors hover:bg-zapit-green-dark"
-          >
-            <Phone className="h-5 w-5" aria-hidden />
-            Call Now
-          </a>
-        </div>
-      </section>
+      <PageInfoFooterBlock />
     </>
   );
 }

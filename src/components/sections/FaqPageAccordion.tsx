@@ -6,21 +6,23 @@ import type { FAQ } from '@/types';
 
 type FaqPageAccordionProps = {
   faqs: FAQ[];
+  /** Index of panel open on first render (e.g. 0 to match Figma first FAQ open). */
+  defaultOpenIndex?: number | null;
 };
 
-export default function FaqPageAccordion({ faqs }: FaqPageAccordionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+export default function FaqPageAccordion({ faqs, defaultOpenIndex = null }: FaqPageAccordionProps) {
+  const [openIndex, setOpenIndex] = useState<number | null>(defaultOpenIndex ?? null);
 
   const toggle = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
   };
 
   return (
-    <div className="border-t border-[#e8e8e8]">
+    <div>
       {faqs.map((item, index) => {
         const isOpen = openIndex === index;
         return (
-          <div key={item.question} className="border-b border-[#e8e8e8]">
+          <div key={item.question} className="border-b border-[#c8c8c8]">
             <button
               type="button"
               onClick={() => toggle(index)}
@@ -29,10 +31,10 @@ export default function FaqPageAccordion({ faqs }: FaqPageAccordionProps) {
               aria-controls={`faq-panel-${index}`}
               id={`faq-trigger-${index}`}
             >
-              <span className="flex-1 text-[15px] font-medium leading-snug text-[#131a1c] md:text-base">
+              <span className="flex-1 text-sm font-medium leading-snug text-[#414042] sm:text-[15px]">
                 {item.question}
               </span>
-              <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center text-[#131a1c]" aria-hidden>
+              <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center text-[#414042]" aria-hidden>
                 {isOpen ? <Minus className="h-5 w-5" strokeWidth={2} /> : <Plus className="h-5 w-5" strokeWidth={2} />}
               </span>
             </button>
@@ -44,7 +46,7 @@ export default function FaqPageAccordion({ faqs }: FaqPageAccordionProps) {
               style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
             >
               <div className="min-h-0 overflow-hidden">
-                <p className="pb-4 pr-10 text-[14px] leading-relaxed text-[#414042] md:pb-5 md:text-[15px] md:leading-[1.6]">
+                <p className="pb-4 pr-10 text-sm leading-relaxed text-[#414042] md:pb-5 md:leading-[1.6]">
                   {item.answer}
                 </p>
               </div>

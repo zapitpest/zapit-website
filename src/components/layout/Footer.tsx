@@ -44,7 +44,7 @@ export default function Footer() {
     <>
       <footer className="bg-[#131a1c] font-sans text-white">
         <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-6 md:px-8 lg:px-[50px] lg:py-[60px]">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] lg:gap-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_auto] lg:gap-8">
             <div>
               <h3 className="mb-4 text-[20px] font-semibold italic text-[#3fa535]">Our Company</h3>
               <p className="mb-6 text-[14px] leading-relaxed text-white/85">
@@ -111,11 +111,11 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="min-w-0 md:col-span-2 lg:col-span-1 lg:w-[200px]">
+            <div className="min-w-0 sm:col-span-2 lg:col-span-1 lg:w-[220px]">
               <iframe
                 title="Zap It Pest & Termite Control Melbourne on Google Maps"
                 src={MAPS_EMBED_SRC}
-                className="h-[200px] w-full rounded-lg border-0"
+                className="h-[180px] sm:h-[200px] w-full rounded-lg border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen

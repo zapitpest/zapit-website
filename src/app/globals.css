@@ -312,12 +312,17 @@
 .pest-card-btn {
   display: none;
   margin-top: 10px;
+  min-height: 44px;
   padding: 10px 28px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
   border-radius: 6px;
   background: #3fa535;
   color: #fff;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
   cursor: pointer;
@@ -327,7 +332,7 @@
 .pest-card:hover .pest-card-btn,
 .pest-card:focus-within .pest-card-btn,
 .pest-card.active .pest-card-btn {
-  display: inline-block;
+  display: inline-flex;
 }
 
 .pest-card-btn:hover {
@@ -335,12 +340,25 @@
 }
 
 .our-services-heading {
-  font-size: 38px;
+  font-size: 20px;
   font-family: 'Graphik', Arial, Helvetica, sans-serif;
   font-weight: 600;
   color: #222;
   margin-bottom: 32px;
   text-align: center;
+  line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .our-services-heading {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 768px) {
+  .our-services-heading {
+    font-size: 34px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -368,9 +386,6 @@
     font-size: 12px;
   }
 
-  .our-services-heading {
-    font-size: 28px;
-  }
 }
 
 /* Zapit tabs section */
@@ -384,7 +399,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 36px;
+  min-height: 44px;
   background: transparent;
   color: #3fa535;
   font-weight: 500;

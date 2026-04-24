@@ -41,10 +41,13 @@ const TREATMENTS: Treatment[] = [
 
 const TREATMENT_NAMES = [...new Set(TREATMENTS.map(t => t.name))].sort();
 
+// Flat 20% discount for 2+ treatments on same day (matches Figma)
 function getDiscount(count: number): number {
-  if (count >= 3) return 0.275;
-  if (count >= 2) return 0.225;
-  return 0;
+  return count >= 2 ? 0.20 : 0;
+}
+
+function fmtPrice(n: number): string {
+  return n % 1 === 0 ? `$${n}` : `$${n.toFixed(2)}`;
 }
 
 interface SelectedItem {
@@ -55,7 +58,6 @@ interface SelectedItem {
 export default function PriceCalculator() {
   const [postcode, setPostcode] = useState('');
   const [selectedName, setSelectedName] = useState(TREATMENT_NAMES[0]);
-  const [incGst, setIncGst] = useState(false);
   const [cart, setCart] = useState<SelectedItem[]>([]);
 
   const propertyOptions = useMemo(() => {
@@ -66,7 +68,9 @@ export default function PriceCalculator() {
 
   const handleAdd = () => {
     const match = TREATMENTS.find(
-      t => t.name === selectedName && t.propertyType === (propertyOptions.length > 1 ? selectedPropertyType : propertyOptions[0].propertyType)
+      t =>
+        t.name === selectedName &&
+        t.propertyType === (propertyOptions.length > 1 ? selectedPropertyType : propertyOptions[0].propertyType),
     );
     if (!match) return;
     setCart(prev => [...prev, { treatment: match, id: `${Date.now()}-${Math.random()}` }]);
@@ -78,176 +82,151 @@ export default function PriceCalculator() {
 
   const discount = getDiscount(cart.length);
   const subtotal = cart.reduce((sum, item) => sum + item.treatment.price, 0);
-  const discountAmount = subtotal * discount;
-  const afterDiscount = subtotal - discountAmount;
-  const gst = incGst ? afterDiscount * 0.1 : 0;
-  const total = afterDiscount + gst;
+  const discountAmount = Math.round(subtotal * discount);
+  const total = Math.round(subtotal - discountAmount);
 
   return (
-    <section className="py-16 lg:py-20 bg-white" aria-label="Residential price calculator">
-      <div className="container mx-auto px-4 max-w-2xl">
-        <p className="text-center text-sm font-semibold uppercase tracking-widest text-[#3fa535] mb-2">
-          Residential Pricing
-        </p>
-        <h2 className="text-center text-2xl md:text-3xl font-bold text-[#131a1c] mb-8 italic">
+    <section className="bg-white py-10 sm:py-12" aria-label="Residential price calculator">
+      <div className="mx-auto max-w-2xl px-5 sm:px-6">
+        <h2 className="mb-6 text-[20px] font-bold italic leading-snug text-[#131a1c] sm:text-[22px]">
           Residential price calculator
         </h2>
 
-        <div className="rounded-2xl border border-[#e5e5e5] bg-white p-6 md:p-8 shadow-sm">
-          <div className="relative">
-            {/* Save 20% badge */}
-            <div className="absolute -top-2 right-0 md:-right-2">
-              <div className="flex h-16 w-16 flex-col items-center justify-center rounded-full bg-[#3fa535] text-white text-center leading-tight">
-                <span className="text-[10px] font-medium">Save</span>
-                <span className="text-lg font-bold">20%</span>
-                <span className="text-[8px] leading-[1]">when booking<br/>multiple</span>
-              </div>
+        <div className="relative rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-sm sm:p-7">
+          {/* Save 20% floating badge — top-right, matches Figma dark circle */}
+          <div className="absolute -top-3 right-4 sm:right-6">
+            <div className="flex h-[72px] w-[72px] flex-col items-center justify-center rounded-full bg-[#0d402e] text-center text-white shadow-lg">
+              <span className="text-[9px] font-medium leading-none">Save</span>
+              <span className="text-[22px] font-black leading-tight">20%</span>
+              <span className="px-1 text-[7.5px] leading-[1.15]">
+                For same day<br />multiple treatments
+              </span>
             </div>
-
-            {/* Postcode */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-[#131a1c] mb-1">
-                Postcode <span className="text-[#3fa535]">*</span>
-              </label>
-              <input
-                type="text"
-                value={postcode}
-                onChange={e => setPostcode(e.target.value)}
-                placeholder="e.g. 3081"
-                className="w-full rounded-full border border-[#e5e5e5] px-4 py-3 text-sm text-[#414042] placeholder:text-gray-400 focus:border-[#3fa535] focus:outline-none focus:ring-1 focus:ring-[#3fa535]"
-                maxLength={4}
-              />
-            </div>
-
-            {/* Treatment type */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-[#131a1c] mb-1">
-                Treatment type <span className="text-[#3fa535]">*</span>
-              </label>
-              <div className="flex gap-2">
-                <div className="flex-1">
-                  <select
-                    value={selectedName}
-                    onChange={e => {
-                      setSelectedName(e.target.value);
-                      const opts = TREATMENTS.filter(t => t.name === e.target.value);
-                      if (opts.length === 1) setSelectedPropertyType(opts[0].propertyType);
-                      else setSelectedPropertyType(opts[0].propertyType);
-                    }}
-                    className="w-full rounded-full border border-[#3fa535] px-4 py-3 text-sm text-[#414042] focus:outline-none focus:ring-1 focus:ring-[#3fa535] appearance-none bg-white"
-                  >
-                    {TREATMENT_NAMES.map(name => (
-                      <option key={name} value={name}>{name}</option>
-                    ))}
-                  </select>
-                </div>
-                <button
-                  type="button"
-                  onClick={handleAdd}
-                  className="rounded-lg bg-[#3fa535] px-5 py-3 text-sm font-bold text-white hover:bg-[#0d402e] transition-colors"
-                >
-                  Add
-                </button>
-              </div>
-            </div>
-
-            {/* Property type (if multiple options) */}
-            {propertyOptions.length > 1 && (
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-[#131a1c] mb-1">Property type</label>
-                <select
-                  value={selectedPropertyType}
-                  onChange={e => setSelectedPropertyType(e.target.value as PropertyType)}
-                  className="w-full rounded-full border border-[#e5e5e5] px-4 py-3 text-sm text-[#414042] focus:border-[#3fa535] focus:outline-none focus:ring-1 focus:ring-[#3fa535] appearance-none bg-white"
-                >
-                  {propertyOptions.map(opt => (
-                    <option key={opt.propertyType} value={opt.propertyType}>{opt.propertyType}</option>
-                  ))}
-                </select>
-              </div>
-            )}
           </div>
 
-          {/* Cart / Estimate */}
-          <div className="mt-4 rounded-xl border border-[#e5e5e5] p-4 min-h-[60px]">
-            {cart.length === 0 ? (
-              <p className="text-center text-sm text-gray-400 italic">
-                Add treatments above to see your price estimate
-              </p>
-            ) : (
-              <div className="space-y-2">
-                {cart.map(item => (
-                  <div key={item.id} className="flex items-center justify-between text-sm">
-                    <span className="text-[#414042]">
-                      {item.treatment.name}
-                      {item.treatment.propertyType !== 'All' && (
-                        <span className="text-gray-400 ml-1">({item.treatment.propertyType})</span>
-                      )}
-                    </span>
-                    <div className="flex items-center gap-3">
-                      <span className="font-medium text-[#131a1c]">${item.treatment.price.toFixed(2)}</span>
-                      <button
-                        type="button"
-                        onClick={() => handleRemove(item.id)}
-                        className="text-gray-400 hover:text-red-500 text-xs"
-                        aria-label={`Remove ${item.treatment.name}`}
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  </div>
+          {/* Postcode */}
+          <div className="mb-4 pr-16">
+            <label className="mb-1.5 block text-sm font-semibold text-[#131a1c]">
+              Postcode<span className="ml-0.5 text-[#3fa535]">*</span>
+            </label>
+            <input
+              type="text"
+              value={postcode}
+              onChange={e => setPostcode(e.target.value)}
+              placeholder="e.g. 3081"
+              className="w-full rounded-full border border-[#e5e5e5] px-4 py-2.5 text-sm text-[#414042] placeholder:text-gray-400 focus:border-[#3fa535] focus:outline-none focus:ring-1 focus:ring-[#3fa535]"
+              maxLength={4}
+            />
+          </div>
+
+          {/* Treatment type + add button */}
+          <div className="mb-4">
+            <label className="mb-1.5 block text-sm font-semibold text-[#131a1c]">
+              Treatment type<span className="ml-0.5 text-[#3fa535]">*</span>
+            </label>
+            <div className="flex items-center gap-2">
+              <select
+                value={selectedName}
+                onChange={e => {
+                  setSelectedName(e.target.value);
+                  const opts = TREATMENTS.filter(t => t.name === e.target.value);
+                  setSelectedPropertyType(opts[0].propertyType);
+                }}
+                className="flex-1 rounded-full border border-[#3fa535] bg-white px-4 py-2.5 text-sm text-[#414042] appearance-none focus:outline-none focus:ring-1 focus:ring-[#3fa535]"
+              >
+                {TREATMENT_NAMES.map(name => (
+                  <option key={name} value={name}>{name}</option>
                 ))}
+              </select>
+              {/* "+" circle button — matches Figma */}
+              <button
+                type="button"
+                onClick={handleAdd}
+                aria-label="Add treatment"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-[#3fa535] text-xl font-bold text-[#3fa535] transition-colors hover:bg-[#3fa535] hover:text-white"
+              >
+                +
+              </button>
+            </div>
+          </div>
 
-                {discount > 0 && (
-                  <div className="flex items-center justify-between border-t border-[#e5e5e5] pt-2 text-sm text-[#3fa535]">
-                    <span>Discount ({(discount * 100).toFixed(1)}%)</span>
-                    <span>-${discountAmount.toFixed(2)}</span>
+          {/* Property type (only when multiple options exist) */}
+          {propertyOptions.length > 1 && (
+            <div className="mb-4">
+              <label className="mb-1.5 block text-sm font-semibold text-[#131a1c]">Property type</label>
+              <select
+                value={selectedPropertyType}
+                onChange={e => setSelectedPropertyType(e.target.value as PropertyType)}
+                className="w-full rounded-full border border-[#e5e5e5] bg-white px-4 py-2.5 text-sm text-[#414042] appearance-none focus:border-[#3fa535] focus:outline-none focus:ring-1 focus:ring-[#3fa535]"
+              >
+                {propertyOptions.map(opt => (
+                  <option key={opt.propertyType} value={opt.propertyType}>{opt.propertyType}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {/* Cart items */}
+          {cart.length === 0 ? (
+            <div className="my-2 rounded-xl border border-dashed border-[#e5e5e5] px-4 py-3 text-center text-sm italic text-gray-400">
+              Add treatments above to see your price estimate
+            </div>
+          ) : (
+            <div className="my-2 space-y-2 rounded-xl border border-[#e5e5e5] px-4 py-3">
+              {cart.map(item => (
+                <div key={item.id} className="flex items-center justify-between gap-2 text-sm">
+                  <span className="text-[#414042]">
+                    {item.treatment.name}
+                    {item.treatment.propertyType !== 'All' && (
+                      <span className="ml-1 text-xs text-gray-400">({item.treatment.propertyType})</span>
+                    )}
+                  </span>
+                  <div className="flex shrink-0 items-center gap-2">
+                    <span className="font-semibold text-[#131a1c]">{fmtPrice(item.treatment.price)}</span>
+                    <button
+                      type="button"
+                      onClick={() => handleRemove(item.id)}
+                      className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-100 text-[10px] font-bold text-gray-500 hover:bg-red-100 hover:text-red-500"
+                      aria-label={`Remove ${item.treatment.name}`}
+                    >
+                      ✕
+                    </button>
                   </div>
-                )}
-
-                {/* GST toggle */}
-                <div className="flex items-center justify-between border-t border-[#e5e5e5] pt-2">
-                  <label className="flex items-center gap-2 text-sm text-[#414042] cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={incGst}
-                      onChange={e => setIncGst(e.target.checked)}
-                      className="accent-[#3fa535]"
-                    />
-                    Include GST (10%)
-                  </label>
-                  {incGst && <span className="text-sm text-[#414042]">+${gst.toFixed(2)}</span>}
                 </div>
+              ))}
+            </div>
+          )}
 
-                <div className="flex items-center justify-between border-t border-[#e5e5e5] pt-2 text-base font-bold text-[#131a1c]">
-                  <span>Estimated total</span>
-                  <span>${total.toFixed(2)}</span>
-                </div>
-              </div>
-            )}
-          </div>
+          {/* 20% saving message — matches Figma "20% saving activated. You've save $184!" */}
+          {discount > 0 && (
+            <p className="mb-3 text-sm font-medium text-[#3fa535]">
+              20% saving activated. You&apos;ve save <strong>${discountAmount}</strong>!
+            </p>
+          )}
 
-          {/* CTAs */}
-          <div className="mt-6 grid grid-cols-2 gap-3">
-            <a
-              href={SITE_CONFIG.phoneTel}
-              className="flex items-center justify-center rounded-full border-2 border-[#131a1c] px-4 py-3 text-sm font-bold text-[#131a1c] transition-colors hover:bg-[#131a1c] hover:text-white"
-            >
-              Enquire
-            </a>
-            <a
-              href={SITE_CONFIG.booking.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center rounded-full bg-[#3fa535] px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-[#0d402e]"
-            >
-              Book online
-            </a>
-          </div>
+          {/* "$XXX GST inc." total button — matches Figma large dark pill */}
+          <a
+            href={SITE_CONFIG.phoneTel}
+            className={`mt-3 flex w-full items-center justify-center rounded-full py-4 text-[17px] font-bold text-white shadow-md transition-colors ${
+              cart.length > 0
+                ? 'bg-[#131a1c] hover:bg-[#0d402e]'
+                : 'pointer-events-none bg-[#9ca3af]'
+            }`}
+          >
+            {cart.length > 0 ? `$${total} GST inc.` : 'Build your quote above'}
+          </a>
 
-          <p className="mt-3 text-xs text-gray-400">
-            <span className="text-[#3fa535]">*</span>required fields. Prices indicative. Final price confirmed before work begins.
+          <p className="mt-2 text-xs text-gray-400">
+            <span className="text-[#3fa535]">*</span>required fields
           </p>
+
+          {/* "Call now!" italic green text link — matches Figma */}
+          <a
+            href={SITE_CONFIG.phoneTel}
+            className="mt-1 block text-center text-[16px] font-bold italic text-[#3fa535] hover:underline"
+          >
+            Call now!
+          </a>
         </div>
       </div>
     </section>

@@ -220,7 +220,7 @@ export default function Header() {
     <header className="font-sans">
       {/* ===== TOP BAR ===== */}
       <div className="bg-[#1a1a1a] text-[14px] text-[#f0f0f0]">
-        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-2 px-[10px] py-2 sm:flex-row sm:justify-between">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-2 px-4 py-2 sm:flex-row sm:justify-between sm:px-5">
           <div className="flex flex-wrap items-center gap-2">
             <span>⭐⭐⭐⭐⭐ {SITE_CONFIG.rating.count}+ 5-Star Google Reviews</span>
             <a
@@ -244,15 +244,15 @@ export default function Header() {
 
       {/* ===== MAIN NAV ===== */}
       <nav className="relative z-[1000] border-t border-[#e5e5e5] bg-white">
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-[10px] py-[15px]">
-          <Link href="/" className="shrink-0" aria-label="Zap It home">
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-[15px] sm:px-5">
+          <Link href="/" className="shrink-0 block h-[44px] sm:h-[50px] lg:h-[54px] overflow-hidden" aria-label="Zap It home">
             <Image
               src={NAV_LOGO}
               alt="Zap It Pest Control"
-              width={100}
-              height={49}
+              width={260}
+              height={104}
               priority
-              className="h-[49px] w-auto"
+              className="h-[100px] sm:h-[110px] lg:h-[120px] w-auto -mt-[28px] sm:-mt-[30px] lg:-mt-[33px]"
             />
           </Link>
 
@@ -278,7 +278,7 @@ export default function Header() {
           <div className="flex items-center gap-[10px] lg:hidden">
             <a
               href={SITE_CONFIG.phoneTel}
-              className="inline-flex items-center gap-2 rounded-full border border-[#3fa535] bg-[#3fa535] px-3 py-1.5 text-[12px] font-bold text-white transition-colors hover:bg-[#0d402e]"
+              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#3fa535] bg-[#3fa535] px-3.5 text-[12px] font-bold text-white transition-colors hover:bg-[#0d402e] sm:px-4"
             >
               <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z" />
@@ -288,7 +288,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileOpen((o) => !o)}
-              className="flex items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3 py-1.5 text-[12px] font-medium text-[#252525] transition-colors hover:bg-[#e9e9e9]"
+              className="flex min-h-[44px] items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3.5 text-[12px] font-medium text-[#252525] transition-colors hover:bg-[#e9e9e9] sm:px-4"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
             >
@@ -301,7 +301,7 @@ export default function Header() {
 
       {/* ===== GREEN INFO BANNER ===== */}
       <div ref={bannerRef} className="bg-[#3fa535] py-2 text-center text-[14px] font-normal text-white">
-        <div className="mx-auto max-w-[1280px] px-[10px]">
+        <div className="mx-auto max-w-[1280px] px-4 sm:px-5">
           Book Same-Day Pest Control in Melbourne –{' '}
           <a href={SITE_CONFIG.phoneTel} className="font-semibold text-white hover:underline">
             CALL NOW!
@@ -315,14 +315,20 @@ export default function Header() {
           isSticky ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-[10px] py-[10px]">
-          <Link href="/" aria-label="Zap It home">
-            <Image src={NAV_LOGO} alt="Zap It" width={100} height={35} className="h-[35px] w-auto" />
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-2.5 sm:px-5">
+          <Link href="/" className="shrink-0 block h-[36px] sm:h-[42px] overflow-hidden" aria-label="Zap It home">
+            <Image
+              src={NAV_LOGO}
+              alt="Zap It"
+              width={220}
+              height={88}
+              className="h-[82px] sm:h-[92px] w-auto -mt-[23px] sm:-mt-[25px]"
+            />
           </Link>
-          <div className="flex items-center gap-[10px]">
+          <div className="flex items-center gap-2 sm:gap-2.5">
             <a
               href={SITE_CONFIG.phoneTel}
-              className="inline-flex items-center gap-2 rounded-full border border-[#3fa535] bg-[#3fa535] px-3 py-1.5 text-[12px] font-bold text-white hover:bg-[#0d402e]"
+              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#3fa535] bg-[#3fa535] px-3.5 text-[12px] font-bold text-white hover:bg-[#0d402e] sm:px-4"
             >
               <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z" />
@@ -332,7 +338,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileOpen((o) => !o)}
-              className="flex items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3 py-1.5 text-[12px] font-medium text-[#252525] hover:bg-[#e9e9e9]"
+              className="flex min-h-[44px] items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3.5 text-[12px] font-medium text-[#252525] hover:bg-[#e9e9e9] sm:px-4"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
             >
@@ -347,7 +353,7 @@ export default function Header() {
       {mobileOpen && (
         <div
           className="fixed inset-x-0 z-[998] overflow-y-auto overscroll-contain bg-white lg:hidden"
-          style={{ top: isSticky ? '57px' : '0', maxHeight: isSticky ? 'calc(100vh - 57px)' : '100vh', paddingBottom: '24px' }}
+          style={{ top: isSticky ? '65px' : '120px', maxHeight: isSticky ? 'calc(100vh - 65px)' : 'calc(100vh - 120px)', paddingBottom: '24px' }}
         >
           <ul className="list-none border-t border-[#e5e5e5]">
             {MAIN_NAV_LINKS.map((item) => {
@@ -441,9 +447,15 @@ export default function Header() {
           isSticky ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-0">
-          <Link href="/" aria-label="Zap It home">
-            <Image src={NAV_LOGO} alt="Zap It" width={100} height={35} className="h-[40px] w-auto" />
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-2.5">
+          <Link href="/" className="shrink-0 block h-[42px] lg:h-[48px] overflow-hidden" aria-label="Zap It home">
+            <Image
+              src={NAV_LOGO}
+              alt="Zap It"
+              width={240}
+              height={96}
+              className="h-[96px] lg:h-[106px] w-auto -mt-[27px] lg:-mt-[29px]"
+            />
           </Link>
           <ul className="flex list-none items-center">
             {MAIN_NAV_LINKS.map((item) => {

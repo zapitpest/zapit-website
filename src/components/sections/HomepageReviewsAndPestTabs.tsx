@@ -105,56 +105,55 @@ export function HomepageReviews() {
 
   return (
     <div className="w-full max-w-[1200px] mx-auto">
-      <div className="flex flex-col lg:flex-row gap-8 items-stretch">
-        <div className="lg:w-[220px] flex-shrink-0 text-center lg:text-left">
-          <p className="text-lg font-extrabold text-[#2B2B2B] tracking-wide">EXCELLENT</p>
-          <div className="flex justify-center lg:justify-start gap-0.5 my-2">
-            {[0, 1, 2, 3, 4].map((s) => (
-              <Star key={s} className="h-6 w-6 fill-amber-400 text-amber-400" />
-            ))}
-          </div>
-          <p className="text-sm text-[#636363]">
-            Based on <strong className="text-[#2B2B2B]">{SITE_CONFIG.rating.count} reviews</strong>
-          </p>
-          <div className="mt-3 flex justify-center lg:justify-start">
-            <Image src="/images/logo/google-g.png" alt="Google" width={100} height={32} className="h-8 w-auto" />
-          </div>
+      <div className="text-center mb-6">
+        <p className="text-base sm:text-lg font-extrabold text-[#131a1c] tracking-wide">EXCELLENT</p>
+        <div className="flex justify-center gap-0.5 my-2">
+          {[0, 1, 2, 3, 4].map((s) => (
+            <Star key={s} className="h-5 w-5 sm:h-6 sm:w-6 fill-amber-400 text-amber-400" />
+          ))}
         </div>
-
-        <div className="relative flex-1 min-w-0">
-          <button
-            type="button"
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 z-10 h-10 w-10 rounded-full border border-gray-200 bg-white shadow-md items-center justify-center text-[#2B2B2B] hover:bg-[#F7F7F7] hidden md:flex"
-            aria-label="Scroll reviews left"
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </button>
-          <button
-            type="button"
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 z-10 h-10 w-10 rounded-full border border-gray-200 bg-white shadow-md items-center justify-center text-[#2B2B2B] hover:bg-[#F7F7F7] hidden md:flex"
-            aria-label="Scroll reviews right"
-          >
-            <ChevronRight className="h-6 w-6" />
-          </button>
-
-          <div
-            ref={scrollRef}
-            className="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-0 md:px-10 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {REVIEWS.map((rev) => (
-              <ReviewCard key={rev.name} rev={rev} />
-            ))}
-          </div>
+        <p className="text-sm text-[#636363]">
+          Based on <strong className="text-[#131a1c]">{SITE_CONFIG.rating.count} reviews</strong>
+        </p>
+        <div className="mt-2 flex justify-center">
+          <Image src="/images/logo/google-g.png" alt="Google" width={28} height={28} className="h-7 w-7" />
         </div>
       </div>
-      <div className="text-center mt-8">
+
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => scroll('left')}
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-10 h-9 w-9 rounded-full border border-gray-200 bg-white shadow-md items-center justify-center text-[#2B2B2B] hover:bg-[#F7F7F7] hidden md:flex"
+          aria-label="Scroll reviews left"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          onClick={() => scroll('right')}
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-10 h-9 w-9 rounded-full border border-gray-200 bg-white shadow-md items-center justify-center text-[#2B2B2B] hover:bg-[#F7F7F7] hidden md:flex"
+          aria-label="Scroll reviews right"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 md:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {REVIEWS.map((rev) => (
+            <ReviewCard key={rev.name} rev={rev} />
+          ))}
+        </div>
+      </div>
+
+      <div className="text-center mt-6">
         <a
           href={GOOGLE_REVIEWS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center min-h-[48px] bg-[#3fa535] text-white text-base font-semibold uppercase tracking-wide px-10 py-3 rounded-lg shadow-[0px_0px_10px_0px_rgba(0,0,0,0.2)] hover:opacity-95"
+          className="inline-flex items-center justify-center min-h-[44px] bg-[#3fa535] text-white text-sm sm:text-base font-semibold uppercase tracking-wide px-8 py-2.5 rounded-lg hover:bg-[#0d402e] transition-colors"
         >
           REVIEWS
         </a>
@@ -165,34 +164,34 @@ export function HomepageReviews() {
 
 function ReviewCard({ rev }: { rev: (typeof REVIEWS)[number] }) {
   return (
-    <div className="ti-review-card min-w-[min(100%,300px)] md:min-w-0 flex-shrink-0 snap-center flex flex-col h-full">
-      <div className="flex items-start gap-3 mb-2">
+    <div className="min-w-[260px] w-[280px] md:w-auto md:min-w-0 flex-shrink-0 snap-center rounded-lg border border-gray-100 bg-white p-4 shadow-sm flex flex-col">
+      <div className="flex items-start gap-3 mb-3">
         <div
-          className={`h-10 w-10 rounded-full ${rev.initialBg} flex items-center justify-center text-white text-lg font-bold flex-shrink-0`}
+          className={`h-9 w-9 rounded-full ${rev.initialBg} flex items-center justify-center text-white text-base font-bold flex-shrink-0`}
           aria-hidden
         >
           {rev.initial}
         </div>
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1 flex-wrap">
-            <span className="ti-review-author">{rev.name}</span>
+          <div className="flex items-center gap-1.5">
+            <span className="text-sm font-semibold text-[#131a1c]">{rev.name}</span>
             <Image src="/images/logo/google-g.png" alt="" width={14} height={14} className="h-3.5 w-3.5" />
           </div>
-          <p className="ti-review-meta">{rev.timeAgo}</p>
-          <div className="ti-review-stars mt-1 !flex !items-center gap-0.5">
+          <p className="text-xs text-[#636363] mt-0.5">{rev.timeAgo}</p>
+          <div className="flex items-center gap-0.5 mt-1">
             {[0, 1, 2, 3, 4].map((s) => (
-              <Star key={s} className="h-[18px] w-[18px] fill-amber-400 text-amber-400" />
+              <Star key={s} className="h-4 w-4 fill-amber-400 text-amber-400" />
             ))}
-            <BadgeCheck className="h-4 w-4 text-blue-500 flex-shrink-0 ml-0.5" aria-label="Verified" />
+            <BadgeCheck className="h-3.5 w-3.5 text-blue-500 flex-shrink-0 ml-0.5" aria-label="Verified" />
           </div>
         </div>
       </div>
-      <p className="ti-review-text flex-1">&ldquo;{rev.text}&rdquo;</p>
+      <p className="text-[13px] leading-relaxed text-[#414042] flex-1 line-clamp-4">&ldquo;{rev.text}&rdquo;</p>
       <a
         href={GOOGLE_REVIEWS_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-sm font-semibold text-[#3fa535] hover:underline mt-3"
+        className="text-xs font-semibold text-[#3fa535] hover:underline mt-2"
       >
         Read more
       </a>
@@ -214,29 +213,28 @@ export function HomepagePestServiceTabs() {
 
   return (
     <div ref={setSectionEl} className="max-w-[1200px] mx-auto bg-[#f9fafb] rounded-xl overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center p-6 md:p-8">
-        <div>
-          <h3 className="text-[22px] font-bold text-black mb-4">{tab.title}</h3>
-          <p className="text-[16px] leading-[1.6] text-[#636363] mb-6">{tab.copy}</p>
-          <Link
-            href={tab.href}
-            className="zapit-learn-more-btn"
-          >
-            Learn More
-          </Link>
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2 lg:gap-10 items-start p-5 md:p-8">
+        <div className="flex min-h-[320px] flex-col sm:min-h-[280px] lg:min-h-[300px]">
+          <h3 className="mb-3 text-[18px] font-bold text-[#131a1c] md:text-[22px] leading-[1.2]">{tab.title}</h3>
+          <p className="mb-5 flex-1 text-[14px] leading-[1.6] text-[#414042] sm:text-[15px] md:text-[16px]">{tab.copy}</p>
+          <div className="mt-auto">
+            <Link href={tab.href} className="zapit-learn-more-btn">
+              Learn More
+            </Link>
+          </div>
         </div>
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.2)]">
+        <div className="relative aspect-[4/3] w-full min-w-0 max-w-full overflow-hidden rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.15)]">
           <Image src={TAB_IMAGE} alt={tab.title} fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
         </div>
       </div>
 
-      <div className="flex w-full border-t border-gray-200">
+      <div className="flex w-full border-t border-gray-200 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {PEST_TABS.map((t, idx) => (
           <button
             key={t.id}
             type="button"
             onClick={() => onTab(idx)}
-            className={`flex-1 py-3 px-1 text-xs sm:text-sm font-semibold text-center transition-colors border-r last:border-r-0 border-gray-200 ${
+            className={`flex min-h-[44px] flex-1 min-w-[100px] flex-shrink-0 items-center justify-center whitespace-nowrap border-r border-gray-200 px-2 py-2 text-center text-[11px] font-semibold transition-colors last:border-r-0 sm:text-sm ${
               active === idx
                 ? 'bg-[#3fa535] text-white'
                 : 'bg-white text-[#3fa535] hover:bg-[#3fa535]/10'
@@ -262,17 +260,19 @@ export function HomepageFAQ() {
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
-              className="flex items-center w-full text-left py-5 gap-3 bg-transparent"
+              className="flex min-h-[44px] w-full items-center gap-3 bg-transparent py-4 text-left sm:py-5"
               aria-expanded={isOpen}
             >
               <span className="text-[#252c33] flex-shrink-0 w-5 flex items-center justify-center">
                 {isOpen ? <Minus className="h-4 w-4" strokeWidth={2.5} /> : <Plus className="h-4 w-4" strokeWidth={2.5} />}
               </span>
-              <span className="text-[17px] font-semibold text-[#252c33]">{faq.question}</span>
+              <span className="text-[16px] font-semibold leading-[1.2] text-[#252c33] sm:text-[17px]">
+                {faq.question}
+              </span>
             </button>
             {isOpen && (
-              <div className="ml-8 mb-5 border border-gray-200 rounded-lg p-5 bg-white">
-                <p className="text-[16px] leading-[1.7] text-[#636363]">{faq.answer}</p>
+              <div className="ml-4 mb-5 rounded-lg border border-gray-200 bg-white p-4 sm:ml-8 sm:p-5">
+                <p className="text-[14px] leading-[1.6] text-[#636363] sm:text-[15px] md:text-[16px]">{faq.answer}</p>
               </div>
             )}
           </div>
@@ -648,7 +648,7 @@ export function HomepagePestCards() {
         >
           <div className="pest-card-content">
             <div className="pest-card-title">
-              <h3 className="!text-black !text-[22px]">{c.title}</h3>
+              <h3 className="!text-[18px] !text-black !font-bold md:!text-[22px]">{c.title}</h3>
             </div>
             <div className="pest-card-subtext">{c.sub}</div>
             <div className="pest-card-more">{c.more}</div>
