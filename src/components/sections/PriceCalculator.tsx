@@ -88,7 +88,7 @@ export default function PriceCalculator() {
   return (
     <section className="bg-[#f8f5f2] py-10 sm:py-12" aria-label="Residential price calculator">
       <div className="mx-auto max-w-2xl px-5 sm:px-6">
-        <h2 className="mb-6 text-center text-[20px] font-bold leading-snug text-[#414042] sm:text-[22px]">
+        <h2 className="mb-6 text-center text-[24px] font-bold leading-snug text-[#414042] sm:text-[28px]">
           Residential price calculator
         </h2>
 

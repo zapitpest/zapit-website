@@ -252,7 +252,7 @@ export default function Header() {
               width={300}
               height={120}
               priority
-              className="h-[122px] sm:h-[140px] lg:h-[154px] w-auto -mt-[34px] sm:-mt-[39px] lg:-mt-[43px]"
+              className="h-[122px] sm:h-[140px] lg:h-[154px] w-auto -mt-[34px] sm:-mt-[39px] lg:-mt-[43px] [mix-blend-mode:multiply]"
             />
           </Link>
 
@@ -322,7 +322,7 @@ export default function Header() {
               alt="Zap It"
               width={240}
               height={96}
-              className="h-[104px] sm:h-[118px] w-auto -mt-[29px] sm:-mt-[33px]"
+              className="h-[104px] sm:h-[118px] w-auto -mt-[29px] sm:-mt-[33px] [mix-blend-mode:multiply]"
             />
           </Link>
           <div className="flex items-center gap-2 sm:gap-2.5">
@@ -454,7 +454,7 @@ export default function Header() {
               alt="Zap It"
               width={260}
               height={104}
-              className="h-[114px] lg:h-[132px] w-auto -mt-[32px] lg:-mt-[37px]"
+              className="h-[114px] lg:h-[132px] w-auto -mt-[32px] lg:-mt-[37px] [mix-blend-mode:multiply]"
             />
           </Link>
           <ul className="flex list-none items-center">
