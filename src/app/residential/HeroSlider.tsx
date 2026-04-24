@@ -5,6 +5,10 @@ import Image from 'next/image';
 
 const SLIDES = [
   {
+    src: '/images/residential/hero-cottage.png',
+    alt: 'Protecting your family and home from pest damage and harm - Google rating 5 stars',
+  },
+  {
     src: '/images/residential/hero-house.png',
     alt: 'Protecting your family and home from pest damage and harm - Melbourne house',
   },
