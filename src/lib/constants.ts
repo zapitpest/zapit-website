@@ -29,7 +29,9 @@ export const SITE_CONFIG = {
     count: '254',
     bestRating: '5',
   },
-  logo: '/images/logo/zapit-logo-main.png',
+  logo: '/images/logo/zapit-logo-dark.jpeg',
+  logoWhite: '/images/logo/zapit-logo-white.jpeg',
+  tagline: 'Pest protection you can trust',
   gtmId: 'GTM-WBZC2BHL',
   operatingHours: 'Open 24 hours, 7 days a week',
   stats: {
@@ -127,7 +129,7 @@ export const FOOTER_LINKS = [
   { label: 'About Us', href: '/about-us' },
   { label: 'Contact Us', href: '/contact-us' },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'Sitemap', href: '/sitemap' },
+  { label: 'Sitemap', href: '/sitemap.xml' },
 ] as const;
 
 export const HOMEPAGE_FAQS = [
@@ -141,7 +143,7 @@ export const HOMEPAGE_FAQS = [
   },
   {
     question: 'Which pest is most damaging to the house?',
-    answer: 'Termite is the most dangerous pest for houses because they quietly eat up all the wood of your building structure and furniture without making you realising it.',
+    answer: 'Termites can cause significant structural damage because they feed on wood within your building and furniture, often without visible signs until the damage is done. Early detection and professional treatment are the best protection.',
   },
   {
     question: 'How does Zap It pest & termite control service work?',

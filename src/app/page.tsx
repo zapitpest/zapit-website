@@ -135,7 +135,7 @@ export default function HomePage() {
               ZAP IT PEST &amp; TERMITE CONTROL MELBOURNE
             </span>
           </h1>
-          <p className="mt-5 inline-block text-left sm:text-center text-[18px] leading-[25px] text-white bg-[#0DC4294D] px-4 py-3 max-w-3xl">
+          <p className="mt-5 inline-block text-left sm:text-center text-[18px] leading-[25px] text-white bg-[#3fa5354D] px-4 py-3 max-w-3xl">
             Quick and professional, 5-star pest control Melbourne services in Melbourne.
           </p>
           <div className="mt-8">
@@ -432,7 +432,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative text-white overflow-hidden" style={{ background: '#1e293b' }}>
+      <section className="relative text-white overflow-hidden" style={{ background: '#131a1c' }}>
         <div className="max-w-[1200px] mx-auto px-3 sm:px-4">
           <div className="flex flex-col md:flex-row md:items-end gap-0">
             <div className="relative w-full max-w-[350px] mx-auto md:mx-0 flex-shrink-0 self-end">
@@ -454,26 +454,26 @@ export default function HomePage() {
               />
               <p
                 className="text-lg sm:text-xl font-bold tracking-wide text-white/95"
-                style={{ fontFamily: 'Verdana, Geneva, sans-serif' }}
+                style={{ fontFamily: "'Graphik', Arial, Helvetica, sans-serif" }}
               >
                 WE&apos;RE NOT HAPPY UNLESS YOU&apos;RE HAPPY
               </p>
               <p
                 className="mt-3 text-[18px] md:text-[20px] leading-[1.6] text-white/90"
-                style={{ fontFamily: 'Verdana, Geneva, sans-serif' }}
+                style={{ fontFamily: "'Graphik', Arial, Helvetica, sans-serif" }}
               >
                 Talk to us about pest control for your home or business
               </p>
               <ul className="mt-5 space-y-3 text-white/95 text-[18px]">
                 <li>
                   <a href={SITE_CONFIG.phoneTel} className="inline-flex items-center gap-3 hover:underline">
-                    <Phone className="h-5 w-5 text-[#0DC429] flex-shrink-0" aria-hidden />
+                    <Phone className="h-5 w-5 text-[#3fa535] flex-shrink-0" aria-hidden />
                     {SITE_CONFIG.phoneRaw}
                   </a>
                 </li>
                 <li>
                   <a href={`mailto:${SITE_CONFIG.email}`} className="inline-flex items-center gap-3 hover:underline break-all">
-                    <Mail className="h-5 w-5 text-[#0DC429] flex-shrink-0" aria-hidden />
+                    <Mail className="h-5 w-5 text-[#3fa535] flex-shrink-0" aria-hidden />
                     {SITE_CONFIG.email}
                   </a>
                 </li>

@@ -86,11 +86,11 @@ export function generateMetadata(): Metadata {
       absolute: 'Commercial Pest Control & Management Melbourne | Zap It',
     },
     description:
-      'Stop risking the health of your customers, protect your business reputation with our commercial pest control services in Melbourne.',
+      'Protect your business, staff and customers with trusted commercial pest control in Melbourne. Reliable, compliant and tailored to your industry.',
     openGraph: {
       title: 'Commercial Pest Control & Management Melbourne | Zap It',
       description:
-        'Stop risking the health of your customers, protect your business reputation with our commercial pest control services in Melbourne.',
+        'Protect your business, staff and customers with trusted commercial pest control in Melbourne. Reliable, compliant and tailored to your industry.',
       url: `${SITE_CONFIG.url}/commercial-pest-control`,
     },
     alternates: { canonical: '/commercial-pest-control' },
@@ -132,7 +132,7 @@ export default function CommercialPestControlPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-full text-lg transition-colors border border-white/20"
               >
-                Enquire or book
+                Book a Commercial Meeting
               </Link>
             </div>
           </div>

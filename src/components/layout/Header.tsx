@@ -8,8 +8,8 @@ import { SITE_CONFIG, NAV_LINKS, type NavLink } from '@/lib/constants';
 const MAIN_NAV_LINKS = NAV_LINKS.filter((item) => item.label !== 'Contact Us');
 const CONTACT_LINK = NAV_LINKS.find((item) => item.label === 'Contact Us')!;
 
-const NAV_LOGO = '/images/logo/ZAPITLOGO.png';
-const iconFill = '#0DC429';
+const NAV_LOGO = '/images/logo/zapit-logo-dark.jpeg';
+const iconFill = '#3fa535';
 
 function PhoneSvg({ className }: { className?: string }) {
   return (
@@ -38,7 +38,7 @@ function CommercialIcon() {
 function TermiteIcon() {
   return (
     <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
-      <path d="M12 2C10.34 2 9 3.34 9 5v1.07C7.3 6.56 6 8.14 6 10v1H4v2h2v1c0 .34.03.67.08 1H4v2h2.68C7.84 19.36 9.72 21 12 21s4.16-1.64 5.32-4H20v-2h-2.08c.05-.33.08-.66.08-1v-1h2v-2h-2v-1c0-1.86-1.3-3.44-3-3.93V5c0-1.66-1.34-3-3-3zm-2 8c0-1.1.9-2 2-2s2 .9 2 2v5c0 1.1-.9 2-2 2s-2-.9-2-2v-5z" />
+      <path d="M10 2a2 2 0 0 0-2 2v2H6v2h2v2H6v2h2.27A6 6 0 0 0 12 22a6 6 0 0 0 3.73-10H18v-2h-2V8h2V6h-2V4a2 2 0 0 0-2-2h-4Zm1 4V4h2v2h-2Zm-1 4v-2h4v2h-4Zm.5 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" />
     </svg>
   );
 }
@@ -46,7 +46,7 @@ function TermiteIcon() {
 function PestSolutionsIcon() {
   return (
     <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
-      <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.488.488 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94L14.4 2.81c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.44.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1115.6 12 3.611 3.611 0 0112 15.6z" />
+      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z" />
     </svg>
   );
 }
@@ -54,7 +54,7 @@ function PestSolutionsIcon() {
 function ServiceAreasIcon() {
   return (
     <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
-      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z" />
     </svg>
   );
 }
@@ -104,22 +104,22 @@ function CommercialDropdown({ item }: { item: NavLink }) {
     <li className="group relative">
       <Link
         href={item.href}
-        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#0DC429] group-hover:text-[#0DC429]"
+        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#3fa535] group-hover:text-[#3fa535]"
       >
         <NavItemIcon label={item.label} />
         {item.label}
-        <span className="ml-1 text-[10px] text-[#0DC429]">▼</span>
+        <span className="ml-1 text-[10px] text-[#3fa535]">▼</span>
       </Link>
       <div className="invisible absolute left-1/2 top-full z-[1000] flex w-[480px] -translate-x-1/2 gap-[25px] rounded-lg border border-[#e5e5e5] bg-white p-5 opacity-0 shadow-[0_8px_16px_rgba(0,0,0,0.1)] transition-all duration-200 group-hover:visible group-hover:opacity-100">
         {item.childGroups.map((group) => (
           <div key={group.title} className="flex-1">
             <h4 className="mb-2 border-b border-[#e5e5e5] pb-2 text-[16px] font-bold text-[#252525]">
-              <Link href={group.items[0]?.href ?? item.href} className="hover:text-[#0DC429]">{group.title}</Link>
+              <Link href={group.items[0]?.href ?? item.href} className="hover:text-[#3fa535]">{group.title}</Link>
             </h4>
             <ul>
               {group.items.slice(group.title === 'Properties' ? 1 : 0).map((child) => (
                 <li key={child.href + child.label}>
-                  <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:text-[#0DC429]">
+                  <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:text-[#3fa535]">
                     {child.label}
                   </Link>
                 </li>
@@ -141,17 +141,17 @@ function PestSolutionsMega({ item }: { item: NavLink }) {
     <li className="group relative">
       <Link
         href={item.href}
-        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#0DC429] group-hover:text-[#0DC429]"
+        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#3fa535] group-hover:text-[#3fa535]"
       >
         <NavItemIcon label={item.label} />
         {item.label}
-        <span className="ml-1 text-[10px] text-[#0DC429]">▼</span>
+        <span className="ml-1 text-[10px] text-[#3fa535]">▼</span>
       </Link>
       <div className="invisible absolute left-1/2 top-full z-[1000] flex w-[480px] -translate-x-1/2 gap-[25px] rounded-lg border border-[#e5e5e5] bg-white p-5 opacity-0 shadow-[0_8px_16px_rgba(0,0,0,0.1)] transition-all duration-200 group-hover:visible group-hover:opacity-100">
         <ul className="flex-1">
           {col1.map((child) => (
             <li key={child.href}>
-              <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:bg-[#f8f9fa] hover:text-[#0DC429]">
+              <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:bg-[#f8f9fa] hover:text-[#3fa535]">
                 {child.label}
               </Link>
             </li>
@@ -160,7 +160,7 @@ function PestSolutionsMega({ item }: { item: NavLink }) {
         <ul className="flex-1">
           {col2.map((child) => (
             <li key={child.href}>
-              <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:bg-[#f8f9fa] hover:text-[#0DC429]">
+              <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:bg-[#f8f9fa] hover:text-[#3fa535]">
                 {child.label}
               </Link>
             </li>
@@ -176,7 +176,7 @@ function SimpleNavLink({ item }: { item: NavLink }) {
     <li>
       <Link
         href={item.href}
-        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#0DC429]"
+        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#3fa535]"
       >
         <NavItemIcon label={item.label} />
         {item.label}
@@ -217,7 +217,7 @@ export default function Header() {
   }, [mobileOpen]);
 
   return (
-    <header className="font-sans" style={{ fontFamily: "'Roboto', Arial, sans-serif" }}>
+    <header className="font-sans">
       {/* ===== TOP BAR ===== */}
       <div className="bg-[#1a1a1a] text-[14px] text-[#f0f0f0]">
         <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-2 px-[10px] py-2 sm:flex-row sm:justify-between">
@@ -227,14 +227,14 @@ export default function Header() {
               href="https://www.google.com/search?q=Zap+It+Pest+%26+Termite+Control+Melbourne+Reviews"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden font-medium text-[#0DC429] hover:underline sm:inline"
+              className="hidden font-medium text-[#3fa535] hover:underline sm:inline"
             >
               View Testimonials
             </a>
           </div>
           <a
             href={SITE_CONFIG.phoneTel}
-            className="flex items-center gap-1.5 font-bold text-[#f0f0f0] hover:text-[#0DC429]"
+            className="flex items-center gap-1.5 font-bold text-[#f0f0f0] hover:text-[#3fa535]"
           >
             <PhoneSvg className="h-4 w-4" />
             CALL US NOW – {SITE_CONFIG.phoneRaw}
@@ -269,7 +269,7 @@ export default function Header() {
 
           <Link
             href={CONTACT_LINK.href}
-            className="hidden rounded-[5px] bg-[#75E083] px-6 py-3 text-[16px] font-bold text-black transition-colors hover:bg-[#63cf72] lg:inline-flex"
+            className="hidden rounded-[6px] bg-[#3fa535] px-6 py-3 text-[16px] font-bold text-white transition-colors hover:bg-[#0d402e] lg:inline-flex"
           >
             Contact Us
           </Link>
@@ -278,7 +278,7 @@ export default function Header() {
           <div className="flex items-center gap-[10px] lg:hidden">
             <a
               href={SITE_CONFIG.phoneTel}
-              className="inline-flex items-center gap-2 rounded-full border border-[#75E083] bg-[#75E083] px-3 py-1.5 text-[12px] font-bold text-black transition-colors hover:bg-[#63cf72]"
+              className="inline-flex items-center gap-2 rounded-full border border-[#3fa535] bg-[#3fa535] px-3 py-1.5 text-[12px] font-bold text-white transition-colors hover:bg-[#0d402e]"
             >
               <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z" />
@@ -300,10 +300,10 @@ export default function Header() {
       </nav>
 
       {/* ===== GREEN INFO BANNER ===== */}
-      <div ref={bannerRef} className="bg-[#75E083] py-2 text-center text-[14px] font-normal text-black">
+      <div ref={bannerRef} className="bg-[#3fa535] py-2 text-center text-[14px] font-normal text-white">
         <div className="mx-auto max-w-[1280px] px-[10px]">
           Book Same-Day Pest Control in Melbourne –{' '}
-          <a href={SITE_CONFIG.phoneTel} className="font-semibold text-black hover:underline">
+          <a href={SITE_CONFIG.phoneTel} className="font-semibold text-white hover:underline">
             CALL NOW!
           </a>
         </div>
@@ -322,7 +322,7 @@ export default function Header() {
           <div className="flex items-center gap-[10px]">
             <a
               href={SITE_CONFIG.phoneTel}
-              className="inline-flex items-center gap-2 rounded-full border border-[#75E083] bg-[#75E083] px-3 py-1.5 text-[12px] font-bold text-black hover:bg-[#63cf72]"
+              className="inline-flex items-center gap-2 rounded-full border border-[#3fa535] bg-[#3fa535] px-3 py-1.5 text-[12px] font-bold text-white hover:bg-[#0d402e]"
             >
               <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z" />
@@ -370,7 +370,7 @@ export default function Header() {
                         <NavItemIcon label={item.label} />
                         {item.label}
                       </span>
-                      <span className={`text-[12px] text-[#0DC429] transition-transform ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
+                      <span className={`text-[12px] text-[#3fa535] transition-transform ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
                     </button>
                     {isExpanded && item.label === 'Commercial' && item.childGroups && (
                       <div className="bg-[#f8f9fa] py-2">
@@ -380,7 +380,7 @@ export default function Header() {
                             <ul>
                               {group.items.map((child) => (
                                 <li key={child.href} className="border-b border-[#e5e5e5]">
-                                  <Link href={child.href} onClick={closeMobile} className="block px-[52px] py-[15px] text-[16px] text-[#333] hover:text-[#0DC429]">
+                                  <Link href={child.href} onClick={closeMobile} className="block px-[52px] py-[15px] text-[16px] text-[#333] hover:text-[#3fa535]">
                                     {child.label}
                                   </Link>
                                 </li>
@@ -395,7 +395,7 @@ export default function Header() {
                         <ul>
                           {item.children.map((child) => (
                             <li key={child.href} className="border-b border-[#e5e5e5]">
-                              <Link href={child.href} onClick={closeMobile} className="block px-[52px] py-[15px] text-[16px] text-[#333] hover:text-[#0DC429]">
+                              <Link href={child.href} onClick={closeMobile} className="block px-[52px] py-[15px] text-[16px] text-[#333] hover:text-[#3fa535]">
                                 {child.label}
                               </Link>
                             </li>
@@ -412,7 +412,7 @@ export default function Header() {
                   <Link
                     href={item.href}
                     onClick={closeMobile}
-                    className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#333] hover:text-[#0DC429]"
+                    className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#333] hover:text-[#3fa535]"
                   >
                     <NavItemIcon label={item.label} />
                     {item.label}
@@ -425,7 +425,7 @@ export default function Header() {
               <Link
                 href={CONTACT_LINK.href}
                 onClick={closeMobile}
-                className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#333] hover:text-[#0DC429]"
+                className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#333] hover:text-[#3fa535]"
               >
                 <NavItemIcon label="Contact Us" />
                 Contact Us
@@ -456,7 +456,7 @@ export default function Header() {
           </ul>
           <Link
             href={CONTACT_LINK.href}
-            className="rounded-[5px] bg-[#75E083] px-6 py-3 text-[16px] font-bold text-black hover:bg-[#63cf72]"
+            className="rounded-[6px] bg-[#3fa535] px-6 py-3 text-[16px] font-bold text-white hover:bg-[#0d402e]"
           >
             Contact Us
           </Link>

@@ -42,16 +42,16 @@ const WORKING_HOURS = [
 export default function Footer() {
   return (
     <>
-      <footer className="bg-[#2b2b2b] font-sans text-white">
+      <footer className="bg-[#131a1c] font-sans text-white">
         <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-6 md:px-8 lg:px-[50px] lg:py-[60px]">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] lg:gap-8">
             <div>
-              <h3 className="mb-4 text-[20px] font-semibold italic text-[#0DC429]">Our Company</h3>
+              <h3 className="mb-4 text-[20px] font-semibold italic text-[#3fa535]">Our Company</h3>
               <p className="mb-6 text-[14px] leading-relaxed text-white/85">
                 We&apos;re dedicated to your peace of mind. With expert solutions and customized service, we keep your space
                 pest-free. Join us in saying goodbye to pests today.
               </p>
-              <h4 className="mb-3 text-[18px] font-semibold italic text-[#0DC429]">Working Hours:</h4>
+              <h4 className="mb-3 text-[18px] font-semibold italic text-[#3fa535]">Working Hours:</h4>
               <ul className="space-y-1 text-[13px] text-white/85">
                 {WORKING_HOURS.map((h) => (
                   <li key={h}>{h}</li>
@@ -77,15 +77,15 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="mb-4 text-[20px] font-semibold italic text-[#0DC429]">Useful Links</h3>
+              <h3 className="mb-4 text-[20px] font-semibold italic text-[#3fa535]">Useful Links</h3>
               <ul className="space-y-2">
                 {FOOTER_LINKS.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="inline-flex items-center gap-2 text-[14px] text-white transition-colors hover:text-[#0DC429]"
+                      className="inline-flex items-center gap-2 text-[14px] text-white transition-colors hover:text-[#3fa535]"
                     >
-                      <ChevronRight className="h-4 w-4 shrink-0 text-[#0DC429]" aria-hidden />
+                      <ChevronRight className="h-4 w-4 shrink-0 text-[#3fa535]" aria-hidden />
                       {link.label}
                     </Link>
                   </li>
@@ -94,18 +94,18 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="mb-4 text-[20px] font-semibold italic text-[#0DC429]">Get in touch</h3>
+              <h3 className="mb-4 text-[20px] font-semibold italic text-[#3fa535]">Get in touch</h3>
               <ul className="mb-5 space-y-3 text-[14px] text-white/90">
                 <li className="flex items-start gap-2">
-                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[#0DC429]" aria-hidden />
-                  <a href={SITE_CONFIG.phoneTel} className="hover:text-[#0DC429]">{SITE_CONFIG.phone}</a>
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[#3fa535]" aria-hidden />
+                  <a href={SITE_CONFIG.phoneTel} className="hover:text-[#3fa535]">{SITE_CONFIG.phone}</a>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#0DC429]" aria-hidden />
-                  <a href={`mailto:${SITE_CONFIG.email}`} className="break-all hover:text-[#0DC429]">{SITE_CONFIG.email}</a>
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#3fa535]" aria-hidden />
+                  <a href={`mailto:${SITE_CONFIG.email}`} className="break-all hover:text-[#3fa535]">{SITE_CONFIG.email}</a>
                 </li>
                 <li className="flex items-start gap-2">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#0DC429]" aria-hidden />
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#3fa535]" aria-hidden />
                   <span>{SITE_CONFIG.address.full}</span>
                 </li>
               </ul>
@@ -131,7 +131,7 @@ export default function Footer() {
             </p>
             <Link
               href="/privacy-policy"
-              className="text-[13px] text-white/80 transition-colors hover:text-[#0DC429]"
+              className="text-[13px] text-white/80 transition-colors hover:text-[#3fa535]"
             >
               Privacy Policies
             </Link>
@@ -139,14 +139,6 @@ export default function Footer() {
         </div>
       </footer>
 
-      <a
-        href={SITE_CONFIG.phoneTel}
-        className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-[#0DC429] px-5 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:scale-105"
-        aria-label="Call Now"
-      >
-        <Phone className="h-4 w-4" aria-hidden />
-        CALL NOW!
-      </a>
     </>
   );
 }

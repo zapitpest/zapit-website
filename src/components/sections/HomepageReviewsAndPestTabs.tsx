@@ -47,7 +47,7 @@ const PEST_TABS = [
     label: 'Bed Bug Control',
     title: 'Bed Bug Pest Control Melbourne',
     copy:
-      "Bed bugs can turn a peaceful night's sleep into a nightmare. Don't let itchy welts and restless nights take a toll on your health. Our professional bed bug control services guarantee 100% elimination of bed bugs and their eggs in a single session. Enjoy a bed bug–free home within just 24 hours.",
+      "Bed bugs can disrupt your sleep and comfort. Our professional bed bug control services provide thorough elimination of bed bugs and their eggs in a single session. Enjoy a peaceful, bed bug–free home within just 24 hours.",
     href: '/bed-bug-control-melbourne',
   },
   {
@@ -87,7 +87,7 @@ const PEST_TABS = [
     label: 'Flying Insects Control',
     title: 'Flying Insect Controls',
     copy:
-      'The most dangerous thing about flying insects like flies and mosquitoes is their ability to move from garbage to your food, putting your health at risk even while you eat a healthy meal. Mosquitoes can transmit dengue fever and Ross River virus, which can be fatal. Hire the best pest controllers in Melbourne and enjoy a pest-free life.',
+      'Flying insects like flies and mosquitoes are more than just a nuisance — they can carry bacteria between surfaces and affect your family\'s wellbeing. Our effective fly and mosquito control solutions help you enjoy your home and outdoor spaces in comfort and peace of mind.',
     href: '/fly-control-melbourne',
   },
 ] as const;
@@ -154,7 +154,7 @@ export function HomepageReviews() {
           href={GOOGLE_REVIEWS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center min-h-[48px] bg-[#0DC429] text-white text-base font-semibold uppercase tracking-wide px-10 py-3 rounded-lg shadow-[0px_0px_10px_0px_rgba(0,0,0,0.2)] hover:opacity-95"
+          className="inline-flex items-center justify-center min-h-[48px] bg-[#3fa535] text-white text-base font-semibold uppercase tracking-wide px-10 py-3 rounded-lg shadow-[0px_0px_10px_0px_rgba(0,0,0,0.2)] hover:opacity-95"
         >
           REVIEWS
         </a>
@@ -192,7 +192,7 @@ function ReviewCard({ rev }: { rev: (typeof REVIEWS)[number] }) {
         href={GOOGLE_REVIEWS_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-sm font-semibold text-[#0DC429] hover:underline mt-3"
+        className="text-sm font-semibold text-[#3fa535] hover:underline mt-3"
       >
         Read more
       </a>
@@ -238,8 +238,8 @@ export function HomepagePestServiceTabs() {
             onClick={() => onTab(idx)}
             className={`flex-1 py-3 px-1 text-xs sm:text-sm font-semibold text-center transition-colors border-r last:border-r-0 border-gray-200 ${
               active === idx
-                ? 'bg-[#0DC429] text-white'
-                : 'bg-white text-[#0DC429] hover:bg-[#0DC429]/10'
+                ? 'bg-[#3fa535] text-white'
+                : 'bg-white text-[#3fa535] hover:bg-[#3fa535]/10'
             }`}
           >
             {t.label}
@@ -300,7 +300,7 @@ export function HomepageCtaChecklist() {
   }, [visible]);
 
   return (
-    <ul className="space-y-1 text-white text-[18px] font-medium mt-6" style={{ fontFamily: 'Verdana, Geneva, sans-serif' }}>
+    <ul className="space-y-1 text-white text-[18px] font-medium mt-6" style={{ fontFamily: "'Graphik', Arial, Helvetica, sans-serif" }}>
       {CTA_LINES.map((line, i) => (
         <li
           key={line}
@@ -309,7 +309,7 @@ export function HomepageCtaChecklist() {
           }`}
         >
           <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/10 flex-shrink-0">
-            <Check className="h-4 w-4 text-[#0DC429]" strokeWidth={2.5} />
+            <Check className="h-4 w-4 text-[#3fa535]" strokeWidth={2.5} />
           </span>
           <span>{line}</span>
         </li>
@@ -421,28 +421,28 @@ export function HomepageMelbourneCoverage() {
         </p>
         <div className="mt-6 grid grid-cols-2 gap-3">
           <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
-            <p className="text-2xl md:text-3xl font-bold text-[#0DC429]">{stats.emergenciesSolved}</p>
+            <p className="text-2xl md:text-3xl font-bold text-[#3fa535]">{stats.emergenciesSolved}</p>
             <p className="text-xs md:text-sm text-white/80 mt-1">Pest Emergencies Solved</p>
           </div>
           <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
-            <p className="text-2xl md:text-3xl font-bold text-[#0DC429]">{stats.yearsExperience}</p>
+            <p className="text-2xl md:text-3xl font-bold text-[#3fa535]">{stats.yearsExperience}</p>
             <p className="text-xs md:text-sm text-white/80 mt-1">Years of Experience in Protecting Homes</p>
           </div>
           <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
-            <p className="text-2xl md:text-3xl font-bold text-[#0DC429]">{stats.firstVisitSuccess}</p>
+            <p className="text-2xl md:text-3xl font-bold text-[#3fa535]">{stats.firstVisitSuccess}</p>
             <p className="text-xs md:text-sm text-white/80 mt-1">First Visit Success Rate</p>
           </div>
           <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
-            <p className="text-2xl md:text-3xl font-bold text-[#0DC429]">{stats.availability}</p>
+            <p className="text-2xl md:text-3xl font-bold text-[#3fa535]">{stats.availability}</p>
             <p className="text-xs md:text-sm text-white/80 mt-1">Emergency Response Team</p>
           </div>
         </div>
-        <div className="mt-4 rounded-lg bg-[#0DC429]/15 border border-[#0DC429]/20 px-4 py-4 text-center">
+        <div className="mt-4 rounded-lg bg-[#3fa535]/15 border border-[#3fa535]/20 px-4 py-4 text-center">
           <div className="flex items-center justify-center gap-2 text-white/80 text-sm mb-1">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#0DC429] text-white text-lg">⚡</span>
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#3fa535] text-white text-lg">⚡</span>
             <span>Average Response Time</span>
           </div>
-          <p className="text-2xl md:text-3xl font-bold text-[#0DC429] italic">{stats.responseTime}</p>
+          <p className="text-2xl md:text-3xl font-bold text-[#3fa535] italic">{stats.responseTime}</p>
         </div>
       </div>
 
@@ -455,8 +455,8 @@ export function HomepageMelbourneCoverage() {
               onClick={() => setRegion(r.id)}
               className={`px-2.5 py-1.5 text-xs sm:text-sm font-semibold rounded-md border-2 transition-colors ${
                 region === r.id
-                  ? 'bg-[#0DC429] text-white border-[#0DC429]'
-                  : 'bg-white text-zapit-heading-dark border-zapit-body-text/30 hover:border-[#0DC429]/50'
+                  ? 'bg-[#3fa535] text-white border-[#3fa535]'
+                  : 'bg-white text-zapit-heading-dark border-zapit-body-text/30 hover:border-[#3fa535]/50'
               }`}
             >
               {r.label}
@@ -467,7 +467,7 @@ export function HomepageMelbourneCoverage() {
         <p className="mt-2 text-zapit-body-text text-[15px] md:text-[17px] leading-relaxed">{data.description}</p>
         <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-zapit-heading-dark">
           {data.features.map((f) => (
-            <li key={f} className="flex items-center gap-2 before:content-['✓'] before:text-[#0DC429] before:font-bold">
+            <li key={f} className="flex items-center gap-2 before:content-['✓'] before:text-[#3fa535] before:font-bold">
               {f}
             </li>
           ))}
@@ -477,13 +477,13 @@ export function HomepageMelbourneCoverage() {
             href={SITE_CONFIG.booking.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-[48px] items-center justify-center bg-[#0DC429] hover:bg-[#0aab22] text-white text-sm font-semibold uppercase tracking-wide px-6 py-3 rounded-lg shadow-sm text-center"
+            className="inline-flex min-h-[48px] items-center justify-center bg-[#3fa535] hover:bg-[#0d402e] text-white text-sm font-semibold uppercase tracking-wide px-6 py-3 rounded-lg shadow-sm text-center"
           >
             Get a Free Quote Now
           </a>
           <Link
             href="/service-areas"
-            className="inline-flex min-h-[48px] items-center justify-center bg-[#0DC429] hover:bg-[#0aab22] text-white text-sm font-semibold uppercase tracking-wide px-6 py-3 rounded-lg shadow-sm text-center"
+            className="inline-flex min-h-[48px] items-center justify-center bg-[#3fa535] hover:bg-[#0d402e] text-white text-sm font-semibold uppercase tracking-wide px-6 py-3 rounded-lg shadow-sm text-center"
           >
             Explore Service Areas
           </Link>
@@ -527,7 +527,7 @@ export function HomepagePricing() {
       <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-[#0DC429] text-white">
+            <tr className="bg-[#3fa535] text-white">
               <th className="px-4 py-3 text-sm font-semibold">Service Name</th>
               <th className="px-4 py-3 text-sm font-semibold text-center">Property Type</th>
               <th className="px-4 py-3 text-sm font-semibold text-center">Price (AUD) without GST</th>
@@ -538,7 +538,7 @@ export function HomepagePricing() {
             {PRICING_DATA.map((row, i) => (
               <tr
                 key={`${row.service || 'sub'}-${row.type}-${i}`}
-                className={`border-b border-gray-100 ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-[#0DC429]/5 transition-colors`}
+                className={`border-b border-gray-100 ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-[#3fa535]/5 transition-colors`}
               >
                 <td className="px-4 py-3 text-sm text-[#252c33] font-medium">{row.service}</td>
                 <td className="px-4 py-3 text-sm text-[#636363] text-center">{row.type}</td>
@@ -589,11 +589,11 @@ export function HomepagePestCards() {
           Imagine what one viral customer post capturing a cockroach in your restaurant can do? It can cost you the business
           reputation that you&apos;ve built over the years. We are here to rescue you by providing complete pest control
           melbourne services, from{' '}
-          <Link href="/fly-control-melbourne" className="text-[#0DC429] underline font-medium">
+          <Link href="/fly-control-melbourne" className="text-[#3fa535] underline font-medium">
             Eliminating flies
           </Link>{' '}
           to{' '}
-          <Link href="/wasp-removal-melbourne" className="text-[#0DC429] underline font-medium">
+          <Link href="/wasp-removal-melbourne" className="text-[#3fa535] underline font-medium">
             wasps
           </Link>
           . Book a free business inspection today!

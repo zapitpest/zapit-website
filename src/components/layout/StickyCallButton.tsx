@@ -12,7 +12,7 @@ export default function StickyCallButton() {
       aria-label={`Call ${SITE_CONFIG.phone}`}
     >
       <Phone className="h-5 w-5" />
-      <span className="hidden sm:inline">CALL NOW!</span>
+      <span>CALL NOW!</span>
     </Link>
   );
 }

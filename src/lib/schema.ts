@@ -7,14 +7,6 @@ export function generateWebSiteSchema() {
     '@type': 'WebSite',
     name: SITE_CONFIG.name,
     url: SITE_CONFIG.url,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE_CONFIG.url}/search?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   };
 }
 
@@ -150,7 +142,9 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: `${SITE_CONFIG.url}${item.href}`,
+      item: item.href.startsWith('http')
+        ? item.href
+        : `${SITE_CONFIG.url}${item.href}`,
     })),
   };
 }
