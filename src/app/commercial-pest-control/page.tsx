@@ -18,21 +18,21 @@ const SERVICE_DESCRIPTION =
   'Protect your brand, customers, and staff with structured pest management for retail, hospitality, warehousing, healthcare, and public-sector sites across Melbourne.';
 
 const COMMERCIAL_INDUSTRIES = [
-  { id: 'properties', label: 'Properties' },
-  { id: 'warehousing', label: 'Warehousing' },
-  { id: 'restaurants', label: 'Restaurants' },
-  { id: 'supermarkets', label: 'Supermarkets' },
-  { id: 'venues', label: 'Function Venues' },
-  { id: 'brewhouses', label: 'Brewhouses' },
-  { id: 'recreational', label: 'Recreational' },
-  { id: 'government', label: 'Government Buildings' },
-  { id: 'transport', label: 'Transport' },
-  { id: 'food-manufacturing', label: 'Food Manufacturing' },
-  { id: 'aged-care', label: 'Aged Care' },
-  { id: 'hospitals', label: 'Hospitals' },
-  { id: 'agriculture', label: 'Agriculture' },
-  { id: 'education', label: 'Education' },
-  { id: 'distribution', label: 'Distribution' },
+  { id: 'properties', label: 'Properties', href: '/commercial-pest-control' },
+  { id: 'warehousing', label: 'Warehousing & Storage', href: '/commercial-pest-control/warehousing-and-storage' },
+  { id: 'restaurants', label: 'Restaurants', href: '/commercial-pest-control/restaurants-pest-control' },
+  { id: 'supermarkets', label: 'Supermarkets', href: '/commercial-pest-control/pest-control-in-supermarkets' },
+  { id: 'venues', label: 'Function Venues', href: '/commercial-pest-control/function-venues' },
+  { id: 'brewhouses', label: 'Brewhouses & Distilleries', href: '/commercial-pest-control/brewhouses-and-distilleries' },
+  { id: 'recreational', label: 'Recreational Facilities', href: '/commercial-pest-control/recreational-facilities-pest-control' },
+  { id: 'government', label: 'Government Buildings', href: '/commercial-pest-control/government-buildings' },
+  { id: 'transport', label: 'Transport', href: '/commercial-pest-control/transport' },
+  { id: 'food-manufacturing', label: 'Food Manufacturing', href: '/commercial-pest-control/food-manufacturing' },
+  { id: 'aged-care', label: 'Aged Care Facilities', href: '/commercial-pest-control/aged-care-facilities' },
+  { id: 'hospitals', label: 'Hospitals', href: '/commercial-pest-control/hospitals' },
+  { id: 'agriculture', label: 'Agriculture', href: '/commercial-pest-control/agriculture' },
+  { id: 'education', label: 'Educational Facilities', href: '/commercial-pest-control/educational-facilities' },
+  { id: 'distribution', label: 'Distribution Center', href: '/commercial-pest-control/distribution-center' },
 ] as const;
 
 const PROCESS_STEPS = [
@@ -147,13 +147,13 @@ export default function CommercialPestControlPage() {
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 max-w-6xl mx-auto">
             {COMMERCIAL_INDUSTRIES.map((row) => (
-              <div
+              <Link
                 key={row.id}
-                id={row.id}
-                className="scroll-mt-24 rounded-xl border border-zapit-border bg-white px-4 py-4 text-center text-sm font-semibold text-zapit-dark"
+                href={row.href}
+                className="scroll-mt-24 rounded-xl border border-zapit-border bg-white px-4 py-4 text-center text-sm font-semibold text-zapit-dark hover:border-zapit-green hover:shadow-md transition-all"
               >
                 {row.label}
-              </div>
+              </Link>
             ))}
           </div>
         </div>

@@ -69,6 +69,32 @@ export default function PestSolutionsPage() {
           </div>
         </div>
       </section>
+
+      <section className="py-16 lg:py-20 bg-zapit-light">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-zapit-dark mb-4">Specialised Services</h2>
+          <p className="text-center text-zapit-text mb-12 max-w-2xl mx-auto">
+            Targeted pest control programs for specific needs and environments.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {[
+              { href: '/pest-solutions/seasonal-pest-control', title: 'Seasonal Pest Control', desc: 'Year-round protection tailored to Melbourne\'s seasonal pest patterns.' },
+              { href: '/pest-solutions/organic-pest-control', title: 'Organic Pest Control', desc: 'Eco-friendly, child-safe and pet-safe treatments using natural methods.' },
+              { href: '/pest-solutions/garden-pest-control', title: 'Garden Pest Control', desc: 'Protect your outdoor spaces, lawns, and entertainment areas from pests.' },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group p-6 bg-white rounded-xl border border-zapit-border hover:border-zapit-green hover:shadow-md transition-all text-center"
+              >
+                <Shield className="h-8 w-8 text-zapit-green mx-auto mb-3" />
+                <h3 className="font-bold text-zapit-dark group-hover:text-zapit-green transition-colors mb-2">{item.title}</h3>
+                <p className="text-sm text-zapit-text">{item.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }
