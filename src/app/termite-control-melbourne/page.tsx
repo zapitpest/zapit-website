@@ -364,7 +364,7 @@ export default function TermiteControlMelbournePage() {
               <div className="min-w-0">
                 <div className="mb-4 flex items-center gap-3">
                   {/* Victoria Government logo placeholder */}
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#1a3a6e]">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#0d402e]">
                     <span className="text-xs font-bold text-white leading-tight text-center">VIC</span>
                   </div>
                   <span className="text-sm font-semibold text-[#414042]">Victoria State Government</span>

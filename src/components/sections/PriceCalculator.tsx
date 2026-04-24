@@ -92,7 +92,7 @@ export default function PriceCalculator() {
           Residential price calculator
         </h2>
 
-        <div className="relative rounded-2xl border border-[#d9d9d9] bg-white p-5 shadow-sm sm:p-7">
+        <div className="relative rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-sm sm:p-7">
           {/* Save 20% floating badge — top-right, inside the card */}
           <div className="absolute right-3 top-3 sm:right-4 sm:top-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -113,7 +113,7 @@ export default function PriceCalculator() {
               value={postcode}
               onChange={e => setPostcode(e.target.value)}
               placeholder=""
-              className="w-[160px] rounded-md border border-[#c8c8c8] bg-[#f8f5f2] px-3 py-2 text-sm text-[#414042] placeholder:text-gray-400 focus:border-[#1cdc38] focus:outline-none focus:ring-1 focus:ring-[#1cdc38]"
+              className="w-[160px] rounded-md border border-[#e5e5e5] bg-[#f8f5f2] px-3 py-2 text-sm text-[#414042] placeholder:text-gray-400 focus:border-[#1cdc38] focus:outline-none focus:ring-1 focus:ring-[#1cdc38]"
               maxLength={4}
             />
           </div>
@@ -131,7 +131,7 @@ export default function PriceCalculator() {
                   const opts = TREATMENTS.filter(t => t.name === e.target.value);
                   setSelectedPropertyType(opts[0].propertyType);
                 }}
-                className="flex-1 rounded-md border border-[#c8c8c8] bg-[#f8f5f2] px-3 py-2.5 text-sm text-[#414042] appearance-none focus:outline-none focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
+                className="flex-1 rounded-md border border-[#e5e5e5] bg-[#f8f5f2] px-3 py-2.5 text-sm text-[#414042] appearance-none focus:outline-none focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
               >
                 {TREATMENT_NAMES.map(name => (
                   <option key={name} value={name}>{name}</option>
@@ -156,7 +156,7 @@ export default function PriceCalculator() {
               <select
                 value={selectedPropertyType}
                 onChange={e => setSelectedPropertyType(e.target.value as PropertyType)}
-                className="w-full rounded-full border border-[#c8c8c8] bg-[#f8f5f2] px-4 py-2.5 text-sm text-[#414042] appearance-none focus:border-[#1cdc38] focus:outline-none focus:ring-1 focus:ring-[#1cdc38]"
+                className="w-full rounded-full border border-[#e5e5e5] bg-[#f8f5f2] px-4 py-2.5 text-sm text-[#414042] appearance-none focus:border-[#1cdc38] focus:outline-none focus:ring-1 focus:ring-[#1cdc38]"
               >
                 {propertyOptions.map(opt => (
                   <option key={opt.propertyType} value={opt.propertyType}>{opt.propertyType}</option>

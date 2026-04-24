@@ -88,9 +88,9 @@ function NavItemIcon({ label }: { label: string }) {
 function HamburgerIcon({ open }: { open: boolean }) {
   return (
     <div className="flex flex-col justify-center gap-[5px]">
-      <span className={`block h-0.5 w-[22px] bg-[#252525] transition-all duration-300 ${open ? 'translate-y-[7px] rotate-45' : ''}`} />
-      <span className={`block h-0.5 w-[22px] bg-[#252525] transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
-      <span className={`block h-0.5 w-[22px] bg-[#252525] transition-all duration-300 ${open ? '-translate-y-[7px] -rotate-45' : ''}`} />
+      <span className={`block h-0.5 w-[22px] bg-[#131a1c] transition-all duration-300 ${open ? 'translate-y-[7px] rotate-45' : ''}`} />
+      <span className={`block h-0.5 w-[22px] bg-[#131a1c] transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
+      <span className={`block h-0.5 w-[22px] bg-[#131a1c] transition-all duration-300 ${open ? '-translate-y-[7px] -rotate-45' : ''}`} />
     </div>
   );
 }
@@ -101,7 +101,7 @@ function CommercialDropdown({ item }: { item: NavLink }) {
     <li className="group relative">
       <Link
         href={item.href}
-        className="flex items-center gap-3 px-[12px] py-[18px] text-[15px] font-medium text-[#333] transition-colors hover:text-[#3fa535] group-hover:text-[#3fa535]"
+        className="flex items-center gap-3 px-[12px] py-[18px] text-[15px] font-medium text-[#414042] transition-colors hover:text-[#3fa535] group-hover:text-[#3fa535]"
       >
         <NavItemIcon label={item.label} />
         {item.label}
@@ -110,13 +110,13 @@ function CommercialDropdown({ item }: { item: NavLink }) {
       <div className="invisible absolute left-1/2 top-full z-[1000] flex w-[480px] -translate-x-1/2 gap-[25px] rounded-lg border border-[#e5e5e5] bg-white p-5 opacity-0 shadow-[0_8px_16px_rgba(0,0,0,0.1)] transition-all duration-200 group-hover:visible group-hover:opacity-100">
         {item.childGroups.map((group) => (
           <div key={group.title} className="flex-1">
-            <h4 className="mb-2 border-b border-[#e5e5e5] pb-2 text-[16px] font-bold text-[#252525]">
+            <h4 className="mb-2 border-b border-[#e5e5e5] pb-2 text-[16px] font-bold text-[#131a1c]">
               <Link href={group.items[0]?.href ?? item.href} className="hover:text-[#3fa535]">{group.title}</Link>
             </h4>
             <ul>
               {group.items.slice(group.title === 'Properties' ? 1 : 0).map((child) => (
                 <li key={child.href + child.label}>
-                  <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:text-[#3fa535]">
+                  <Link href={child.href} className="block py-2 text-[15px] text-[#414042] transition-colors hover:text-[#3fa535]">
                     {child.label}
                   </Link>
                 </li>
@@ -138,7 +138,7 @@ function PestSolutionsMega({ item }: { item: NavLink }) {
     <li className="group relative">
       <Link
         href={item.href}
-        className="flex items-center gap-3 px-[12px] py-[18px] text-[15px] font-medium text-[#333] transition-colors hover:text-[#3fa535] group-hover:text-[#3fa535]"
+        className="flex items-center gap-3 px-[12px] py-[18px] text-[15px] font-medium text-[#414042] transition-colors hover:text-[#3fa535] group-hover:text-[#3fa535]"
       >
         <NavItemIcon label={item.label} />
         {item.label}
@@ -148,7 +148,7 @@ function PestSolutionsMega({ item }: { item: NavLink }) {
         <ul className="flex-1">
           {col1.map((child) => (
             <li key={child.href}>
-              <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:bg-[#f8f9fa] hover:text-[#3fa535]">
+              <Link href={child.href} className="block py-2 text-[15px] text-[#414042] transition-colors hover:bg-[#f8f5f2] hover:text-[#3fa535]">
                 {child.label}
               </Link>
             </li>
@@ -157,7 +157,7 @@ function PestSolutionsMega({ item }: { item: NavLink }) {
         <ul className="flex-1">
           {col2.map((child) => (
             <li key={child.href}>
-              <Link href={child.href} className="block py-2 text-[15px] text-[#333] transition-colors hover:bg-[#f8f9fa] hover:text-[#3fa535]">
+              <Link href={child.href} className="block py-2 text-[15px] text-[#414042] transition-colors hover:bg-[#f8f5f2] hover:text-[#3fa535]">
                 {child.label}
               </Link>
             </li>
@@ -173,7 +173,7 @@ function SimpleNavLink({ item }: { item: NavLink }) {
     <li>
       <Link
         href={item.href}
-        className="flex items-center gap-3 px-[12px] py-[18px] text-[15px] font-medium text-[#333] transition-colors hover:text-[#3fa535]"
+        className="flex items-center gap-3 px-[12px] py-[18px] text-[15px] font-medium text-[#414042] transition-colors hover:text-[#3fa535]"
       >
         <NavItemIcon label={item.label} />
         {item.label}
@@ -216,7 +216,7 @@ export default function Header() {
   return (
     <header className="font-sans">
       {/* ===== TOP BAR ===== */}
-      <div className="bg-[#1a1a1a] text-[14px] text-[#f0f0f0]">
+      <div className="bg-[#131a1c] text-[14px] text-[#f8f5f2]">
         <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-2 px-4 py-2 sm:flex-row sm:justify-between sm:px-5">
           <div className="flex flex-wrap items-center gap-2">
             <span>⭐⭐⭐⭐⭐ {SITE_CONFIG.rating.count}+ 5-Star Google Reviews</span>
@@ -231,7 +231,7 @@ export default function Header() {
           </div>
           <a
             href={SITE_CONFIG.phoneTel}
-            className="flex items-center gap-1.5 font-bold text-[#f0f0f0] hover:text-[#3fa535]"
+            className="flex items-center gap-1.5 font-bold text-[#f8f5f2] hover:text-[#3fa535]"
           >
             <PhoneSvg className="h-4 w-4" />
             CALL US NOW – {SITE_CONFIG.phoneRaw}
@@ -283,7 +283,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileOpen((o) => !o)}
-              className="flex min-h-[44px] items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3.5 text-[12px] font-medium text-[#252525] transition-colors hover:bg-[#e9e9e9] sm:px-4"
+              className="flex min-h-[44px] items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3.5 text-[12px] font-medium text-[#131a1c] transition-colors hover:bg-[#e5e5e5] sm:px-4"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
             >
@@ -332,7 +332,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileOpen((o) => !o)}
-              className="flex min-h-[44px] items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3.5 text-[12px] font-medium text-[#252525] hover:bg-[#e9e9e9] sm:px-4"
+              className="flex min-h-[44px] items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3.5 text-[12px] font-medium text-[#131a1c] hover:bg-[#e5e5e5] sm:px-4"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
             >
@@ -363,7 +363,7 @@ export default function Header() {
                     <button
                       type="button"
                       onClick={() => setExpandedMobile(isExpanded ? null : key)}
-                      className="flex w-full items-center justify-between px-5 py-[15px] text-left text-[16px] font-medium text-[#333]"
+                      className="flex w-full items-center justify-between px-5 py-[15px] text-left text-[16px] font-medium text-[#414042]"
                       aria-expanded={isExpanded}
                     >
                       <span className="flex items-center gap-3">
@@ -376,11 +376,11 @@ export default function Header() {
                       <div className="bg-[#f8f9fa] py-2">
                         {item.childGroups.map((group) => (
                           <div key={group.title}>
-                            <h4 className="px-[52px] py-2 text-[14px] font-bold uppercase text-[#888]">{group.title}</h4>
+                            <h4 className="px-[52px] py-2 text-[14px] font-bold uppercase text-[#414042]">{group.title}</h4>
                             <ul>
                               {group.items.map((child) => (
                                 <li key={child.href} className="border-b border-[#e5e5e5]">
-                                  <Link href={child.href} onClick={closeMobile} className="block px-[52px] py-[15px] text-[16px] text-[#333] hover:text-[#3fa535]">
+                                  <Link href={child.href} onClick={closeMobile} className="block px-[52px] py-[15px] text-[16px] text-[#414042] hover:text-[#3fa535]">
                                     {child.label}
                                   </Link>
                                 </li>
@@ -395,7 +395,7 @@ export default function Header() {
                         <ul>
                           {item.children.map((child) => (
                             <li key={child.href} className="border-b border-[#e5e5e5]">
-                              <Link href={child.href} onClick={closeMobile} className="block px-[52px] py-[15px] text-[16px] text-[#333] hover:text-[#3fa535]">
+                              <Link href={child.href} onClick={closeMobile} className="block px-[52px] py-[15px] text-[16px] text-[#414042] hover:text-[#3fa535]">
                                 {child.label}
                               </Link>
                             </li>
@@ -412,7 +412,7 @@ export default function Header() {
                   <Link
                     href={item.href}
                     onClick={closeMobile}
-                    className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#333] hover:text-[#3fa535]"
+                    className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#414042] hover:text-[#3fa535]"
                   >
                     <NavItemIcon label={item.label} />
                     {item.label}
@@ -425,7 +425,7 @@ export default function Header() {
               <Link
                 href={CONTACT_LINK.href}
                 onClick={closeMobile}
-                className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#333] hover:text-[#3fa535]"
+                className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#414042] hover:text-[#3fa535]"
               >
                 <NavItemIcon label="Contact Us" />
                 Contact Us
