@@ -15,6 +15,7 @@ import {
   HomepagePricing,
   HomepageReviews,
 } from '@/components/sections/HomepageReviewsAndPestTabs';
+import PriceCalculator from '@/components/sections/PriceCalculator';
 
 const HERO_BG =
   'https://zapitpestmelbourne.com.au/wp-content/uploads/2025/09/imgi_73_WhatsApp-Image-2025-09-17-at-3.05.27-PM.jpg';
@@ -431,6 +432,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <PriceCalculator />
 
       <section className="relative text-white overflow-hidden" style={{ background: '#131a1c' }}>
         <div className="max-w-[1200px] mx-auto px-3 sm:px-4">

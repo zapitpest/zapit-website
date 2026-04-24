@@ -384,21 +384,23 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  background: #3fa535;
-  color: #fff;
-  font-weight: 600;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 12px 28px;
-  border-radius: 8px;
+  min-height: 36px;
+  background: transparent;
+  color: #3fa535;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1.5px solid #e5e5e5;
   text-decoration: none;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .zapit-learn-more-btn:hover {
-  background: #0d402e;
+  background: #3fa535;
+  color: #fff;
+  border-color: #3fa535;
 }
 
 /* Region tabs on Melbourne coverage */
