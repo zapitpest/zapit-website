@@ -2,13 +2,12 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { SITE_CONFIG, NAV_LINKS, type NavLink } from '@/lib/constants';
 
 const MAIN_NAV_LINKS = NAV_LINKS.filter((item) => item.label !== 'Contact Us');
 const CONTACT_LINK = NAV_LINKS.find((item) => item.label === 'Contact Us')!;
 
-const NAV_LOGO = '/images/logo/zapit-logo-dark.jpeg';
+const NAV_LOGO = '/images/zapit-logo.svg';
 const iconFill = '#3fa535';
 
 function PhoneSvg({ className }: { className?: string }) {
@@ -246,13 +245,11 @@ export default function Header() {
       <nav className="relative z-[1000] border-t border-[#e5e5e5] bg-white">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-[15px] sm:px-5">
           <Link href="/" className="shrink-0" aria-label="Zap It home">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={NAV_LOGO}
               alt="Zap It Pest Control"
-              width={160}
-              height={40}
-              priority
-              className="h-[40px] sm:h-[46px] lg:h-[52px] w-auto [mix-blend-mode:multiply]"
+              className="h-[44px] sm:h-[50px] lg:h-[56px] w-auto"
             />
           </Link>
 
@@ -317,12 +314,11 @@ export default function Header() {
       >
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-2.5 sm:px-5">
           <Link href="/" className="shrink-0" aria-label="Zap It home">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={NAV_LOGO}
               alt="Zap It Pest Control"
-              width={160}
-              height={40}
-              className="h-[36px] w-auto [mix-blend-mode:multiply]"
+              className="h-[36px] w-auto"
             />
           </Link>
           <div className="flex items-center gap-2 sm:gap-2.5">
@@ -449,12 +445,11 @@ export default function Header() {
       >
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-2.5">
           <Link href="/" className="shrink-0" aria-label="Zap It home">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={NAV_LOGO}
               alt="Zap It Pest Control"
-              width={160}
-              height={40}
-              className="h-[36px] w-auto [mix-blend-mode:multiply]"
+              className="h-[36px] w-auto"
             />
           </Link>
           <ul className="flex list-none items-center">

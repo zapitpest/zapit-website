@@ -16,37 +16,37 @@ export default function TermiteTypeTabsClient({ types }: { types: readonly Termi
   const tab = types[active];
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#e5e5e5] bg-[#f8f5f2]">
-      {/* Content first: text left, image right (smaller) */}
-      <div className="grid grid-cols-1 items-start gap-6 p-5 sm:p-7 lg:grid-cols-[1fr_auto] lg:gap-10 lg:items-center">
+    <div className="overflow-hidden rounded-2xl border border-[#e5e5e5] bg-white">
+      {/* Content: text left, image right */}
+      <div className="grid grid-cols-1 gap-6 p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:gap-10 lg:items-center">
         <div className="min-w-0">
-          <h3 className="mb-3 text-[18px] font-bold leading-[1.2] text-[#131a1c] sm:text-[20px]">{tab.heading}</h3>
-          <p className="text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">{tab.copy}</p>
+          <h3 className="mb-4 text-[18px] font-bold leading-[1.3] text-[#131a1c] sm:text-[20px]">{tab.heading}</h3>
+          <p className="text-[14px] leading-[1.8] text-[#414042] sm:text-[15px]">{tab.copy}</p>
         </div>
-        <div className="relative mx-auto aspect-[3/4] w-full max-w-[280px] shrink-0 overflow-hidden rounded-xl shadow-md lg:mx-0">
+        <div className="relative mx-auto w-full max-w-[260px] shrink-0 overflow-hidden rounded-xl lg:mx-0">
           <Image
             src={tab.img}
             alt={tab.heading}
-            fill
-            className="object-cover"
-            sizes="(min-width: 1024px) 280px, 100vw"
+            width={260}
+            height={200}
+            className="h-auto w-full object-cover"
+            sizes="(min-width: 1024px) 260px, 100vw"
           />
         </div>
       </div>
 
-      {/* Tab buttons at bottom */}
-      <div className="flex w-full flex-wrap justify-center gap-0 border-t border-[#e5e5e5] bg-white px-1 py-1 sm:px-2">
+      {/* Tab buttons at bottom — full-width row */}
+      <div className="flex w-full border-t border-[#e5e5e5] bg-[#f8f5f2]">
         {types.map((t, idx) => (
           <button
             key={t.id}
             type="button"
             onClick={() => setActive(idx)}
-            className={`shrink-0 min-w-0 border border-transparent px-2 py-2.5 text-center text-[11px] font-semibold leading-tight transition-colors sm:px-3 sm:text-[12px] md:text-[13px] ${
+            className={`flex-1 px-2 py-3.5 text-center text-[11px] font-bold leading-tight transition-all sm:text-[12px] md:text-[13px] ${
               active === idx
-                ? 'border-[#1cdc38] bg-[#1cdc38] text-[#131a1c]'
-                : 'text-[#414042] hover:bg-[#1cdc38]/10'
+                ? 'rounded-lg bg-[#1cdc38] text-white'
+                : 'text-[#131a1c] hover:bg-[#1cdc38]/10'
             }`}
-            style={{ flex: '1 1 0', minWidth: 'min(100px, 100%)' }}
           >
             {t.label}
           </button>
