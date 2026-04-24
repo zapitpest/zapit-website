@@ -104,7 +104,7 @@ function CommercialDropdown({ item }: { item: NavLink }) {
     <li className="group relative">
       <Link
         href={item.href}
-        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#3fa535] group-hover:text-[#3fa535]"
+        className="flex items-center gap-3 px-[12px] py-[18px] text-[15px] font-medium text-[#333] transition-colors hover:text-[#3fa535] group-hover:text-[#3fa535]"
       >
         <NavItemIcon label={item.label} />
         {item.label}
@@ -141,7 +141,7 @@ function PestSolutionsMega({ item }: { item: NavLink }) {
     <li className="group relative">
       <Link
         href={item.href}
-        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#3fa535] group-hover:text-[#3fa535]"
+        className="flex items-center gap-3 px-[12px] py-[18px] text-[15px] font-medium text-[#333] transition-colors hover:text-[#3fa535] group-hover:text-[#3fa535]"
       >
         <NavItemIcon label={item.label} />
         {item.label}
@@ -176,7 +176,7 @@ function SimpleNavLink({ item }: { item: NavLink }) {
     <li>
       <Link
         href={item.href}
-        className="flex items-center gap-3 px-[15px] py-[18px] text-[16px] font-medium text-[#333] transition-colors hover:text-[#3fa535]"
+        className="flex items-center gap-3 px-[12px] py-[18px] text-[15px] font-medium text-[#333] transition-colors hover:text-[#3fa535]"
       >
         <NavItemIcon label={item.label} />
         {item.label}
@@ -245,14 +245,14 @@ export default function Header() {
       {/* ===== MAIN NAV ===== */}
       <nav className="relative z-[1000] border-t border-[#e5e5e5] bg-white">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-[15px] sm:px-5">
-          <Link href="/" className="shrink-0 block h-[54px] sm:h-[62px] lg:h-[68px] overflow-hidden" aria-label="Zap It home">
+          <Link href="/" className="shrink-0" aria-label="Zap It home">
             <Image
               src={NAV_LOGO}
               alt="Zap It Pest Control"
-              width={300}
-              height={120}
+              width={160}
+              height={40}
               priority
-              className="h-[122px] sm:h-[140px] lg:h-[154px] w-auto -mt-[34px] sm:-mt-[39px] lg:-mt-[43px] [mix-blend-mode:multiply]"
+              className="h-[40px] sm:h-[46px] lg:h-[52px] w-auto [mix-blend-mode:multiply]"
             />
           </Link>
 
@@ -316,13 +316,13 @@ export default function Header() {
         }`}
       >
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-2.5 sm:px-5">
-          <Link href="/" className="shrink-0 block h-[46px] sm:h-[52px] overflow-hidden" aria-label="Zap It home">
+          <Link href="/" className="shrink-0" aria-label="Zap It home">
             <Image
               src={NAV_LOGO}
-              alt="Zap It"
-              width={240}
-              height={96}
-              className="h-[104px] sm:h-[118px] w-auto -mt-[29px] sm:-mt-[33px] [mix-blend-mode:multiply]"
+              alt="Zap It Pest Control"
+              width={160}
+              height={40}
+              className="h-[36px] w-auto [mix-blend-mode:multiply]"
             />
           </Link>
           <div className="flex items-center gap-2 sm:gap-2.5">
@@ -448,13 +448,13 @@ export default function Header() {
         }`}
       >
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-2.5">
-          <Link href="/" className="shrink-0 block h-[50px] lg:h-[58px] overflow-hidden" aria-label="Zap It home">
+          <Link href="/" className="shrink-0" aria-label="Zap It home">
             <Image
               src={NAV_LOGO}
-              alt="Zap It"
-              width={260}
-              height={104}
-              className="h-[114px] lg:h-[132px] w-auto -mt-[32px] lg:-mt-[37px] [mix-blend-mode:multiply]"
+              alt="Zap It Pest Control"
+              width={160}
+              height={40}
+              className="h-[36px] w-auto [mix-blend-mode:multiply]"
             />
           </Link>
           <ul className="flex list-none items-center">

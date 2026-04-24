@@ -9,6 +9,7 @@ import PageInfoFooterBlock from '@/components/layout/PageInfoFooterBlock';
 import { HomepageMelbourneCoverage, HomepageReviews } from '@/components/sections/HomepageReviewsAndPestTabs';
 import TermiteTypeTabsClient from './TermiteTypeTabsClient';
 import TermiteFAQClient from './TermiteFAQClient';
+import PestProtectionWidget from './PestProtectionWidget';
 
 const WP = '/images/wp-assets';
 const HERO_BG =
@@ -30,35 +31,35 @@ const TERMITE_TYPES = [
     label: 'Dampwood Termite Control',
     heading: 'Dampwood Termite Control',
     copy: 'Dampwood termites thrive in humid and moist conditions and are commonly found in bathrooms, poorly ventilated storerooms, scrap wood placed in the backyard, around pipe leakages, etc. They are always in search of dry timber, and upon finding it, call the whole colony inside that wooden item. Book our pest control for termite services and get the whole colony eliminated.',
-    img: `${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`,
+    img: `${WP}/termite-dampwood-closeup.webp`,
   },
   {
     id: 'subterranean',
     label: 'Subterranean Termite Extermination',
     heading: 'Subterranean Termite Extermination',
-    copy: 'Subterranean termites build their colonies underground and enter your home through soil-to-wood contact, foundation cracks, or mud tubes along your walls. They are the most destructive termite species in Australia. Our expert technicians use barrier systems and bait stations to eradicate subterranean colonies at the source.',
-    img: `${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`,
+    copy: 'As the name suggests, these destructive termites live underground and damage the foundations of homes or buildings. They usually set up mud tubes around the walls to source food for their nests and eat up the wooden structure of your home from the base. Subterranean termites risk the structural integrity of any building and cost lots of dollars in repair.',
+    img: `${WP}/termite-dampwood-closeup.webp`,
   },
   {
     id: 'drywood',
     label: 'Drywood Termite Removal',
     heading: 'Drywood Termite Removal',
-    copy: 'Drywood termites infest dry wood and do not require contact with soil. They live in small colonies within the wood they consume — including furniture, flooring, and structural timber. Our localised treatment methods target the infestation directly without affecting the rest of your home.',
-    img: `${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`,
+    copy: 'Drywood termites usually live inside the hardwood furniture and the structure of timber items. They can live inside the wood for their whole life without ever touching the ground for food and water. The picture frame or dining table that seems fine to you may be hollowed out from the inside. We use fumigation to kill them on the spot.',
+    img: `${WP}/termite-dampwood-closeup.webp`,
   },
   {
     id: 'formosan',
     label: 'Formosan Termite Elimination',
     heading: 'Formosan Termite Elimination',
-    copy: 'Formosan termites are among the most aggressive and destructive termite species. They form massive colonies and can consume wood rapidly. Our certified technicians deploy advanced chemical barriers and monitoring systems to identify and eradicate Formosan termite colonies before they cause irreparable damage.',
-    img: `${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`,
+    copy: 'These are the most destructive types of termites that can chew through the concrete cracks in the walls and set up colonies inside the walls of your restaurant, warehouse, function venues, etc. Formosan termites multiply speedily and won\'t stop until they\'ve consumed every piece of wood in your neighbourhood. Book our termite control services now before they cause irreversible damage.',
+    img: `${WP}/termite-dampwood-closeup.webp`,
   },
   {
     id: 'conehead',
     label: 'Conehead Termite Elimination',
     heading: 'Conehead Termite Elimination',
-    copy: 'Conehead termites, also known as tree termites, forage above ground unlike other termite species. They build dark, hard-surfaced nests on trees and buildings and spread rapidly across your property. Our team uses targeted treatments to eliminate conehead termite colonies and protect your property from further infestation.',
-    img: `${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`,
+    copy: 'They are known as conehead termites because they build cone-shaped nests and spread faster than all types of termites. Conehead termites are most aggressive and known for their flights from one place to another and abilities to set up new colonies very quickly. They attack not only a single wooden item but also every timber-made thing available at your place.',
+    img: `${WP}/termite-dampwood-closeup.webp`,
   },
 ] as const;
 
@@ -196,8 +197,8 @@ export default function TermiteControlMelbournePage() {
               </div>
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
                 <Image
-                  src={`${WP}/elementor-thumbs-ZAP-IT-SOCIALIETTA-508022-r7s5ckhcmh43u3l9w3juc3wy7mr5k12y7bz7xs4tbk.webp`}
-                  alt="Zap It termite control technician Melbourne"
+                  src={`${WP}/termite-spray-person.webp`}
+                  alt="Pest control professional in safety suit with spray"
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -213,8 +214,8 @@ export default function TermiteControlMelbournePage() {
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg order-2 lg:order-1">
                 <Image
-                  src={`${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`}
-                  alt="Termite infestation close-up"
+                  src={`${WP}/termite-ant-closeup.webp`}
+                  alt="Termite close-up on wood"
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -288,8 +289,8 @@ export default function TermiteControlMelbournePage() {
               </div>
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
                 <Image
-                  src={`${WP}/2025-07-imgi_23_—Pngtree—pest-control-worker-in-protective_15020351-2-1-768x768.webp`}
-                  alt="Wood damage from termite infestation"
+                  src={`${WP}/termite-wood-damage.webp`}
+                  alt="Close-up of termite wood damage"
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -305,8 +306,8 @@ export default function TermiteControlMelbournePage() {
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg order-2 lg:order-1">
                 <Image
-                  src={`${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`}
-                  alt="Safe termite treatment being applied in Melbourne"
+                  src={`${WP}/termite-treatment-green.webp`}
+                  alt="Professional termite treatment application"
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 50vw, 100vw"
@@ -445,6 +446,8 @@ export default function TermiteControlMelbournePage() {
             </div>
           </div>
         </section>
+
+        <PestProtectionWidget />
 
         {/* ── ACROSS MELBOURNE ── */}
         <section className="bg-[#f8f5f2] px-4 py-10 sm:px-6 sm:py-14">
