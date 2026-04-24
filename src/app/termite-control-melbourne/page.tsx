@@ -64,14 +64,14 @@ const TERMITE_TYPES = [
 ] as const;
 
 const INDUSTRIES = [
-  { icon: '/images/icons/service-provider-icon.svg', label: 'Property Pest Control' },
-  { icon: '/images/icons/malware-virus-icon.svg', label: 'Warehousing and Storage' },
-  { icon: '/images/icons/service-provider-icon.svg', label: 'Restaurants Pest Control' },
-  { icon: '/images/icons/malware-virus-icon.svg', label: 'Supermarkets Pest Control' },
-  { icon: '/images/icons/service-provider-icon.svg', label: 'Function Venues' },
-  { icon: '/images/icons/malware-virus-icon.svg', label: 'Brewhouses and Distilleries' },
-  { icon: '/images/icons/service-provider-icon.svg', label: 'Recreational Facilities' },
-  { icon: '/images/icons/malware-virus-icon.svg', label: 'Government Buildings' },
+  { label: 'Property Pest Control', svgPath: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' },
+  { label: 'Warehousing and Storage', svgPath: 'M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z' },
+  { label: 'Restaurants Pest Control', svgPath: 'M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z' },
+  { label: 'Supermarkets Pest Control', svgPath: 'M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0020 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z' },
+  { label: 'Function Venues', svgPath: 'M7 2v11h3v9l7-12h-4l4-8z' },
+  { label: 'Brewhouses and Distilleries', svgPath: 'M3 14c0 1.3.84 2.4 2 2.82V20H3v2h6v-2H7v-3.18C8.16 16.4 9 15.3 9 14V6H3v8zm2-6h2v3H5V8zm15.64 1.35l-.85-.85a1.49 1.49 0 00-2.12 0L14 12.17V22h8V12.17l-2.85-2.82h-.01zM20 20h-4v-5l2-2 2 2v5z' },
+  { label: 'Recreational Facilities', svgPath: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z' },
+  { label: 'Government Buildings', svgPath: 'M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z' },
 ] as const;
 
 const RESCUE_STEPS = [
@@ -415,21 +415,17 @@ export default function TermiteControlMelbournePage() {
               It is not possible to use fumigation, baiting, and similar termite control methods for hospitals, homes,
               restaurants, and brewhouses. Because every type, whether it is dampwood, drywood, subterranean, etc., and
               property needs different methods for effective extermination. That&apos;s what Zap It Pest &amp; Termite Control
-              Melbourne is an expert at doing by using customised solutions for every industry.
+              Melbourne is an expert at doing by using customised solutions for every industry, resulting in a complete clean-up of termites.
             </p>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-5">
               {INDUSTRIES.map((ind) => (
                 <div
                   key={ind.label}
-                  className="flex flex-col items-center gap-3 rounded-2xl border border-[#e5e5e5] bg-[#f8f5f2] p-5 text-center transition-shadow hover:shadow-md"
+                  className="flex flex-col items-center gap-3 rounded-2xl border border-[#e5e5e5] bg-white p-5 text-center shadow-sm transition-shadow hover:shadow-md"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={ind.icon}
-                    alt={ind.label}
-                    className="h-12 w-12 [filter:invert(52%)_sepia(98%)_saturate(400%)_hue-rotate(80deg)_brightness(100%)]"
-                    aria-hidden
-                  />
+                  <svg className="h-10 w-10" fill="#1cdc38" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
+                    <path d={ind.svgPath} />
+                  </svg>
                   <p className="text-[13px] font-semibold leading-tight text-[#414042] sm:text-[14px]">{ind.label}</p>
                 </div>
               ))}

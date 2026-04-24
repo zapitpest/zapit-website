@@ -86,25 +86,25 @@ export default function PriceCalculator() {
   const total = Math.round(subtotal - discountAmount);
 
   return (
-    <section className="bg-[#f8f5f2] py-10 pb-14 sm:py-12 sm:pb-16" aria-label="Residential price calculator">
+    <section className="bg-[#f8f5f2] py-10 sm:py-12" aria-label="Residential price calculator">
       <div className="mx-auto max-w-2xl px-5 sm:px-6">
         <h2 className="mb-6 text-center text-[24px] font-bold leading-snug text-[#414042] sm:text-[28px]">
           Residential price calculator
         </h2>
 
         <div className="relative rounded-2xl border border-[#d9d9d9] bg-white p-5 shadow-sm sm:p-7">
-          {/* Save 20% floating badge — bottom-right */}
-          <div className="absolute -bottom-6 right-6 sm:right-10">
+          {/* Save 20% floating badge — top-right, inside the card */}
+          <div className="absolute right-3 top-3 sm:right-4 sm:top-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/icons/saev20forcalculator.svg"
               alt="Save 20% for same day multiple treatments"
-              className="h-auto w-[100px] drop-shadow-md sm:w-[110px]"
+              className="h-auto w-[90px] drop-shadow-sm sm:w-[100px]"
             />
           </div>
 
           {/* Postcode — SHORT field per Figma (half width), side by side on wider screens */}
-          <div className="mb-4">
+          <div className="mb-4 pr-24 sm:pr-28">
             <label className="mb-1.5 block text-sm font-semibold text-[#131a1c]">
               Postcode<span className="ml-0.5 text-[#1cdc38]">*</span>
             </label>

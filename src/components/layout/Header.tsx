@@ -36,9 +36,8 @@ function CommercialIcon() {
 
 function TermiteIcon() {
   return (
-    <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
-      <path d="M10 2a2 2 0 0 0-2 2v2H6v2h2v2H6v2h2.27A6 6 0 0 0 12 22a6 6 0 0 0 3.73-10H18v-2h-2V8h2V6h-2V4a2 2 0 0 0-2-2h-4Zm1 4V4h2v2h-2Zm-1 4v-2h4v2h-4Zm.5 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" />
-    </svg>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src="/images/icons/malware-virus-icon.svg" alt="" className="h-6 w-6 shrink-0" style={{ filter: 'invert(38%) sepia(93%) saturate(400%) hue-rotate(80deg) brightness(95%)' }} aria-hidden />
   );
 }
 
@@ -52,9 +51,8 @@ function PestSolutionsIcon() {
 
 function ServiceAreasIcon() {
   return (
-    <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
-      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z" />
-    </svg>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src="/images/icons/service-provider-icon.svg" alt="" className="h-6 w-6 shrink-0" style={{ filter: 'invert(38%) sepia(93%) saturate(400%) hue-rotate(80deg) brightness(95%)' }} aria-hidden />
   );
 }
 
@@ -249,7 +247,7 @@ export default function Header() {
             <img
               src={NAV_LOGO}
               alt="Zap It Pest Control"
-              className="h-[44px] sm:h-[50px] lg:h-[56px] w-auto"
+              className="h-[48px] sm:h-[54px] lg:h-[60px] w-auto"
             />
           </Link>
 
