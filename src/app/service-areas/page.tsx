@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { CheckCircle2, Truck } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -95,11 +95,13 @@ export default function ServiceAreasPage() {
 
         {/* Same day CTA */}
         <section className="bg-[#f8f5f2] px-4 pb-10 pt-2 text-center sm:px-6 sm:pb-12" aria-label="Same day service">
-          <div className="mx-auto max-w-3xl">
-            <Truck className="mx-auto mb-3 h-10 w-10 text-[#1cdc38] sm:h-12 sm:w-12" strokeWidth={1.5} aria-hidden />
-            <a href={SITE_CONFIG.phoneTel} className="text-lg font-bold italic leading-tight text-[#1cdc38] sm:text-xl">
-              Same day service available. Call now!
-            </a>
+          <div className="mx-auto max-w-md">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/icons/group-350.svg"
+              alt="Same day service available. Call now!"
+              className="mx-auto w-full max-w-[320px] sm:max-w-[360px]"
+            />
           </div>
         </section>
       </div>

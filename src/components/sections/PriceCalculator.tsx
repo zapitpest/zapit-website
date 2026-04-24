@@ -86,35 +86,34 @@ export default function PriceCalculator() {
   const total = Math.round(subtotal - discountAmount);
 
   return (
-    <section className="bg-white py-10 sm:py-12" aria-label="Residential price calculator">
+    <section className="bg-[#f8f5f2] py-10 sm:py-12" aria-label="Residential price calculator">
       <div className="mx-auto max-w-2xl px-5 sm:px-6">
-        <h2 className="mb-6 text-[20px] font-bold italic leading-snug text-[#131a1c] sm:text-[22px]">
+        <h2 className="mb-6 text-center text-[20px] font-bold leading-snug text-[#414042] sm:text-[22px]">
           Residential price calculator
         </h2>
 
-        <div className="relative rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-sm sm:p-7">
-          {/* Save 20% floating badge — top-right, matches Figma dark circle */}
-          <div className="absolute -top-3 right-4 sm:right-6">
-            <div className="flex h-[72px] w-[72px] flex-col items-center justify-center rounded-full bg-[#0d402e] text-center text-white shadow-lg">
-              <span className="text-[9px] font-medium leading-none">Save</span>
-              <span className="text-[22px] font-black leading-tight">20%</span>
-              <span className="px-1 text-[7.5px] leading-[1.15]">
-                For same day<br />multiple treatments
-              </span>
-            </div>
+        <div className="relative rounded-2xl border border-[#d9d9d9] bg-white p-5 shadow-sm sm:p-7">
+          {/* Save 20% floating badge — top-right, Figma saev20forcalculator.svg */}
+          <div className="absolute -top-4 right-3 sm:right-5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/icons/saev20forcalculator.svg"
+              alt="Save 20% for same day multiple treatments"
+              className="h-auto w-[100px] shadow-lg sm:w-[110px]"
+            />
           </div>
 
-          {/* Postcode */}
-          <div className="mb-4 pr-16">
+          {/* Postcode — SHORT field per Figma (half width), side by side on wider screens */}
+          <div className="mb-4 pr-24">
             <label className="mb-1.5 block text-sm font-semibold text-[#131a1c]">
-              Postcode<span className="ml-0.5 text-[#3fa535]">*</span>
+              Postcode<span className="ml-0.5 text-[#1cdc38]">*</span>
             </label>
             <input
               type="text"
               value={postcode}
               onChange={e => setPostcode(e.target.value)}
-              placeholder="e.g. 3081"
-              className="w-full rounded-full border border-[#e5e5e5] px-4 py-2.5 text-sm text-[#414042] placeholder:text-gray-400 focus:border-[#3fa535] focus:outline-none focus:ring-1 focus:ring-[#3fa535]"
+              placeholder=""
+              className="w-[160px] rounded-md border border-[#c8c8c8] bg-[#f8f5f2] px-3 py-2 text-sm text-[#414042] placeholder:text-gray-400 focus:border-[#1cdc38] focus:outline-none focus:ring-1 focus:ring-[#1cdc38]"
               maxLength={4}
             />
           </div>
@@ -122,7 +121,7 @@ export default function PriceCalculator() {
           {/* Treatment type + add button */}
           <div className="mb-4">
             <label className="mb-1.5 block text-sm font-semibold text-[#131a1c]">
-              Treatment type<span className="ml-0.5 text-[#3fa535]">*</span>
+              Treatment type<span className="ml-0.5 text-[#1cdc38]">*</span>
             </label>
             <div className="flex items-center gap-2">
               <select
@@ -132,18 +131,18 @@ export default function PriceCalculator() {
                   const opts = TREATMENTS.filter(t => t.name === e.target.value);
                   setSelectedPropertyType(opts[0].propertyType);
                 }}
-                className="flex-1 rounded-full border border-[#3fa535] bg-white px-4 py-2.5 text-sm text-[#414042] appearance-none focus:outline-none focus:ring-1 focus:ring-[#3fa535]"
+                className="flex-1 rounded-md border border-[#c8c8c8] bg-[#f8f5f2] px-3 py-2.5 text-sm text-[#414042] appearance-none focus:outline-none focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
               >
                 {TREATMENT_NAMES.map(name => (
                   <option key={name} value={name}>{name}</option>
                 ))}
               </select>
-              {/* "+" circle button — matches Figma */}
+              {/* "+" button per Figma — two crossing lines (not circle) */}
               <button
                 type="button"
                 onClick={handleAdd}
                 aria-label="Add treatment"
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-[#3fa535] text-xl font-bold text-[#3fa535] transition-colors hover:bg-[#3fa535] hover:text-white"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#414042] text-[22px] font-bold text-[#414042] leading-none transition-colors hover:bg-[#1cdc38] hover:border-[#1cdc38]"
               >
                 +
               </button>
@@ -157,7 +156,7 @@ export default function PriceCalculator() {
               <select
                 value={selectedPropertyType}
                 onChange={e => setSelectedPropertyType(e.target.value as PropertyType)}
-                className="w-full rounded-full border border-[#e5e5e5] bg-white px-4 py-2.5 text-sm text-[#414042] appearance-none focus:border-[#3fa535] focus:outline-none focus:ring-1 focus:ring-[#3fa535]"
+                className="w-full rounded-full border border-[#c8c8c8] bg-[#f8f5f2] px-4 py-2.5 text-sm text-[#414042] appearance-none focus:border-[#1cdc38] focus:outline-none focus:ring-1 focus:ring-[#1cdc38]"
               >
                 {propertyOptions.map(opt => (
                   <option key={opt.propertyType} value={opt.propertyType}>{opt.propertyType}</option>
@@ -172,24 +171,25 @@ export default function PriceCalculator() {
               Add treatments above to see your price estimate
             </div>
           ) : (
-            <div className="my-2 space-y-2 rounded-xl border border-[#e5e5e5] px-4 py-3">
+            <div className="my-2 space-y-1 py-1">
               {cart.map(item => (
-                <div key={item.id} className="flex items-center justify-between gap-2 text-sm">
+                <div key={item.id} className="flex items-center justify-between gap-2 text-[14px]">
                   <span className="text-[#414042]">
                     {item.treatment.name}
                     {item.treatment.propertyType !== 'All' && (
                       <span className="ml-1 text-xs text-gray-400">({item.treatment.propertyType})</span>
                     )}
                   </span>
-                  <div className="flex shrink-0 items-center gap-2">
-                    <span className="font-semibold text-[#131a1c]">{fmtPrice(item.treatment.price)}</span>
+                  <div className="flex shrink-0 items-center gap-1.5">
+                    <span className="font-semibold text-[#414042]">{fmtPrice(item.treatment.price)}</span>
+                    {/* Figma × close — small diagonal cross per Group 352/353/354 */}
                     <button
                       type="button"
                       onClick={() => handleRemove(item.id)}
-                      className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-100 text-[10px] font-bold text-gray-500 hover:bg-red-100 hover:text-red-500"
+                      className="flex h-5 w-5 items-center justify-center text-[14px] font-bold text-[#414042] hover:text-red-500"
                       aria-label={`Remove ${item.treatment.name}`}
                     >
-                      ✕
+                      ×
                     </button>
                   </div>
                 </div>
@@ -197,36 +197,39 @@ export default function PriceCalculator() {
             </div>
           )}
 
-          {/* 20% saving message — matches Figma "20% saving activated. You've save $184!" */}
+          {/* 20% saving message — Figma: italic, #414042, centered */}
           {discount > 0 && (
-            <p className="mb-3 text-sm font-medium text-[#3fa535]">
-              20% saving activated. You&apos;ve save <strong>${discountAmount}</strong>!
+            <p className="mb-3 text-center text-[14px] italic text-[#414042]">
+              20% saving activated.<br />
+              <strong>You&apos;ve saved ${discountAmount}!</strong>
             </p>
           )}
 
-          {/* "$XXX GST inc." total button — matches Figma large dark pill */}
-          <a
-            href={SITE_CONFIG.phoneTel}
-            className={`mt-3 flex w-full items-center justify-center rounded-full py-4 text-[17px] font-bold text-white shadow-md transition-colors ${
-              cart.length > 0
-                ? 'bg-[#131a1c] hover:bg-[#0d402e]'
-                : 'pointer-events-none bg-[#9ca3af]'
-            }`}
-          >
-            {cart.length > 0 ? `$${total} GST inc.` : 'Build your quote above'}
-          </a>
+          {/* "$XXX GST inc." total button — Figma: #F8F5F2 bg, 2px solid #828282 border, dark text */}
+          {cart.length > 0 ? (
+            <div className="mt-4 flex items-center gap-3">
+              <a
+                href={SITE_CONFIG.phoneTel}
+                className="flex flex-1 items-center justify-center rounded-full border-2 border-[#828282] bg-[#f8f5f2] py-3.5 text-[20px] font-bold text-[#414042] shadow-sm transition-colors hover:bg-[#e8e5e2]"
+              >
+                ${total} GST inc.
+              </a>
+              <a
+                href={SITE_CONFIG.phoneTel}
+                className="shrink-0 text-[22px] font-black italic text-[#1cdc38] hover:underline"
+              >
+                Call now!
+              </a>
+            </div>
+          ) : (
+            <div className="mt-4 flex items-center justify-center rounded-full border-2 border-[#e5e5e5] bg-[#f0eded] py-3.5">
+              <span className="text-[16px] text-gray-400">Build your quote above</span>
+            </div>
+          )}
 
           <p className="mt-2 text-xs text-gray-400">
-            <span className="text-[#3fa535]">*</span>required fields
+            <span className="text-[#1cdc38]">*</span>required fields
           </p>
-
-          {/* "Call now!" italic green text link — matches Figma */}
-          <a
-            href={SITE_CONFIG.phoneTel}
-            className="mt-1 block text-center text-[16px] font-bold italic text-[#3fa535] hover:underline"
-          >
-            Call now!
-          </a>
         </div>
       </div>
     </section>

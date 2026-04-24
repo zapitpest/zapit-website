@@ -245,14 +245,14 @@ export default function Header() {
       {/* ===== MAIN NAV ===== */}
       <nav className="relative z-[1000] border-t border-[#e5e5e5] bg-white">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-[15px] sm:px-5">
-          <Link href="/" className="shrink-0 block h-[44px] sm:h-[50px] lg:h-[54px] overflow-hidden" aria-label="Zap It home">
+          <Link href="/" className="shrink-0 block h-[54px] sm:h-[62px] lg:h-[68px] overflow-hidden" aria-label="Zap It home">
             <Image
               src={NAV_LOGO}
               alt="Zap It Pest Control"
-              width={260}
-              height={104}
+              width={300}
+              height={120}
               priority
-              className="h-[100px] sm:h-[110px] lg:h-[120px] w-auto -mt-[28px] sm:-mt-[30px] lg:-mt-[33px]"
+              className="h-[122px] sm:h-[140px] lg:h-[154px] w-auto -mt-[34px] sm:-mt-[39px] lg:-mt-[43px]"
             />
           </Link>
 
@@ -316,13 +316,13 @@ export default function Header() {
         }`}
       >
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-2.5 sm:px-5">
-          <Link href="/" className="shrink-0 block h-[36px] sm:h-[42px] overflow-hidden" aria-label="Zap It home">
+          <Link href="/" className="shrink-0 block h-[46px] sm:h-[52px] overflow-hidden" aria-label="Zap It home">
             <Image
               src={NAV_LOGO}
               alt="Zap It"
-              width={220}
-              height={88}
-              className="h-[82px] sm:h-[92px] w-auto -mt-[23px] sm:-mt-[25px]"
+              width={240}
+              height={96}
+              className="h-[104px] sm:h-[118px] w-auto -mt-[29px] sm:-mt-[33px]"
             />
           </Link>
           <div className="flex items-center gap-2 sm:gap-2.5">
@@ -448,13 +448,13 @@ export default function Header() {
         }`}
       >
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-2.5">
-          <Link href="/" className="shrink-0 block h-[42px] lg:h-[48px] overflow-hidden" aria-label="Zap It home">
+          <Link href="/" className="shrink-0 block h-[50px] lg:h-[58px] overflow-hidden" aria-label="Zap It home">
             <Image
               src={NAV_LOGO}
               alt="Zap It"
-              width={240}
-              height={96}
-              className="h-[96px] lg:h-[106px] w-auto -mt-[27px] lg:-mt-[29px]"
+              width={260}
+              height={104}
+              className="h-[114px] lg:h-[132px] w-auto -mt-[32px] lg:-mt-[37px]"
             />
           </Link>
           <ul className="flex list-none items-center">

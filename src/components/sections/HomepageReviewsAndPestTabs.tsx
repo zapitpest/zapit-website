@@ -201,23 +201,15 @@ function ReviewCard({ rev }: { rev: (typeof REVIEWS)[number] }) {
 
 export function HomepagePestServiceTabs() {
   const [active, setActive] = useState(0);
-  const [sectionEl, setSectionEl] = useState<HTMLDivElement | null>(null);
   const tab = PEST_TABS[active];
 
-  const onTab = (idx: number) => {
-    setActive(idx);
-    if (typeof window !== 'undefined' && window.innerWidth < 900 && sectionEl) {
-      sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   return (
-    <div ref={setSectionEl} className="max-w-[1200px] mx-auto bg-[#f9fafb] rounded-xl overflow-hidden">
-      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2 lg:gap-10 items-start p-5 md:p-8">
-        <div className="flex min-h-[320px] flex-col sm:min-h-[280px] lg:min-h-[300px]">
-          <h3 className="mb-3 text-[18px] font-bold text-[#131a1c] md:text-[22px] leading-[1.2]">{tab.title}</h3>
-          <p className="mb-5 flex-1 text-[14px] leading-[1.6] text-[#414042] sm:text-[15px] md:text-[16px]">{tab.copy}</p>
-          <div className="mt-auto">
+    <div className="max-w-[1200px] mx-auto bg-[#f9fafb] rounded-xl overflow-hidden">
+      <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2 lg:gap-8 items-start p-4 sm:p-6 md:p-8">
+        <div className="flex flex-col">
+          <h3 className="mb-2 text-[17px] font-bold text-[#131a1c] md:text-[20px] leading-[1.2]">{tab.title}</h3>
+          <p className="mb-4 text-[13px] leading-[1.6] text-[#414042] sm:text-[14px] md:text-[15px] line-clamp-5 sm:line-clamp-none">{tab.copy}</p>
+          <div>
             <Link href={tab.href} className="zapit-learn-more-btn">
               Learn More
             </Link>
@@ -233,14 +225,15 @@ export function HomepagePestServiceTabs() {
           <button
             key={t.id}
             type="button"
-            onClick={() => onTab(idx)}
-            className={`flex min-h-[44px] flex-1 min-w-[100px] flex-shrink-0 items-center justify-center whitespace-nowrap border-r border-gray-200 px-2 py-2 text-center text-[11px] font-semibold transition-colors last:border-r-0 sm:text-sm ${
+            onClick={() => setActive(idx)}
+            className={`flex min-h-[44px] shrink-0 items-center justify-center border-r border-gray-200 px-3 py-2 text-center text-[11px] font-semibold transition-colors last:border-r-0 sm:px-4 sm:text-[12px] ${
               active === idx
                 ? 'bg-[#3fa535] text-white'
                 : 'bg-white text-[#3fa535] hover:bg-[#3fa535]/10'
             }`}
+            style={{ width: `${100 / PEST_TABS.length}%`, minWidth: '90px' }}
           >
-            {t.label}
+            <span className="block leading-tight">{t.label}</span>
           </button>
         ))}
       </div>
