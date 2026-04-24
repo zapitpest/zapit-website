@@ -13,6 +13,7 @@ import {
   HomepageReviews,
 } from '@/components/sections/HomepageReviewsAndPestTabs';
 import PriceCalculator from '@/components/sections/PriceCalculator';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import PageInfoFooterBlock from '@/components/layout/PageInfoFooterBlock';
 
 const HERO_BG =
@@ -185,6 +186,7 @@ export default function HomePage() {
       </section>
 
       {/* ===================== DOMESTIC PEST CONTROLLERS ===================== */}
+      <ScrollReveal direction="up">
       <section className="bg-white px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px]">
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-14">
@@ -221,8 +223,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===================== COMPLETE PEST CONTROL ===================== */}
+      <ScrollReveal direction="up" delay={100}>
       <section className="bg-[#f2f6f2] px-4 py-12 sm:px-6 sm:py-16">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[34px]">
@@ -240,8 +244,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===================== SAME-DAY SERVICE ===================== */}
+      <ScrollReveal direction="left">
       <section className="bg-white px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1200px]">
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-14">
@@ -279,8 +285,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===================== 3-STEP STRATEGY ===================== */}
+      <ScrollReveal direction="up">
       <section className="bg-[#f2f6f2] px-4 py-12 sm:px-6 sm:py-16">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[34px]">
@@ -300,8 +308,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===================== RESIDENTIAL PROPERTIES ===================== */}
+      <ScrollReveal direction="right">
       <section className="bg-white px-4 py-12 sm:px-6 sm:py-16">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[34px]">
@@ -331,8 +341,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===================== WHY CHOOSE US / COVERAGE ===================== */}
+      <ScrollReveal direction="up">
       <section className="bg-[#f2f6f2] px-4 py-12 sm:px-6 sm:py-16">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[34px]">
@@ -342,8 +354,10 @@ export default function HomePage() {
           <HomepageMelbourneCoverage />
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===================== REVIEWS ===================== */}
+      <ScrollReveal direction="fade">
       <section className="bg-white px-4 py-12 sm:px-6 sm:py-16">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[34px]">
@@ -353,8 +367,10 @@ export default function HomePage() {
           <HomepageReviews />
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===================== PEST LIBRARY / BLOGS ===================== */}
+      <ScrollReveal direction="up" delay={100}>
       <section className="bg-[#f2f6f2] px-4 py-12 sm:px-6 sm:py-16">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[34px]">
@@ -387,8 +403,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===================== FAQ ===================== */}
+      <ScrollReveal direction="up">
       <section className="bg-white px-4 py-12 sm:px-6 sm:py-16">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[34px]">
@@ -398,9 +416,12 @@ export default function HomePage() {
           <HomepageFAQ />
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===================== PRICING ===================== */}
+      <ScrollReveal direction="fade">
       <PriceCalculator />
+      </ScrollReveal>
 
       {/* ===================== WE'RE NOT HAPPY ===================== */}
       <section className="bg-[#131a1c] text-white">

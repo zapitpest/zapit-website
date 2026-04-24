@@ -49,8 +49,8 @@ export default function HeroSlider() {
           </div>
         ))}
 
-        {/* Slide indicators */}
-        <div className="absolute bottom-4 right-4 z-30 flex gap-1.5 sm:bottom-6 sm:right-6">
+        {/* Slide indicators — centered */}
+        <div className="absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 gap-1.5 sm:bottom-6">
           {SLIDES.map((_, i) => (
             <button
               key={i}

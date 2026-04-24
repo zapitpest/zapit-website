@@ -35,9 +35,9 @@ const REVIEWS = [
   },
 ] as const;
 
-function Stars({ count }: { count: number }) {
+function Stars({ count, center = false }: { count: number; center?: boolean }) {
   return (
-    <div className="flex gap-0.5">
+    <div className={`flex gap-0.5 ${center ? 'justify-center' : ''}`}>
       {Array.from({ length: count }, (_, i) => (
         <svg key={i} className="h-4 w-4 fill-amber-400 text-amber-400" viewBox="0 0 24 24">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -83,7 +83,7 @@ export default function GoogleReviewsCarousel() {
     <section className="bg-white px-0 py-8 sm:py-10">
       <div className="mx-auto max-w-3xl px-4 text-center">
         <p className="mb-1 text-[13px] font-bold uppercase tracking-widest text-[#414042]">EXCELLENT</p>
-        <Stars count={5} />
+        <Stars count={5} center />
         <p className="mt-1 text-[12px] text-[#414042]">Based on {254} reviews</p>
         <div className="mt-1 flex items-center justify-center gap-1">
           <svg className="h-5 w-5" viewBox="0 0 24 24">

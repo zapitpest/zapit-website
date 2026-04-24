@@ -7,6 +7,7 @@ import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceS
 import PageInfoFooterBlock from '@/components/layout/PageInfoFooterBlock';
 import PriceCalculator from '@/components/sections/PriceCalculator';
 import FaqPageAccordion from '@/components/sections/FaqPageAccordion';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import type { FAQ, BreadcrumbItem } from '@/types';
 import HeroSlider from './HeroSlider';
 import GoogleReviewsCarousel from './GoogleReviewsCarousel';
@@ -169,50 +170,37 @@ export default function ResidentialPage() {
       {/* ===== 1. HERO IMAGE SLIDER (images already contain text/border/badge) ===== */}
       <HeroSlider />
 
-      {/* ===== 2. WE TREAT ALL HOUSEHOLD PESTS — dark green bg matching Figma ===== */}
-      <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-3 text-[22px] font-bold leading-tight text-white sm:text-[26px]">
-            We treat all household pests
-          </h2>
-          <p className="mb-5 text-[14px] leading-[1.7] text-[#f8f5f2]/90 sm:text-[15px]">
-            When you protect your home and family from pests with us, your piece of mind is assured.
-            Our services are eco-friendly, child safe, pet safe and we&apos;re fully insured and DHHS
-            Licensed. We treat your home with same care as you do, using high-quality long-lasting solutions you can rely on.
-          </p>
+      {/* ===== 2. WE TREAT ALL HOUSEHOLD PESTS — dark green bg, centered ===== */}
+      <ScrollReveal direction="up">
+        <section className="bg-[#0d402e] px-5 py-6 sm:px-6 sm:py-8">
+          <div className="mx-auto max-w-xl text-center">
+            <h2 className="mb-3 text-[24px] font-bold leading-tight text-white sm:text-[28px]">
+              We treat all household pests
+            </h2>
+            <p className="mb-5 text-[15px] leading-[1.7] text-[#f8f5f2]/90 sm:text-[16px]">
+              When you protect your home and family from pests with us, your piece of mind is assured.
+              Our services are eco-friendly, child safe, pet safe and we&apos;re fully insured and DHHS
+              Licensed. We treat your home with same care as you do, using high-quality long-lasting solutions you can rely on.
+            </p>
 
-          {/* Call Now + Chat buttons */}
-          <div className="mb-6 flex items-center gap-3">
-            <a
-              href={SITE_CONFIG.phoneTel}
-              className="inline-flex items-center gap-2 rounded-full bg-[#f8f5f2] px-5 py-2.5 text-[14px] font-semibold text-[#414042] shadow-sm transition-colors hover:bg-[#1cdc38] hover:text-white"
-            >
-              <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-              </svg>
-              Call now
-            </a>
-            <button className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1cdc38] text-white shadow-sm">
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg>
-            </button>
+            {/* Trust badges — Figma Group 373 + 374 SVGs, centered */}
+            <div className="flex items-center justify-center gap-6 sm:gap-10">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/icons/group-373.svg" alt="Child safe, Pet safe, Eco friendly" className="h-[76px] w-auto" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/icons/group-374.svg" alt="Insured, DHHS Licenced, Accredited" className="h-[76px] w-auto" />
+            </div>
           </div>
-
-          {/* Trust badges — using Figma Group 373 (col 1) & Group 374 (col 2) SVGs */}
-          <div className="flex gap-6 sm:gap-10">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/icons/group-373.svg" alt="Child safe, Pet safe, Eco friendly" className="h-[76px] w-auto" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/icons/group-374.svg" alt="Insured, DHHS Licenced, Accredited" className="h-[76px] w-auto" />
-          </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* ===== 3. GOOGLE REVIEWS CAROUSEL — white bg ===== */}
-      <GoogleReviewsCarousel />
+      <ScrollReveal direction="up" delay={100}>
+        <GoogleReviewsCarousel />
+      </ScrollReveal>
 
       {/* ===== 4. GO TO PEST PRICE LIST BUTTON ===== */}
+      <ScrollReveal direction="fade">
       <div className="bg-[#f8f5f2] px-4 py-4 text-center">
         <a
           href="#pest-price-list"
@@ -221,8 +209,10 @@ export default function ResidentialPage() {
           Go to pest solutions and price list ↓
         </a>
       </div>
+      </ScrollReveal>
 
       {/* ===== 5. TERMITE SECTION — bright green card ===== */}
+      <ScrollReveal direction="up">
       <section className="bg-[#f8f5f2] px-3 py-3 sm:px-4">
         <div className="rounded-2xl bg-[#1cdc38] px-4 py-10 sm:px-6 sm:py-12">
           <div className="mx-auto max-w-3xl">
@@ -266,19 +256,25 @@ export default function ResidentialPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===== 6. PRICE CALCULATOR ===== */}
-      <PriceCalculator />
+      <ScrollReveal direction="up" delay={100}>
+        <PriceCalculator />
+      </ScrollReveal>
 
       {/* ===== 7. SAME DAY SERVICE CTA ===== */}
+      <ScrollReveal direction="fade">
       <section className="bg-[#0d402e] py-8 sm:py-10">
         <a href={SITE_CONFIG.phoneTel} className="mx-auto block max-w-[360px] px-4" aria-label="Same day service available. Call now!">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/icons/group-350.svg" alt="Same day service available. Call now!" className="h-auto w-full" />
         </a>
       </section>
+      </ScrollReveal>
 
       {/* ===== 8. CAT GIRL TESTIMONIAL IMAGE ===== */}
+      <ScrollReveal direction="right">
       <section className="relative w-full overflow-hidden">
         <div className="relative aspect-[375/440] w-full sm:aspect-[16/9]">
           <Image
@@ -298,10 +294,12 @@ export default function ResidentialPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===== 9. THE MORE YOU PROTECT / SAVE 20% ===== */}
-      <section className="bg-white px-3 py-6 sm:px-4 sm:py-8">
-        <div className="mx-auto max-w-[354px] rounded-[20px] bg-[#1cdc38] px-5 py-6 sm:max-w-md sm:px-6 sm:py-8">
+      <ScrollReveal direction="up">
+      <section className="bg-white px-4 py-6 sm:px-5 sm:py-8">
+        <div className="mx-auto max-w-lg rounded-[20px] bg-[#1cdc38] px-5 py-6 sm:max-w-xl sm:px-6 sm:py-8">
           <h2 className="mb-4 text-center text-[24px] font-bold leading-[1.2] text-[#414042]">
             The more you protect,<br />the more you save
           </h2>
@@ -316,8 +314,10 @@ export default function ResidentialPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===== 10. PEST SOLUTIONS AND PRICE LIST ===== */}
+      <ScrollReveal direction="up">
       <section id="pest-price-list" className="bg-white px-4 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-3xl">
           <h2 className="mb-6 text-[22px] font-bold leading-tight text-[#414042] sm:text-[26px]">
@@ -350,70 +350,72 @@ export default function ResidentialPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===== 11. DARK SECTIONS — HEALTH/SAFETY/TRUST WITH IMAGES ===== */}
 
       {/* 11a. Health & Safety intro */}
+      <ScrollReveal direction="fade">
       <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-12">
         <p className="mx-auto max-w-md text-center text-[18px] italic leading-[1.5] text-[#1cdc38] sm:text-[20px]">
           Your health and safety are at the heart of everything we do, supported by industry-leading technology.
         </p>
       </section>
+      </ScrollReveal>
 
-      {/* 11b. Family trust image */}
+      {/* 11b. Family trust image — text is already in the image */}
+      <ScrollReveal direction="up">
       <section className="relative w-full overflow-hidden">
         <div className="relative aspect-[375/440] w-full sm:aspect-[16/10]">
-          <Image src="/images/residential/family-trust.png" alt="Protection you can trust" fill className="object-cover object-top" sizes="100vw" />
-          <div className="absolute bottom-6 left-4 z-10 sm:left-6">
-            <div className="mb-2 space-y-[3px]"><div className="h-[3px] w-[50px] rounded-full bg-[#1cdc38]" /><div className="h-[3px] w-[80px] rounded-full bg-[#1cdc38]" /></div>
-            <p className="text-[26px] font-bold leading-[1.15] text-[#131a1c] sm:text-[30px]"><span className="inline bg-[#1cdc38] [box-decoration-break:clone] px-2 py-0.5">Protection<br />you can trust</span></p>
-            <p className="mt-2 max-w-[280px] bg-[#1cdc38] px-2 py-1 text-[14px] font-medium text-[#131a1c] sm:text-[15px]">We have serviced over 20,000 homes in Melbourne</p>
-          </div>
+          <Image src="/images/residential/family-trust.png" alt="Protection you can trust — We have serviced over 20,000 homes in Melbourne" fill className="object-cover object-top" sizes="100vw" />
         </div>
       </section>
+      </ScrollReveal>
 
       {/* 11c. Pet safety text */}
+      <ScrollReveal direction="fade" delay={100}>
       <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-12">
         <p className="mx-auto max-w-md text-center text-[18px] italic leading-[1.5] text-[#1cdc38] sm:text-[20px]">
           We know pets can get into all sorts of mischief which is why we take every measure to keep your much loved pets safe and sound.
         </p>
       </section>
+      </ScrollReveal>
 
-      {/* 11d. Townhouse image */}
+      {/* 11d. Townhouse image — text is already in the image */}
+      <ScrollReveal direction="left">
       <section className="relative w-full overflow-hidden">
         <div className="relative aspect-[375/350] w-full sm:aspect-[16/9]">
-          <Image src="/images/residential/townhouse.png" alt="We treat your home as if it were ours" fill className="object-cover object-center" sizes="100vw" />
-          <div className="absolute left-4 top-6 z-10 sm:left-6 sm:top-8">
-            <p className="text-[24px] font-bold leading-[1.15] text-[#131a1c] sm:text-[28px]"><span className="inline bg-[#1cdc38] [box-decoration-break:clone] px-2 py-0.5">We treat your home<br />as if it were ours</span></p>
-            <p className="mt-2 max-w-[280px] bg-[#1cdc38] px-2 py-1 text-[13px] font-medium text-[#131a1c] sm:text-[14px]">Your satisfaction is our highest priority</p>
-          </div>
+          <Image src="/images/residential/townhouse.png" alt="We treat your home as if it were ours — Your satisfaction is our highest priority" fill className="object-cover object-center" sizes="100vw" />
         </div>
       </section>
+      </ScrollReveal>
 
       {/* 11e. Coverage text */}
+      <ScrollReveal direction="fade" delay={100}>
       <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-12">
         <p className="mx-auto max-w-md text-center text-[18px] italic leading-[1.5] text-[#1cdc38] sm:text-[20px]">
           Whether you live in a one-bedroom flat, high-rise apartment, semi-detached townhouse or large family home, we have you covered.
         </p>
       </section>
+      </ScrollReveal>
 
-      {/* 11f. High rise specialist image */}
+      {/* 11f. High rise specialist image — text is already in the image */}
+      <ScrollReveal direction="right">
       <section className="relative w-full overflow-hidden">
         <div className="relative aspect-[375/350] w-full sm:aspect-[16/9]">
-          <Image src="/images/residential/highrise-specialist.png" alt="We're high rise specialists" fill className="object-cover object-center" sizes="100vw" />
-          <div className="absolute bottom-6 left-4 z-10 sm:left-6">
-            <p className="text-[24px] font-bold leading-[1.15] text-[#131a1c] sm:text-[28px]"><span className="inline bg-[#1cdc38] [box-decoration-break:clone] px-2 py-0.5">We&apos;re high rise<br />specialists</span></p>
-            <p className="mt-2 max-w-[320px] bg-[#1cdc38] px-2 py-1 text-[13px] font-medium text-[#131a1c] sm:text-[14px]">We have quickly become a specialists in high rise living pest protection</p>
-          </div>
+          <Image src="/images/residential/highrise-specialist.png" alt="We're high rise specialists — We have quickly become specialists in high rise living pest protection" fill className="object-cover object-center" sizes="100vw" />
         </div>
       </section>
+      </ScrollReveal>
 
       {/* 11g. Service area text */}
+      <ScrollReveal direction="fade" delay={100}>
       <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-12">
         <p className="mx-auto max-w-md text-center text-[18px] italic leading-[1.5] text-[#1cdc38] sm:text-[20px]">
           We service Melbourne&apos;s central, north-west, northern and north-eastern suburbs.
         </p>
       </section>
+      </ScrollReveal>
 
       {/* ===== 12. MELBOURNE MAP ===== */}
       <section className="bg-[#131a1c] px-0 pb-2 sm:px-4">
@@ -438,6 +440,7 @@ export default function ResidentialPage() {
       </section>
 
       {/* ===== 13. INSURED, LICENSED, ACCREDITED ===== */}
+      <ScrollReveal direction="up">
       <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-3xl">
           <h2 className="mb-4 text-[22px] font-bold leading-tight text-[#131a1c] sm:text-[24px]">
@@ -475,8 +478,10 @@ export default function ResidentialPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===== 14. FAQ ===== */}
+      <ScrollReveal direction="up">
       <section className="bg-white px-4 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-3xl">
           <h2 className="mb-2 text-[22px] font-bold leading-tight text-[#131a1c] sm:text-[26px]">
@@ -488,6 +493,7 @@ export default function ResidentialPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ===== PAGE INFO FOOTER ===== */}
       <PageInfoFooterBlock />
