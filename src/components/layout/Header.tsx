@@ -10,14 +10,6 @@ const CONTACT_LINK = NAV_LINKS.find((item) => item.label === 'Contact Us')!;
 const NAV_LOGO = '/images/zapit-logo.svg';
 const iconFill = '#3fa535';
 
-function PhoneSvg({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill={iconFill}>
-      <path d="m30.035 22.594c-.053-.044-6.049-4.31-7.668-4.049-.781.138-1.227.671-2.122 1.737-.144.172-.491.583-.759.876a12.458 12.458 0 0 1 -1.651-.672 13.7 13.7 0 0 1 -6.321-6.321 12.458 12.458 0 0 1 -.672-1.651c.294-.269.706-.616.882-.764 1.061-.89 1.593-1.337 1.731-2.119.283-1.619-4.005-7.613-4.049-7.667a2.289 2.289 0 0 0 -1.706-.964c-1.738 0-6.7 6.436-6.7 7.521 0 .063.091 6.467 7.988 14.5 8.024 7.888 14.428 7.979 14.491 7.979 1.084 0 7.521-4.962 7.521-6.7a2.291 2.291 0 0 0 -.965-1.706z" />
-    </svg>
-  );
-}
-
 function ResidentialIcon() {
   return (
     <svg className="h-5 w-5 shrink-0" fill={iconFill} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
@@ -88,9 +80,9 @@ function NavItemIcon({ label }: { label: string }) {
 function HamburgerIcon({ open }: { open: boolean }) {
   return (
     <div className="flex flex-col justify-center gap-[5px]">
-      <span className={`block h-0.5 w-[22px] bg-[#131a1c] transition-all duration-300 ${open ? 'translate-y-[7px] rotate-45' : ''}`} />
-      <span className={`block h-0.5 w-[22px] bg-[#131a1c] transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
-      <span className={`block h-0.5 w-[22px] bg-[#131a1c] transition-all duration-300 ${open ? '-translate-y-[7px] -rotate-45' : ''}`} />
+      <span className={`block h-0.5 w-[22px] bg-white transition-all duration-300 ${open ? 'translate-y-[7px] rotate-45' : ''}`} />
+      <span className={`block h-0.5 w-[22px] bg-white transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
+      <span className={`block h-0.5 w-[22px] bg-white transition-all duration-300 ${open ? '-translate-y-[7px] -rotate-45' : ''}`} />
     </div>
   );
 }
@@ -186,7 +178,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
   const [isSticky, setIsSticky] = useState(false);
-  const bannerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   const closeMobile = useCallback(() => {
     setMobileOpen(false);
@@ -195,12 +187,12 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    if (!bannerRef.current) return;
+    if (!headerRef.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => setIsSticky(!entry.isIntersecting),
       { threshold: 0 },
     );
-    observer.observe(bannerRef.current);
+    observer.observe(headerRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -215,44 +207,54 @@ export default function Header() {
 
   return (
     <header className="font-sans">
-      {/* ===== TOP BAR ===== */}
-      <div className="bg-[#131a1c] text-[14px] text-[#f8f5f2]">
-        <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-2 px-4 py-2 sm:flex-row sm:justify-between sm:px-5">
-          <div className="flex flex-wrap items-center gap-2">
-            <span>⭐⭐⭐⭐⭐ {SITE_CONFIG.rating.count}+ 5-Star Google Reviews</span>
+      {/* ===== MAIN HEADER — dark green like client SS ===== */}
+      <div ref={headerRef} className="bg-[#0d402e]">
+        <div className="mx-auto max-w-[1280px] px-4 py-4 sm:px-5">
+          {/* Row 1: Logo + Phone number */}
+          <div className="flex items-center justify-between">
+            <Link href="/" className="shrink-0" aria-label="Zap It home">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={NAV_LOGO}
+                alt="Zap It Pest Control"
+                className="h-[50px] sm:h-[58px] lg:h-[64px] w-auto brightness-0 invert"
+              />
+            </Link>
             <a
-              href="https://www.google.com/search?q=Zap+It+Pest+%26+Termite+Control+Melbourne+Reviews"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden font-medium text-[#3fa535] hover:underline sm:inline"
+              href={SITE_CONFIG.phoneTel}
+              className="text-[22px] font-bold text-white tracking-wide sm:text-[26px] lg:text-[30px] hover:text-[#64FF01] transition-colors"
             >
-              View Testimonials
+              9126 0555
             </a>
           </div>
-          <a
-            href={SITE_CONFIG.phoneTel}
-            className="flex items-center gap-1.5 font-bold text-[#f8f5f2] hover:text-[#3fa535]"
-          >
-            <PhoneSvg className="h-4 w-4" />
-            CALL US NOW – {SITE_CONFIG.phoneRaw}
-          </a>
+
+          {/* Tagline */}
+          <p className="mt-1 text-[14px] text-white/70 sm:text-[15px]">
+            Pest protection you can trust
+          </p>
+
+          {/* Row 2: Residential + Commercial tabs (mobile) / full nav (desktop) */}
+          <div className="mt-4 flex items-center gap-3 lg:hidden">
+            <Link
+              href="/residential"
+              className="flex-1 rounded-lg bg-[#f8f5f2] py-3 text-center text-[15px] font-bold text-[#0d402e] transition-colors hover:bg-white"
+            >
+              Residential
+            </Link>
+            <Link
+              href="/commercial-pest-control"
+              className="flex-1 rounded-lg border border-white/30 py-3 text-center text-[15px] font-medium text-white/70 transition-colors hover:border-white hover:text-white"
+            >
+              Commercial
+            </Link>
+          </div>
         </div>
       </div>
 
-      {/* ===== MAIN NAV ===== */}
-      <nav className="relative z-[1000] border-t border-[#e5e5e5] bg-white">
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-[15px] sm:px-5">
-          <Link href="/" className="shrink-0" aria-label="Zap It home">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={NAV_LOGO}
-              alt="Zap It Pest Control"
-              className="h-[48px] sm:h-[54px] lg:h-[60px] w-auto"
-            />
-          </Link>
-
-          {/* Desktop menu */}
-          <ul className="hidden list-none items-center justify-center lg:flex" aria-label="Primary">
+      {/* ===== DESKTOP NAV BAR — white bg, below green header ===== */}
+      <nav className="relative z-[1000] hidden border-b border-[#e5e5e5] bg-white lg:block">
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5">
+          <ul className="flex list-none items-center" aria-label="Primary">
             {MAIN_NAV_LINKS.map((item) => {
               if (item.label === 'Commercial' && item.childGroups)
                 return <CommercialDropdown key={item.href} item={item} />;
@@ -261,52 +263,18 @@ export default function Header() {
               return <SimpleNavLink key={item.href} item={item} />;
             })}
           </ul>
-
           <Link
             href={CONTACT_LINK.href}
-            className="hidden rounded-[6px] bg-[#3fa535] px-6 py-3 text-[16px] font-bold text-white transition-colors hover:bg-[#0d402e] lg:inline-flex"
+            className="rounded-[6px] bg-[#3fa535] px-6 py-3 text-[16px] font-bold text-white transition-colors hover:bg-[#0d402e]"
           >
             Contact Us
           </Link>
-
-          {/* Mobile controls */}
-          <div className="flex items-center gap-[10px] lg:hidden">
-            <a
-              href={SITE_CONFIG.phoneTel}
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#3fa535] bg-[#3fa535] px-3.5 text-[12px] font-bold text-white transition-colors hover:bg-[#0d402e] sm:px-4"
-            >
-              <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z" />
-              </svg>
-              <span className="uppercase tracking-[0.5px]">Call Now</span>
-            </a>
-            <button
-              type="button"
-              onClick={() => setMobileOpen((o) => !o)}
-              className="flex min-h-[44px] items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3.5 text-[12px] font-medium text-[#131a1c] transition-colors hover:bg-[#e5e5e5] sm:px-4"
-              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={mobileOpen}
-            >
-              <HamburgerIcon open={mobileOpen} />
-              <span className="uppercase tracking-[0.5px]">MENU</span>
-            </button>
-          </div>
         </div>
       </nav>
 
-      {/* ===== GREEN INFO BANNER ===== */}
-      <div ref={bannerRef} className="bg-[#3fa535] py-2 text-center text-[14px] font-normal text-white">
-        <div className="mx-auto max-w-[1280px] px-4 sm:px-5">
-          Book Same-Day Pest Control in Melbourne –{' '}
-          <a href={SITE_CONFIG.phoneTel} className="font-semibold text-white hover:underline">
-            CALL NOW!
-          </a>
-        </div>
-      </div>
-
-      {/* ===== MOBILE STICKY NAV ===== */}
+      {/* ===== MOBILE STICKY NAV — dark green, simplified ===== */}
       <div
-        className={`fixed left-0 top-0 z-[1000] w-full border-b border-[#e5e5e5] bg-white shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-transform duration-150 lg:hidden ${
+        className={`fixed left-0 top-0 z-[1000] w-full bg-[#0d402e] shadow-lg transition-transform duration-150 lg:hidden ${
           isSticky ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
@@ -316,23 +284,14 @@ export default function Header() {
             <img
               src={NAV_LOGO}
               alt="Zap It Pest Control"
-              className="h-[36px] w-auto"
+              className="h-[36px] w-auto brightness-0 invert"
             />
           </Link>
           <div className="flex items-center gap-2 sm:gap-2.5">
-            <a
-              href={SITE_CONFIG.phoneTel}
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[#3fa535] bg-[#3fa535] px-3.5 text-[12px] font-bold text-white hover:bg-[#0d402e] sm:px-4"
-            >
-              <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z" />
-              </svg>
-              <span className="uppercase tracking-[0.5px]">Call Now</span>
-            </a>
             <button
               type="button"
               onClick={() => setMobileOpen((o) => !o)}
-              className="flex min-h-[44px] items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#f8f9fa] px-3.5 text-[12px] font-medium text-[#131a1c] hover:bg-[#e5e5e5] sm:px-4"
+              className="flex min-h-[44px] items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 text-[12px] font-medium text-white transition-colors hover:bg-white/20 sm:px-4"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
             >
@@ -347,7 +306,7 @@ export default function Header() {
       {mobileOpen && (
         <div
           className="fixed inset-x-0 z-[998] overflow-y-auto overscroll-contain bg-white lg:hidden"
-          style={{ top: isSticky ? '65px' : '120px', maxHeight: isSticky ? 'calc(100vh - 65px)' : 'calc(100vh - 120px)', paddingBottom: '24px' }}
+          style={{ top: isSticky ? '65px' : '160px', maxHeight: isSticky ? 'calc(100vh - 65px)' : 'calc(100vh - 160px)', paddingBottom: '24px' }}
         >
           <ul className="list-none border-t border-[#e5e5e5]">
             {MAIN_NAV_LINKS.map((item) => {
@@ -420,7 +379,6 @@ export default function Header() {
                 </li>
               );
             })}
-            {/* Mobile-only Contact Us */}
             <li className="border-b border-[#e5e5e5]">
               <Link
                 href={CONTACT_LINK.href}

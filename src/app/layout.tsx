@@ -3,7 +3,7 @@ import './globals.css';
 import { SITE_CONFIG } from '@/lib/constants';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import StickyCallButton from '@/components/layout/StickyCallButton';
+import FloatingCTA from '@/components/layout/FloatingCTA';
 import GTMScript from '@/components/layout/GTMScript';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateOrganizationSchema, generateWebSiteSchema, generateLocalBusinessSchema } from '@/lib/schema';
@@ -55,7 +55,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <StickyCallButton />
+        <FloatingCTA />
       </body>
     </html>
   );

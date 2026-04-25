@@ -175,11 +175,10 @@ export default function HomePage() {
               Book an Inspection Now
             </a>
             <a
-              href={SITE_CONFIG.phoneTel}
+              href="/residential"
               className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-black/60 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white shadow-lg backdrop-blur-sm transition-colors hover:bg-black/80 sm:text-base"
             >
-              <Phone className="h-4 w-4 shrink-0" aria-hidden />
-              Call Now — {SITE_CONFIG.phone}
+              Residential Services
             </a>
           </div>
         </div>
