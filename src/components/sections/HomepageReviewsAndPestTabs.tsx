@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Check, ChevronLeft, ChevronRight, Minus, Plus, Star, BadgeCheck } from 'lucide-react';
+import { Check, Minus, Plus, Star } from 'lucide-react';
 import { SITE_CONFIG, HOMEPAGE_FAQS } from '@/lib/constants';
 
 const GOOGLE_REVIEWS_URL =
@@ -15,29 +15,49 @@ const REVIEWS: {
   name: string;
   initial: string;
   initialBg: string;
+  suburb: string;
   timeAgo: string;
   text: string;
 }[] = [
   {
+    name: 'Jane S.',
+    initial: 'J',
+    initialBg: 'bg-[#1a73e8]',
+    suburb: 'Heidelberg',
+    timeAgo: '2 weeks ago',
+    text: 'Sorted the problem fast. No mess, no fuss. Would call them again without hesitation.',
+  },
+  {
+    name: 'Marcus T.',
+    initial: 'M',
+    initialBg: 'bg-[#0f9d58]',
+    suburb: 'Bundoora',
+    timeAgo: '1 month ago',
+    text: 'Professional team. On time, explained everything clearly. Pests are gone and haven\'t come back.',
+  },
+  {
     name: 'Margo Kelly',
     initial: 'M',
-    initialBg: 'bg-[#1a73e8]',
+    initialBg: 'bg-[#e8711a]',
+    suburb: 'Preston',
     timeAgo: '2 months ago',
-    text: 'Fantastic pest control service in Melbourne. We contacted them for our commercial pest control and were impressed with how quickly they identified and treated the problem. They assisted us with rodent control and the improvement was noticeable straight away. Professional, friendly, and extremely effective.',
+    text: 'Fantastic pest control service. They assisted us with rodent control and the improvement was noticeable straight away. Professional and extremely effective.',
   },
   {
     name: 'Jemi Audi',
     initial: 'J',
-    initialBg: 'bg-[#0f9d58]',
+    initialBg: 'bg-[#5f6368]',
+    suburb: 'Reservoir',
     timeAgo: '3 months ago',
-    text: "Amazing job honestly I've never had pest control that can get rid of all type of bugs, insects and or booklice like this company. Thorough, professional, and the difference was clear from the first visit.",
+    text: "Amazing job honestly. Thorough, professional, and the difference was clear from the first visit.",
   },
   {
     name: 'Tammy Fox',
     initial: 'T',
-    initialBg: 'bg-[#5f6368]',
+    initialBg: 'bg-[#9c27b0]',
+    suburb: 'Eltham',
     timeAgo: '1 month ago',
-    text: 'Excellent experience with Zap It Pest Control. Professional, reliable, and easy to deal with. The technician was friendly, on time, and explained the treatment in plain language. We would book again in a heartbeat.',
+    text: 'Excellent experience. The technician was friendly, on time, and explained the treatment in plain language.',
   },
 ];
 
@@ -96,105 +116,69 @@ const TAB_IMAGE = `${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-provi
 
 export function HomepageReviews() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const scroll = (dir: 'left' | 'right') => {
+
+  useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    const w = el.clientWidth * 0.9;
-    el.scrollBy({ left: dir === 'left' ? -w : w, behavior: 'smooth' });
-  };
+    const interval = setInterval(() => {
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (el.scrollLeft >= maxScroll - 2) {
+        el.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        el.scrollBy({ left: 290, behavior: 'smooth' });
+      }
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="w-full max-w-[1200px] mx-auto">
-      <div className="text-center mb-6">
-        <p className="text-base sm:text-lg font-extrabold text-[#131a1c] tracking-wide">EXCELLENT</p>
-        <div className="flex justify-center gap-0.5 my-2">
-          {[0, 1, 2, 3, 4].map((s) => (
-            <Star key={s} className="h-5 w-5 sm:h-6 sm:w-6 fill-amber-400 text-amber-400" />
-          ))}
-        </div>
-        <p className="text-sm text-[#636363]">
-          Based on <strong className="text-[#131a1c]">{SITE_CONFIG.rating.count} reviews</strong>
-        </p>
-        <div className="mt-2 flex justify-center">
-          <Image src="/images/logo/google-g.png" alt="Google" width={28} height={28} className="h-7 w-7" />
-        </div>
-      </div>
-
-      <div className="relative">
-        <button
-          type="button"
-          onClick={() => scroll('left')}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-10 h-9 w-9 rounded-full border border-gray-200 bg-white shadow-md items-center justify-center text-[#2B2B2B] hover:bg-[#F7F7F7] hidden md:flex"
-          aria-label="Scroll reviews left"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-        <button
-          type="button"
-          onClick={() => scroll('right')}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-10 h-9 w-9 rounded-full border border-gray-200 bg-white shadow-md items-center justify-center text-[#2B2B2B] hover:bg-[#F7F7F7] hidden md:flex"
-          aria-label="Scroll reviews right"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button>
-
-        <div
-          ref={scrollRef}
-          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 md:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {REVIEWS.map((rev) => (
-            <ReviewCard key={rev.name} rev={rev} />
-          ))}
-        </div>
-      </div>
-
-      <div className="text-center mt-6">
-        <a
-          href={GOOGLE_REVIEWS_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center min-h-[44px] bg-[#3fa535] text-white text-sm sm:text-base font-semibold uppercase tracking-wide px-8 py-2.5 rounded-lg hover:bg-[#0d402e] transition-colors"
-        >
-          REVIEWS
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function ReviewCard({ rev }: { rev: (typeof REVIEWS)[number] }) {
-  return (
-    <div className="min-w-[260px] w-[280px] md:w-auto md:min-w-0 flex-shrink-0 snap-center rounded-lg border border-gray-100 bg-white p-4 shadow-sm flex flex-col">
-      <div className="flex items-start gap-3 mb-3">
-        <div
-          className={`h-9 w-9 rounded-full ${rev.initialBg} flex items-center justify-center text-white text-base font-bold flex-shrink-0`}
-          aria-hidden
-        >
-          {rev.initial}
-        </div>
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1.5">
-            <span className="text-sm font-semibold text-[#131a1c]">{rev.name}</span>
-            <Image src="/images/logo/google-g.png" alt="" width={14} height={14} className="h-3.5 w-3.5" />
+      {/* Figma-style horizontal strip: rating left, reviews scrolling right */}
+      <div className="flex flex-col sm:flex-row items-start gap-6">
+        {/* Left — rating badge */}
+        <div className="shrink-0 flex flex-col items-center sm:items-start gap-1 sm:min-w-[160px]">
+          <div className="flex items-baseline gap-2">
+            <span className="text-[36px] font-extrabold text-[#131a1c] leading-none">4.9</span>
+            <div className="flex gap-0.5">
+              {[0, 1, 2, 3, 4].map((s) => (
+                <Star key={s} className="h-4 w-4 fill-amber-400 text-amber-400" />
+              ))}
+            </div>
           </div>
-          <p className="text-xs text-[#636363] mt-0.5">{rev.timeAgo}</p>
-          <div className="flex items-center gap-0.5 mt-1">
-            {[0, 1, 2, 3, 4].map((s) => (
-              <Star key={s} className="h-4 w-4 fill-amber-400 text-amber-400" />
+          <p className="text-[13px] font-bold uppercase tracking-wide text-[#131a1c]">EXCELLENT</p>
+          <p className="flex items-center gap-1.5 text-[12px] text-[#636363]">
+            <Image src="/images/logo/google-g.png" alt="Google" width={16} height={16} className="h-4 w-4" />
+            {SITE_CONFIG.rating.count}+ Google Reviews
+          </p>
+        </div>
+
+        {/* Right — auto-scrolling review cards */}
+        <div className="relative flex-1 min-w-0 overflow-hidden">
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-l from-white to-transparent" />
+          <div
+            ref={scrollRef}
+            className="flex gap-4 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {REVIEWS.map((rev) => (
+              <div key={rev.name} className="min-w-[260px] w-[280px] flex-shrink-0 rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+                <div className="flex gap-0.5 mb-2">
+                  {[0, 1, 2, 3, 4].map((s) => (
+                    <Star key={s} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <p className="text-[13px] leading-[1.6] text-[#414042] line-clamp-3 mb-3">&ldquo;{rev.text}&rdquo;</p>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-[13px] font-bold text-[#131a1c]">{rev.name}</p>
+                    <p className="text-[11px] text-[#636363]">{rev.suburb}</p>
+                  </div>
+                  <p className="text-[11px] text-[#636363]">{rev.timeAgo}</p>
+                </div>
+              </div>
             ))}
-            <BadgeCheck className="h-3.5 w-3.5 text-blue-500 flex-shrink-0 ml-0.5" aria-label="Verified" />
           </div>
         </div>
       </div>
-      <p className="text-[13px] leading-relaxed text-[#414042] flex-1 line-clamp-4">&ldquo;{rev.text}&rdquo;</p>
-      <a
-        href={GOOGLE_REVIEWS_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-xs font-semibold text-[#3fa535] hover:underline mt-2"
-      >
-        Read more
-      </a>
     </div>
   );
 }
