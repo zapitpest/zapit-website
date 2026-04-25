@@ -30,10 +30,15 @@ export default function HomeHero() {
 
   return (
     <section className="relative overflow-hidden bg-[#131a1c]">
+      {/* Green accent line separating hero from header */}
+      <div className="h-[3px] w-full bg-gradient-to-r from-transparent via-[#3fa535] to-transparent" />
+
       <div className="pointer-events-none absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full bg-[#0d402e]/50 blur-[100px]" />
       <div className="pointer-events-none absolute -bottom-20 -left-20 h-[300px] w-[300px] rounded-full bg-[#3fa535]/10 blur-[80px]" />
+      {/* Subtle grid texture */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
-      <div className="relative z-10 mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-8 px-5 pb-12 pt-8 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:gap-12 lg:pb-16 lg:pt-14">
+      <div className="relative z-10 mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-8 px-5 pb-12 pt-10 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:gap-12 lg:pb-16 lg:pt-14">
         {/* LEFT — text */}
         <div className="order-2 lg:order-1">
           <p className="mb-3 text-[12px] font-bold uppercase tracking-[0.15em] text-[#3fa535] sm:text-[13px]">

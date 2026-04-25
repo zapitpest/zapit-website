@@ -11,6 +11,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import type { FAQ, BreadcrumbItem } from '@/types';
 import HeroSlider from './HeroSlider';
 import GoogleReviewsCarousel from './GoogleReviewsCarousel';
+import InquiryForm from './InquiryForm';
 
 const WP = '/images/wp-assets';
 const MELBOURNE_MAP =
@@ -332,6 +333,13 @@ export default function ResidentialPage() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
+
+      {/* ===== 9b. INQUIRY FORM — cream bg ===== */}
+      <ScrollReveal direction="up">
+        <section className="bg-white px-4 py-6 sm:px-5 sm:py-8">
+          <InquiryForm />
+        </section>
       </ScrollReveal>
 
       {/* ===== 10. PEST SOLUTIONS AND PRICE LIST ===== */}
