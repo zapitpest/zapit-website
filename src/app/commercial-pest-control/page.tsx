@@ -42,12 +42,12 @@ const INDUSTRIES = [
 ] as const;
 
 const APPROACH_CARDS = [
-  { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', title: 'Ongoing service plans', desc: 'Scheduled visits year-round. We keep pests out before they become a problem.' },
-  { icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4', title: 'Rodent monitoring systems', desc: 'Digital bait stations mapped to your site. Full documentation for audits.' },
-  { icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', title: 'Documentation & reporting', desc: 'Digital service report after every visit. Everything your auditor needs.' },
-  { icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', title: 'Preventative maintenance', desc: 'We identify entry points and risk areas — not just treat what\'s visible.' },
-  { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Minimal disruption', desc: 'Early mornings, after-hours, weekends. We work around your business.' },
-  { icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4', title: 'Compliance support', desc: 'We know what auditors expect. We make sure your site meets it every time.' },
+  { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', title: 'Ongoing service plans', desc: 'Scheduled visits year-round. We keep pests out before they become a problem.', detail: 'Monthly or quarterly programs tailored to your risk profile and industry requirements.' },
+  { icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4', title: 'Rodent monitoring systems', desc: 'Digital bait stations mapped to your site. Full documentation for audits.', detail: 'GPS-mapped stations with real-time activity tracking and trend reporting.' },
+  { icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', title: 'Documentation & reporting', desc: 'Digital service report after every visit. Everything your auditor needs.', detail: 'Instant access to treatment records, certificates, and compliance documents online.' },
+  { icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', title: 'Preventative maintenance', desc: 'We identify entry points and risk areas — not just treat what\'s visible.', detail: 'Proofing recommendations, exclusion works, and environmental modifications included.' },
+  { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Minimal disruption', desc: 'Early mornings, after-hours, weekends. We work around your business.', detail: 'Flexible scheduling including public holidays. Your operations always come first.' },
+  { icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4', title: 'Compliance support', desc: 'We know what auditors expect. We make sure your site meets it every time.', detail: 'HACCP, WHS, BRC, and third-party audit support with pre-audit site reviews.' },
 ] as const;
 
 const BUSINESS_REVIEWS = [
@@ -130,8 +130,8 @@ export default function CommercialPestControlPage() {
                   Book an appointment →
                 </a>
               </div>
-              <div className="overflow-hidden rounded-2xl bg-[#0d402e]">
-                <Image src="/images/hero/pest-treatment-melbourne.webp" alt="Commercial pest control professional" width={500} height={350} className="h-auto w-full object-cover opacity-80" />
+              <div className="overflow-hidden rounded-2xl">
+                <Image src="/images/commercial/aerial-view.png" alt="Zap It commercial fleet servicing business premises" width={500} height={350} className="h-auto w-full object-cover" />
               </div>
             </div>
           </div>
@@ -166,27 +166,38 @@ export default function CommercialPestControlPage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 6. STRUCTURED APPROACH ===== */}
+      {/* ===== 6. STRUCTURED APPROACH — green theme (termite-style) ===== */}
       <ScrollReveal direction="up">
-        <section className="bg-white px-4 py-10 sm:px-6 sm:py-14">
+        <section className="bg-[#1cdc38] px-4 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-3xl">
-            <p className="mb-2 text-[12px] font-bold uppercase tracking-[0.15em] text-[#3fa535]">OUR COMMERCIAL SERVICES</p>
-            <h2 className="mb-2 text-[22px] font-bold text-[#131a1c] sm:text-[28px]">
+            <p className="mb-2 text-center text-[12px] font-bold uppercase tracking-[0.2em] text-[#0d402e]">OUR COMMERCIAL SERVICES</p>
+            <h2 className="mb-2 text-center text-[24px] font-bold text-[#131a1c] sm:text-[28px]">
               A structured approach to pest management
             </h2>
-            <p className="mb-8 max-w-lg text-[14px] text-[#414042]">
+            <p className="mx-auto mb-8 max-w-md text-center text-[14px] text-[#131a1c]/70">
               Not a spray and walk away. A proper program built around your site and your compliance requirements.
             </p>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="space-y-3">
               {APPROACH_CARDS.map((card) => (
-                <div key={card.title} className="rounded-2xl border border-[#e5e5e5] bg-[#f8f5f2] px-5 py-5">
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white">
-                    <svg className="h-5 w-5 text-[#3fa535]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d={card.icon} /></svg>
+                <div key={card.title} className="rounded-2xl bg-white/95 px-5 py-5 shadow-sm backdrop-blur-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#0d402e]">
+                      <svg className="h-5 w-5 text-[#1cdc38]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d={card.icon} /></svg>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="mb-1 text-[15px] font-bold text-[#131a1c]">{card.title}</h3>
+                      <p className="text-[13px] leading-[1.5] text-[#414042]">{card.desc}</p>
+                      <p className="mt-1 text-[12px] italic leading-[1.5] text-[#414042]/60">{card.detail}</p>
+                    </div>
                   </div>
-                  <h3 className="mb-1 text-[14px] font-bold text-[#131a1c]">{card.title}</h3>
-                  <p className="text-[12px] leading-[1.6] text-[#414042]">{card.desc}</p>
                 </div>
               ))}
+            </div>
+            <div className="mt-8 text-center">
+              <p className="flex items-center justify-center gap-2 rounded-xl bg-[#0d402e]/90 px-5 py-4 text-[14px] font-bold italic text-[#1cdc38] shadow-md sm:text-[15px]">
+                <svg className="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="2" /><path d="M12 8v4m0 4h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+                Every commercial service includes a detailed digital compliance report
+              </p>
             </div>
           </div>
         </section>
@@ -307,11 +318,11 @@ export default function CommercialPestControlPage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 10d. Commercial image ===== */}
+      {/* ===== 10d. Commercial fleet image ===== */}
       <ScrollReveal direction="up">
         <section className="relative w-full overflow-hidden">
-          <div className="relative aspect-[375/300] w-full sm:aspect-[16/8]">
-            <Image src="/images/commercial/commercial-hero.png" alt="Commercial kitchen pest protection" fill className="object-cover object-center" sizes="100vw" />
+          <div className="relative aspect-[375/250] w-full sm:aspect-[16/7]">
+            <Image src="/images/commercial/aerial-view.png" alt="Zap It pest control fleet servicing commercial clients across Melbourne" fill className="object-cover object-center" sizes="100vw" />
           </div>
         </section>
       </ScrollReveal>

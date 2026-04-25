@@ -219,22 +219,31 @@ export default async function CommercialIndustryPage({ params }: Props) {
 
   const otherIndustries = ALL_INDUSTRIES.filter((i) => i.slug !== slug).slice(0, 6);
 
+  const COMPLIANCE = ['DHHS Licensed', 'HACCP Certified', 'Fully Insured', 'AEPMA Member', 'Wildlife Licence'] as const;
+
+  const PROCESS_STEPS = [
+    { n: '01', title: 'Site assessment', body: 'We inspect your premises, identify risks, and map high-activity zones specific to your industry.' },
+    { n: '02', title: 'Custom plan', body: 'A tailored pest management program built around your operations, compliance needs, and schedule.' },
+    { n: '03', title: 'Treatment & monitoring', body: 'Licensed technicians carry out treatments with minimal disruption. Monitoring systems installed where needed.' },
+    { n: '04', title: 'Reporting & follow-up', body: 'Full digital report after every visit. Ongoing reviews to adapt the program as your business evolves.' },
+  ] as const;
+
   return (
     <>
       <JsonLd data={jsonLd} />
 
       {/* ===== HERO ===== */}
-      <section className="relative w-full overflow-hidden bg-[#131a1c]">
+      <section className="relative w-full overflow-hidden bg-[#0d402e]">
         <div className="absolute inset-0">
-          <Image src="/images/commercial/commercial-hero.png" alt="" fill className="object-cover object-center opacity-20" sizes="100vw" />
+          <Image src="/images/commercial/aerial-view.png" alt="" fill className="object-cover object-center opacity-25" sizes="100vw" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#131a1c] via-[#131a1c]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d402e] via-[#0d402e]/70 to-[#0d402e]/30" />
         <div className="relative z-10 px-5 pb-10 pt-6 sm:px-6 sm:pb-14 sm:pt-8">
           <nav className="mb-6 text-[12px] text-white/50 sm:text-[13px]" aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-1.5">
               {breadcrumbItems.map((item, i) => (
                 <li key={item.href} className="flex items-center gap-1.5">
-                  {i > 0 && <span className="text-[#3fa535]">/</span>}
+                  {i > 0 && <span className="text-[#1cdc38]">/</span>}
                   {i < breadcrumbItems.length - 1 ? (
                     <Link href={item.href} className="transition-colors hover:text-white">{item.name}</Link>
                   ) : (
@@ -244,17 +253,30 @@ export default async function CommercialIndustryPage({ params }: Props) {
               ))}
             </ol>
           </nav>
+          <p className="mb-2 text-[12px] font-bold uppercase tracking-[0.2em] text-[#1cdc38]">COMMERCIAL PEST MANAGEMENT</p>
           <h1 className="mb-4 max-w-lg text-[28px] font-bold leading-[1.1] text-white sm:text-[36px] lg:text-[44px]">{page.h1}</h1>
-          <p className="max-w-md text-[16px] leading-[1.5] text-white/70 sm:text-[17px]">{page.heroDescription}</p>
+          <p className="max-w-md text-[16px] leading-[1.5] text-white/80 sm:text-[17px]">{page.heroDescription}</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a href={SITE_CONFIG.phoneTel} className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-[#3fa535] px-7 py-3 text-[15px] font-bold text-white shadow-lg transition-transform hover:scale-105">
               <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
               Call {SITE_CONFIG.phone}
             </a>
-            <Link href="/contact-us" className="inline-flex min-h-[48px] items-center rounded-full border border-white/20 px-7 py-3 text-[15px] font-semibold text-white transition-colors hover:border-white hover:bg-white/5">
+            <Link href="/contact-us" className="inline-flex min-h-[48px] items-center rounded-full border border-white/30 px-7 py-3 text-[15px] font-semibold text-white transition-colors hover:border-white hover:bg-white/10">
               Get a quote
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ===== COMPLIANCE BAR ===== */}
+      <section className="bg-[#131a1c] px-4 py-3 sm:px-6 sm:py-4">
+        <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-3 sm:gap-5">
+          {COMPLIANCE.map((c) => (
+            <span key={c} className="flex items-center gap-1.5 text-[11px] font-semibold text-white/80 sm:text-[12px]">
+              <svg className="h-3.5 w-3.5 text-[#1cdc38]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+              {c}
+            </span>
+          ))}
         </div>
       </section>
 
@@ -278,6 +300,37 @@ export default async function CommercialIndustryPage({ params }: Props) {
         </section>
       </ScrollReveal>
 
+      {/* ===== OUR PROCESS — green theme ===== */}
+      <ScrollReveal direction="up">
+        <section className="bg-[#1cdc38] px-4 py-10 sm:px-6 sm:py-14">
+          <div className="mx-auto max-w-xl">
+            <h2 className="mb-2 text-center text-[22px] font-bold text-[#131a1c] sm:text-[26px]">
+              How we protect your {pageName.toLowerCase()} facility
+            </h2>
+            <p className="mx-auto mb-8 max-w-sm text-center text-[13px] text-[#131a1c]/70">
+              A clear, structured process from first call to ongoing protection.
+            </p>
+            <div className="space-y-3">
+              {PROCESS_STEPS.map((step) => (
+                <div key={step.n} className="flex items-start gap-4 rounded-2xl bg-white/95 px-5 py-4 shadow-sm">
+                  <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#0d402e] text-[13px] font-bold text-[#1cdc38]">{step.n}</span>
+                  <div>
+                    <h3 className="text-[15px] font-bold text-[#131a1c]">{step.title}</h3>
+                    <p className="mt-0.5 text-[13px] leading-[1.5] text-[#414042]">{step.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 text-center">
+              <p className="inline-flex items-center gap-2 rounded-xl bg-[#0d402e]/90 px-5 py-3 text-[13px] font-bold italic text-[#1cdc38]">
+                <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="2" /><path d="M12 8v4m0 4h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+                All treatments include a full digital compliance report
+              </p>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
       {/* ===== GOOGLE REVIEWS ===== */}
       <ScrollReveal direction="up" delay={100}>
         <GoogleReviewsCarousel />
@@ -290,10 +343,10 @@ export default async function CommercialIndustryPage({ params }: Props) {
             <h2 className="mb-6 text-center text-[20px] font-bold text-white sm:text-[24px]">Why choose {SITE_CONFIG.shortName}?</h2>
             <div className="grid grid-cols-2 gap-4 text-center sm:grid-cols-4">
               {([
-                { val: '15+', label: 'Years Experience' },
-                { val: '5,000+', label: 'Jobs Completed' },
-                { val: '99%', label: 'First-Visit Success' },
-                { val: '24/7', label: 'Emergency Response' },
+                { val: '500+', label: 'Businesses Protected' },
+                { val: '5+ yr', label: 'Client Partnerships' },
+                { val: '<2hr', label: 'Emergency Response' },
+                { val: '100%', label: 'Compliance Reporting' },
               ] as const).map((s) => (
                 <div key={s.label}>
                   <p className="text-[28px] font-black text-[#1cdc38] sm:text-[32px]">{s.val}</p>
@@ -305,20 +358,30 @@ export default async function CommercialIndustryPage({ params }: Props) {
         </section>
       </ScrollReveal>
 
-      {/* ===== CTA ===== */}
+      {/* ===== FLEET IMAGE ===== */}
+      <ScrollReveal direction="fade">
+        <section className="relative w-full overflow-hidden">
+          <div className="relative aspect-[375/200] w-full sm:aspect-[16/6]">
+            <Image src="/images/commercial/aerial-view.png" alt="Zap It fleet ready to serve commercial clients" fill className="object-cover object-center" sizes="100vw" />
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== READY TO DISCUSS CTA ===== */}
       <ScrollReveal direction="up">
-        <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
+        <section className="bg-[#131a1c] px-5 py-12 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-md text-center">
-            <h2 className="mb-3 text-[22px] font-bold text-[#131a1c] sm:text-[26px]">Book {pageName} pest control today</h2>
-            <p className="mb-6 text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">
+            <h2 className="mb-3 text-[22px] font-bold text-white sm:text-[26px]">Book {pageName.toLowerCase()} pest control today</h2>
+            <p className="mb-6 text-[14px] leading-[1.7] text-white/70 sm:text-[15px]">
               Call {SITE_CONFIG.phone} for urgent advice, or book online for a time that suits you.
             </p>
+            <p className="mb-5 text-[28px] font-black text-[#1cdc38] sm:text-[34px]">{SITE_CONFIG.phone}</p>
             <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <a href={SITE_CONFIG.phoneTel} className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#3fa535] px-7 py-3 text-[15px] font-bold text-white shadow-lg transition-transform hover:scale-105 sm:w-auto">
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                Call {SITE_CONFIG.phone}
+                Call Now
               </a>
-              <a href={SITE_CONFIG.booking.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full border-2 border-[#3fa535] px-7 py-3 text-[15px] font-bold text-[#3fa535] transition-colors hover:bg-[#3fa535] hover:text-white sm:w-auto">
+              <a href={SITE_CONFIG.booking.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full border-2 border-[#1cdc38] px-7 py-3 text-[15px] font-bold text-[#1cdc38] transition-colors hover:bg-[#1cdc38] hover:text-[#131a1c] sm:w-auto">
                 Book online
               </a>
             </div>
@@ -328,7 +391,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
 
       {/* ===== OTHER INDUSTRIES ===== */}
       <ScrollReveal direction="up" delay={100}>
-        <section className="bg-white px-4 py-10 sm:px-6 sm:py-14">
+        <section className="bg-[#f8f5f2] px-4 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-xl">
             <h2 className="mb-6 text-center text-[20px] font-bold text-[#131a1c] sm:text-[22px]">Other industries we serve</h2>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -336,7 +399,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
                 <Link
                   key={ind.slug}
                   href={ind.href}
-                  className="rounded-xl border border-[#e5e5e5] bg-[#f8f5f2] px-4 py-3.5 text-center text-[13px] font-semibold text-[#131a1c] transition-all hover:border-[#3fa535] hover:shadow-md sm:text-[14px]"
+                  className="rounded-xl border border-[#e5e5e5] bg-white px-4 py-3.5 text-center text-[13px] font-semibold text-[#131a1c] transition-all hover:border-[#3fa535] hover:shadow-md sm:text-[14px]"
                 >
                   {titleCase(ind.label)}
                 </Link>

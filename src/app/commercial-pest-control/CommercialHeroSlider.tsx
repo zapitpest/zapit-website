@@ -7,16 +7,16 @@ import { SITE_CONFIG } from '@/lib/constants';
 
 const SLIDES = [
   {
+    src: '/images/commercial/aerial-view.png',
+    alt: 'Zap It fleet servicing commercial premises across Melbourne',
+  },
+  {
     src: '/images/commercial/commercial-hero.png',
     alt: 'Tailored business pest protection - Kitchen and restaurant pest control',
   },
   {
-    src: '/images/hero/pest-service-melbourne.webp',
-    alt: 'Commercial pest service across Melbourne businesses',
-  },
-  {
-    src: '/images/hero/pest-worker.webp',
-    alt: 'Commercial pest control technician at work',
+    src: '/images/wp-assets/2024-07-—Pngtree—pest-control-worker-in-protective_15020351-1024x1024.png',
+    alt: 'Professional commercial pest control technician in protective gear',
   },
 ] as const;
 
