@@ -457,6 +457,30 @@ export default function ResidentialPage() {
         </div>
       </section>
 
+      {/* ===== 12b. WE'VE GOT MELBOURNE COVERED ===== */}
+      <ScrollReveal direction="up">
+      <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10">
+        <div className="mx-auto max-w-[338px] text-center">
+          <h2 className="mb-3 text-[20px] font-bold leading-[24px] text-white">
+            We&apos;ve got Melbourne covered
+          </h2>
+          <p className="mb-6 text-[14px] leading-[18px] text-white/80">
+            We service all suburbs in Melbourne, no matter if you&apos;re in an inner city apartment or a bush block in Warrandyte, we&apos;ve got you protected.
+          </p>
+        </div>
+        {/* Fleet image */}
+        <div className="mx-auto overflow-hidden rounded-2xl sm:max-w-xl">
+          <Image
+            src="/images/residential/melbourne-fleet.png"
+            alt="Zap It Pest Control fleet of vehicles covering all Melbourne suburbs"
+            width={480}
+            height={320}
+            className="w-full object-cover"
+          />
+        </div>
+      </section>
+      </ScrollReveal>
+
       {/* ===== 13. INSURED, LICENSED, ACCREDITED ===== */}
       <ScrollReveal direction="up">
       <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
