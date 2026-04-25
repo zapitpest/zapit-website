@@ -268,7 +268,64 @@ export default function CommercialPestControlPage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 10. COMMERCIAL INQUIRY FORM ===== */}
+      {/* ===== 10. MULTI-SITE DISCOUNT — green card ===== */}
+      <ScrollReveal direction="up">
+        <section className="bg-white px-4 py-6 sm:px-5 sm:py-8">
+          <div className="mx-auto max-w-lg rounded-[20px] bg-[#1cdc38] px-5 py-6 sm:max-w-xl sm:px-6 sm:py-8">
+            <h2 className="mb-4 text-center text-[24px] font-bold leading-[1.2] text-[#414042]">
+              Multi-site &amp; ongoing<br />service discounts
+            </h2>
+            <div className="flex items-start gap-4">
+              <div className="flex h-[75px] w-[78px] shrink-0 flex-col items-center justify-center rounded-full bg-[#f8f5f2]">
+                <span className="text-[25px] font-black leading-none tracking-[-0.05em] text-[#414042]">Save</span>
+                <span className="text-[25px] font-black leading-none tracking-[-0.05em] text-[#414042]">20%</span>
+              </div>
+              <p className="text-[14px] leading-[1.3] text-[#414042]">
+                Businesses with multiple sites or ongoing monthly service plans receive up to 20% off. Contact us for a tailored commercial quote.
+              </p>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 10b. SAME DAY SERVICE ===== */}
+      <ScrollReveal direction="fade">
+        <section className="bg-[#0d402e] py-8 sm:py-10">
+          <a href={SITE_CONFIG.phoneTel} className="mx-auto block max-w-[360px] px-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/icons/group-350.svg" alt="Same day service available. Call now!" className="h-auto w-full" />
+          </a>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 10c. DARK SECTIONS — Business protection messages ===== */}
+      <ScrollReveal direction="fade">
+        <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-12">
+          <p className="mx-auto max-w-md text-center text-[18px] italic leading-[1.5] text-[#1cdc38] sm:text-[20px]">
+            Your business reputation and compliance are at the heart of everything we do, supported by industry-leading processes and technology.
+          </p>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 10d. Commercial image ===== */}
+      <ScrollReveal direction="up">
+        <section className="relative w-full overflow-hidden">
+          <div className="relative aspect-[375/300] w-full sm:aspect-[16/8]">
+            <Image src="/images/commercial/commercial-hero.png" alt="Commercial kitchen pest protection" fill className="object-cover object-center" sizes="100vw" />
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 10e. Staff safety text ===== */}
+      <ScrollReveal direction="fade" delay={100}>
+        <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-12">
+          <p className="mx-auto max-w-md text-center text-[18px] italic leading-[1.5] text-[#1cdc38] sm:text-[20px]">
+            We take every measure to keep your staff, customers, and premises safe — discreet treatments that don&apos;t disrupt your operations.
+          </p>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 11. COMMERCIAL INQUIRY FORM ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#f8f5f2] px-4 py-6 sm:px-5 sm:py-8">
           <CommercialInquiryForm />

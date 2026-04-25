@@ -11,12 +11,12 @@ const SLIDES = [
     alt: 'Tailored business pest protection - Kitchen and restaurant pest control',
   },
   {
-    src: '/images/hero/pest-treatment-melbourne.webp',
-    alt: 'Professional commercial pest management Melbourne',
-  },
-  {
     src: '/images/hero/pest-service-melbourne.webp',
     alt: 'Commercial pest service across Melbourne businesses',
+  },
+  {
+    src: '/images/hero/pest-worker.webp',
+    alt: 'Commercial pest control technician at work',
   },
 ] as const;
 

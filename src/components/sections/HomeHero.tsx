@@ -54,8 +54,8 @@ export default function HomeHero() {
           </div>
         ))}
 
-        {/* Subtle gradient — lighter than before, just enough for text readability */}
-        <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#0d402e]/90 via-[#0d402e]/30 to-transparent" />
+        {/* Dark gradient — strong enough for text readability but image still visible */}
+        <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#0d402e] via-[#0d402e]/60 to-[#0d402e]/15" />
 
         {/* Green checkmark — right side */}
         <div className="absolute right-6 top-[45%] z-30 sm:right-10">
