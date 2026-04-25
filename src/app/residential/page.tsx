@@ -460,11 +460,11 @@ export default function ResidentialPage() {
       {/* ===== 12b. WE'VE GOT MELBOURNE COVERED ===== */}
       <ScrollReveal direction="up">
       <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10">
-        <div className="mx-auto max-w-[338px] text-center">
-          <h2 className="mb-3 text-[20px] font-bold leading-[24px] text-white">
+        <div className="mx-auto max-w-md text-center">
+          <h2 className="mb-3 text-[24px] font-bold leading-[28px] text-white sm:text-[28px] sm:leading-[32px]">
             We&apos;ve got Melbourne covered
           </h2>
-          <p className="mb-6 text-[14px] leading-[18px] text-white/80">
+          <p className="mb-6 text-[16px] font-medium leading-[22px] text-white/80 sm:text-[17px] sm:leading-[24px]">
             We service all suburbs in Melbourne, no matter if you&apos;re in an inner city apartment or a bush block in Warrandyte, we&apos;ve got you protected.
           </p>
         </div>

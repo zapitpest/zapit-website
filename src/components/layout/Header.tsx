@@ -210,55 +210,12 @@ export default function Header() {
     return () => document.body.classList.remove('overflow-hidden');
   }, [mobileOpen]);
 
-  /* Tab + hamburger row */
-  function TabRow({ compact = false }: { compact?: boolean }) {
-    const py = compact ? 'py-2' : 'py-3.5 sm:py-4';
-    const textSize = compact ? 'text-[13px]' : 'text-[16px]';
-    const btnSize = compact ? 'h-[34px] w-[34px]' : 'h-[52px] w-[52px] sm:h-[56px] sm:w-[56px]';
-    return (
-      <div className="flex items-center gap-2.5">
-        {/* Residential tab */}
-        <Link
-          href="/residential"
-          className={`flex-1 rounded-2xl ${py} text-center ${textSize} font-bold transition-colors ${
-            isResidential
-              ? 'bg-[#f8f5f2] text-[#0d402e] shadow-sm'
-              : 'border border-[#f8f5f2]/35 text-[#f8f5f2]/50 hover:border-[#f8f5f2]/60 hover:text-[#f8f5f2]/70'
-          }`}
-        >
-          Residential
-        </Link>
-        {/* Commercial tab */}
-        <Link
-          href="/commercial-pest-control"
-          className={`flex-1 rounded-2xl ${py} text-center ${textSize} font-bold transition-colors ${
-            isCommercial
-              ? 'bg-[#f8f5f2] text-[#0d402e] shadow-sm'
-              : 'border border-[#f8f5f2]/35 text-[#f8f5f2]/50 hover:border-[#f8f5f2]/60 hover:text-[#f8f5f2]/70'
-          }`}
-        >
-          Commercial
-        </Link>
-        {/* Hamburger */}
-        <button
-          type="button"
-          onClick={() => setMobileOpen((o) => !o)}
-          className={`flex ${btnSize} shrink-0 items-center justify-center rounded-2xl border border-[#f8f5f2]/35 transition-colors hover:border-[#f8f5f2]/60`}
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={mobileOpen}
-        >
-          <HamburgerIcon open={mobileOpen} />
-        </button>
-      </div>
-    );
-  }
-
   return (
     <header className="font-sans">
-      {/* ===== MAIN HEADER — dark green ===== */}
-      <div ref={headerRef} className="bg-[#0d402e]">
-        <div className="mx-auto max-w-[1280px] px-5 pb-6 pt-5 sm:px-6 sm:pb-7 sm:pt-6">
-          {/* Row 1: Logo + Phone number */}
+      {/* ===== MAIN HEADER — dark green with tabs bleeding out bottom ===== */}
+      <div ref={headerRef} className="relative z-10 bg-[#0d402e] lg:pb-0">
+        <div className="mx-auto max-w-[1280px] px-5 pt-5 sm:px-6 sm:pt-6">
+          {/* Row 1: Logo + Phone + Hamburger */}
           <div className="flex items-center justify-between">
             <Link href="/" className="shrink-0" aria-label="Zap It home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -268,22 +225,55 @@ export default function Header() {
                 className="h-[52px] w-auto brightness-0 invert sm:h-[60px] lg:h-[66px]"
               />
             </Link>
-            <a
-              href={SITE_CONFIG.phoneTel}
-              className="text-[24px] font-bold tracking-wide text-white transition-colors hover:text-[#64FF01] sm:text-[28px] lg:text-[34px]"
-            >
-              9126 0555
-            </a>
+            <div className="flex items-center gap-3">
+              <a
+                href={SITE_CONFIG.phoneTel}
+                className="text-[24px] font-bold tracking-wide text-white transition-colors hover:text-[#64FF01] sm:text-[28px] lg:text-[34px]"
+              >
+                9126 0555
+              </a>
+              {/* Hamburger next to phone — mobile only */}
+              <button
+                type="button"
+                onClick={() => setMobileOpen((o) => !o)}
+                className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-xl border border-[#f8f5f2]/35 transition-colors hover:border-[#f8f5f2]/60 lg:hidden"
+                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileOpen}
+              >
+                <HamburgerIcon open={mobileOpen} />
+              </button>
+            </div>
           </div>
 
           {/* Tagline */}
           <p className="mt-2 text-[15px] text-white/70 sm:text-[16px]">
             Pest protection you can trust
           </p>
+        </div>
 
-          {/* Tab row — mobile only */}
-          <div className="mt-5 lg:hidden">
-            <TabRow compact={false} />
+        {/* Tab row — sticks to bottom edge, half inside green, half bleeding out */}
+        <div className="relative mx-auto max-w-[1280px] px-5 sm:px-6 lg:hidden" style={{ marginBottom: '-22px' }}>
+          <div className="mt-4 flex items-center gap-2.5">
+            <Link
+              href="/residential"
+              className={`flex-1 rounded-2xl py-3.5 text-center text-[16px] font-bold transition-colors sm:py-4 ${
+                isResidential
+                  ? 'bg-[#f8f5f2] text-[#0d402e] shadow-md'
+                  : 'border border-[#f8f5f2]/35 text-[#f8f5f2]/50 hover:border-[#f8f5f2]/60 hover:text-[#f8f5f2]/70'
+              }`}
+            >
+              Residential
+            </Link>
+            <Link
+              href="/commercial-pest-control"
+              className={`flex-1 rounded-2xl py-3.5 text-center text-[16px] font-bold transition-colors sm:py-4 ${
+                isCommercial
+                  ? 'bg-[#f8f5f2] text-[#0d402e] shadow-md'
+                  : 'border border-[#f8f5f2]/35 text-[#f8f5f2]/50 hover:border-[#f8f5f2]/60 hover:text-[#f8f5f2]/70'
+              }`}
+            >
+              Commercial
+            </Link>
           </div>
         </div>
       </div>
@@ -309,15 +299,15 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* ===== MOBILE STICKY NAV — matches SS2: logo+phone top, tabs+menu bottom ===== */}
+      {/* ===== MOBILE STICKY NAV — logo+phone+menu top, tabs bleeding bottom ===== */}
       <div
-        className={`fixed left-0 top-0 z-[1000] w-full bg-[#0d402e] pb-2.5 pt-2 shadow-[0_2px_12px_rgba(0,0,0,0.3)] transition-transform duration-200 lg:hidden ${
+        className={`fixed left-0 top-0 z-[1000] w-full bg-[#0d402e] shadow-[0_2px_12px_rgba(0,0,0,0.3)] transition-transform duration-200 lg:hidden ${
           isSticky ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className="mx-auto max-w-[1280px] px-4 sm:px-5">
-          {/* Row 1: Logo + phone */}
-          <div className="flex items-center justify-between pb-2">
+        <div className="mx-auto max-w-[1280px] px-4 pt-2 sm:px-5">
+          {/* Row 1: Logo + phone + hamburger */}
+          <div className="flex items-center justify-between">
             <Link href="/" className="shrink-0" aria-label="Zap It home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -326,12 +316,40 @@ export default function Header() {
                 className="h-[28px] w-auto brightness-0 invert"
               />
             </Link>
-            <a href={SITE_CONFIG.phoneTel} className="text-[15px] font-bold text-white hover:text-[#64FF01]">
-              9126 0555
-            </a>
+            <div className="flex items-center gap-2">
+              <a href={SITE_CONFIG.phoneTel} className="text-[15px] font-bold text-white hover:text-[#64FF01]">
+                9126 0555
+              </a>
+              <button
+                type="button"
+                onClick={() => setMobileOpen((o) => !o)}
+                className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-lg border border-[#f8f5f2]/35"
+                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileOpen}
+              >
+                <HamburgerIcon open={mobileOpen} />
+              </button>
+            </div>
           </div>
-          {/* Row 2: Compact tabs + hamburger */}
-          <TabRow compact={true} />
+          {/* Row 2: Compact tabs bleeding out */}
+          <div className="flex items-center gap-2 pb-0" style={{ marginBottom: '-16px', marginTop: '6px' }}>
+            <Link
+              href="/residential"
+              className={`flex-1 rounded-xl py-2 text-center text-[13px] font-bold transition-colors ${
+                isResidential ? 'bg-[#f8f5f2] text-[#0d402e] shadow-sm' : 'border border-[#f8f5f2]/35 text-[#f8f5f2]/50'
+              }`}
+            >
+              Residential
+            </Link>
+            <Link
+              href="/commercial-pest-control"
+              className={`flex-1 rounded-xl py-2 text-center text-[13px] font-bold transition-colors ${
+                isCommercial ? 'bg-[#f8f5f2] text-[#0d402e] shadow-sm' : 'border border-[#f8f5f2]/35 text-[#f8f5f2]/50'
+              }`}
+            >
+              Commercial
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -339,7 +357,7 @@ export default function Header() {
       {mobileOpen && (
         <div
           className="fixed inset-x-0 z-[998] overflow-y-auto overscroll-contain bg-white lg:hidden"
-          style={{ top: isSticky ? '90px' : '0', maxHeight: isSticky ? 'calc(100vh - 90px)' : '100vh', paddingBottom: '24px' }}
+          style={{ top: isSticky ? '80px' : '0', maxHeight: isSticky ? 'calc(100vh - 80px)' : '100vh', paddingBottom: '24px' }}
         >
           <ul className="list-none border-t border-[#e5e5e5]">
             {MAIN_NAV_LINKS.map((item) => {
