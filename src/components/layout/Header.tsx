@@ -119,7 +119,7 @@ export default function Header() {
 
       {/* ===== STATIC GREEN HEADER ===== */}
       <div className="relative z-20 bg-[#0d402e]">
-        <div className="mx-auto max-w-[1280px] px-5 pt-5 sm:px-6 sm:pt-6">
+        <div className="mx-auto max-w-[1280px] px-5 pt-5 pb-5 sm:px-6 sm:pt-6 sm:pb-6">
           {/* Logo + Phone + Hamburger */}
           <div className="flex items-center justify-between">
             <Link href="/" className="shrink-0" aria-label="Zap It home">
@@ -140,20 +140,15 @@ export default function Header() {
               </button>
             </div>
           </div>
-          <p className="mt-1.5 pb-1 text-[15px] text-white/60 sm:text-[16px]">Pest protection you can trust</p>
-        </div>
+          <p className="mt-1.5 text-[15px] text-white/60 sm:text-[16px]">Pest protection you can trust</p>
 
-        {/* Tabs — bleed halfway out of green area */}
-        <div className="relative mx-auto max-w-[1280px] px-5 sm:px-6 lg:hidden">
-          <div className="translate-y-[50%] flex gap-2.5">
+          {/* Tabs — fully inside the green area */}
+          <div className="mt-4 flex gap-2.5 lg:hidden">
             <Link href="/residential" className={tabCls(isResidential, 'lg')}>Residential</Link>
             <Link href="/commercial-pest-control" className={tabCls(isCommercial, 'lg')}>Commercial</Link>
           </div>
         </div>
       </div>
-
-      {/* Spacer for tab bleed on mobile (prevents content overlap) */}
-      <div className="h-[28px] bg-transparent lg:hidden" aria-hidden />
 
       {/* ===== DESKTOP NAV ===== */}
       <nav className="relative z-30 hidden border-b border-[#e5e5e5] bg-white lg:block">
@@ -170,7 +165,7 @@ export default function Header() {
       </nav>
 
       {/* ===== MOBILE STICKY HEADER ===== */}
-      <div className={`fixed left-0 top-0 z-[1100] w-full bg-[#0d402e] shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-transform duration-200 lg:hidden ${isSticky ? 'translate-y-0' : '-translate-y-full'}`}>
+      <div className={`fixed left-0 top-0 z-[1100] w-full bg-[#0d402e] pb-3 shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-transform duration-200 lg:hidden ${isSticky ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="mx-auto max-w-[1280px] px-4 pt-2.5 sm:px-5">
           {/* Row 1 */}
           <div className="flex items-center justify-between">
@@ -190,8 +185,8 @@ export default function Header() {
               </button>
             </div>
           </div>
-          {/* Row 2 — compact tabs bleed */}
-          <div className="translate-y-[50%] mt-1.5 flex gap-2">
+          {/* Row 2 — compact tabs fully inside */}
+          <div className="mt-2 flex gap-2">
             <Link href="/residential" className={tabCls(isResidential, 'sm')}>Residential</Link>
             <Link href="/commercial-pest-control" className={tabCls(isCommercial, 'sm')}>Commercial</Link>
           </div>
@@ -200,7 +195,7 @@ export default function Header() {
 
       {/* ===== MOBILE MENU OVERLAY ===== */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-[1050] overflow-y-auto bg-white pt-2 lg:hidden" style={{ paddingBottom: '80px' }}>
+        <div className="fixed inset-0 z-[1200] overflow-y-auto bg-white lg:hidden" style={{ paddingBottom: '80px' }}>
           <div className="flex items-center justify-between px-5 pb-3 pt-3 border-b border-[#e5e5e5]">
             <Link href="/" onClick={closeMobile} className="shrink-0"><img src={NAV_LOGO} alt="Zap It" className="h-[36px] w-auto" /></Link>
             <button onClick={closeMobile} className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f8f5f2]" aria-label="Close menu">
