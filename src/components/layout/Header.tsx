@@ -253,7 +253,7 @@ export default function Header() {
         {/* Tabs — positioned to hang at the bottom edge of green header */}
         <div
           className="relative z-20 mx-auto max-w-[1280px] px-5 sm:px-6 lg:hidden"
-          style={{ marginBottom: '-24px' }}
+          style={{ marginBottom: '-26px' }}
         >
           <div className="flex items-center gap-2.5">
             <Link
@@ -359,7 +359,7 @@ export default function Header() {
       {mobileOpen && (
         <div
           className="fixed inset-x-0 z-[998] overflow-y-auto overscroll-contain bg-white lg:hidden"
-          style={{ top: 0, maxHeight: '100vh', paddingTop: isSticky ? '115px' : '190px', paddingBottom: '100px' }}
+          style={{ top: isSticky ? '115px' : '165px', maxHeight: isSticky ? 'calc(100vh - 115px)' : 'calc(100vh - 165px)', paddingBottom: '100px' }}
         >
           <ul className="list-none border-t border-[#e5e5e5]">
             {MAIN_NAV_LINKS.map((item) => {
