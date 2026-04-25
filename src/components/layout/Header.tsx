@@ -245,12 +245,17 @@ export default function Header() {
           </div>
 
           {/* Tagline */}
-          <p className="mt-2 text-[16px] text-white/70 sm:text-[17px]">
+          <p className="mt-2 pb-3 text-[16px] text-white/70 sm:text-[17px]">
             Pest protection you can trust
           </p>
+        </div>
 
-          {/* Tab row — fully inside green header with padding below */}
-          <div className="mt-4 flex items-center gap-2.5 pb-5 lg:hidden">
+        {/* Tabs — positioned to hang at the bottom edge of green header */}
+        <div
+          className="relative z-20 mx-auto max-w-[1280px] px-5 sm:px-6 lg:hidden"
+          style={{ marginBottom: '-24px' }}
+        >
+          <div className="flex items-center gap-2.5">
             <Link
               href="/residential"
               className={`flex-1 rounded-2xl py-3.5 text-center text-[16px] font-bold transition-colors sm:py-4 ${
@@ -354,7 +359,7 @@ export default function Header() {
       {mobileOpen && (
         <div
           className="fixed inset-x-0 z-[998] overflow-y-auto overscroll-contain bg-white lg:hidden"
-          style={{ top: isSticky ? '110px' : '0', maxHeight: isSticky ? 'calc(100vh - 110px)' : '100vh', paddingBottom: '24px' }}
+          style={{ top: 0, maxHeight: '100vh', paddingTop: isSticky ? '110px' : '0', paddingBottom: '100px' }}
         >
           <ul className="list-none border-t border-[#e5e5e5]">
             {MAIN_NAV_LINKS.map((item) => {
