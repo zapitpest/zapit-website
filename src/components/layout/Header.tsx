@@ -359,7 +359,7 @@ export default function Header() {
       {mobileOpen && (
         <div
           className="fixed inset-x-0 z-[998] overflow-y-auto overscroll-contain bg-white lg:hidden"
-          style={{ top: 0, maxHeight: '100vh', paddingTop: isSticky ? '110px' : '0', paddingBottom: '100px' }}
+          style={{ top: 0, maxHeight: '100vh', paddingTop: isSticky ? '115px' : '190px', paddingBottom: '100px' }}
         >
           <ul className="list-none border-t border-[#e5e5e5]">
             {MAIN_NAV_LINKS.map((item) => {
@@ -375,7 +375,7 @@ export default function Header() {
                     <button
                       type="button"
                       onClick={() => setExpandedMobile(isExpanded ? null : key)}
-                      className="flex w-full items-center justify-between px-5 py-[15px] text-left text-[16px] font-medium text-[#414042]"
+                      className="flex w-full items-center justify-between px-5 py-[18px] text-left text-[16px] font-medium text-[#414042]"
                       aria-expanded={isExpanded}
                     >
                       <span className="flex items-center gap-3">
@@ -424,7 +424,7 @@ export default function Header() {
                   <Link
                     href={item.href}
                     onClick={closeMobile}
-                    className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#414042] hover:text-[#3fa535]"
+                    className="flex items-center gap-3 px-5 py-[18px] text-[16px] font-medium text-[#414042] hover:text-[#3fa535]"
                   >
                     <NavItemIcon label={item.label} />
                     {item.label}
@@ -436,7 +436,7 @@ export default function Header() {
               <Link
                 href={CONTACT_LINK.href}
                 onClick={closeMobile}
-                className="flex items-center gap-3 px-5 py-[15px] text-[16px] font-medium text-[#414042] hover:text-[#3fa535]"
+                className="flex items-center gap-3 px-5 py-[18px] text-[16px] font-medium text-[#414042] hover:text-[#3fa535]"
               >
                 <NavItemIcon label="Contact Us" />
                 Contact Us
