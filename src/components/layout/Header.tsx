@@ -212,8 +212,8 @@ export default function Header() {
 
   return (
     <header className="font-sans">
-      {/* ===== MAIN HEADER — dark green with tabs bleeding out bottom ===== */}
-      <div ref={headerRef} className="relative z-10 bg-[#0d402e] lg:pb-0">
+      {/* ===== MAIN HEADER — dark green ===== */}
+      <div ref={headerRef} className="relative z-10 bg-[#0d402e]">
         <div className="mx-auto max-w-[1280px] px-5 pt-5 sm:px-6 sm:pt-6">
           {/* Row 1: Logo + Phone + Hamburger */}
           <div className="flex items-center justify-between">
@@ -222,21 +222,20 @@ export default function Header() {
               <img
                 src={NAV_LOGO}
                 alt="Zap It Pest Control"
-                className="h-[52px] w-auto brightness-0 invert sm:h-[60px] lg:h-[66px]"
+                className="h-[56px] w-auto brightness-0 invert sm:h-[64px] lg:h-[70px]"
               />
             </Link>
             <div className="flex items-center gap-3">
               <a
                 href={SITE_CONFIG.phoneTel}
-                className="text-[24px] font-bold tracking-wide text-white transition-colors hover:text-[#64FF01] sm:text-[28px] lg:text-[34px]"
+                className="text-[26px] font-bold tracking-wide text-white transition-colors hover:text-[#64FF01] sm:text-[30px] lg:text-[36px]"
               >
                 9126 0555
               </a>
-              {/* Hamburger next to phone — mobile only */}
               <button
                 type="button"
                 onClick={() => setMobileOpen((o) => !o)}
-                className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-xl border border-[#f8f5f2]/35 transition-colors hover:border-[#f8f5f2]/60 lg:hidden"
+                className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-xl border border-[#f8f5f2]/35 transition-colors hover:border-[#f8f5f2]/60 lg:hidden"
                 aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={mobileOpen}
               >
@@ -246,14 +245,12 @@ export default function Header() {
           </div>
 
           {/* Tagline */}
-          <p className="mt-2 text-[15px] text-white/70 sm:text-[16px]">
+          <p className="mt-2 text-[16px] text-white/70 sm:text-[17px]">
             Pest protection you can trust
           </p>
-        </div>
 
-        {/* Tab row — sticks to bottom edge, half inside green, half bleeding out */}
-        <div className="relative mx-auto max-w-[1280px] px-5 sm:px-6 lg:hidden" style={{ marginBottom: '-22px' }}>
-          <div className="mt-4 flex items-center gap-2.5">
+          {/* Tab row — fully inside green header with padding below */}
+          <div className="mt-4 flex items-center gap-2.5 pb-5 lg:hidden">
             <Link
               href="/residential"
               className={`flex-1 rounded-2xl py-3.5 text-center text-[16px] font-bold transition-colors sm:py-4 ${
@@ -299,31 +296,31 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* ===== MOBILE STICKY NAV — logo+phone+menu top, tabs bleeding bottom ===== */}
+      {/* ===== MOBILE STICKY NAV ===== */}
       <div
-        className={`fixed left-0 top-0 z-[1000] w-full bg-[#0d402e] shadow-[0_2px_12px_rgba(0,0,0,0.3)] transition-transform duration-200 lg:hidden ${
+        className={`fixed left-0 top-0 z-[1000] w-full bg-[#0d402e] shadow-[0_4px_16px_rgba(0,0,0,0.25)] transition-transform duration-200 lg:hidden ${
           isSticky ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className="mx-auto max-w-[1280px] px-4 pt-2 sm:px-5">
+        <div className="mx-auto max-w-[1280px] px-4 py-3 sm:px-5">
           {/* Row 1: Logo + phone + hamburger */}
-          <div className="flex items-center justify-between">
+          <div className="mb-2.5 flex items-center justify-between">
             <Link href="/" className="shrink-0" aria-label="Zap It home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={NAV_LOGO}
                 alt="Zap It Pest Control"
-                className="h-[28px] w-auto brightness-0 invert"
+                className="h-[34px] w-auto brightness-0 invert"
               />
             </Link>
-            <div className="flex items-center gap-2">
-              <a href={SITE_CONFIG.phoneTel} className="text-[15px] font-bold text-white hover:text-[#64FF01]">
+            <div className="flex items-center gap-2.5">
+              <a href={SITE_CONFIG.phoneTel} className="text-[18px] font-bold text-white hover:text-[#64FF01]">
                 9126 0555
               </a>
               <button
                 type="button"
                 onClick={() => setMobileOpen((o) => !o)}
-                className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-lg border border-[#f8f5f2]/35"
+                className="flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-lg border border-[#f8f5f2]/35"
                 aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={mobileOpen}
               >
@@ -331,11 +328,11 @@ export default function Header() {
               </button>
             </div>
           </div>
-          {/* Row 2: Compact tabs bleeding out */}
-          <div className="flex items-center gap-2 pb-0" style={{ marginBottom: '-16px', marginTop: '6px' }}>
+          {/* Row 2: Tabs */}
+          <div className="flex items-center gap-2">
             <Link
               href="/residential"
-              className={`flex-1 rounded-xl py-2 text-center text-[13px] font-bold transition-colors ${
+              className={`flex-1 rounded-xl py-2.5 text-center text-[14px] font-bold transition-colors ${
                 isResidential ? 'bg-[#f8f5f2] text-[#0d402e] shadow-sm' : 'border border-[#f8f5f2]/35 text-[#f8f5f2]/50'
               }`}
             >
@@ -343,7 +340,7 @@ export default function Header() {
             </Link>
             <Link
               href="/commercial-pest-control"
-              className={`flex-1 rounded-xl py-2 text-center text-[13px] font-bold transition-colors ${
+              className={`flex-1 rounded-xl py-2.5 text-center text-[14px] font-bold transition-colors ${
                 isCommercial ? 'bg-[#f8f5f2] text-[#0d402e] shadow-sm' : 'border border-[#f8f5f2]/35 text-[#f8f5f2]/50'
               }`}
             >
@@ -357,7 +354,7 @@ export default function Header() {
       {mobileOpen && (
         <div
           className="fixed inset-x-0 z-[998] overflow-y-auto overscroll-contain bg-white lg:hidden"
-          style={{ top: isSticky ? '80px' : '0', maxHeight: isSticky ? 'calc(100vh - 80px)' : '100vh', paddingBottom: '24px' }}
+          style={{ top: isSticky ? '110px' : '0', maxHeight: isSticky ? 'calc(100vh - 110px)' : '100vh', paddingBottom: '24px' }}
         >
           <ul className="list-none border-t border-[#e5e5e5]">
             {MAIN_NAV_LINKS.map((item) => {
