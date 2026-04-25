@@ -1,50 +1,65 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, Mail, CheckCircle2 } from 'lucide-react';
+import { Phone, CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG, HOMEPAGE_FAQS } from '@/lib/constants';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateProductSchema, generateFAQSchema } from '@/lib/schema';
 import {
   HomepageFAQ,
-  HomepageMelbourneCoverage,
   HomepagePestServiceTabs,
   HomepageReviews,
 } from '@/components/sections/HomepageReviewsAndPestTabs';
 import PriceCalculator from '@/components/sections/PriceCalculator';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import PageInfoFooterBlock from '@/components/layout/PageInfoFooterBlock';
+import HomeHero from '@/components/sections/HomeHero';
 
 const WP = '/images/wp-assets';
 
 const PEST_ICONS = [
-  { name: 'Cockroaches', icon: '/images/icons/insects/cockroach.svg' },
-  { name: 'Ants', icon: '/images/icons/insects/ant.svg' },
-  { name: 'Spiders', icon: '/images/icons/insects/spider.svg' },
-  { name: 'Termites', icon: '/images/icons/insects/termite.svg' },
-  { name: 'Bed Bugs', icon: '/images/icons/insects/bedbug.svg' },
-  { name: 'Rats & Mice', icon: '/images/icons/insects/mouse-rat.svg' },
-  { name: 'Mosquitoes', icon: '/images/icons/insects/mosquito.svg' },
-  { name: 'Ticks', icon: '/images/icons/insects/tick.svg' },
-] as const;
-
-const STRATEGY_STEPS = [
-  { n: 1, title: 'Inspect & Diagnose', body: 'Our licensed technicians conduct a detailed inspection of your property, identifying entry points, infestation levels, and species present to create a targeted treatment plan.' },
-  { n: 2, title: 'Treat & Eliminate', body: 'Using DHHS-approved, eco-friendly solutions, we treat all affected areas to eliminate pests safely — protecting your family, pets, and property throughout the process.' },
-  { n: 3, title: 'Prevent & Monitor', body: 'We seal entry points, set up preventive barriers, and schedule follow-up visits to ensure long-term protection. You also receive a compliance certificate for your records.' },
+  { name: 'Rodents', icon: '/images/icons/insects/mouse-rat.svg', href: '/rodent-control-melbourne' },
+  { name: 'Cockroaches', icon: '/images/icons/insects/cockroach.svg', href: '/cockroach-pest-control-melbourne' },
+  { name: 'Ants', icon: '/images/icons/insects/ant.svg', href: '/ant-pest-control-melbourne' },
+  { name: 'Spiders', icon: '/images/icons/insects/spider.svg', href: '/spider-pest-control-melbourne' },
+  { name: 'Wasps & Bees', icon: '/images/icons/insects/tick.svg', href: '/wasp-removal-melbourne' },
+  { name: 'Termites', icon: '/images/icons/insects/termite.svg', href: '/termite-control-melbourne' },
+  { name: 'Fleas', icon: '/images/icons/insects/bedbug.svg', href: '/flea-control-melbourne' },
+  { name: 'Silverfish', icon: '/images/icons/insects/mosquito.svg', href: '/silverfish-control-melbourne' },
 ] as const;
 
 const STATS = [
-  { value: '15+', label: 'Years Experience' },
-  { value: '5,000+', label: 'Homes Protected' },
-  { value: '4.9★', label: 'Google Rating' },
-  { value: '<2h', label: 'Response Time' },
+  { value: '15+', label: 'YEARS EXPERIENCE' },
+  { value: '5,000+', label: 'HOMES PROTECTED' },
+  { value: '4.9★', label: 'GOOGLE RATING' },
+  { value: '<2h', label: 'RESPONSE TIME' },
 ] as const;
 
-const BLOG_CARDS = [
-  { href: '/blogs#how-to-prepare-your-home-for-a-pest-control-visit', image: `${WP}/2026-01-How-to-Prepare-Your-Home-for-a-Pest-Control-Visit-img-300x200.jpg`, title: 'How to Prepare Your Home for a Pest Control Visit', excerpt: 'Preparing your home before a pest control visit improves treatment effectiveness and keeps your family safe.' },
-  { href: '/blogs#what-happens-during-a-professional-pest-inspection', image: `${WP}/2026-01-What-Happens-During-a-Professional-Pest-Inspection-img-300x200.jpg`, title: 'What Happens During a Professional Pest Inspection?', excerpt: 'A professional pest inspection identifies existing infestations, risk areas, and the right treatment path.' },
-  { href: '/blogs#pest-control-checklist-for-new-homeowners-in-melbourne', image: `${WP}/2025-12-Pest-Control-300x168.jpg`, title: 'Pest Control Checklist for New Homeowners', excerpt: 'Moving into a new home? Here is everything you need to know about protecting it from pests from day one.' },
+const SUBURBS = [
+  'Heidelberg', 'Bundoora', 'Reservoir', 'Preston', 'Eltham',
+  'Greensborough', 'Mill Park', 'Thomastown', 'Epping',
+  'Doncaster', 'Macleod', 'Coburg', 'Northcote', 'Watsonia', 'Lalor',
+] as const;
+
+const TESTIMONIALS = [
+  { name: 'Sarah M.', initials: 'SM', location: 'Heidelberg Heights', text: 'Absolutely brilliant service. They arrived on time, explained everything clearly, and our spider problem hasn\'t come back. Highly recommend.' },
+  { name: 'James R.', initials: 'JR', location: 'Bundoora', text: 'We called about a rodent issue and they came out the same afternoon. Professional, respectful of our home, and reasonably priced.' },
+  { name: 'Priya N.', initials: 'PN', location: 'Preston', text: 'Really impressed with how careful they were around our kids and pets. They explained every product they used. Will call them again.' },
+] as const;
+
+const HOW_IT_WORKS = [
+  { n: '01', title: 'Call us', body: 'Speak directly with our team. We\'ll ask a few quick questions and confirm what you need.' },
+  { n: '02', title: 'We come to you', body: 'A licensed technician arrives on time, explains the treatment, and gets to work.' },
+  { n: '03', title: 'Problem solved', body: 'We follow up to make sure the treatment worked. If not, we come back — no charge.' },
+] as const;
+
+const CERT_ITEMS = [
+  'DHS Licensed',
+  'HACCP Certified',
+  'Wildlife Licence',
+  'Fully Insured',
+  'AEPMA Member',
+  'DHHS Licensed',
 ] as const;
 
 export const metadata: Metadata = {
@@ -67,55 +82,24 @@ export default function HomePage() {
     <>
       <JsonLd data={schemas} />
 
-      {/* ===== 1. HERO — full-bleed image with dark green overlay ===== */}
-      <section className="relative flex min-h-[480px] flex-col justify-end overflow-hidden bg-[#0d402e] pb-10 pt-24 text-white sm:min-h-[520px] sm:pb-14">
-        <Image src={`${WP}/2025-09-imgi_73_WhatsApp-Image-2025-09-17-at-3.05.27-PM.jpg`} alt="" fill priority className="-z-10 object-cover object-center opacity-30" sizes="100vw" />
-        <div className="relative z-10 mx-auto w-full max-w-[1200px] px-5 sm:px-6">
-          <h1 className="mb-4 max-w-lg text-[28px] font-bold leading-[1.15] sm:text-[36px] md:text-[44px]">
-            Pest protection you can trust
-          </h1>
-          <p className="mb-6 max-w-md text-[15px] leading-[1.7] text-white/80 sm:text-[16px]">
-            Melbourne&apos;s most trusted residential and commercial pest control service. Same-day service, eco-friendly solutions, fully licensed and insured.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={SITE_CONFIG.booking.url} target="_blank" rel="noopener noreferrer"
-              className="inline-flex min-h-[48px] items-center rounded-full bg-[#1cdc38] px-7 py-3 text-[15px] font-bold text-[#131a1c] shadow-lg transition-transform hover:scale-105"
-            >
-              Book an Inspection
-            </a>
-            <Link href="/residential" className="inline-flex min-h-[48px] items-center rounded-full border-2 border-white/30 px-7 py-3 text-[15px] font-bold text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-white/10">
-              Residential Services
-            </Link>
-          </div>
-
-          {/* Trust badges row */}
-          <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-[13px] font-medium text-white/70 sm:text-[14px]">
-            {['Child safe', 'Pet safe', 'Eco friendly', 'Insured', 'DHHS Licensed', 'Accredited'].map((t) => (
-              <span key={t} className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-[#1cdc38]" strokeWidth={2.5} />
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ===== 1. HERO — image slider with overlay ===== */}
+      <HomeHero />
 
       {/* ===== 2. STATS BAR ===== */}
       <ScrollReveal direction="fade">
-        <section className="bg-[#131a1c] py-5">
+        <section className="bg-[#131a1c] py-6">
           <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-4 px-5 sm:grid-cols-4 sm:px-6">
             {STATS.map((s) => (
               <div key={s.label} className="text-center">
-                <p className="text-[22px] font-bold text-[#1cdc38] sm:text-[28px]">{s.value}</p>
-                <p className="text-[12px] font-medium uppercase tracking-wide text-white/50 sm:text-[13px]">{s.label}</p>
+                <p className="text-[24px] font-bold text-[#1cdc38] sm:text-[30px]">{s.value}</p>
+                <p className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-white/50 sm:text-[12px]">{s.label}</p>
               </div>
             ))}
           </div>
         </section>
       </ScrollReveal>
 
-      {/* ===== 3. PESTS WE TREAT — icon grid (like residential insects) ===== */}
+      {/* ===== 3. PESTS WE TREAT — icon grid ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#0d402e] px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px]">
@@ -125,7 +109,7 @@ export default function HomePage() {
             </p>
             <div className="grid grid-cols-4 gap-3 sm:gap-5 md:grid-cols-8">
               {PEST_ICONS.map((p) => (
-                <Link key={p.name} href="/pest-solutions" className="group flex flex-col items-center gap-2 rounded-2xl bg-white/5 px-2 py-4 text-center transition-colors hover:bg-white/10">
+                <Link key={p.name} href={p.href} className="group flex flex-col items-center gap-2 rounded-2xl bg-white/5 px-2 py-4 text-center transition-colors hover:bg-white/10">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 sm:h-14 sm:w-14">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={p.icon} alt={p.name} className="h-7 w-7 sm:h-8 sm:w-8" style={{ filter: 'brightness(0) invert(1)' }} />
@@ -138,54 +122,160 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 4. WE TREAT ALL HOUSEHOLD PESTS — matching residential section ===== */}
-      <ScrollReveal direction="up">
-        <section className="bg-[#0d402e] px-5 py-6 sm:px-6 sm:py-8">
-          <div className="mx-auto max-w-xl text-center">
-            <h2 className="mb-3 text-[24px] font-bold leading-tight text-white sm:text-[28px]">
-              We treat all household pests
-            </h2>
-            <p className="mb-5 text-[15px] leading-[1.7] text-[#f8f5f2]/80 sm:text-[16px]">
-              When you protect your home and family from pests with us, your peace of mind is assured.
-              Our services are eco-friendly, child safe, pet safe and we&apos;re fully insured and DHHS Licensed.
-            </p>
-            <div className="flex items-center justify-center gap-6 sm:gap-10">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/icons/group-373.svg" alt="Child safe, Pet safe, Eco friendly" className="h-[76px] w-auto" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/icons/group-374.svg" alt="Insured, DHHS Licenced, Accredited" className="h-[76px] w-auto" />
-            </div>
-          </div>
-        </section>
-      </ScrollReveal>
-
-      {/* ===== 5. GOOGLE REVIEWS ===== */}
+      {/* ===== 4. GOOGLE REVIEWS — Figma style auto-scroll ===== */}
       <ScrollReveal direction="fade">
         <section className="bg-white px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-2 text-center text-[24px] font-bold text-[#131a1c] sm:text-[30px]">
-              What Our Customers Say
-            </h2>
-            <div className="mx-auto mb-6 h-[3px] w-14 bg-[#1cdc38]" />
             <HomepageReviews />
           </div>
         </section>
       </ScrollReveal>
 
-      {/* ===== 6. 3-STEP STRATEGY ===== */}
+      {/* ===== 5. CERTIFICATIONS BAR ===== */}
+      <ScrollReveal direction="fade">
+        <section className="border-y border-[#e5e5e5] bg-[#f8f5f2] py-4 sm:py-5">
+          <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-5 sm:gap-x-10">
+            {CERT_ITEMS.map((c) => (
+              <span key={c} className="flex items-center gap-1.5 text-[12px] font-medium text-[#414042] sm:text-[13px]">
+                <CheckCircle2 className="h-4 w-4 text-[#3fa535]" strokeWidth={2.5} />
+                {c}
+              </span>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 6. ALL PEST TYPES — Figma style cards ===== */}
+      <ScrollReveal direction="up">
+        <section className="bg-white px-5 py-10 sm:px-6 sm:py-14">
+          <div className="mx-auto max-w-[1200px]">
+            <p className="mb-1 text-center text-[12px] font-bold uppercase tracking-wider text-[#3fa535]">ALL PEST TYPES</p>
+            <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+              <h2 className="text-[24px] font-bold text-[#131a1c] sm:text-[30px]">We treat all household pests</h2>
+              <Link href="/pest-solutions" className="hidden items-center gap-2 rounded-lg border border-[#e5e5e5] bg-white px-4 py-2.5 text-[13px] font-semibold text-[#414042] shadow-sm transition-colors hover:border-[#3fa535] sm:inline-flex">
+                Go to pest solutions and price list &rarr;
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:gap-4">
+              {PEST_ICONS.map((p) => (
+                <Link key={p.name} href={p.href} className="group flex items-center gap-3 rounded-xl border border-[#e5e5e5] bg-white p-4 shadow-sm transition-all hover:border-[#3fa535] hover:shadow-md">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#f8f5f2]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={p.icon} alt="" className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <p className="text-[14px] font-bold text-[#131a1c] sm:text-[15px]">{p.name}</p>
+                    <p className="text-[12px] font-medium text-[#3fa535] group-hover:underline">View treatment &rarr;</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-6 text-center sm:hidden">
+              <Link href="/pest-solutions" className="inline-flex items-center gap-2 rounded-lg border border-[#e5e5e5] bg-white px-4 py-2.5 text-[13px] font-semibold text-[#414042] shadow-sm">
+                Go to pest solutions and price list &rarr;
+              </Link>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 7. WHERE WE WORK — suburb pills + map ===== */}
+      <ScrollReveal direction="left">
+        <section className="bg-white px-5 py-10 sm:px-6 sm:py-14">
+          <div className="mx-auto max-w-[1200px]">
+            <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-14">
+              <div>
+                <p className="mb-1 text-[12px] font-bold uppercase tracking-wider text-[#3fa535]">WHERE WE WORK</p>
+                <h2 className="mb-3 text-[24px] font-bold leading-tight text-[#131a1c] sm:text-[30px]">
+                  We protect homes across Melbourne&apos;s north and east
+                </h2>
+                <p className="mb-5 text-[15px] leading-[1.7] text-[#414042]">
+                  If you live in the northern or eastern suburbs, chances are we&apos;ve protected a home near yours. Call us and we&apos;ll confirm whether we service your area.
+                </p>
+                <div className="mb-6 flex flex-wrap gap-2">
+                  {SUBURBS.map((s) => (
+                    <span key={s} className="rounded-full border border-[#e5e5e5] bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#414042] shadow-sm sm:text-[13px]">{s}</span>
+                  ))}
+                  <span className="flex items-center text-[13px] text-[#414042]">& surrounding areas</span>
+                </div>
+                <a href={SITE_CONFIG.phoneTel} className="inline-flex items-center gap-2 rounded-full bg-[#3fa535] px-6 py-3 text-[14px] font-bold text-white transition-transform hover:scale-105">
+                  <Phone className="h-4 w-4" />Check your suburb — call us
+                </a>
+              </div>
+              <div className="relative overflow-hidden rounded-2xl bg-[#0d402e] p-6 shadow-lg sm:p-8">
+                <div className="flex flex-col items-center text-center">
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/10">
+                    <Image src="/images/icons/service-provider-icon.svg" alt="" width={32} height={32} />
+                  </div>
+                  <h3 className="mb-2 text-[20px] font-bold text-white">Northern &amp; Eastern Melbourne</h3>
+                  <p className="mb-4 text-[13px] leading-relaxed text-white/70">
+                    Airport / Tullamarine &rarr; Doncaster / Templestowe<br />
+                    Brunswick &rarr; Eltham / Diamond Creek
+                  </p>
+                  <Link href="/service-areas" className="inline-flex items-center gap-2 rounded-full bg-[#3fa535] px-5 py-2.5 text-[13px] font-bold text-white transition-transform hover:scale-105">
+                    Our coverage area
+                  </Link>
+                </div>
+                <p className="mt-4 text-center text-[11px] italic text-white/40">Replace with real map embed before launch</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 8. HOW IT WORKS — 3-step process ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-2 text-center text-[24px] font-bold text-[#131a1c] sm:text-[30px]">
-              Our 3-Step Proven Strategy
-            </h2>
-            <div className="mx-auto mb-8 h-[3px] w-14 bg-[#1cdc38]" />
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
-              {STRATEGY_STEPS.map((s) => (
-                <div key={s.n} className="rounded-2xl border border-[#e5e5e5] bg-white p-6 shadow-sm">
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#1cdc38] text-lg font-bold text-[#131a1c]">{s.n}</div>
-                  <h3 className="mb-2 text-[18px] font-bold text-[#131a1c]">{s.title}</h3>
-                  <p className="text-[14px] leading-[1.7] text-[#414042]">{s.body}</p>
+            <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-14">
+              <div>
+                <p className="mb-1 text-[12px] font-bold uppercase tracking-wider text-[#3fa535]">HOW IT WORKS</p>
+                <h2 className="mb-3 text-[24px] font-bold leading-tight text-[#131a1c] sm:text-[30px]">Easy from start to finish</h2>
+                <p className="mb-6 max-w-md text-[15px] leading-[1.7] text-[#414042]">
+                  No lengthy forms. No waiting around. Just straightforward, professional pest control that gets the job done.
+                </p>
+                <a href={SITE_CONFIG.phoneTel} className="inline-flex items-center gap-2 rounded-full bg-[#3fa535] px-6 py-3 text-[14px] font-bold text-white transition-transform hover:scale-105">
+                  <Phone className="h-4 w-4" />Call to Book
+                </a>
+              </div>
+              <div className="space-y-5">
+                {HOW_IT_WORKS.map((step) => (
+                  <div key={step.n} className="flex gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#0d402e] text-[14px] font-bold text-[#0d402e]">{step.n}</div>
+                    <div>
+                      <h3 className="text-[17px] font-bold text-[#131a1c]">{step.title}</h3>
+                      <p className="mt-1 text-[14px] leading-[1.6] text-[#414042]">{step.body}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 9. REAL PEOPLE, REAL RESULTS — testimonials ===== */}
+      <ScrollReveal direction="up">
+        <section className="bg-white px-5 py-10 sm:px-6 sm:py-14">
+          <div className="mx-auto max-w-[1200px]">
+            <p className="mb-1 text-center text-[12px] font-bold uppercase tracking-wider text-[#3fa535]">WHAT CUSTOMERS SAY</p>
+            <h2 className="mb-8 text-center text-[24px] font-bold text-[#131a1c] sm:text-[30px]">Real people, real results</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6">
+              {TESTIMONIALS.map((t) => (
+                <div key={t.name} className="flex flex-col rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-sm sm:p-6">
+                  <div className="mb-3 flex gap-0.5">
+                    {[0, 1, 2, 3, 4].map((s) => (
+                      <svg key={s} className="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    ))}
+                  </div>
+                  <p className="mb-4 flex-1 text-[14px] leading-[1.65] text-[#414042]">&ldquo;{t.text}&rdquo;</p>
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0d402e] text-[13px] font-bold text-white">{t.initials}</div>
+                    <div>
+                      <p className="text-[14px] font-bold text-[#131a1c]">{t.name}</p>
+                      <p className="text-[12px] text-[#636363]">{t.location}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -193,96 +283,82 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 7. COMPLETE PEST CONTROL TABS ===== */}
-      <ScrollReveal direction="up">
-        <section className="bg-white px-5 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-2 text-center text-[24px] font-bold text-[#131a1c] sm:text-[30px]">
-              Complete Pest Control Solutions
-            </h2>
-            <div className="mx-auto mb-8 h-[3px] w-14 bg-[#1cdc38]" />
-            <HomepagePestServiceTabs />
-            <div className="mt-8 text-center">
-              <Link href="/pest-solutions" className="inline-flex min-h-[48px] items-center rounded-full bg-[#1cdc38] px-8 py-3 text-sm font-bold text-[#131a1c] transition-transform hover:scale-105">
-                Explore All Services
-              </Link>
-            </div>
-          </div>
-        </section>
-      </ScrollReveal>
-
-      {/* ===== 8. SAME-DAY SERVICE CTA ===== */}
-      <ScrollReveal direction="left">
-        <section className="bg-[#0d402e] px-5 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-14">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
-                <Image src={`${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`} alt="Zap It pest controller treating a Melbourne home" fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
-              </div>
-              <div>
-                <h2 className="mb-4 text-[24px] font-bold leading-tight text-white sm:text-[30px]">
-                  Same-Day Pest Control Service
-                </h2>
-                <p className="mb-4 text-[15px] leading-[1.7] text-white/80">
-                  When pests invade, you need fast action. Our licensed technicians arrive the same day, equipped with the latest technology and eco-friendly treatments to eliminate pests and prevent future infestations.
-                </p>
-                <ul className="mb-6 space-y-2 text-[14px] text-white/70">
-                  {['Same-day emergency response', 'Eco-friendly, DHHS-approved treatments', 'Child and pet safe solutions', 'Comprehensive follow-up inspections'].map((t) => (
-                    <li key={t} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#1cdc38]" strokeWidth={2.5} />{t}</li>
-                  ))}
-                </ul>
-                <a href={SITE_CONFIG.booking.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[48px] items-center rounded-full bg-[#1cdc38] px-8 py-3 text-[15px] font-bold text-[#131a1c] transition-transform hover:scale-105">
-                  Book an Inspection Today
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      </ScrollReveal>
-
-      {/* ===== 9. WHY CHOOSE US / MELBOURNE COVERAGE ===== */}
-      <ScrollReveal direction="up">
-        <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-2 text-center text-[24px] font-bold text-[#131a1c] sm:text-[30px]">
-              Why Choose Zap It?
-            </h2>
-            <div className="mx-auto mb-8 h-[3px] w-14 bg-[#1cdc38]" />
-            <HomepageMelbourneCoverage />
-          </div>
-        </section>
-      </ScrollReveal>
-
-      {/* ===== 10. PRICE CALCULATOR ===== */}
+      {/* ===== 10. VIDEO SECTION ===== */}
       <ScrollReveal direction="fade">
-        <PriceCalculator />
+        <section className="bg-[#0d402e] px-5 py-10 sm:px-6 sm:py-14">
+          <div className="mx-auto max-w-[1200px] text-center">
+            <p className="mb-1 text-[12px] font-bold uppercase tracking-wider text-[#3fa535]">SEE US IN ACTION</p>
+            <h2 className="mb-2 text-[24px] font-bold text-white sm:text-[30px]">Watch how we protect Melbourne homes</h2>
+            <p className="mx-auto mb-8 max-w-lg text-[14px] leading-[1.7] text-white/70 sm:text-[15px]">
+              A short video showing our team at work — the professional, respectful way we care for your home.
+            </p>
+            <div className="mx-auto max-w-xl overflow-hidden rounded-2xl border-2 border-[#3fa535]/30 bg-[#0d402e]">
+              <div className="relative flex aspect-video items-center justify-center bg-black/20">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+                  <svg className="ml-1 h-7 w-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <p className="absolute bottom-4 text-[13px] italic text-white/40">New branded video — coming soon</p>
+              </div>
+            </div>
+            <a href={SITE_CONFIG.phoneTel} className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#3fa535] px-7 py-3 text-[15px] font-bold text-white transition-transform hover:scale-105">
+              <Phone className="h-4 w-4" />Call Now — {SITE_CONFIG.phone}
+            </a>
+          </div>
+        </section>
       </ScrollReveal>
 
-      {/* ===== 11. PEST LIBRARY / BLOG ===== */}
-      <ScrollReveal direction="up">
-        <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-2 text-center text-[24px] font-bold text-[#131a1c] sm:text-[30px]">Pest Library</h2>
-            <div className="mx-auto mb-8 h-[3px] w-14 bg-[#1cdc38]" />
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-              {BLOG_CARDS.map((b) => (
-                <Link key={b.title} href={b.href} className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md">
-                  <div className="relative h-[200px] w-full">
-                    <Image src={b.image} alt="" fill className="object-cover" sizes="(min-width: 768px) 33vw, 100vw" />
-                  </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <h3 className="mb-2 text-[16px] font-bold leading-snug text-[#131a1c] group-hover:text-[#1cdc38]">{b.title}</h3>
-                    <p className="mb-4 flex-1 text-[13px] leading-[1.6] text-[#414042] line-clamp-3">{b.excerpt}</p>
-                    <span className="inline-flex w-fit rounded-full bg-[#1cdc38] px-5 py-2 text-sm font-bold text-[#131a1c]">Read More</span>
-                  </div>
-                </Link>
+      {/* ===== 11. SERVING MELBOURNE — suburb pills bar ===== */}
+      <ScrollReveal direction="fade">
+        <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-12">
+          <div className="mx-auto max-w-[900px] text-center">
+            <h2 className="mb-2 text-[22px] font-bold text-[#131a1c] sm:text-[26px]">Serving Melbourne&apos;s north and east</h2>
+            <p className="mb-6 text-[14px] text-[#414042]">Same-day and next-day availability. Mon-Sun 6am-8pm. After-hours emergencies accepted.</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {SUBURBS.map((s) => (
+                <span key={s} className="rounded-full border border-[#e5e5e5] bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#414042] shadow-sm sm:text-[13px]">{s}</span>
               ))}
             </div>
           </div>
         </section>
       </ScrollReveal>
 
-      {/* ===== 12. FAQ ===== */}
+      {/* ===== 12. READY TO PROTECT CTA ===== */}
+      <ScrollReveal direction="up">
+        <section className="bg-white px-5 py-12 sm:px-6 sm:py-16">
+          <div className="mx-auto max-w-[600px] text-center">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#3fa535]/10">
+              <CheckCircle2 className="h-6 w-6 text-[#3fa535]" strokeWidth={2.5} />
+            </div>
+            <h2 className="mb-3 text-[26px] font-bold text-[#131a1c] sm:text-[32px]">Ready to protect your home?</h2>
+            <p className="mb-6 text-[15px] leading-[1.7] text-[#414042]">
+              Call us directly. We&apos;ll sort out what you need and find a time that suits you. Mon-Sun 6am–8pm.
+            </p>
+            <a href={SITE_CONFIG.phoneTel} className="inline-flex items-center gap-2 rounded-full bg-[#3fa535] px-8 py-3.5 text-[16px] font-bold text-white shadow-lg transition-transform hover:scale-105">
+              <Phone className="h-5 w-5" />Call Now — {SITE_CONFIG.phone}
+            </a>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 13. COMPLETE PEST CONTROL TABS ===== */}
+      <ScrollReveal direction="up">
+        <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
+          <div className="mx-auto max-w-[1200px]">
+            <h2 className="mb-2 text-center text-[24px] font-bold text-[#131a1c] sm:text-[30px]">
+              Complete Pest Control Solutions
+            </h2>
+            <div className="mx-auto mb-8 h-[3px] w-14 bg-[#1cdc38]" />
+            <HomepagePestServiceTabs />
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 14. PRICE CALCULATOR ===== */}
+      <ScrollReveal direction="fade">
+        <PriceCalculator />
+      </ScrollReveal>
+
+      {/* ===== 15. FAQ ===== */}
       <ScrollReveal direction="up">
         <section className="bg-white px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px]">
@@ -294,34 +370,6 @@ export default function HomePage() {
           </div>
         </section>
       </ScrollReveal>
-
-      {/* ===== 13. CONTACT / 200% GUARANTEE STRIP ===== */}
-      <section className="bg-[#131a1c]">
-        <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-8 px-5 py-10 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-14">
-          <div className="relative mx-auto aspect-square w-full max-w-[340px] overflow-hidden rounded-2xl lg:mx-0">
-            <Image src={`${WP}/2025-07-imgi_23_—Pngtree—pest-control-worker-in-protective_15020351-2-1-768x768.webp`} alt="Licensed pest control professional" fill className="object-cover" sizes="340px" />
-            <div className="absolute bottom-4 right-4 h-[80px] w-[80px]">
-              <Image src="/images/certifications/guarantee-200d.png" alt="200% Guarantee" width={80} height={80} className="drop-shadow-lg" />
-            </div>
-          </div>
-          <div>
-            <h2 className="mb-4 text-[24px] font-bold leading-tight text-white sm:text-[30px]">
-              Melbourne&apos;s Most Trusted Pest Control
-            </h2>
-            <p className="mb-6 text-[15px] leading-[1.7] text-white/70">
-              With over 15 years of experience, we&apos;ve built our reputation on results. Every treatment comes with our 200% satisfaction guarantee — if pests return, so do we, free of charge.
-            </p>
-            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <a href={SITE_CONFIG.phoneTel} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1cdc38] px-6 py-3.5 text-[15px] font-bold text-[#131a1c] transition-transform hover:scale-105">
-                <Phone className="h-4 w-4" />{SITE_CONFIG.phone}
-              </a>
-              <a href={`mailto:${SITE_CONFIG.email}`} className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-[15px] font-bold text-white transition-colors hover:border-white hover:bg-white/5">
-                <Mail className="h-4 w-4" />{SITE_CONFIG.email}
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ===== PAGE INFO FOOTER ===== */}
       <PageInfoFooterBlock />

@@ -193,49 +193,61 @@ export default function Header() {
         </div>
       </div>
 
-      {/* ===== MOBILE MENU OVERLAY ===== */}
+      {/* ===== MOBILE MENU — compact dropdown panel ===== */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-[1200] overflow-y-auto bg-white lg:hidden" style={{ paddingBottom: '80px' }}>
-          <div className="flex items-center justify-between px-5 pb-3 pt-3 border-b border-[#e5e5e5]">
-            <Link href="/" onClick={closeMobile} className="shrink-0"><img src={NAV_LOGO} alt="Zap It" className="h-[36px] w-auto" /></Link>
-            <button onClick={closeMobile} className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f8f5f2]" aria-label="Close menu">
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="#414042" strokeWidth="2" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-            </button>
-          </div>
-          <ul className="list-none">
-            {MAIN_NAV_LINKS.map((item) => {
-              const hasDropdown = (item.label === 'Commercial' && item.childGroups) || (item.label === 'Pest Solutions' && item.children);
-              if (hasDropdown) {
-                const key = item.label === 'Commercial' ? 'commercial' : 'pest';
-                const isExpanded = expandedMobile === key;
+        <>
+          <div className="fixed inset-0 z-[1150] bg-black/30 lg:hidden" onClick={closeMobile} aria-hidden />
+          <div className="fixed left-0 right-0 top-0 z-[1200] max-h-[85vh] overflow-y-auto rounded-b-2xl bg-white shadow-2xl lg:hidden animate-slide-down">
+            {/* Header row */}
+            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[#e5e5e5] bg-white px-5 py-3">
+              <Link href="/" onClick={closeMobile} className="shrink-0"><img src={NAV_LOGO} alt="Zap It" className="h-[32px] w-auto" /></Link>
+              <button onClick={closeMobile} className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f8f5f2]" aria-label="Close menu">
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#414042" strokeWidth="2.5" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+            {/* Nav items */}
+            <ul className="list-none py-1">
+              {MAIN_NAV_LINKS.map((item) => {
+                const hasDropdown = (item.label === 'Commercial' && item.childGroups) || (item.label === 'Pest Solutions' && item.children);
+                if (hasDropdown) {
+                  const key = item.label === 'Commercial' ? 'commercial' : 'pest';
+                  const isExpanded = expandedMobile === key;
+                  return (
+                    <li key={item.href} className="border-b border-[#f0f0f0]">
+                      <button type="button" onClick={() => setExpandedMobile(isExpanded ? null : key)} className="flex w-full items-center justify-between px-5 py-3.5 text-left text-[15px] font-medium text-[#414042]" aria-expanded={isExpanded}>
+                        <span className="flex items-center gap-3"><NavItemIcon label={item.label} />{item.label}</span>
+                        <span className={`text-xs text-[#3fa535] transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
+                      </button>
+                      {isExpanded && item.label === 'Commercial' && item.childGroups && (
+                        <div className="bg-[#f8f9fa] py-1">
+                          {item.childGroups.map((g) => (<div key={g.title}><h4 className="px-10 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#636363]">{g.title}</h4><ul>{g.items.map((c) => <li key={c.href}><Link href={c.href} onClick={closeMobile} className="block px-10 py-2.5 text-[14px] text-[#414042] hover:text-[#3fa535]">{c.label}</Link></li>)}</ul></div>))}
+                        </div>
+                      )}
+                      {isExpanded && item.label === 'Pest Solutions' && item.children && (
+                        <div className="bg-[#f8f9fa] py-1"><ul>{item.children.map((c) => <li key={c.href}><Link href={c.href} onClick={closeMobile} className="block px-10 py-2.5 text-[14px] text-[#414042] hover:text-[#3fa535]">{c.label}</Link></li>)}</ul></div>
+                      )}
+                    </li>
+                  );
+                }
                 return (
-                  <li key={item.href} className="border-b border-[#e5e5e5]">
-                    <button type="button" onClick={() => setExpandedMobile(isExpanded ? null : key)} className="flex w-full items-center justify-between px-5 py-4 text-left text-[16px] font-medium text-[#414042]" aria-expanded={isExpanded}>
-                      <span className="flex items-center gap-3"><NavItemIcon label={item.label} />{item.label}</span>
-                      <span className={`text-xs text-[#3fa535] transition-transform ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
-                    </button>
-                    {isExpanded && item.label === 'Commercial' && item.childGroups && (
-                      <div className="bg-[#f8f9fa] py-2">
-                        {item.childGroups.map((g) => (<div key={g.title}><h4 className="px-12 py-2 text-sm font-bold uppercase text-[#414042]">{g.title}</h4><ul>{g.items.map((c) => <li key={c.href} className="border-b border-[#e5e5e5]"><Link href={c.href} onClick={closeMobile} className="block px-12 py-4 text-base text-[#414042] hover:text-[#3fa535]">{c.label}</Link></li>)}</ul></div>))}
-                      </div>
-                    )}
-                    {isExpanded && item.label === 'Pest Solutions' && item.children && (
-                      <div className="bg-[#f8f9fa] py-2"><ul>{item.children.map((c) => <li key={c.href} className="border-b border-[#e5e5e5]"><Link href={c.href} onClick={closeMobile} className="block px-12 py-4 text-base text-[#414042] hover:text-[#3fa535]">{c.label}</Link></li>)}</ul></div>
-                    )}
+                  <li key={item.href} className="border-b border-[#f0f0f0]">
+                    <Link href={item.href} onClick={closeMobile} className="flex items-center gap-3 px-5 py-3.5 text-[15px] font-medium text-[#414042] hover:text-[#3fa535]"><NavItemIcon label={item.label} />{item.label}</Link>
                   </li>
                 );
-              }
-              return (
-                <li key={item.href} className="border-b border-[#e5e5e5]">
-                  <Link href={item.href} onClick={closeMobile} className="flex items-center gap-3 px-5 py-4 text-base font-medium text-[#414042] hover:text-[#3fa535]"><NavItemIcon label={item.label} />{item.label}</Link>
-                </li>
-              );
-            })}
-            <li className="border-b border-[#e5e5e5]">
-              <Link href={CONTACT_LINK.href} onClick={closeMobile} className="flex items-center gap-3 px-5 py-4 text-base font-medium text-[#414042] hover:text-[#3fa535]"><NavItemIcon label="Contact Us" />Contact Us</Link>
-            </li>
-          </ul>
-        </div>
+              })}
+              <li>
+                <Link href={CONTACT_LINK.href} onClick={closeMobile} className="flex items-center gap-3 px-5 py-3.5 text-[15px] font-medium text-[#414042] hover:text-[#3fa535]"><NavItemIcon label="Contact Us" />Contact Us</Link>
+              </li>
+            </ul>
+            {/* CTA at bottom */}
+            <div className="border-t border-[#e5e5e5] px-5 py-4">
+              <a href={SITE_CONFIG.phoneTel} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#3fa535] py-3 text-[15px] font-bold text-white">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                Call Now — {SITE_CONFIG.phone}
+              </a>
+            </div>
+          </div>
+        </>
       )}
 
       {/* ===== DESKTOP STICKY HEADER ===== */}

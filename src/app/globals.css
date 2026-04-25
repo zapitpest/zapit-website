@@ -444,3 +444,18 @@
 .region-tab-btn:not(.active):hover {
   border-color: rgba(63, 165, 53, 0.5);
 }
+
+/* Mobile menu slide-down animation */
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-down {
+  animation: slide-down 0.2s ease-out;
+}
