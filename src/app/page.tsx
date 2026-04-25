@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, CheckCircle2 } from 'lucide-react';
+import { Phone, CheckCircle2, Shield, Clock, Leaf, Award } from 'lucide-react';
 import { SITE_CONFIG, HOMEPAGE_FAQS } from '@/lib/constants';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateProductSchema, generateFAQSchema } from '@/lib/schema';
@@ -41,16 +41,17 @@ const SUBURBS = [
   'Doncaster', 'Macleod', 'Coburg', 'Northcote', 'Watsonia', 'Lalor',
 ] as const;
 
-const TESTIMONIALS = [
-  { name: 'Sarah M.', initials: 'SM', location: 'Heidelberg Heights', text: 'Absolutely brilliant service. They arrived on time, explained everything clearly, and our spider problem hasn\'t come back. Highly recommend.' },
-  { name: 'James R.', initials: 'JR', location: 'Bundoora', text: 'We called about a rodent issue and they came out the same afternoon. Professional, respectful of our home, and reasonably priced.' },
-  { name: 'Priya N.', initials: 'PN', location: 'Preston', text: 'Really impressed with how careful they were around our kids and pets. They explained every product they used. Will call them again.' },
-] as const;
-
 const HOW_IT_WORKS = [
   { n: '01', title: 'Call us', body: 'Speak directly with our team. We\'ll ask a few quick questions and confirm what you need.' },
   { n: '02', title: 'We come to you', body: 'A licensed technician arrives on time, explains the treatment, and gets to work.' },
   { n: '03', title: 'Problem solved', body: 'We follow up to make sure the treatment worked. If not, we come back — no charge.' },
+] as const;
+
+const WHY_CHOOSE = [
+  { icon: 'shield', title: '200% Money-Back Guarantee', body: 'If pests return within the warranty period, we come back free. Still not happy? Full refund — no questions asked.' },
+  { icon: 'clock', title: 'Same-Day Emergency Response', body: 'Call before 2pm and we\'ll be at your door today. After-hours emergency service also available 7 days.' },
+  { icon: 'leaf', title: 'Eco-Friendly & Pet Safe', body: 'All treatments are DHHS-approved, child-safe and pet-safe. We use the latest low-toxicity formulations.' },
+  { icon: 'award', title: 'Licensed & Fully Insured', body: 'Every technician is government-licensed, police-checked and covered by $20M public liability insurance.' },
 ] as const;
 
 const CERT_ITEMS = [
@@ -72,6 +73,17 @@ export const metadata: Metadata = {
     url: SITE_CONFIG.url, siteName: SITE_CONFIG.name, locale: 'en_AU', type: 'website',
   },
 };
+
+function WhyIcon({ type }: { type: string }) {
+  const cls = 'h-6 w-6 text-[#3fa535]';
+  switch (type) {
+    case 'shield': return <Shield className={cls} strokeWidth={2} />;
+    case 'clock': return <Clock className={cls} strokeWidth={2} />;
+    case 'leaf': return <Leaf className={cls} strokeWidth={2} />;
+    case 'award': return <Award className={cls} strokeWidth={2} />;
+    default: return null;
+  }
+}
 
 export default function HomePage() {
   const faqSchema = generateFAQSchema(HOMEPAGE_FAQS.map((f) => ({ question: f.question, answer: f.answer })));
@@ -99,7 +111,7 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 3. PESTS WE TREAT — icon grid ===== */}
+      {/* ===== 3. PESTS WE TREAT — dark icon grid ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#0d402e] px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px]">
@@ -122,7 +134,7 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 4. GOOGLE REVIEWS — Figma style auto-scroll ===== */}
+      {/* ===== 4. GOOGLE REVIEWS — auto-scroll carousel ===== */}
       <ScrollReveal direction="fade">
         <section className="bg-white px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px]">
@@ -145,11 +157,11 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 6. ALL PEST TYPES — Figma style cards ===== */}
+      {/* ===== 6. ALL PEST TYPES — Figma cards ===== */}
       <ScrollReveal direction="up">
         <section className="bg-white px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px]">
-            <p className="mb-1 text-center text-[12px] font-bold uppercase tracking-wider text-[#3fa535]">ALL PEST TYPES</p>
+            <p className="mb-1 text-center text-[12px] font-bold uppercase tracking-wider text-[#3fa535] sm:text-left">ALL PEST TYPES</p>
             <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
               <h2 className="text-[24px] font-bold text-[#131a1c] sm:text-[30px]">We treat all household pests</h2>
               <Link href="/pest-solutions" className="hidden items-center gap-2 rounded-lg border border-[#e5e5e5] bg-white px-4 py-2.5 text-[13px] font-semibold text-[#414042] shadow-sm transition-colors hover:border-[#3fa535] sm:inline-flex">
@@ -216,15 +228,14 @@ export default function HomePage() {
                     Our coverage area
                   </Link>
                 </div>
-                <p className="mt-4 text-center text-[11px] italic text-white/40">Replace with real map embed before launch</p>
               </div>
             </div>
           </div>
         </section>
       </ScrollReveal>
 
-      {/* ===== 8. HOW IT WORKS — 3-step process ===== */}
-      <ScrollReveal direction="up">
+      {/* ===== 8. HOW IT WORKS — 3-step ===== */}
+      <ScrollReveal direction="right">
         <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px]">
             <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-14">
@@ -254,47 +265,79 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 9. REAL PEOPLE, REAL RESULTS — testimonials ===== */}
+      {/* ===== 9. WHY CHOOSE ZAP IT — 4 value props with image ===== */}
       <ScrollReveal direction="up">
         <section className="bg-white px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px]">
-            <p className="mb-1 text-center text-[12px] font-bold uppercase tracking-wider text-[#3fa535]">WHAT CUSTOMERS SAY</p>
-            <h2 className="mb-8 text-center text-[24px] font-bold text-[#131a1c] sm:text-[30px]">Real people, real results</h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6">
-              {TESTIMONIALS.map((t) => (
-                <div key={t.name} className="flex flex-col rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-sm sm:p-6">
-                  <div className="mb-3 flex gap-0.5">
-                    {[0, 1, 2, 3, 4].map((s) => (
-                      <svg key={s} className="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                    ))}
-                  </div>
-                  <p className="mb-4 flex-1 text-[14px] leading-[1.65] text-[#414042]">&ldquo;{t.text}&rdquo;</p>
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0d402e] text-[13px] font-bold text-white">{t.initials}</div>
-                    <div>
-                      <p className="text-[14px] font-bold text-[#131a1c]">{t.name}</p>
-                      <p className="text-[12px] text-[#636363]">{t.location}</p>
+            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-14">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
+                <Image src={`${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`} alt="Zap It technician treating a Melbourne home" fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
+              </div>
+              <div>
+                <p className="mb-1 text-[12px] font-bold uppercase tracking-wider text-[#3fa535]">WHY CHOOSE US</p>
+                <h2 className="mb-6 text-[24px] font-bold leading-tight text-[#131a1c] sm:text-[30px]">
+                  Melbourne&apos;s most trusted pest control
+                </h2>
+                <div className="space-y-5">
+                  {WHY_CHOOSE.map((item) => (
+                    <div key={item.title} className="flex gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#3fa535]/10">
+                        <WhyIcon type={item.icon} />
+                      </div>
+                      <div>
+                        <h3 className="text-[16px] font-bold text-[#131a1c]">{item.title}</h3>
+                        <p className="mt-1 text-[13px] leading-[1.6] text-[#414042]">{item.body}</p>
+                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
       </ScrollReveal>
 
-      {/* ===== 10. VIDEO SECTION ===== */}
-      <ScrollReveal direction="fade">
+      {/* ===== 10. SAME-DAY SERVICE — dark CTA with image ===== */}
+      <ScrollReveal direction="left">
         <section className="bg-[#0d402e] px-5 py-10 sm:px-6 sm:py-14">
+          <div className="mx-auto max-w-[1200px]">
+            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-14">
+              <div>
+                <h2 className="mb-4 text-[24px] font-bold leading-tight text-white sm:text-[30px]">
+                  Same-Day Pest Control Service
+                </h2>
+                <p className="mb-4 text-[15px] leading-[1.7] text-white/80">
+                  When pests invade, you need fast action. Our licensed technicians arrive the same day, equipped with the latest technology and eco-friendly treatments to eliminate pests and prevent future infestations.
+                </p>
+                <ul className="mb-6 space-y-2 text-[14px] text-white/70">
+                  {['Same-day emergency response', 'Eco-friendly, DHHS-approved treatments', 'Child and pet safe solutions', 'Comprehensive follow-up inspections'].map((t) => (
+                    <li key={t} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#1cdc38]" strokeWidth={2.5} />{t}</li>
+                  ))}
+                </ul>
+                <a href={SITE_CONFIG.booking.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[48px] items-center rounded-full bg-[#1cdc38] px-8 py-3 text-[15px] font-bold text-[#131a1c] transition-transform hover:scale-105">
+                  Book an Inspection Today
+                </a>
+              </div>
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
+                <Image src="/images/residential/melbourne-fleet.png" alt="Zap It pest control fleet serving Melbourne" fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
+              </div>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 11. VIDEO SECTION ===== */}
+      <ScrollReveal direction="fade">
+        <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px] text-center">
             <p className="mb-1 text-[12px] font-bold uppercase tracking-wider text-[#3fa535]">SEE US IN ACTION</p>
             <h2 className="mb-2 text-[24px] font-bold text-white sm:text-[30px]">Watch how we protect Melbourne homes</h2>
             <p className="mx-auto mb-8 max-w-lg text-[14px] leading-[1.7] text-white/70 sm:text-[15px]">
               A short video showing our team at work — the professional, respectful way we care for your home.
             </p>
-            <div className="mx-auto max-w-xl overflow-hidden rounded-2xl border-2 border-[#3fa535]/30 bg-[#0d402e]">
-              <div className="relative flex aspect-video items-center justify-center bg-black/20">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+            <div className="mx-auto max-w-xl overflow-hidden rounded-2xl border-2 border-[#3fa535]/30">
+              <div className="relative flex aspect-video items-center justify-center bg-black/30">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-transform hover:scale-110">
                   <svg className="ml-1 h-7 w-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
                 <p className="absolute bottom-4 text-[13px] italic text-white/40">New branded video — coming soon</p>
@@ -307,7 +350,7 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 11. SERVING MELBOURNE — suburb pills bar ===== */}
+      {/* ===== 12. SERVING MELBOURNE — suburb pills ===== */}
       <ScrollReveal direction="fade">
         <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-12">
           <div className="mx-auto max-w-[900px] text-center">
@@ -322,7 +365,7 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 12. READY TO PROTECT CTA ===== */}
+      {/* ===== 13. READY TO PROTECT CTA ===== */}
       <ScrollReveal direction="up">
         <section className="bg-white px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-[600px] text-center">
@@ -340,7 +383,7 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 13. COMPLETE PEST CONTROL TABS ===== */}
+      {/* ===== 14. COMPLETE PEST CONTROL TABS ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px]">
@@ -353,12 +396,12 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 14. PRICE CALCULATOR ===== */}
+      {/* ===== 15. PRICE CALCULATOR ===== */}
       <ScrollReveal direction="fade">
         <PriceCalculator />
       </ScrollReveal>
 
-      {/* ===== 15. FAQ ===== */}
+      {/* ===== 16. FAQ ===== */}
       <ScrollReveal direction="up">
         <section className="bg-white px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px]">
