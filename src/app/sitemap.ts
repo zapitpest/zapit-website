@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { SITE_CONFIG, NAV_LINKS } from '@/lib/constants';
 
+export const dynamic = 'force-static';
+
 const SUBURB_SLUGS = [
   'coburg', 'reservoir', 'werribee', 'craigieburn', 'epping',
   'broadmeadows', 'fawkner', 'glenroy', 'pascoe-vale', 'oak-park',
