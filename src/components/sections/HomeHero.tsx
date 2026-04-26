@@ -4,24 +4,22 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { SITE_CONFIG } from '@/lib/constants';
 
-const WP = '/images/wp-assets';
-
 const SLIDES = [
   {
-    src: `${WP}/2025-06-ZAP-IT-SOCIALIETTA-508127-1024x1536.webp`,
-    alt: 'Zap It Pest Control Melbourne team',
+    src: '/images/residential/hero-cottage.png',
+    alt: 'Protecting your family and home from pest damage and harm - Cottage',
   },
   {
-    src: `${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`,
-    alt: 'Expert pest controllers treating a Melbourne home',
+    src: '/images/residential/hero-family.png',
+    alt: 'Protecting your family and home from pest damage and harm - Family',
   },
   {
-    src: `${WP}/2025-09-imgi_73_WhatsApp-Image-2025-09-17-at-3.05.27-PM.jpg`,
-    alt: 'Zap It technician providing pest control service',
+    src: '/images/residential/hero-house.png',
+    alt: 'Protecting your family and home from pest damage and harm - House',
   },
   {
-    src: '/images/hero/pest-treatment-melbourne.webp',
-    alt: 'Professional pest treatment service in Melbourne',
+    src: '/images/residential/hero-highrise.png',
+    alt: 'Protecting your family and home from pest damage and harm - High-rise',
   },
 ] as const;
 
@@ -54,33 +52,13 @@ export default function HomeHero() {
           </div>
         ))}
 
-        {/* Dark gradient — strong enough for text readability but image still visible */}
-        <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#0d402e] via-[#0d402e]/60 to-[#0d402e]/15" />
+        {/* Subtle bottom gradient only — images have their own text, don't obscure them */}
+        <div className="absolute inset-x-0 bottom-0 z-20 h-[45%] bg-gradient-to-t from-[#0d402e]/90 via-[#0d402e]/40 to-transparent" />
 
-        {/* Green checkmark — right side */}
-        <div className="absolute right-6 top-[45%] z-30 sm:right-10">
-          <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-[#3fa535]/40 bg-[#0d402e]/60 backdrop-blur-sm sm:h-16 sm:w-16">
-            <svg className="h-7 w-7 text-[#3fa535] sm:h-8 sm:w-8" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-          </div>
-        </div>
-
-        {/* Content — bottom of image */}
-        <div className="absolute inset-x-0 bottom-0 z-30 px-5 pb-6 sm:px-6 sm:pb-10">
+        {/* Content — compact bar at the very bottom, below the image's baked-in text */}
+        <div className="absolute inset-x-0 bottom-0 z-30 px-5 pb-5 sm:px-6 sm:pb-8">
           <div className="max-w-lg">
-            <p className="mb-2 text-[12px] font-bold uppercase tracking-[0.2em] text-[#3fa535] sm:text-[13px]">
-              PEST PROTECTION YOU CAN TRUST
-            </p>
-            <h1 className="mb-1 text-[28px] font-extrabold leading-[1.08] text-white sm:text-[36px] lg:text-[44px]">
-              Protecting your<br />family and home
-            </h1>
-            <p className="mb-4 text-[22px] font-extrabold leading-[1.1] text-[#3fa535] sm:text-[28px] lg:text-[34px]">
-              from pest damage<br />and harm
-            </p>
-            <p className="mb-5 max-w-[420px] text-[14px] leading-[1.65] text-white/85 sm:text-[15px]">
-              Families like yours have trusted us to protect their homes since 2020. Child-safe, pet-safe and eco-friendly pest protection — from termites to rodents and everything in between.
-            </p>
-
-            <div className="mb-5 flex flex-wrap gap-3">
+            <div className="mb-4 flex flex-wrap gap-3">
               <a href={SITE_CONFIG.phoneTel} className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-[#3fa535] px-7 py-3 text-[15px] font-bold text-white shadow-lg transition-transform hover:scale-105">
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                 Call Now — {SITE_CONFIG.phone}
@@ -90,9 +68,9 @@ export default function HomeHero() {
               </Link>
             </div>
 
-            <div className="mb-3 flex flex-wrap gap-x-4 gap-y-1.5">
+            <div className="mb-2 flex flex-wrap gap-x-4 gap-y-1.5">
               {TRUST_BADGES.map((badge) => (
-                <span key={badge} className="flex items-center gap-1.5 text-[12px] font-medium text-white/85 sm:text-[13px]">
+                <span key={badge} className="flex items-center gap-1.5 text-[12px] font-medium text-white/90 sm:text-[13px]">
                   <svg className="h-4 w-4 shrink-0 text-[#3fa535]" fill="none" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
                     <path d="M8 12l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -102,7 +80,7 @@ export default function HomeHero() {
               ))}
             </div>
 
-            <p className="text-[11px] text-white/45 sm:text-[12px]">Mon-Sun 6am-6pm · After-hours emergency calls accepted</p>
+            <p className="text-[11px] text-white/50 sm:text-[12px]">Mon-Sun 6am-6pm · After-hours emergency calls accepted</p>
           </div>
         </div>
 

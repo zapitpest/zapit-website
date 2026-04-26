@@ -361,14 +361,32 @@ export default function HomePage() {
                 </a>
               </div>
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
-                <Image src="/images/residential/melbourne-fleet.png" alt="Zap It pest control fleet serving Melbourne" fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
+                <Image src="/images/residential/family-trust.png" alt="Protection you can trust - 20,000+ homes serviced in Melbourne" fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
               </div>
             </div>
           </div>
         </section>
       </ScrollReveal>
 
-      {/* ===== 11. VIDEO SECTION ===== */}
+      {/* ===== 11b. PET SAFETY — Figma cat-girl image ===== */}
+      <ScrollReveal direction="up">
+        <section className="bg-white px-0">
+          <div className="relative w-full">
+            <Image src="/images/residential/cat-girl.png" alt="Zapit were great to deal with and I felt confident they took my cats safety seriously - Jenny, Hawthorn resident" width={750} height={750} className="h-auto w-full" />
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 11c. TOWNHOUSE — Figma image ===== */}
+      <ScrollReveal direction="fade">
+        <section className="bg-white px-0">
+          <div className="relative w-full">
+            <Image src="/images/residential/townhouse.png" alt="We treat your home as if it were ours - Your satisfaction is our highest priority" width={750} height={500} className="h-auto w-full" />
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 12. VIDEO SECTION ===== */}
       <ScrollReveal direction="fade">
         <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-[1200px] text-center">
