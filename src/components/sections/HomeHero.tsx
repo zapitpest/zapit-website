@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { SITE_CONFIG } from '@/lib/constants';
 
@@ -50,7 +49,8 @@ export default function HomeHero() {
             key={slide.src}
             className={`absolute inset-0 transition-opacity duration-700 ${i === active ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
           >
-            <Image src={slide.src} alt={slide.alt} fill priority={i === 0} className="object-cover object-center" sizes="100vw" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={slide.src} alt={slide.alt} className="absolute inset-0 h-full w-full object-cover object-center" loading={i === 0 ? 'eager' : 'lazy'} />
           </div>
         ))}
 

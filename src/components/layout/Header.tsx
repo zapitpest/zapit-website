@@ -114,9 +114,6 @@ export default function Header() {
 
   return (
     <header className="font-sans">
-      {/* Sentinel for IntersectionObserver */}
-      <div ref={sentinelRef} className="h-0 w-0" aria-hidden />
-
       {/* ===== STATIC GREEN HEADER ===== */}
       <div className="relative z-20 bg-[#0d402e]">
         <div className="mx-auto max-w-[1280px] px-5 pt-5 pb-5 sm:px-6 sm:pt-6 sm:pb-6">
@@ -149,6 +146,9 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {/* Sentinel — sticky header appears only after static header scrolls out */}
+      <div ref={sentinelRef} className="h-px w-full" aria-hidden />
 
       {/* ===== DESKTOP NAV ===== */}
       <nav className="relative z-30 hidden border-b border-[#e5e5e5] bg-white lg:block">
