@@ -4,7 +4,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { generateBreadcrumbSchema, generateFAQSchema } from '@/lib/schema';
 import type { FAQ, BreadcrumbItem } from '@/types';
 import FaqPageAccordion from '@/components/sections/FaqPageAccordion';
-import PageInfoFooterBlock from '@/components/layout/PageInfoFooterBlock';
+
 
 const BREADCRUMBS: BreadcrumbItem[] = [
   { name: 'Home', href: '/' },
@@ -150,8 +150,6 @@ export default function FrequentlyAskedQuestionsPage() {
           </div>
         </div>
       </div>
-
-      <PageInfoFooterBlock />
     </>
   );
 }

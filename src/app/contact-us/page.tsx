@@ -1,15 +1,14 @@
 import type { Metadata } from 'next';
-import { Phone, Mail, MapPin } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/schema';
-import PageInfoFooterBlock from '@/components/layout/PageInfoFooterBlock';
+
 import ContactForm from '@/components/sections/ContactForm';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 
 const DISPLAY_PHONE = '(03) 9126 0555';
 const BUSINESS_LINE = 'Zap It Pest & Termite Control';
-const ADDRESS_LINE = '80 Porter Rd, Heidelberg Heights, VIC 3081';
-const ABN = 'ABN 61 682 004 655';
+const ADDRESS_LINE = '80 Porter Rd, Heidelberg Heights , VIC 3081';
 
 const OPERATING_HOURS = [
   'Monday, 8am – 5pm',
@@ -41,77 +40,75 @@ export default function ContactUsPage() {
     <>
       <JsonLd data={[localBusiness, breadcrumbSchema]} />
 
-      <div className="font-sans text-[#414042]">
-        {/* Header — business info + operating hours */}
-        <section className="bg-white" aria-labelledby="contact-heading">
-          <div className="mx-auto max-w-3xl px-4 pb-6 pt-6 sm:px-6 sm:pb-8 sm:pt-8">
-            <h1 id="contact-heading" className="mb-5 text-[22px] font-bold leading-tight text-[#131a1c] sm:text-[26px]">
-              Contact us
-            </h1>
+      {/* ===== 1. HEADING ===== */}
+      <section className="bg-[#2B2B2B] px-5 pb-2 pt-8 sm:px-6 sm:pt-10">
+        <div className="mx-auto max-w-3xl">
+          <h1 className="text-[26px] font-bold text-[#f8f5f2] sm:text-[30px]">Contact us</h1>
+        </div>
+      </section>
 
-            <div className="space-y-2.5 text-sm leading-[1.6] text-[#414042] sm:text-base">
-              <p className="text-base font-bold text-[#131a1c] sm:text-[17px]">{BUSINESS_LINE}</p>
-              <p className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#1cdc38]" aria-hidden />
-                <span>{ADDRESS_LINE}</span>
-              </p>
-              <p>{ABN}</p>
-              <p className="flex items-center gap-2">
-                <Phone className="h-4 w-4 shrink-0 text-[#1cdc38]" aria-hidden />
-                <a href={SITE_CONFIG.phoneTel} className="font-medium text-[#131a1c] transition-colors hover:text-[#1cdc38]">
-                  {DISPLAY_PHONE}
-                </a>
-              </p>
-              <p className="flex items-start gap-2">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#1cdc38]" aria-hidden />
-                <a
-                  href={`mailto:${SITE_CONFIG.emailWork}`}
-                  className="break-all text-[#1cdc38] underline decoration-[#1cdc38]/30 underline-offset-2 transition-colors hover:text-[#0d402e]"
-                >
-                  {SITE_CONFIG.emailWork}
-                </a>
-              </p>
-            </div>
-
-            {/* Operating hours */}
-            <div className="mt-6 border-t border-[#e5e5e5] pt-6">
-              <p className="mb-3 text-sm font-bold text-[#131a1c] sm:text-base">Operating Hours</p>
-              <ul className="list-none space-y-1 text-sm text-[#414042] sm:text-[15px]">
-                {OPERATING_HOURS.map((row) => (
-                  <li key={row}>{row}</li>
-                ))}
-              </ul>
-            </div>
+      {/* ===== 2. CONTACT DETAILS ===== */}
+      <section className="bg-[#2B2B2B] px-5 py-8 sm:px-6 sm:py-10">
+        <div className="mx-auto max-w-3xl text-[#f8f5f2]">
+          <h2 className="mb-3 text-[18px] font-bold">{BUSINESS_LINE}</h2>
+          <div className="space-y-0.5 text-[15px] text-[#f8f5f2]/85">
+            <p>{ADDRESS_LINE}</p>
+            <p>ABN 61 682 004 655</p>
+            <p><a href={SITE_CONFIG.phoneTel} className="hover:text-[#1cdc38]">{DISPLAY_PHONE}</a></p>
+            <p><a href={`mailto:${SITE_CONFIG.emailWork}`} className="text-[#1cdc38] underline hover:opacity-80">{SITE_CONFIG.emailWork}</a></p>
           </div>
-        </section>
 
-        {/* Same Day CTA — uses group-350.svg bus graphic */}
-        <section className="bg-white pb-4 pt-2 text-center sm:pb-6" aria-label="Same day service">
-          <div className="mx-auto max-w-md px-4">
+          {/* Operating Hours */}
+          <h3 className="mb-2 mt-6 text-[16px] font-bold">Operating Hours</h3>
+          <ul className="space-y-0.5 text-[15px] text-[#f8f5f2]/85">
+            {OPERATING_HOURS.map((h) => (
+              <li key={h} className="flex items-center gap-1.5">
+                <span className="inline-block h-1 w-1 shrink-0 rounded-full bg-white/50" />
+                {h}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ===== 3. SAME DAY SERVICE ===== */}
+      <ScrollReveal direction="fade">
+        <section className="bg-[#2B2B2B] px-5 pb-10 sm:px-6 sm:pb-14">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/icons/group-350.svg"
-              alt="Same day service available. Call now!"
-              className="mx-auto w-full max-w-[320px] sm:max-w-[360px]"
-            />
+            <img src="/images/icons/group-350.svg" alt="Same day service available. Call now!" className="h-[160px] w-auto" />
           </div>
         </section>
+      </ScrollReveal>
 
-        {/* Residential enquiry form */}
-        <section className="bg-white px-4 pb-10 pt-2 sm:px-6 sm:pb-12" aria-labelledby="residential-form-heading">
+      {/* ===== 4. RESIDENTIAL ENQUIRY FORM ===== */}
+      <ScrollReveal direction="up">
+        <section className="bg-[#2B2B2B] px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-lg">
-            <div className="rounded-[20px] border border-[#e5e5e5] bg-[#f8f5f2] p-6 shadow-sm sm:p-8">
-              <h2 id="residential-form-heading" className="mb-5 text-[17px] font-bold text-[#131a1c] sm:text-[19px]">
-                Residential enquiry form
-              </h2>
-
+            <h2 className="mb-1 text-center text-[22px] font-bold text-[#f8f5f2] sm:text-[24px]">Residential enquiry form</h2>
+            <div className="mt-4 rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-sm sm:p-6">
               <ContactForm displayPhone={DISPLAY_PHONE} phoneTel={SITE_CONFIG.phoneTel} />
             </div>
           </div>
         </section>
-      </div>
+      </ScrollReveal>
 
-      <PageInfoFooterBlock />
+      {/* ===== 5. MAP ===== */}
+      <section className="bg-[#2B2B2B] px-5 pb-10 sm:px-6 sm:pb-14">
+        <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl shadow-md">
+          <iframe
+            title="Zap It Pest Control Melbourne Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.5!2d144.99!3d-37.74!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z80+Porter+Rd+Heidelberg+Heights+VIC+3081!5e0!3m2!1sen!2sau!4v1"
+            width="100%"
+            height="300"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="w-full"
+          />
+        </div>
+      </section>
     </>
   );
 }

@@ -1,9 +1,5 @@
 import Link from 'next/link';
-import { SITE_CONFIG, FOOTER_LINKS } from '@/lib/constants';
-import { Phone, Mail, MapPin, ChevronRight } from 'lucide-react';
-
-const MAPS_EMBED_SRC =
-  'https://maps.google.com/maps?q=80+Porter+Rd,+Heidelberg+Heights+VIC+3081,+Australia&t=m&z=15&output=embed&iwloc=near';
+import { SITE_CONFIG } from '@/lib/constants';
 
 function SocialIconInstagram(props: { className?: string }) {
   return (
@@ -29,116 +25,102 @@ function SocialIconTiktok(props: { className?: string }) {
   );
 }
 
-const WORKING_HOURS = [
-  'Tuesday: Open 24 hours',
-  'Wednesday: Open 24 hours',
-  'Thursday: Open 24 hours',
-  'Friday: Open 24 hours',
-  'Saturday: Open 24 hours',
-  'Sunday: Open 24 hours',
-  'Monday : Open 24 hours',
+const SITEMAP_LINKS = [
+  { label: 'Residential', href: '/residential' },
+  { label: 'Commercial', href: '/commercial-pest-control' },
+  { label: 'About us', href: '/about-us' },
+  { label: 'Service area', href: '/service-areas' },
+  { label: 'Price list', href: '/pricing' },
+  { label: 'FAQs', href: '/frequently-asked-questions' },
+  { label: 'Contact us', href: '/contact-us' },
+] as const;
+
+const OPERATING_HOURS = [
+  'Monday, 8am – 5pm',
+  'Tuesday, 8am – 5pm',
+  'Wednesday, 8am – 5pm',
+  'Thursday, 8am – 5pm',
+  'Friday, 8am – 5pm',
+  'Saturday, 8am – 12pm',
+  'Sunday, Closed',
 ] as const;
 
 export default function Footer() {
   return (
-    <>
-      <footer className="bg-[#131a1c] font-sans text-white">
-        <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-6 md:px-8 lg:px-[50px] lg:py-[60px]">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_auto] lg:gap-8">
-            <div>
-              <h3 className="mb-4 text-[20px] font-semibold italic text-[#3fa535]">Our Company</h3>
-              <p className="mb-6 text-[14px] leading-relaxed text-white/85">
-                We&apos;re dedicated to your peace of mind. With expert solutions and customized service, we keep your space
-                pest-free. Join us in saying goodbye to pests today.
-              </p>
-              <h4 className="mb-3 text-[18px] font-semibold italic text-[#3fa535]">Working Hours:</h4>
-              <ul className="space-y-1 text-[13px] text-white/85">
-                {WORKING_HOURS.map((h) => (
-                  <li key={h}>{h}</li>
-                ))}
-              </ul>
-              <ul className="mt-5 flex items-center gap-3" aria-label="Social media">
-                <li>
-                  <a href={SITE_CONFIG.social.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="Instagram">
-                    <SocialIconInstagram className="h-[18px] w-[18px]" />
-                  </a>
-                </li>
-                <li>
-                  <a href={SITE_CONFIG.social.tiktok} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="TikTok">
-                    <SocialIconTiktok className="h-[18px] w-[18px]" />
-                  </a>
-                </li>
-                <li>
-                  <a href={SITE_CONFIG.social.facebook} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="Facebook">
-                    <SocialIconFacebook className="h-[18px] w-[18px]" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="mb-4 text-[20px] font-semibold italic text-[#3fa535]">Useful Links</h3>
-              <ul className="space-y-2">
-                {FOOTER_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="inline-flex items-center gap-2 text-[14px] text-white transition-colors hover:text-[#3fa535]"
-                    >
-                      <ChevronRight className="h-4 w-4 shrink-0 text-[#3fa535]" aria-hidden />
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="mb-4 text-[20px] font-semibold italic text-[#3fa535]">Get in touch</h3>
-              <ul className="mb-5 space-y-3 text-[14px] text-white/90">
-                <li className="flex items-start gap-2">
-                  <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[#3fa535]" aria-hidden />
-                  <a href={SITE_CONFIG.phoneTel} className="hover:text-[#3fa535]">{SITE_CONFIG.phone}</a>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#3fa535]" aria-hidden />
-                  <a href={`mailto:${SITE_CONFIG.email}`} className="break-all hover:text-[#3fa535]">{SITE_CONFIG.email}</a>
-                </li>
-                <li className="flex items-start gap-2">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#3fa535]" aria-hidden />
-                  <span>{SITE_CONFIG.address.full}</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="min-w-0 sm:col-span-2 lg:col-span-1 lg:w-[220px]">
-              <iframe
-                title="Zap It Pest & Termite Control Melbourne on Google Maps"
-                src={MAPS_EMBED_SRC}
-                className="h-[180px] sm:h-[200px] w-full rounded-lg border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
-            </div>
-          </div>
+    <footer className="bg-[#2B2B2B] font-sans text-white">
+      <div className="mx-auto max-w-3xl px-5 py-10 sm:px-6 sm:py-12">
+        {/* Company info */}
+        <h3 className="mb-3 text-[18px] font-bold">Zap It Pest &amp; Termite Control</h3>
+        <div className="mb-6 space-y-0.5 text-[15px] text-white/85">
+          <p>80 Porter Rd, Heidelberg Heights , VIC 3081</p>
+          <p>ABN 61 682 004 655</p>
+          <p><a href={SITE_CONFIG.phoneTel} className="hover:text-[#1cdc38]">(03) 9126 0555</a></p>
+          <p><a href={`mailto:${SITE_CONFIG.email}`} className="text-[#1cdc38] underline hover:opacity-80">{SITE_CONFIG.email}</a></p>
         </div>
 
-        <div className="border-t border-white/10">
-          <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 px-4 py-[15px] text-center sm:flex-row sm:items-center sm:px-6 sm:text-left">
-            <p className="text-[13px] text-white/80">
-              Copyright &copy; 2024 {SITE_CONFIG.name} | Designed by Apex AI
-            </p>
-            <Link
-              href="/privacy-policy"
-              className="text-[13px] text-white/80 transition-colors hover:text-[#3fa535]"
-            >
-              Privacy Policies
-            </Link>
-          </div>
-        </div>
-      </footer>
+        {/* Our promise */}
+        <h4 className="mb-2 text-[16px] font-bold">Our promise</h4>
+        <p className="mb-6 text-[15px] leading-[1.7] text-white/85">
+          When you protect your home and property from pests with us, your piece of mind is assured. Our services are eco-friendly, child safe, pet safe and we&apos;re fully insured and DHHS Licensed. We treat your home with same care as you do, using high-quality long-lasting solutions you can rely on.
+        </p>
 
-    </>
+        {/* Operating Hours */}
+        <h4 className="mb-2 text-[16px] font-bold">Operating Hours</h4>
+        <ul className="mb-6 space-y-0.5 text-[15px] text-white/85">
+          {OPERATING_HOURS.map((h) => (
+            <li key={h} className="flex items-center gap-1">
+              <span className="mr-1 inline-block h-1 w-1 shrink-0 rounded-full bg-white/50" />
+              {h}
+            </li>
+          ))}
+        </ul>
+
+        {/* Sitemap */}
+        <h4 className="mb-2 text-[16px] font-bold">Sitemap</h4>
+        <ul className="mb-8 space-y-1 text-[15px]">
+          {SITEMAP_LINKS.map((link) => (
+            <li key={link.href} className="flex items-center gap-1">
+              <span className="mr-1 inline-block h-1 w-1 shrink-0 rounded-full bg-white/50" />
+              <Link href={link.href} className="text-white/85 transition-colors hover:text-[#1cdc38]">{link.label}</Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Social icons */}
+        <div className="mb-8 flex items-center gap-5">
+          <a href={SITE_CONFIG.social.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="Instagram">
+            <SocialIconInstagram className="h-6 w-6" />
+          </a>
+          <a href={SITE_CONFIG.social.tiktok} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="TikTok">
+            <SocialIconTiktok className="h-6 w-6" />
+          </a>
+          <a href={SITE_CONFIG.social.facebook} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="Facebook">
+            <SocialIconFacebook className="h-6 w-6" />
+          </a>
+        </div>
+
+        {/* Same day service */}
+        <div className="mb-8 flex flex-col items-center text-center">
+          <a href={SITE_CONFIG.phoneTel} aria-label="Same day service available. Call now!">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/icons/group-350.svg" alt="Same day service available. Call now!" className="h-[140px] w-auto" />
+          </a>
+          <p className="mt-3 text-[18px] font-bold text-[#1cdc38]">24/7 same day service available</p>
+        </div>
+
+        {/* Copyright */}
+        <div className="border-t border-white/10 pt-5">
+          <p className="text-[12px] text-white/70">
+            &copy; {SITE_CONFIG.name}
+          </p>
+          <p className="text-[12px] text-white/70">
+            Managed by Delivix
+          </p>
+          <Link href="/privacy-policy" className="mt-1 inline-block text-[12px] text-white/70 underline transition-colors hover:text-[#1cdc38]">
+            Privacy Policies
+          </Link>
+        </div>
+      </div>
+    </footer>
   );
 }

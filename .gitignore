@@ -18,6 +18,9 @@
 # production
 /build
 
+# Local Netlify bundle (regenerate with: npm run build && cp -R out netlify-deploy)
+/netlify-deploy/
+
 # misc
 .DS_Store
 *.pem

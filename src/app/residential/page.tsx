@@ -4,7 +4,7 @@ import { CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema';
-import PageInfoFooterBlock from '@/components/layout/PageInfoFooterBlock';
+
 import PriceCalculator from '@/components/sections/PriceCalculator';
 import FaqPageAccordion from '@/components/sections/FaqPageAccordion';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -12,6 +12,7 @@ import type { FAQ, BreadcrumbItem } from '@/types';
 import HeroSlider from './HeroSlider';
 import GoogleReviewsCarousel from './GoogleReviewsCarousel';
 import InquiryForm from './InquiryForm';
+import MoneyBackGuarantee from '@/components/sections/MoneyBackGuarantee';
 
 const WP = '/images/wp-assets';
 const MELBOURNE_MAP =
@@ -170,15 +171,16 @@ export default function ResidentialPage() {
 
       {/* ===== 1. HERO IMAGE SLIDER (images already contain text/border/badge) ===== */}
       <HeroSlider />
+      <h1 className="sr-only">Residential Pest Control Services Melbourne — Zap It</h1>
 
       {/* ===== 2. WE TREAT ALL HOUSEHOLD PESTS — dark green bg, centered ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#0d402e] px-5 py-6 sm:px-6 sm:py-8">
           <div className="mx-auto max-w-xl text-center">
-            <h2 className="mb-3 text-[24px] font-bold leading-tight text-white sm:text-[28px]">
+            <h2 className="mb-3 text-[26px] font-bold leading-tight text-white sm:text-[30px]">
               We treat all household pests
             </h2>
-            <p className="mb-5 text-[15px] leading-[1.7] text-[#f8f5f2]/90 sm:text-[16px]">
+            <p className="mb-5 text-[16px] leading-[1.7] text-[#f8f5f2]/90 sm:text-[17px]">
               When you protect your home and family from pests with us, your piece of mind is assured.
               Our services are eco-friendly, child safe, pet safe and we&apos;re fully insured and DHHS
               Licensed. We treat your home with same care as you do, using high-quality long-lasting solutions you can rely on.
@@ -247,18 +249,18 @@ export default function ResidentialPage() {
             <h3 className="mb-4 text-[18px] font-bold text-[#414042] sm:text-[20px]">
               Termite inspection <span className="text-[#414042]">$399</span>
             </h3>
-            <dl className="mb-5 space-y-2 text-[13px] text-[#414042] sm:text-sm">
+            <dl className="mb-5 space-y-2 text-[14px] text-[#414042] sm:text-[15px]">
               <div className="flex gap-2"><dt className="shrink-0 font-bold italic">Duration:</dt><dd className="italic">2 hours</dd></div>
               <div className="flex gap-2"><dt className="shrink-0 font-bold italic">Property type:</dt><dd className="italic">All residential homes</dd></div>
               <div className="flex flex-col gap-0.5"><dt className="font-bold italic">Inclusions:</dt><dd className="italic ml-0">Visual and technical inspection of exterior and interior of property, including gardens</dd></div>
               <div className="flex flex-col gap-0.5"><dt className="font-bold italic">Tools used:</dt><dd className="italic ml-0">Moisture detection, Noise detection, keyhole camera</dd></div>
               <div className="flex flex-col gap-0.5"><dt className="font-bold italic">Verbal and written report:</dt><dd className="italic ml-0">Findings and recommendations documented.</dd></div>
             </dl>
-            <p className="mb-3 text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">
+            <p className="mb-3 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
               We conduct a detailed inspection in and around your home including in roof cavities and under the house.
               We use the latest technology to detect and diagnose extent of any termite activity.
             </p>
-            <p className="mb-8 text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">
+            <p className="mb-8 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
               A verbal and written assessment is provided with recommended course of action. The price of inspection
               is deducted from further treatment or preventative action.
             </p>
@@ -285,7 +287,7 @@ export default function ResidentialPage() {
       {/* ===== 7. SAME DAY SERVICE CTA ===== */}
       <ScrollReveal direction="fade">
       <section className="bg-[#0d402e] py-8 sm:py-10">
-        <a href={SITE_CONFIG.phoneTel} className="mx-auto block max-w-[360px] px-4" aria-label="Same day service available. Call now!">
+        <a href={SITE_CONFIG.phoneTel} className="mx-auto block max-w-[440px] px-4" aria-label="Same day service available. Call now!">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/icons/group-350.svg" alt="Same day service available. Call now!" className="h-auto w-full" />
         </a>
@@ -305,10 +307,10 @@ export default function ResidentialPage() {
           />
           <div className="absolute bottom-6 left-4 right-4 z-10 sm:left-6 sm:right-auto sm:max-w-[400px]">
             <div className="bg-[#1cdc38] px-4 py-3 sm:px-5 sm:py-4">
-              <p className="text-[16px] font-medium leading-[1.4] text-[#131a1c] sm:text-[18px]">
+              <p className="text-[17px] font-medium leading-[1.4] text-[#131a1c] sm:text-[20px]">
                 &ldquo;Zapit were great to deal with and I felt confidant they took my cats safety seriously&rdquo;
               </p>
-              <p className="mt-1 text-[13px] font-medium text-[#131a1c]/80 sm:text-[14px]">Jenny, Hawthorn resident</p>
+              <p className="mt-1 text-[14px] font-medium text-[#131a1c]/80 sm:text-[15px]">Jenny, Hawthorn resident</p>
             </div>
           </div>
         </div>
@@ -327,7 +329,7 @@ export default function ResidentialPage() {
               <span className="text-[25px] font-black leading-none tracking-[-0.05em] text-[#414042]">Save</span>
               <span className="text-[25px] font-black leading-none tracking-[-0.05em] text-[#414042]">20%</span>
             </div>
-            <p className="text-[14px] leading-[1.3] text-[#414042]">
+            <p className="text-[16px] leading-[1.4] text-[#414042] sm:text-[17px]">
               Save 20% on the total cost of the job when you purchase two or more treatments that we service on the same day.
             </p>
           </div>
@@ -339,6 +341,9 @@ export default function ResidentialPage() {
       <ScrollReveal direction="up">
         <section className="bg-white px-4 py-6 sm:px-5 sm:py-8">
           <InquiryForm />
+          <div className="mt-6">
+            <MoneyBackGuarantee />
+          </div>
         </section>
       </ScrollReveal>
 
@@ -346,7 +351,7 @@ export default function ResidentialPage() {
       <ScrollReveal direction="up">
       <section id="pest-price-list" className="bg-white px-4 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-6 text-[22px] font-bold leading-tight text-[#414042] sm:text-[26px]">
+          <h2 className="mb-6 text-[24px] font-bold leading-tight text-[#414042] sm:text-[28px]">
             Pest solutions and price list
           </h2>
           <div className="space-y-2">
@@ -354,22 +359,22 @@ export default function ResidentialPage() {
               <details key={item.n} className="group rounded-xl border border-[#e5e5e5] bg-white shadow-sm" open={item.open}>
                 <summary className="flex cursor-pointer list-none items-center gap-3 px-4 py-4 sm:px-5">
                   <PestIcon type={item.pestType} />
-                  <span className="flex-1 text-[15px] font-bold text-[#414042] group-open:text-[#38B44A] sm:text-base">
+                  <span className="flex-1 text-[16px] font-bold text-[#414042] group-open:text-[#38B44A] sm:text-[17px]">
                     {item.name}
                   </span>
-                  <span className="shrink-0 text-[15px] font-bold text-[#1cdc38] sm:text-base">{item.price}</span>
+                  <span className="shrink-0 text-[16px] font-bold text-[#1cdc38] sm:text-[17px]">{item.price}</span>
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center font-bold text-lg leading-none">
                     <span className="text-[#AFAAA4] group-open:hidden">+</span>
                     <span className="hidden text-[#414042] group-open:inline">&minus;</span>
                   </span>
                 </summary>
                 <div className="border-t border-[#e5e5e5] px-4 pb-5 pt-4 sm:px-5">
-                  <dl className="mb-4 space-y-2 text-[13px] text-[#414042] sm:text-sm">
+                  <dl className="mb-4 space-y-2 text-[14px] text-[#414042] sm:text-[15px]">
                     <div className="flex gap-2"><dt className="shrink-0 font-semibold text-[#131a1c]">Duration:</dt><dd>{item.duration}</dd></div>
                     <div className="flex gap-2"><dt className="shrink-0 font-semibold text-[#131a1c]">Property type:</dt><dd>{item.propertyType}</dd></div>
                     <div className="flex flex-col gap-1"><dt className="font-semibold text-[#131a1c]">Inclusions:</dt><dd className="whitespace-pre-line ml-2">{item.inclusions}</dd></div>
                   </dl>
-                  <p className="whitespace-pre-line text-[13px] leading-[1.7] text-[#414042] sm:text-sm">{item.detail}</p>
+                  <p className="whitespace-pre-line text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">{item.detail}</p>
                 </div>
               </details>
             ))}
@@ -383,61 +388,49 @@ export default function ResidentialPage() {
       {/* 11a. Health & Safety intro */}
       <ScrollReveal direction="fade">
       <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-12">
-        <p className="mx-auto max-w-md text-center text-[18px] italic leading-[1.5] text-[#1cdc38] sm:text-[20px]">
+        <p className="mx-auto max-w-md text-center text-[20px] italic leading-[1.5] text-[#1cdc38] sm:text-[24px]">
           Your health and safety are at the heart of everything we do, supported by industry-leading technology.
         </p>
       </section>
       </ScrollReveal>
 
       {/* 11b. Family trust image — text is already in the image */}
-      <ScrollReveal direction="up">
-      <section className="relative w-full overflow-hidden">
-        <div className="relative aspect-[375/440] w-full sm:aspect-[16/10]">
-          <Image src="/images/residential/family-trust.png" alt="Protection you can trust — We have serviced over 20,000 homes in Melbourne" fill className="object-cover object-top" sizes="100vw" />
-        </div>
+      <section className="w-full bg-[#131a1c]">
+        <Image src="/images/residential/family-trust.png" alt="Protection you can trust — We have serviced over 20,000 homes in Melbourne" width={712} height={1002} className="h-auto w-full" />
       </section>
-      </ScrollReveal>
 
       {/* 11c. Pet safety text */}
       <ScrollReveal direction="fade" delay={100}>
       <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-12">
-        <p className="mx-auto max-w-md text-center text-[18px] italic leading-[1.5] text-[#1cdc38] sm:text-[20px]">
+        <p className="mx-auto max-w-md text-center text-[20px] italic leading-[1.5] text-[#1cdc38] sm:text-[24px]">
           We know pets can get into all sorts of mischief which is why we take every measure to keep your much loved pets safe and sound.
         </p>
       </section>
       </ScrollReveal>
 
       {/* 11d. Townhouse image — text is already in the image */}
-      <ScrollReveal direction="left">
-      <section className="relative w-full overflow-hidden">
-        <div className="relative aspect-[375/350] w-full sm:aspect-[16/9]">
-          <Image src="/images/residential/townhouse.png" alt="We treat your home as if it were ours — Your satisfaction is our highest priority" fill className="object-cover object-center" sizes="100vw" />
-        </div>
+      <section className="w-full bg-[#131a1c]">
+        <Image src="/images/residential/townhouse.png" alt="We treat your home as if it were ours — Your satisfaction is our highest priority" width={650} height={702} className="h-auto w-full" />
       </section>
-      </ScrollReveal>
 
       {/* 11e. Coverage text */}
       <ScrollReveal direction="fade" delay={100}>
       <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-12">
-        <p className="mx-auto max-w-md text-center text-[18px] italic leading-[1.5] text-[#1cdc38] sm:text-[20px]">
+        <p className="mx-auto max-w-md text-center text-[20px] italic leading-[1.5] text-[#1cdc38] sm:text-[24px]">
           Whether you live in a one-bedroom flat, high-rise apartment, semi-detached townhouse or large family home, we have you covered.
         </p>
       </section>
       </ScrollReveal>
 
       {/* 11f. High rise specialist image — text is already in the image */}
-      <ScrollReveal direction="right">
-      <section className="relative w-full overflow-hidden">
-        <div className="relative aspect-[375/350] w-full sm:aspect-[16/9]">
-          <Image src="/images/residential/highrise-specialist.png" alt="We're high rise specialists — We have quickly become specialists in high rise living pest protection" fill className="object-cover object-center" sizes="100vw" />
-        </div>
+      <section className="w-full bg-[#131a1c]">
+        <Image src="/images/residential/highrise-specialist.png" alt="We're high rise specialists — We have quickly become specialists in high rise living pest protection" width={648} height={878} className="h-auto w-full" />
       </section>
-      </ScrollReveal>
 
       {/* 11g. Service area text */}
       <ScrollReveal direction="fade" delay={100}>
       <section className="bg-[#131a1c] px-5 py-10 sm:px-6 sm:py-12">
-        <p className="mx-auto max-w-md text-center text-[18px] italic leading-[1.5] text-[#1cdc38] sm:text-[20px]">
+        <p className="mx-auto max-w-md text-center text-[20px] italic leading-[1.5] text-[#1cdc38] sm:text-[24px]">
           We service Melbourne&apos;s central, north-west, northern and north-eastern suburbs.
         </p>
       </section>
@@ -469,10 +462,10 @@ export default function ResidentialPage() {
       <ScrollReveal direction="up">
       <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10">
         <div className="mx-auto max-w-md text-center">
-          <h2 className="mb-3 text-[24px] font-bold leading-[28px] text-white sm:text-[28px] sm:leading-[32px]">
+          <h2 className="mb-3 text-[26px] font-bold leading-[30px] text-white sm:text-[30px] sm:leading-[34px]">
             We&apos;ve got Melbourne covered
           </h2>
-          <p className="mb-6 text-[16px] font-medium leading-[22px] text-white/80 sm:text-[17px] sm:leading-[24px]">
+          <p className="mb-6 text-[17px] font-medium leading-[24px] text-white/80 sm:text-[18px] sm:leading-[26px]">
             We service all suburbs in Melbourne, no matter if you&apos;re in an inner city apartment or a bush block in Warrandyte, we&apos;ve got you protected.
           </p>
         </div>
@@ -493,19 +486,19 @@ export default function ResidentialPage() {
       <ScrollReveal direction="up">
       <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-4 text-[22px] font-bold leading-tight text-[#131a1c] sm:text-[24px]">
+          <h2 className="mb-4 text-[24px] font-bold leading-tight text-[#131a1c] sm:text-[28px]">
             Insured, licensed, accredited and legally compliant
           </h2>
-          <p className="mb-4 text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">
+          <p className="mb-4 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
             Your health and safety is at the heart of everything we do. Your trust in us is backed by
             our industry memberships, accreditations, licences and professional insurance.
           </p>
-          <p className="mb-6 text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">
+          <p className="mb-6 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
             We&apos;re committed to provide the safest and best possible pest control solutions. We
             maintain our professional currency by staying at the forefront of advances in technology,
             regulatory compliance and industry standards.
           </p>
-          <ul className="mb-8 space-y-4 text-[14px] text-[#414042] sm:text-[15px]">
+          <ul className="mb-8 space-y-4 text-[15px] text-[#414042] sm:text-[16px]">
             <li><p className="font-bold text-[#131a1c]">The Australian Environmental Pest Managers Association</p><p>Membership number: XXXXXX</p></li>
             <li><p className="font-bold text-[#131a1c]">HACCP Food Safety Certificate</p><p>Certificate number: XXXXXX</p></li>
             <li><p className="font-bold text-[#131a1c]">VIC Government Wildlife Licence</p><p>Licence number: XXXXXX</p></li>
@@ -514,16 +507,16 @@ export default function ResidentialPage() {
             <div className="flex items-center justify-center gap-8">
               <figure className="flex flex-col items-center text-center">
                 <Image src={`${WP}/2025-04-WhatsApp-Image-2025-04-25-at-23.36.21_3d87ac70-300x300.jpg`} alt="Wildlife Licensed" width={120} height={100} className="h-20 w-auto object-contain sm:h-24" />
-                <figcaption className="mt-2 text-[12px] font-medium text-[#414042]">Wildlife Licenced</figcaption>
+                <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">Wildlife Licenced</figcaption>
               </figure>
               <figure className="flex flex-col items-center text-center">
                 <Image src={`${WP}/2024-07-aempa-v2-1-1-e1745687916424-173x300.png`} alt="HACCP Food Safety Certification" width={120} height={100} className="h-20 w-auto object-contain sm:h-24" />
-                <figcaption className="mt-2 text-[12px] font-medium text-[#414042]">HACCP Food Safety<br />Certification</figcaption>
+                <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">HACCP Food Safety<br />Certification</figcaption>
               </figure>
             </div>
             <figure className="flex flex-col items-center text-center">
               <Image src={`${WP}/2024-07-aempa-v2-1-e1745687358594-768x321.png`} alt="Australian Environmental Pest Managers Association" width={160} height={80} className="h-16 w-auto object-contain sm:h-20" />
-              <figcaption className="mt-2 text-[12px] font-medium text-[#414042]">Australian Environmental<br />Pest Managers Association</figcaption>
+              <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">Australian Environmental<br />Pest Managers Association</figcaption>
             </figure>
           </div>
         </div>
@@ -534,7 +527,7 @@ export default function ResidentialPage() {
       <ScrollReveal direction="up">
       <section className="bg-white px-4 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-2 text-[22px] font-bold leading-tight text-[#131a1c] sm:text-[26px]">
+          <h2 className="mb-2 text-[24px] font-bold leading-tight text-[#131a1c] sm:text-[28px]">
             Frequently asked questions
           </h2>
           <div className="mb-6 h-[3px] w-[60px] bg-[#1cdc38]" />
@@ -545,8 +538,6 @@ export default function ResidentialPage() {
       </section>
       </ScrollReveal>
 
-      {/* ===== PAGE INFO FOOTER ===== */}
-      <PageInfoFooterBlock />
     </>
   );
 }

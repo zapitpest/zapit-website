@@ -230,6 +230,12 @@ export default function PriceCalculator() {
           <p className="mt-2 text-xs text-gray-400">
             <span className="text-[#1cdc38]">*</span>required fields
           </p>
+
+          {/* Call Now button row */}
+          <a href={SITE_CONFIG.phoneTel} className="mt-5 block">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/icons/call-now-button.svg" alt="Call now!" className="mx-auto h-[50px] w-auto" />
+          </a>
         </div>
       </div>
     </section>

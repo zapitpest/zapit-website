@@ -92,7 +92,7 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
         type="submit"
         className="w-full rounded-full bg-[#414042] py-3.5 text-sm font-bold text-white transition-colors hover:bg-[#131a1c] sm:text-[15px]"
       >
-        Submit enquiry
+        Get My Free Quote Now
       </button>
 
       {/* 24-hour guarantee */}

@@ -56,6 +56,7 @@ export type NavLink = {
 };
 
 export const NAV_LINKS: NavLink[] = [
+  { label: 'Home', href: '/' },
   { label: 'Residential', href: '/residential' },
   {
     label: 'Commercial',
@@ -115,6 +116,7 @@ export const NAV_LINKS: NavLink[] = [
       { label: 'Pest Control Werribee', href: '/pest-control-werribee' },
     ],
   },
+  { label: 'About Us', href: '/about-us' },
   { label: 'Service Areas', href: '/service-areas' },
   { label: 'FAQs', href: '/frequently-asked-questions' },
   { label: 'Contact Us', href: '/contact-us' },

@@ -3,7 +3,7 @@ import { CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
-import PageInfoFooterBlock from '@/components/layout/PageInfoFooterBlock';
+
 
 const MELBOURNE_MAP_EMBED =
   'https://www.google.com/maps?q=' +
@@ -35,8 +35,8 @@ export default function ServiceAreasPage() {
         {/* Header */}
         <section className="bg-[#f8f5f2] px-4 pb-4 pt-6 sm:px-6 sm:pt-8">
           <div className="mx-auto max-w-3xl">
-            <h1 className="text-left text-[22px] font-bold leading-tight text-[#414042] sm:text-[26px]">Service areas</h1>
-            <p className="mx-auto mt-4 max-w-2xl text-center text-lg italic leading-snug text-[#414042] sm:text-xl">
+            <h1 className="text-left text-[26px] font-bold leading-tight text-[#414042] sm:text-[30px]">Service areas</h1>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-[18px] italic leading-snug text-[#414042] sm:text-[22px]">
               We service Melbourne&apos;s central, north-west, northern and north-eastern suburbs.
             </p>
           </div>
@@ -67,15 +67,15 @@ export default function ServiceAreasPage() {
         {/* About / Committed */}
         <section className="bg-[#f8f5f2] px-4 py-6 sm:px-6 sm:py-10">
           <div className="mx-auto max-w-3xl">
-            <h2 className="text-[18px] font-bold leading-snug text-[#414042] sm:text-[20px]">About us</h2>
-            <p className="mt-3 text-sm leading-[1.65] text-[#414042] sm:text-base">
+            <h2 className="text-[20px] font-bold leading-snug text-[#414042] sm:text-[24px]">About us</h2>
+            <p className="mt-3 text-[15px] leading-[1.65] text-[#414042] sm:text-[16px]">
               Built on trust, with an uncompromising commitment to customer satisfaction and professional standards.
             </p>
 
-            <h3 className="mt-8 text-[18px] font-bold leading-snug text-[#414042] sm:text-[20px]">
+            <h3 className="mt-8 text-[20px] font-bold leading-snug text-[#414042] sm:text-[24px]">
               Committed to protecting what&apos;s important to you
             </h3>
-            <div className="mt-4 space-y-4 text-sm leading-[1.65] text-[#414042] sm:text-[15px]">
+            <div className="mt-4 space-y-4 text-[15px] leading-[1.65] text-[#414042] sm:text-[16px]">
               <p>
                 Your health and safety are at the heart of everything we do, supported by industry-leading pest protection
                 technology and customer care.
@@ -94,19 +94,18 @@ export default function ServiceAreasPage() {
         </section>
 
         {/* Same day CTA */}
-        <section className="bg-[#f8f5f2] px-4 pb-10 pt-2 text-center sm:px-6 sm:pb-12" aria-label="Same day service">
-          <div className="mx-auto max-w-md">
+        <section className="bg-[#2B2B2B] px-4 py-10 text-center sm:px-6 sm:py-12" aria-label="Same day service">
+          <div className="mx-auto flex max-w-md flex-col items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/icons/group-350.svg"
               alt="Same day service available. Call now!"
-              className="mx-auto w-full max-w-[320px] sm:max-w-[360px]"
+              className="h-[160px] w-auto"
             />
+            <p className="mt-4 text-[20px] font-bold text-[#1cdc38] sm:text-[24px]">24/7 same day service available. Call now!</p>
           </div>
         </section>
       </div>
-
-      <PageInfoFooterBlock />
     </>
   );
 }

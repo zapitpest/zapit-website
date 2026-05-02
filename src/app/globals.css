@@ -363,7 +363,7 @@
 
 @media (max-width: 700px) {
   .pest-cards {
-    max-width: 100vw;
+    max-width: 100%;
     padding: 0 12px;
   }
 
@@ -458,4 +458,16 @@
 }
 .animate-slide-down {
   animation: slide-down 0.2s ease-out;
+}
+
+@keyframes subtle-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(100, 255, 1, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(100, 255, 1, 0.6), 0 0 40px rgba(100, 255, 1, 0.2);
+  }
+}
+.animate-subtle-glow {
+  animation: subtle-glow 2s ease-in-out infinite;
 }

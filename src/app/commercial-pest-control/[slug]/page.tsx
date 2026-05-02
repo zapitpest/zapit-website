@@ -6,7 +6,7 @@ import { SITE_CONFIG } from '@/lib/constants';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 import ScrollReveal from '@/components/ui/ScrollReveal';
-import PageInfoFooterBlock from '@/components/layout/PageInfoFooterBlock';
+
 import GoogleReviewsCarousel from '../../residential/GoogleReviewsCarousel';
 
 type CommercialIndustryPage = {
@@ -413,8 +413,6 @@ export default async function CommercialIndustryPage({ params }: Props) {
           </div>
         </section>
       </ScrollReveal>
-
-      <PageInfoFooterBlock />
     </>
   );
 }

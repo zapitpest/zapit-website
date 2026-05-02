@@ -1,19 +1,17 @@
 import type { Metadata } from 'next';
-import type { CSSProperties } from 'react';
 import Image from 'next/image';
-import { Phone, Star } from 'lucide-react';
+import Link from 'next/link';
+import { Phone, CheckCircle2, Shield, ChevronRight, Star, AlertTriangle } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/schema';
-import PageInfoFooterBlock from '@/components/layout/PageInfoFooterBlock';
+
 import { HomepageMelbourneCoverage, HomepageReviews } from '@/components/sections/HomepageReviewsAndPestTabs';
+import StatsCounter from '@/components/sections/StatsCounter';
 import TermiteTypeTabsClient from './TermiteTypeTabsClient';
 import TermiteFAQClient from './TermiteFAQClient';
-import PestProtectionWidget from './PestProtectionWidget';
 
 const WP = '/images/wp-assets';
-const HERO_BG =
-  'https://zapitpestmelbourne.com.au/wp-content/uploads/2025/09/imgi_73_WhatsApp-Image-2025-09-17-at-3.05.27-PM.jpg';
 
 export const metadata: Metadata = {
   title: 'Termite Control Melbourne | Top-Rated Termite Treatment & Inspections',
@@ -22,8 +20,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/termite-control-melbourne' },
   openGraph: { url: '/termite-control-melbourne' },
 };
-
-/* ─── Data ─────────────────────────────────────── */
 
 const TERMITE_TYPES = [
   {
@@ -63,57 +59,22 @@ const TERMITE_TYPES = [
   },
 ] as const;
 
-const INDUSTRIES = [
-  { label: 'Property Pest Control', svgPath: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' },
-  { label: 'Warehousing and Storage', svgPath: 'M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z' },
-  { label: 'Restaurants Pest Control', svgPath: 'M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z' },
-  { label: 'Supermarkets Pest Control', svgPath: 'M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0020 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z' },
-  { label: 'Function Venues', svgPath: 'M7 2v11h3v9l7-12h-4l4-8z' },
-  { label: 'Brewhouses and Distilleries', svgPath: 'M3 14c0 1.3.84 2.4 2 2.82V20H3v2h6v-2H7v-3.18C8.16 16.4 9 15.3 9 14V6H3v8zm2-6h2v3H5V8zm15.64 1.35l-.85-.85a1.49 1.49 0 00-2.12 0L14 12.17V22h8V12.17l-2.85-2.82h-.01zM20 20h-4v-5l2-2 2 2v5z' },
-  { label: 'Recreational Facilities', svgPath: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z' },
-  { label: 'Government Buildings', svgPath: 'M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z' },
-] as const;
-
-const RESCUE_STEPS = [
-  {
-    n: 1,
-    title: 'Inspect & Diagnose',
-    body: 'Found termite droppings? Heard the hollowing sound upon tapping the floorboard? Give us a call, and our professional termite pest controllers will start the removal process by first inspecting the infested timber items and measuring infestation levels. We\'ll complete the inspection and diagnose the damage done for effective termite removal.',
-  },
-  {
-    n: 2,
-    title: 'Treat & Eliminate',
-    body: 'After inspection and the identification of damaged timber items, we\'ll separate the infested items and contain them so as not to give termites a way out. Without wasting time, our skilled, licensed, and insured team will start applying appropriate termite control solutions to exterminate all insects inside the timber.',
-  },
-  {
-    n: 3,
-    title: 'Prevent & Monitor',
-    body: 'To ensure long-term prevention from termites and keep wooden items free from further infestations, we make sure to seal the entry points or eliminate the causes, like the abundance of moisture or humidity, to discourage termite infestations. Zap It Pest & Termite Control Melbourne also shares tips to stop termite infestations and schedules follow-up visits.',
-  },
-] as const;
-
 const TERMITE_FAQS = [
-  {
-    question: 'How much does termite control cost in Melbourne?',
-    answer: 'There\'s no fixed control for any pest control solutions like rodent control or ant control, and the same is the case with termites. However, you can get a custom quote to know exactly how much you have to pay and save yourself from paying thousands of dollars in damage repair.',
-  },
-  {
-    question: 'Do termites fly?',
-    answer: 'Yes, termites can fly during their swarming season. Flying termites (also called alates or swarmers) are reproductive termites that leave their colony to start new ones. If you spot flying termites near your home, contact Zap It immediately for an inspection.',
-  },
-  {
-    question: 'How to get rid of termites?',
-    answer: 'Getting rid of termites requires professional treatment. Our licensed technicians use a combination of liquid barriers, bait systems, and targeted treatments to fully eliminate termite colonies. DIY methods are rarely effective and can cause termites to scatter, worsening the infestation.',
-  },
-  {
-    question: 'What do termites eat?',
-    answer: 'Termites primarily eat cellulose-based materials like wood, paper, cardboard, and plant fibres. In homes, they target structural timber, flooring, furniture, and any wooden fixtures. Some species also feed on living trees and shrubs in your garden.',
-  },
-  {
-    question: 'How do I tell if I have termites?',
-    answer: 'Common signs include hollow-sounding timber when tapped, sawdust-like droppings (frass), mud tubes on walls or foundations, blistering paint or bubbling wood surfaces, and discarded wings near windows. If you notice any of these, call Zap It for a same-day inspection.',
-  },
+  { question: 'How much does termite control cost in Melbourne?', answer: 'There\'s no fixed control for any pest control solutions like rodent control or ant control, and the same is the case with termites. However, you can get a custom quote to know exactly how much you have to pay and save yourself from paying thousands of dollars in damage repair.' },
+  { question: 'Do termites fly?', answer: 'Yes, termites can fly during their swarming season. Flying termites (also called alates or swarmers) are reproductive termites that leave their colony to start new ones. If you spot flying termites near your home, contact Zap It immediately for an inspection.' },
+  { question: 'How to get rid of termites?', answer: 'Getting rid of termites requires professional treatment. Our licensed technicians use a combination of liquid barriers, bait systems, and targeted treatments to fully eliminate termite colonies. DIY methods are rarely effective and can cause termites to scatter, worsening the infestation.' },
+  { question: 'What do termites eat?', answer: 'Termites primarily eat cellulose-based materials like wood, paper, cardboard, and plant fibres. In homes, they target structural timber, flooring, furniture, and any wooden fixtures. Some species also feed on living trees and shrubs in your garden.' },
+  { question: 'How do I tell if I have termites?', answer: 'Common signs include hollow-sounding timber when tapped, sawdust-like droppings (frass), mud tubes on walls or foundations, blistering paint or bubbling wood surfaces, and discarded wings near windows. If you notice any of these, call Zap It for a same-day inspection.' },
 ] as const;
+
+const WARNING_SIGNS = [
+  'Hollow-sounding timber when tapped',
+  'Sawdust-like droppings (frass) near wood',
+  'Mud tubes along walls or foundations',
+  'Blistering or bubbling paint on surfaces',
+  'Discarded wings near windows or doors',
+  'Tight-fitting doors or hard-to-open windows',
+];
 
 export default function TermiteControlMelbournePage() {
   const breadcrumb = generateBreadcrumbSchema([
@@ -125,432 +86,278 @@ export default function TermiteControlMelbournePage() {
     <>
       <JsonLd data={[generateLocalBusinessSchema('Melbourne'), breadcrumb]} />
 
-      <div className="font-sans text-[#414042]">
+      {/* ===== HERO ===== */}
+      <section className="relative overflow-hidden bg-[#0d402e] text-white">
+        <div className="absolute inset-0">
+          <Image src="/images/residential/hero-house.png" alt="" fill priority className="object-cover object-center opacity-15" sizes="100vw" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0d402e] via-[#0d402e]/90 to-[#0d402e]/70" />
+        <div className="relative mx-auto max-w-[1200px] px-5 pb-14 pt-10 sm:px-6 sm:pb-16 sm:pt-12 lg:pb-20">
+          <nav className="mb-6 flex items-center gap-2 text-sm text-white/60">
+            <Link href="/" className="transition-colors hover:text-white">Home</Link>
+            <ChevronRight className="h-3 w-3" />
+            <span className="text-[#64FF01]">Termite Control Melbourne</span>
+          </nav>
 
-        {/* ── HERO ── */}
-        <section className="relative flex min-h-[min(92vh,600px)] flex-col justify-end overflow-hidden pb-10 pt-[120px] text-white sm:min-h-[500px] sm:pb-12 sm:pt-[130px]">
-          <Image src={HERO_BG} alt="" fill priority className="-z-20 object-cover object-center" sizes="100vw" />
-          <div className="absolute inset-0 -z-10 bg-[#0d402e]/75" aria-hidden />
-          <div className="relative mx-auto w-full max-w-[1200px] px-5 sm:px-6">
-            <h1
-              className="max-w-2xl text-[28px] font-extrabold leading-[1.15] sm:text-[36px] md:text-[44px]"
-              style={{ textWrap: 'balance' } as CSSProperties}
-            >
-              <span className="inline bg-[#1cdc38] [box-decoration-break:clone] px-2 text-[#131a1c]">
-                Termite Control Melbourne — Top-Rated Service
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-14">
+            <div className="flex-1">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10">
+                  <img src="/images/icons/insects/termite.svg" alt="" className="h-8 w-8" style={{ filter: 'brightness(0) invert(1)' }} />
+                </div>
+                <span className="rounded-full bg-[#64FF01]/15 px-3 py-1 text-[12px] font-bold uppercase tracking-wider text-[#64FF01]">Top-Rated Service</span>
+              </div>
+              <h1 className="mb-4 max-w-xl text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
+                Termite Control Melbourne
+              </h1>
+              <p className="max-w-xl text-[16px] leading-relaxed text-white/80">
+                Termites are silent property destroyers, eating timber from within. Don&apos;t wait — our DHHS-certified termite specialists deliver same-day inspections, liquid &amp; bait treatments to protect your property.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a href={SITE_CONFIG.phoneTel} className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#64FF01] px-6 py-3.5 text-[15px] font-bold text-[#0d402e] transition-transform hover:scale-105">
+                  <Phone className="h-4 w-4 shrink-0" />Call Now — {SITE_CONFIG.phone}
+                </a>
+                <a href={SITE_CONFIG.booking.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-6 py-3.5 text-[15px] font-bold text-white transition-colors hover:border-white hover:bg-white/10">
+                  Book Free Inspection
+                </a>
+              </div>
+            </div>
+
+            <div className="w-full overflow-hidden rounded-2xl shadow-2xl lg:max-w-[420px]">
+              <Image src={`${WP}/termite-spray-person.webp`} alt="Termite treatment professional" width={600} height={450} className="h-auto w-full" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== TRUST BAR ===== */}
+      <section className="border-b border-[#e5e5e5] bg-[#f8f5f2] py-3.5">
+        <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-5 text-[13px] font-semibold text-[#0d402e]">
+          {['DHHS Licensed', 'Same-Day Inspections', 'Liquid & Bait Treatments', 'Fully Insured', '200% Guarantee'].map((t) => (
+            <span key={t} className="flex items-center gap-1.5">
+              <CheckCircle2 className="h-3.5 w-3.5 text-[#3fa535]" strokeWidth={2.5} />{t}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ===== WARNING SIGNS ===== */}
+      <section className="bg-white py-14 lg:py-18">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>
+              <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-red-600">
+                <AlertTriangle className="h-3.5 w-3.5" />Warning Signs
               </span>
-            </h1>
-            <p className="mt-4 max-w-xl text-[14px] leading-[1.6] text-white/90 sm:text-[15px]">
-              Termites are silent property destroyers, eating timber from within. Don&apos;t wait — our termite control
-              services help reduce costly damage. Contact{' '}
-              <span className="font-semibold text-[#1cdc38]">Zap It Pest &amp; Termite Control Melbourne</span> today!
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href={SITE_CONFIG.phoneTel}
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-[#1cdc38] px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#131a1c] shadow-lg transition-colors hover:bg-[#0d402e] hover:text-white sm:text-base"
-              >
-                <Phone className="h-4 w-4 shrink-0" aria-hidden />
-                Call Now
+              <h2 className="mb-4 text-2xl font-bold text-[#131a1c] md:text-3xl">Common Signs of Termite Infestation</h2>
+              <p className="mb-6 text-[15px] leading-relaxed text-[#636363]">
+                Termites are smaller in size and usually hard to spot even when they are eating up your favourite sofa from inside. Look for these warning signs:
+              </p>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {WARNING_SIGNS.map((sign) => (
+                  <div key={sign} className="flex items-start gap-3 rounded-xl border border-[#e5e5e5] bg-[#f8f5f2] p-3.5">
+                    <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
+                    <span className="text-[13px] font-medium text-[#414042]">{sign}</span>
+                  </div>
+                ))}
+              </div>
+              <a href={SITE_CONFIG.booking.url} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0d402e] px-6 py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#3fa535]">
+                Book Inspection Today
+              </a>
+            </div>
+            <div className="overflow-hidden rounded-2xl shadow-lg">
+              <Image src={`${WP}/termite-ant-closeup.webp`} alt="Termite close-up on wood" width={600} height={450} className="h-auto w-full" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 3-STEP PROCESS ===== */}
+      <section className="bg-[#0d402e] py-14 text-white lg:py-18">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+          <div className="mb-10 text-center">
+            <span className="mb-2 inline-block rounded-full bg-[#64FF01]/15 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#64FF01]">Our Process</span>
+            <h2 className="text-2xl font-bold md:text-3xl lg:text-4xl">Our 3-Step Termite Rescue Strategy</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {[
+              { n: '1', title: 'Inspect & Diagnose', body: 'Found termite droppings? Heard the hollowing sound upon tapping the floorboard? Our professional termite pest controllers start by inspecting the infested timber items and measuring infestation levels for effective removal.' },
+              { n: '2', title: 'Treat & Eliminate', body: 'After inspection and identification, we separate infested items and contain them. Our skilled, licensed team applies appropriate termite control solutions — liquid barriers and bait systems — to exterminate all insects.' },
+              { n: '3', title: 'Prevent & Monitor', body: 'For long-term prevention, we seal entry points and eliminate causes like moisture. We share tips to stop future infestations and schedule follow-up visits to ensure your property stays termite-free.' },
+            ].map((s) => (
+              <div key={s.n} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#64FF01] text-xl font-black text-[#0d402e]">{s.n}</div>
+                <h3 className="mb-3 text-xl font-bold">{s.title}</h3>
+                <p className="text-[14px] leading-relaxed text-white/70">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== TREATMENT METHODS ===== */}
+      <section className="bg-white py-14 lg:py-18">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div className="overflow-hidden rounded-2xl shadow-lg order-2 lg:order-1">
+              <Image src={`${WP}/termite-treatment-green.webp`} alt="Professional termite treatment" width={600} height={450} className="h-auto w-full" />
+            </div>
+            <div className="order-1 lg:order-2">
+              <span className="mb-3 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Treatment Methods</span>
+              <h2 className="mb-4 text-2xl font-bold text-[#131a1c] md:text-3xl">Safe &amp; Effective Termite Treatments</h2>
+              <p className="mb-6 text-[15px] leading-relaxed text-[#636363]">
+                We use two proven termite treatment methods tailored to your property type and infestation level.
+              </p>
+              <div className="space-y-4">
+                <div className="rounded-xl border border-[#e5e5e5] bg-[#f8f5f2] p-5">
+                  <h3 className="mb-2 text-[16px] font-bold text-[#131a1c]">Liquid Barrier Treatment</h3>
+                  <p className="text-[14px] leading-relaxed text-[#636363]">Creates an impermeable barrier using high-quality liquid chemicals that seep into soil and form a protective shield. Best for government buildings, offices, and commercial properties.</p>
+                </div>
+                <div className="rounded-xl border border-[#e5e5e5] bg-[#f8f5f2] p-5">
+                  <h3 className="mb-2 text-[16px] font-bold text-[#131a1c]">Bait System Treatment</h3>
+                  <p className="text-[14px] leading-relaxed text-[#636363]">Strategic bait stations that attract and eliminate entire colonies. Eco-friendly, low-impact approach ideal for homes with children and pets.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== TERMITE TYPES TABS ===== */}
+      <section className="bg-[#f8f5f2] py-14 lg:py-18">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+          <div className="mb-10 text-center">
+            <span className="mb-2 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Types of Termites</span>
+            <h2 className="text-2xl font-bold text-[#131a1c] md:text-3xl lg:text-4xl">We Cover All Types of Termites</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-[15px] text-[#636363]">Safeguard your property and investment with treatments tailored to the specific termite species.</p>
+          </div>
+          <TermiteTypeTabsClient types={TERMITE_TYPES} />
+        </div>
+      </section>
+
+      {/* ===== DAMAGE PREVENTION — image with text below ===== */}
+      <section className="relative">
+        <div className="relative aspect-[375/200] w-full sm:aspect-[16/6]">
+          <Image src={`${WP}/termite-wood-damage.webp`} alt="Termite wood damage" fill className="object-cover object-center" sizes="100vw" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0d402e]/80 via-transparent to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 px-5 pb-6 sm:pb-8">
+            <div className="mx-auto max-w-[1200px]">
+              <h2 className="text-2xl font-bold text-white md:text-3xl">Don&apos;t Let Termites Destroy Your Property</h2>
+              <p className="mt-2 max-w-xl text-[15px] text-white/80">Early detection saves thousands in repair costs. Book a free inspection today.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== STATS ===== */}
+      <section className="bg-[#131a1c] py-14 text-white lg:py-16">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+          <h2 className="mb-10 text-center text-2xl font-bold md:text-3xl">Why Melbourne Trusts Zap It</h2>
+          <StatsCounter />
+        </div>
+      </section>
+
+      {/* ===== CERTIFIED & LICENSED ===== */}
+      <section className="bg-white py-14 lg:py-18">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>
+              <span className="mb-3 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Credentials</span>
+              <h2 className="mb-4 text-2xl font-bold text-[#131a1c] md:text-3xl">Certified, Licensed &amp; Insured</h2>
+              <p className="mb-6 text-[15px] leading-relaxed text-[#636363]">
+                Our team is certified by the Victorian Department of Health and Human Sciences (DHHS) and fully insured for residential and commercial termite control across Melbourne.
+              </p>
+              <div className="space-y-3">
+                {[
+                  'DHHS-certified termite control experts',
+                  'Updated with Australian termite control standards',
+                  'Environmentally friendly methods — safe for pets & children',
+                  'Accredited solutions for homes and businesses',
+                  'Full insurance coverage for all services',
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3fa535]">
+                      <CheckCircle2 className="h-3 w-3 text-white" strokeWidth={3} />
+                    </div>
+                    <span className="text-[14px] text-[#414042]">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <a href={SITE_CONFIG.booking.url} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#3fa535] px-6 py-3 text-[14px] font-bold text-white transition-transform hover:scale-105">
+                Get a Free Quote
+              </a>
+            </div>
+            <div className="overflow-hidden rounded-2xl shadow-lg">
+              <Image src="/images/residential/melbourne-fleet.png" alt="Zap It licensed pest control fleet" width={600} height={450} className="h-auto w-full" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== REVIEWS ===== */}
+      <section className="bg-[#f8f5f2] py-14 lg:py-18">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+          <div className="mb-8 text-center">
+            <span className="mb-2 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Reviews</span>
+            <h2 className="text-2xl font-bold text-[#131a1c] md:text-3xl">What Our Customers Say</h2>
+          </div>
+          <HomepageReviews />
+        </div>
+      </section>
+
+      {/* ===== MELBOURNE COVERAGE ===== */}
+      <section className="bg-white py-14 lg:py-18">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+          <div className="mb-8 text-center">
+            <span className="mb-2 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Coverage</span>
+            <h2 className="text-2xl font-bold text-[#131a1c] md:text-3xl">Across Melbourne Termite Control</h2>
+          </div>
+          <HomepageMelbourneCoverage />
+        </div>
+      </section>
+
+      {/* ===== FAQS ===== */}
+      <section className="bg-[#f8f5f2] py-14 lg:py-18">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+          <div className="mb-8 text-center">
+            <span className="mb-2 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">FAQs</span>
+            <h2 className="text-2xl font-bold text-[#131a1c] md:text-3xl">Frequently Asked Questions</h2>
+          </div>
+          <TermiteFAQClient faqs={TERMITE_FAQS} />
+        </div>
+      </section>
+
+      {/* ===== GUARANTEE CTA ===== */}
+      <section className="bg-[#0d402e] py-14 text-white lg:py-18">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+          <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
+            <div className="overflow-hidden rounded-2xl">
+              <Image src="/images/residential/highrise-specialist.png" alt="Zap It pest control technician" width={600} height={600} className="h-auto w-full" />
+            </div>
+            <div>
+              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#64FF01]/15">
+                <Shield className="h-8 w-8 text-[#64FF01]" />
+              </div>
+              <h2 className="mb-3 text-2xl font-bold md:text-3xl">We&apos;re Not Happy Unless You&apos;re Happy</h2>
+              <p className="mb-2 text-[20px] font-bold text-[#64FF01]">200% Money-Back Guarantee</p>
+              <p className="mb-6 text-[15px] leading-relaxed text-white/80">
+                Talk to us about pest control for your home or business. We stand behind every treatment with our industry-leading guarantee.
+              </p>
+              <div className="space-y-3">
+                <a href={SITE_CONFIG.phoneTel} className="flex items-center gap-3 text-[15px] text-white/90 transition-colors hover:text-[#64FF01]">
+                  <Phone className="h-5 w-5 shrink-0 text-[#64FF01]" />{SITE_CONFIG.phoneRaw}
+                </a>
+                <a href={`mailto:${SITE_CONFIG.email}`} className="flex items-center gap-3 text-[15px] text-white/90 transition-colors hover:text-[#64FF01]">
+                  <Star className="h-5 w-5 shrink-0 text-[#64FF01]" />{SITE_CONFIG.email}
+                </a>
+              </div>
+              <a href={SITE_CONFIG.phoneTel} className="mt-6 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#64FF01] px-8 py-4 text-[16px] font-bold text-[#0d402e] transition-transform hover:scale-105">
+                <Phone className="h-5 w-5 shrink-0" />Call Now — {SITE_CONFIG.phone}
               </a>
             </div>
           </div>
-        </section>
-
-        {/* ── ALL OVER MELBOURNE ── */}
-        <section className="bg-white px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
-              <div className="min-w-0">
-                <h2 className="text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px]">
-                  All Over Melbourne Termite Control Services
-                </h2>
-                <div className="mt-3 h-[3px] w-[60px] bg-[#1cdc38]" />
-                <div className="mt-5 space-y-3 text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">
-                  <p>
-                    Whether you run a food manufacturing plant, a furniture store, an educational facility, or simply enjoy
-                    hosting parties in your backyard, termite attacks on timber items are a major concern across Melbourne&apos;s
-                    northern and western suburbs. This is especially true during early spring and summer in Victoria, when
-                    termite infestations and new colonies spread rapidly.
-                  </p>
-                  <p>
-                    Leaving no choice for homeowners to go for complete pest control services in general and termite removal in
-                    specific to save the integrity of the property and business reputation, Zap It Pest &amp; Termite Control
-                    Melbourne is offering local, comprehensive termite pest control in Melbourne to eliminate pests.
-                  </p>
-                  <p>
-                    We follow the Integrated Pest Management (IPM) approach to assess the root cause of problems in handling
-                    infestations and determine when to use chemicals/poison, if necessary, to restore peace at your place. Call
-                    us for instant rodent extermination.
-                  </p>
-                </div>
-                <div className="mt-8">
-                  <a
-                    href={SITE_CONFIG.booking.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#1cdc38] px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#131a1c] transition-colors hover:bg-[#0d402e] hover:text-white"
-                  >
-                    Book a Free Consultation
-                  </a>
-                </div>
-              </div>
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
-                <Image
-                  src={`${WP}/termite-spray-person.webp`}
-                  alt="Pest control professional in safety suit with spray"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── COMMON SIGNS ── */}
-        <section className="bg-[#f8f5f2] px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg order-2 lg:order-1">
-                <Image
-                  src={`${WP}/termite-ant-closeup.webp`}
-                  alt="Termite close-up on wood"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                />
-              </div>
-              <div className="min-w-0 order-1 lg:order-2">
-                <h2 className="text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px]">
-                  Common Signs Of Termite Infestations To Stop Further Damage
-                </h2>
-                <div className="mt-3 h-[3px] w-[60px] bg-[#1cdc38]" />
-                <div className="mt-5 space-y-3 text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">
-                  <p>
-                    Termites are smaller in size and usually hard to spot even when they are eating up your favourite sofa from
-                    inside. Because they don&apos;t produce any sound while making infestations or setting up new colonies.
-                  </p>
-                  <p>
-                    But worry not, you can find them by looking for some common signs like sawdust near the windowsills, hollow
-                    sounds when tapping the floorboards, and mud tubes around the walls or foundations of your home.
-                  </p>
-                </div>
-                <div className="mt-7">
-                  <a
-                    href={SITE_CONFIG.booking.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#1cdc38] px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#131a1c] transition-colors hover:bg-[#0d402e] hover:text-white"
-                  >
-                    Book Inspection Today
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── TO SAVE DAMAGE ── */}
-        <section className="bg-white px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
-              <div className="min-w-0">
-                <h2 className="text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px]">
-                  Termite Control Melbourne To Save Damage
-                </h2>
-                <div className="mt-3 h-[3px] w-[60px] bg-[#1cdc38]" />
-                <div className="mt-5 space-y-3 text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">
-                  <p>
-                    Zap It Pest &amp; Termite Control Melbourne&apos;s expert technicians thoroughly inspect residential and
-                    commercial properties to identify any signs of termite activity. Our inspections cover both the interior and
-                    exterior, including the foundation, walls, doors, cabinets, and roof.
-                  </p>
-                  <p>
-                    Zap It&apos;s rodent control services include every step required for effective rat and mouse management. We
-                    begin with a detailed inspection of the premises — whether it&apos;s a hospital, food manufacturing plant,
-                    or other facility. Our experienced pest controllers carefully identify and mark rodent nesting points, as
-                    well as their entry and exit routes.
-                  </p>
-                  <p>
-                    To ensure the complete removal of termites from your place and reduce termite damage repair costs. Our
-                    DHHS-certified termite exterminators use a wide range of tools, techniques, and methodologies to identify
-                    the signs of termite colonies.
-                  </p>
-                </div>
-                <div className="mt-7">
-                  <a
-                    href={SITE_CONFIG.phoneTel}
-                    className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#1cdc38] px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#131a1c] transition-colors hover:bg-[#0d402e] hover:text-white"
-                  >
-                    Book Same-Day Inspection
-                  </a>
-                </div>
-              </div>
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
-                <Image
-                  src={`${WP}/termite-wood-damage.webp`}
-                  alt="Close-up of termite wood damage"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── SAFE TREATMENT ── */}
-        <section className="bg-[#f8f5f2] px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg order-2 lg:order-1">
-                <Image
-                  src={`${WP}/termite-treatment-green.webp`}
-                  alt="Professional termite treatment application"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                />
-              </div>
-              <div className="min-w-0 order-1 lg:order-2">
-                <h2 className="text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px]">
-                  Safe Termite Treatment In Melbourne
-                </h2>
-                <div className="mt-3 h-[3px] w-[60px] bg-[#1cdc38]" />
-                <div className="mt-5 space-y-3 text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">
-                  <p>
-                    Zap It Pest &amp; Termite Control Melbourne mainly uses two termite treatment methods known as liquid and
-                    bait. The liquid control method creates an impermeable barrier in your buildings as it involves high-quality
-                    liquid chemicals. It seeps into the soil and forms a protective shield. This technique is best for treating
-                    government buildings, offices, etc.
-                  </p>
-                  <p>
-                    Our termite control experts use advanced methods to identify and eliminate termites effectively. With
-                    customised solutions tailored to your property, we help you get rid of termites and protect your home or
-                    business from future infestations.
-                  </p>
-                </div>
-                <div className="mt-7">
-                  <a
-                    href={SITE_CONFIG.booking.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#1cdc38] px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#131a1c] transition-colors hover:bg-[#0d402e] hover:text-white"
-                  >
-                    Book Our Service
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── TERMITE TYPES TABS ── */}
-        <section className="bg-white px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[32px]">
-              We Cover All Types Of Termites &amp; Safeguard Your Property &amp; Investment
-            </h2>
-            <div className="mx-auto mb-8 h-[3px] w-[60px] bg-[#1cdc38]" />
-            <TermiteTypeTabsClient types={TERMITE_TYPES} />
-          </div>
-        </section>
-
-        {/* ── CERTIFIED ── */}
-        <section className="bg-[#f8f5f2] px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
-              <div className="min-w-0">
-                <div className="mb-4 flex items-center gap-3">
-                  {/* Victoria Government logo placeholder */}
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#0d402e]">
-                    <span className="text-xs font-bold text-white leading-tight text-center">VIC</span>
-                  </div>
-                  <span className="text-sm font-semibold text-[#414042]">Victoria State Government</span>
-                </div>
-                <h2 className="text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px]">
-                  Certified, Licensed &amp; Insured Termite Control Experts
-                </h2>
-                <div className="mt-3 h-[3px] w-[60px] bg-[#1cdc38]" />
-                <p className="mt-5 text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">
-                  Our team is certified by the Victorian Department of Health and Human Sciences (DHHS) and insured for
-                  residential and commercial termite control services across Melbourne. Zap It Pest &amp; Termite Control
-                  Melbourne stays updated with current Australian termite control standards and only uses accredited solutions.
-                  We focus on promoting environmentally friendly termite control methods to ensure the safety of your pets or
-                  children. Choose Licensed, Choose Safe, Choose Zap It.
-                </p>
-                <div className="mt-7">
-                  <a
-                    href={SITE_CONFIG.booking.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#1cdc38] px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#131a1c] transition-colors hover:bg-[#0d402e] hover:text-white"
-                  >
-                    Get a Free Quote
-                  </a>
-                </div>
-              </div>
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-lg">
-                <Image
-                  src={`${WP}/elementor-thumbs-ZAP-IT-SOCIALIETTA-508022-r7s5ckhcmh43u3l9w3juc3wy7mr5k12y7bz7xs4tbk.webp`}
-                  alt="Licensed Zap It termite control expert Melbourne"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── INDUSTRIES ── */}
-        <section className="bg-white px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[32px]">
-              Dedicated &amp; Proven Termite Control Solutions For Every Industry
-            </h2>
-            <div className="mx-auto mb-4 h-[3px] w-[60px] bg-[#1cdc38]" />
-            <p className="mx-auto mb-10 max-w-3xl text-center text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">
-              It is not possible to use fumigation, baiting, and similar termite control methods for hospitals, homes,
-              restaurants, and brewhouses. Because every type, whether it is dampwood, drywood, subterranean, etc., and
-              property needs different methods for effective extermination. That&apos;s what Zap It Pest &amp; Termite Control
-              Melbourne is an expert at doing by using customised solutions for every industry, resulting in a complete clean-up of termites.
-            </p>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-5">
-              {INDUSTRIES.map((ind) => (
-                <div
-                  key={ind.label}
-                  className="flex flex-col items-center gap-3 rounded-2xl border border-[#e5e5e5] bg-white p-5 text-center shadow-sm transition-shadow hover:shadow-md"
-                >
-                  <svg className="h-10 w-10" fill="#1cdc38" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
-                    <path d={ind.svgPath} />
-                  </svg>
-                  <p className="text-[13px] font-semibold leading-tight text-[#414042] sm:text-[14px]">{ind.label}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-8 text-center">
-              <a
-                href={SITE_CONFIG.booking.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-[#1cdc38] px-8 py-3 text-sm font-bold uppercase tracking-wide text-[#131a1c] transition-colors hover:bg-[#0d402e] hover:text-white"
-              >
-                Find Your Industry
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <PestProtectionWidget />
-
-        {/* ── ACROSS MELBOURNE ── */}
-        <section className="bg-[#f8f5f2] px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[32px]">
-              Across Melbourne Termite Control Services
-            </h2>
-            <div className="mx-auto mb-8 h-[3px] w-[60px] bg-[#1cdc38]" />
-            <HomepageMelbourneCoverage />
-          </div>
-        </section>
-
-        {/* ── REVIEWS ── */}
-        <section className="bg-white px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[32px]">
-              How Customers Rate Zap It Pest Control Services
-            </h2>
-            <div className="mx-auto mb-8 h-[3px] w-[60px] bg-[#1cdc38]" />
-            <HomepageReviews />
-          </div>
-        </section>
-
-        {/* ── 3-STEP RESCUE ── */}
-        <section className="bg-[#f8f5f2] px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[32px]">
-              Our 3-Step Proven Termite Rescue Strategy
-            </h2>
-            <div className="mx-auto mb-8 h-[3px] w-[60px] bg-[#1cdc38]" />
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
-              {RESCUE_STEPS.map((s) => (
-                <div key={s.n} className="rounded-2xl border border-[#e5e5e5] bg-white p-6 shadow-sm">
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#1cdc38] text-lg font-bold text-[#131a1c]">
-                    {s.n}
-                  </div>
-                  <h3 className="mb-2 text-[17px] font-bold leading-tight text-[#131a1c]">{s.title}</h3>
-                  <p className="text-[14px] leading-[1.7] text-[#414042]">{s.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── FAQS ── */}
-        <section className="bg-white px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[1200px]">
-            <h2 className="mb-2 text-center text-[22px] font-bold leading-[1.2] text-[#131a1c] sm:text-[28px] md:text-[32px]">
-              Frequently Asked Questions
-            </h2>
-            <div className="mx-auto mb-8 h-[3px] w-[120px] bg-[#1cdc38]" />
-            <TermiteFAQClient faqs={TERMITE_FAQS} />
-          </div>
-        </section>
-
-        {/* ── WE'RE NOT HAPPY ── */}
-        <section className="bg-[#131a1c] text-white">
-          <div className="mx-auto max-w-[1200px] px-5 py-8 sm:px-6 sm:py-10 md:py-14">
-            <div className="flex flex-col items-center gap-6 md:flex-row md:items-end md:gap-0">
-              <div className="mx-auto w-full max-w-[260px] shrink-0 self-end sm:max-w-[300px] md:mx-0 md:max-w-[320px]">
-                <Image
-                  src={`${WP}/2025-07-imgi_23_—Pngtree—pest-control-worker-in-protective_15020351-2-1-768x768.webp`}
-                  alt="Pest control worker in protective equipment"
-                  width={768}
-                  height={768}
-                  className="h-auto w-full object-contain"
-                />
-              </div>
-              <div className="min-w-0 flex-1 pb-2 md:pl-8">
-                <Image
-                  src={`${WP}/2024-07-200-colour.png`}
-                  alt="200% Guarantee Badge"
-                  width={160}
-                  height={166}
-                  className="mb-4 h-auto w-20 sm:w-28"
-                />
-                <p className="text-[16px] font-bold uppercase tracking-wide text-white sm:text-lg md:text-xl">
-                  We&apos;re Not Happy Unless You&apos;re Happy
-                </p>
-                <p className="mt-2 text-[14px] leading-[1.6] text-white/80 sm:text-[15px]">
-                  Talk to us about pest control for your home or business
-                </p>
-                <ul className="mt-5 space-y-3">
-                  <li>
-                    <a href={SITE_CONFIG.phoneTel} className="inline-flex min-h-[44px] items-center gap-3 hover:underline">
-                      <Phone className="h-5 w-5 shrink-0 text-[#1cdc38]" aria-hidden />
-                      <span className="text-[15px] text-white/90">{SITE_CONFIG.phoneRaw}</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={`mailto:${SITE_CONFIG.email}`}
-                      className="inline-flex min-h-[44px] items-start gap-3 break-all hover:underline"
-                    >
-                      <Star className="mt-0.5 h-5 w-5 shrink-0 text-[#1cdc38]" aria-hidden />
-                      <span className="text-[15px] text-white/90">{SITE_CONFIG.email}</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </div>
-
-      <PageInfoFooterBlock />
+        </div>
+      </section>
     </>
   );
 }

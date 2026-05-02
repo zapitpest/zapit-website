@@ -48,8 +48,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-AU" className="h-full antialiased">
-      <body className="min-h-full flex flex-col font-sans">
+    <html lang="en-AU" className="h-full antialiased overflow-x-hidden">
+      <body className="min-h-full flex flex-col font-sans overflow-x-hidden">
         <GTMScript />
         <JsonLd data={[generateWebSiteSchema(), generateOrganizationSchema(), generateLocalBusinessSchema()]} />
         <Header />

@@ -112,7 +112,7 @@ const PEST_TABS = [
   },
 ] as const;
 
-const TAB_IMAGE = `${WP}/2025-10-imgi_22_Our-expert-local-pest-controllers-providing-pest-treatment-at-a-Melbourne-home.webp`;
+const TAB_IMAGE = '/images/residential/highrise-specialist.png';
 
 export function HomepageReviews() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -133,50 +133,48 @@ export function HomepageReviews() {
 
   return (
     <div className="w-full max-w-[1200px] mx-auto">
-      {/* Figma-style horizontal strip: rating left, reviews scrolling right */}
-      <div className="flex flex-col sm:flex-row items-start gap-6">
-        {/* Left — rating badge */}
-        <div className="shrink-0 flex flex-col items-center sm:items-start gap-1 sm:min-w-[160px]">
-          <div className="flex items-baseline gap-2">
-            <span className="text-[36px] font-extrabold text-[#131a1c] leading-none">4.9</span>
-            <div className="flex gap-0.5">
-              {[0, 1, 2, 3, 4].map((s) => (
-                <Star key={s} className="h-4 w-4 fill-amber-400 text-amber-400" />
-              ))}
-            </div>
-          </div>
-          <p className="text-[13px] font-bold uppercase tracking-wide text-[#131a1c]">EXCELLENT</p>
-          <p className="flex items-center gap-1.5 text-[12px] text-[#636363]">
-            <Image src="/images/logo/google-g.png" alt="Google" width={16} height={16} className="h-4 w-4" />
-            {SITE_CONFIG.rating.count}+ Google Reviews
-          </p>
-        </div>
-
-        {/* Right — auto-scrolling review cards */}
-        <div className="relative flex-1 min-w-0 overflow-hidden">
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-l from-white to-transparent" />
-          <div
-            ref={scrollRef}
-            className="flex gap-4 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {REVIEWS.map((rev) => (
-              <div key={rev.name} className="min-w-[260px] w-[280px] flex-shrink-0 rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
-                <div className="flex gap-0.5 mb-2">
-                  {[0, 1, 2, 3, 4].map((s) => (
-                    <Star key={s} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <p className="text-[13px] leading-[1.6] text-[#414042] line-clamp-3 mb-3">&ldquo;{rev.text}&rdquo;</p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-[13px] font-bold text-[#131a1c]">{rev.name}</p>
-                    <p className="text-[11px] text-[#636363]">{rev.suburb}</p>
-                  </div>
-                  <p className="text-[11px] text-[#636363]">{rev.timeAgo}</p>
-                </div>
-              </div>
+      {/* Rating badge — centered on mobile, left on desktop */}
+      <div className="mb-6 flex flex-col items-center gap-1 sm:items-start">
+        <div className="flex items-baseline gap-2.5">
+          <span className="text-[40px] font-extrabold text-[#131a1c] leading-none sm:text-[44px]">4.9</span>
+          <div className="flex gap-0.5">
+            {[0, 1, 2, 3, 4].map((s) => (
+              <Star key={s} className="h-5 w-5 fill-amber-400 text-amber-400" />
             ))}
           </div>
+        </div>
+        <p className="text-[14px] font-bold uppercase tracking-wide text-[#131a1c]">EXCELLENT</p>
+        <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-[13px] text-[#636363] transition-colors hover:text-[#3fa535]">
+          <Image src="/images/logo/google-g.png" alt="Google" width={16} height={16} className="h-4 w-4" />
+          {SITE_CONFIG.rating.count}+ Google Reviews
+        </a>
+      </div>
+
+      {/* Auto-scrolling review cards */}
+      <div className="relative overflow-hidden">
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-8 bg-gradient-to-r from-white to-transparent sm:w-0" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-8 bg-gradient-to-l from-white to-transparent" />
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto scroll-smooth pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {REVIEWS.map((rev) => (
+            <div key={rev.name} className="min-w-[270px] w-[290px] flex-shrink-0 rounded-xl border border-[#e5e5e5] bg-white p-5 shadow-sm">
+              <div className="flex gap-0.5 mb-3">
+                {[0, 1, 2, 3, 4].map((s) => (
+                  <Star key={s} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-[14px] leading-[1.65] text-[#414042] line-clamp-3 mb-4">&ldquo;{rev.text}&rdquo;</p>
+              <div className="flex items-center justify-between border-t border-[#f0f0f0] pt-3">
+                <div>
+                  <p className="text-[14px] font-bold text-[#131a1c]">{rev.name}</p>
+                  <p className="text-[12px] text-[#636363]">{rev.suburb}</p>
+                </div>
+                <p className="text-[12px] text-[#636363]">{rev.timeAgo}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -555,7 +553,7 @@ export function HomepagePestCards() {
         </p>
       ),
       href: '/residential',
-      img: `${WP}/2025-06-icons8-residential-64.webp`,
+      img: '/images/icons/insects/ant.svg',
       alt: 'Residential Pest Control',
     },
     {
@@ -577,7 +575,7 @@ export function HomepagePestCards() {
         </p>
       ),
       href: '/commercial-pest-control',
-      img: `${WP}/2025-06-icons8-business-building-64.webp`,
+      img: '/images/icons/insects/cockroach.svg',
       alt: 'Commercial Pest Control',
     },
     {
@@ -591,7 +589,7 @@ export function HomepagePestCards() {
         </p>
       ),
       href: '/termite-control-melbourne',
-      img: `${WP}/2025-06-icons8-animal-64-1.webp`,
+      img: '/images/icons/insects/termite.svg',
       alt: 'Termite Pest Control',
     },
   ] as const;
