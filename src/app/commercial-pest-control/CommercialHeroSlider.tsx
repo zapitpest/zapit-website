@@ -26,7 +26,7 @@ export default function CommercialHeroSlider() {
           </div>
 
           <div className="mb-2 flex flex-wrap gap-x-4 gap-y-1.5">
-            {['Fully insured', 'DHHS Licensed', 'Eco friendly', 'HACCP Aware', 'Accredited'].map((badge) => (
+            {['Fully insured', 'Licensed', 'Food-safety aware', 'Accredited', 'Family Friendly'].map((badge) => (
               <span key={badge} className="flex items-center gap-1.5 text-[12px] font-medium text-white/90 sm:text-[13px]">
                 <svg className="h-4 w-4 shrink-0 text-[#64FF01]" fill="none" viewBox="0 0 24 24">
                   <rect width="16" height="16" x="4" y="4" rx="4" fill="currentColor" />
@@ -37,7 +37,7 @@ export default function CommercialHeroSlider() {
             ))}
           </div>
 
-          <p className="text-[11px] text-white/50 sm:text-[12px]">24/7 same day service available · After-hours emergency calls accepted</p>
+          <p className="text-[11px] text-white/50 sm:text-[12px]">Same-day service available · After-hours emergency calls accepted</p>
         </div>
       </div>
     </section>

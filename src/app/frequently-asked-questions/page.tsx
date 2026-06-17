@@ -80,7 +80,7 @@ const FAQ_ITEMS: FAQ[] = [
   {
     question: 'General information',
     answer:
-      'Zap It Pest & Termite Control is a licensed Melbourne team offering residential and commercial programs with a calm, no-drama approach.',
+      'Zapit Pest & Termite Control is a licensed Melbourne team offering residential and commercial programs with a calm, no-drama approach.',
   },
   {
     question: 'How long after pest control can I go inside?',
@@ -121,13 +121,13 @@ const FAQ_ITEMS: FAQ[] = [
 
 export function generateMetadata(): Metadata {
   return {
-    title: { absolute: 'Frequently Asked Questions - Zap It Pest Control Melbourne' },
+    title: { absolute: 'Frequently Asked Questions - Zapit Pest Control Melbourne' },
     description:
-      'Answers to common questions about Zap It Pest & Termite Control Melbourne: safety, same-day service, preparation, costs, and what to expect from treatment.',
+      'Answers to common questions about Zapit Pest & Termite Control Melbourne: safety, same-day service, preparation, costs, and what to expect from treatment.',
     openGraph: {
-      title: 'Frequently Asked Questions - Zap It Pest Control Melbourne',
+      title: 'Frequently Asked Questions - Zapit Pest Control Melbourne',
       description:
-        'Answers to common questions about Zap It Pest & Termite Control Melbourne.',
+        'Answers to common questions about Zapit Pest & Termite Control Melbourne.',
       url: `${SITE_CONFIG.url}/frequently-asked-questions`,
     },
     alternates: { canonical: '/frequently-asked-questions' },

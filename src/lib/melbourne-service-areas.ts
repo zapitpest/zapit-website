@@ -112,7 +112,16 @@ export const MELBOURNE_SERVICE_REGIONS: readonly ServiceAreaRegion[] = [
   },
 ] as const;
 
+// Suburbs with dedicated top-level routes (matches DEDICATED_ROUTE_SUBURBS in suburb-data.ts).
+// Without this exclusion, "nearby suburbs" grids generate /pest-control-coburg (404)
+// instead of /coburg.
+const DEDICATED_ROUTES: Record<string, string> = {
+  Coburg: '/coburg',
+  Reservoir: '/reservoir',
+};
+
 export function pestControlSuburbPath(suburbName: string) {
+  if (DEDICATED_ROUTES[suburbName]) return DEDICATED_ROUTES[suburbName];
   const slug = suburbName
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')

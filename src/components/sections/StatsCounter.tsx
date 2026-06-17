@@ -1,11 +1,11 @@
 import { SITE_CONFIG } from '@/lib/constants';
 
 const STATS = [
-  { value: SITE_CONFIG.stats.emergenciesSolved, label: 'Pest Emergencies Solved' },
-  { value: SITE_CONFIG.stats.yearsExperience, label: 'Years of Experience in Protecting Homes' },
-  { value: SITE_CONFIG.stats.firstVisitSuccess, label: 'First Visit Success Rate' },
-  { value: SITE_CONFIG.stats.availability, label: 'Emergency Response Team' },
-  { value: SITE_CONFIG.stats.responseTime, label: 'Average Response Time' },
+  { value: SITE_CONFIG.stats.residentialCustomers, label: 'Residential Customers' },
+  { value: SITE_CONFIG.stats.commercialClients, label: 'Commercial Clients' },
+  { value: SITE_CONFIG.stats.yearsExperience, label: 'Years Experience' },
+  { value: SITE_CONFIG.stats.responseTime, label: 'Service Available' },
+  { value: 'Licensed', label: 'Technicians' },
 ];
 
 export default function StatsCounter() {

@@ -15,7 +15,7 @@ export const SERVICE_PAGES = {
     h1: 'Ant Pest Control Melbourne',
     metaTitle: 'Ant Pest Control Melbourne',
     metaDescription:
-      'Professional ant control in Melbourne. Targeted treatments for trails, nests, and entry points. Licensed technicians, pet-safe options, and fast response times.',
+      'Professional ant control in Melbourne. Targeted treatments for trails, nests, and entry points. Licensed technicians, approved methods, and fast response times.',
     content:
       'Ants may be small, but Melbourne homes and businesses often face large-scale infestations once a scent trail is established. We identify the species, locate nesting areas, and apply targeted treatments that break the colony cycle—not just the workers you see on your benchtop. Whether you are dealing with black house ants, coastal brown ants, or persistent pavement ants, our team maps activity and uses integrated pest management to deliver lasting relief.',
     features: [
@@ -60,23 +60,6 @@ export const SERVICE_PAGES = {
       'Rapid response for high-traffic public areas',
     ],
   },
-  'birds-control-melbourne': {
-    slug: 'birds-control-melbourne',
-    title: 'Birds Control Melbourne',
-    h1: 'Birds Control Melbourne',
-    metaTitle: 'Birds Control Melbourne',
-    metaDescription:
-      'Humane bird proofing and control for Melbourne roofs, solar panels, and ledges. Netting, spikes, and long-term pressure washing plans for guano build-up.',
-    content:
-      'Pigeons, mynas, and other birds can block gutters, damage paint, and create slip hazards with droppings. We combine proofing, habitat modification, and cleaning recommendations to make your property less attractive without unnecessary harm. Commercial facades, warehouses, and residential rooflines are all in scope, including solar panel edges where birds love to nest.',
-    features: [
-      'Ledge, solar panel, and roof-line proofing options',
-      'Gutter and drainage assessments',
-      'Guano clean-up and hygiene guidance',
-      'Compliant, humane control strategies',
-      'Ongoing maintenance plans for high-pressure sites',
-    ],
-  },
   'clothes-moths-treatment-melbourne': {
     slug: 'clothes-moths-treatment-melbourne',
     title: 'Clothes Moths Treatment Melbourne',
@@ -100,15 +83,16 @@ export const SERVICE_PAGES = {
     h1: 'Cockroach Control Melbourne',
     metaTitle: 'Cockroach Control Melbourne',
     metaDescription:
-      'Fast cockroach control for Melbourne homes and food businesses. German, American, and Australian cockroach programs with kitchen and void treatments.',
+      'Cockroach control for Melbourne homes and businesses. German cockroach treatments and general pest treatment for larger outdoor cockroaches.',
+    // Client item 7 — Option A: one Cockroaches page with two clear sub-sections.
     content:
-      'Cockroaches carry allergens, contaminate food, and multiply quickly in warm, humid voids. We combine gel baits, crack-and-crevice work, and non-chemical tools where food prep areas demand extra care. Whether you are in a period home with subfloor access or a modern apartment with a compact kitchen, we focus on the harbourage you cannot see as well as the ones you can.',
+      'Cockroaches in Melbourne fall into two broad groups, and each one is treated differently. Identifying which type you have is the first step to getting rid of them properly.\n\n**German cockroaches**\nSmall to medium light-brown cockroaches, most often seen around kitchens, bathrooms, laundries, cupboards, food areas or appliances. They breed quickly and hide in warm, humid voids. German cockroaches usually need a specific German cockroach treatment — gel baits, crack-and-crevice work and follow-up visits — because a general spray on its own is rarely enough.\n\n**Larger outdoor cockroaches**\nLarge, dark or black cockroaches usually seen occasionally rather than in numbers. They often come in from outside, roof voids, walls or garden areas. These are typically handled as part of a general pest treatment that targets entry points and harbourage, rather than the intensive program required for German cockroaches.\n\nNot sure which one you have? Call us and describe what you are seeing — we will let you know whether you need a German cockroach treatment or whether a general pest treatment will do the job.',
     features: [
-      'Kitchen, bathroom, and subfloor void targeting',
-      'Gel, dust, and bait rotation strategies for resistance',
+      'German cockroach specialist treatment',
+      'General pest treatment for outdoor cockroach activity',
+      'Kitchen, bathroom and subfloor void targeting',
+      'Gel, dust and bait rotation to manage resistance',
       'Food-safe plans for commercial kitchens',
-      'Identification of German vs large species',
-      'Exclusion and moisture tips to support long-term control',
     ],
   },
   'flea-control-melbourne': {

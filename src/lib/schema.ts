@@ -25,6 +25,7 @@ export function generateOrganizationSchema() {
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: SITE_CONFIG.phone,
+      email: SITE_CONFIG.emailWork,
       contactType: 'customer service',
       areaServed: 'Melbourne',
       availableLanguage: 'English',
@@ -40,8 +41,9 @@ export function generateLocalBusinessSchema(areaServed?: string) {
     name: SITE_CONFIG.name,
     url: SITE_CONFIG.url,
     telephone: SITE_CONFIG.phone,
-    email: SITE_CONFIG.email,
+    email: SITE_CONFIG.emailWork,
     image: `${SITE_CONFIG.url}${SITE_CONFIG.logo}`,
+    priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
       streetAddress: SITE_CONFIG.address.street,
@@ -55,37 +57,54 @@ export function generateLocalBusinessSchema(areaServed?: string) {
       latitude: -37.7396,
       longitude: 145.0507,
     },
-    ...(areaServed && {
-      areaServed: {
-        '@type': 'City',
-        name: areaServed,
-      },
-    }),
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '07:00',
-      closes: '18:00',
-    },
-    priceRange: '$$',
-  };
-}
-
-export function generateProductSchema() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: 'Pest Control Services',
+    sameAs: [
+      SITE_CONFIG.social.instagram,
+      SITE_CONFIG.social.facebook,
+      SITE_CONFIG.social.tiktok,
+    ],
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: SITE_CONFIG.rating.value,
       reviewCount: SITE_CONFIG.rating.count,
       bestRating: SITE_CONFIG.rating.bestRating,
     },
-    offers: {
-      '@type': 'AggregateOffer',
-      lowPrice: '100.00',
-      priceCurrency: 'AUD',
+    ...(areaServed && {
+      areaServed: {
+        '@type': 'City',
+        name: areaServed,
+      },
+    }),
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '17:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Saturday'],
+        opens: '08:00',
+        closes: '12:00',
+      },
+    ],
+  };
+}
+
+export function generateProductSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Pest Control Services Melbourne',
+    provider: {
+      '@type': 'LocalBusiness',
+      name: SITE_CONFIG.name,
+      telephone: SITE_CONFIG.phone,
+      url: SITE_CONFIG.url,
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Melbourne',
     },
   };
 }

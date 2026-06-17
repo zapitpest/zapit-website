@@ -109,7 +109,7 @@ export default function PestProtectionWidget() {
       <div className="mx-auto max-w-[1200px]">
         <div className="rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-sm sm:p-8">
           <h2 className="text-center text-[20px] font-bold leading-tight text-[#131a1c] sm:text-[24px] md:text-[28px]">
-            Zap It Protects You From All Rodents, All Termites &amp; All Pests
+            Zapit Protects You From All Rodents, All Termites &amp; All Pests
           </h2>
           <div className="mx-auto mt-3 h-[3px] w-[60px] bg-[#1cdc38]" />
 
@@ -162,12 +162,6 @@ export default function PestProtectionWidget() {
           {/* Description + learn more */}
           <div className="mt-6 text-center sm:text-left">
             <p className="text-[14px] leading-[1.7] text-[#414042] sm:text-[15px]">{pest.description}</p>
-            <Link
-              href="/contact-us"
-              className="mt-2 inline-block text-[15px] font-semibold text-[#1cdc38] hover:underline"
-            >
-              Learn more
-            </Link>
           </div>
 
           {/* CTA + Did you know cards */}
@@ -175,12 +169,10 @@ export default function PestProtectionWidget() {
             <div className="flex flex-col justify-center rounded-2xl border border-[#e5e5e5] bg-[#f8f5f2] p-6">
               <p className="text-[15px] font-semibold leading-snug text-[#131a1c] sm:text-[16px]">{pest.cta}</p>
               <a
-                href={SITE_CONFIG.booking.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={SITE_CONFIG.phoneTel}
                 className="mt-4 inline-flex min-h-[48px] w-fit items-center justify-center rounded-lg bg-[#1cdc38] px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-[#0d402e]"
               >
-                View Plans
+                Call Now
               </a>
             </div>
             <div className="rounded-2xl bg-[#eaf7ec] p-6">

@@ -5,18 +5,39 @@ import { notFound } from 'next/navigation';
 import { Phone, ChevronRight, Check, Shield, CheckCircle2, ArrowRight, Clock, Star } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
 import { isServiceSlug, SERVICE_PAGES, SERVICE_SLUGS } from '@/lib/service-pages';
+import { SUBURB_SLUGS, getSuburbBySlug, isSuburbSlug } from '@/lib/suburb-data';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 import StatsCounter from '@/components/sections/StatsCounter';
+import SuburbLandingPage from '@/components/sections/SuburbLandingPage';
 
 type Props = { params: Promise<{ serviceSlug: string }> };
 
+const SUBURB_DYNAMIC_SLUGS = SUBURB_SLUGS.filter((s) => s.startsWith('pest-control-'));
+
 export function generateStaticParams() {
-  return SERVICE_SLUGS.map((serviceSlug) => ({ serviceSlug }));
+  return [
+    ...SERVICE_SLUGS.map((serviceSlug) => ({ serviceSlug })),
+    ...SUBURB_DYNAMIC_SLUGS.map((serviceSlug) => ({ serviceSlug })),
+  ];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { serviceSlug } = await params;
+
+  if (isSuburbSlug(serviceSlug)) {
+    const data = getSuburbBySlug(serviceSlug);
+    if (!data) return {};
+    const title = `Pest Control ${data.name} | ${SITE_CONFIG.name}`;
+    const description = `Professional pest control in ${data.name}, Melbourne. Same-day service, licensed technicians, safe for pets & people. Call ${SITE_CONFIG.phone} for fast pest removal in ${data.name}.`;
+    return {
+      title: { absolute: title },
+      description,
+      alternates: { canonical: `/${serviceSlug}` },
+      openGraph: { title, description, url: `${SITE_CONFIG.url}/${serviceSlug}` },
+    };
+  }
+
   if (!isServiceSlug(serviceSlug)) {
     return {};
   }
@@ -39,7 +60,6 @@ const PEST_ICON_MAP: Record<string, string> = {
   'ant-pest-control-melbourne': '/images/icons/insects/ant.svg',
   'bed-bug-control-melbourne': '/images/icons/insects/bedbug.svg',
   'bee-removal-melbourne': '/images/icons/insects/tick.svg',
-  'birds-control-melbourne': '/images/icons/insects/centipede.svg',
   'clothes-moths-treatment-melbourne': '/images/icons/insects/mosquito.svg',
   'cockroach-control-melbourne': '/images/icons/insects/cockroach.svg',
   'flea-control-melbourne': '/images/icons/insects/bedbug.svg',
@@ -56,6 +76,13 @@ const PEST_ICON_MAP: Record<string, string> = {
 
 export default async function ServicePage({ params }: Props) {
   const { serviceSlug } = await params;
+
+  if (isSuburbSlug(serviceSlug)) {
+    const data = getSuburbBySlug(serviceSlug);
+    if (!data) notFound();
+    return <SuburbLandingPage suburb={data.name} region={data.region} slug={serviceSlug} />;
+  }
+
   if (!isServiceSlug(serviceSlug)) {
     notFound();
   }
@@ -121,9 +148,6 @@ export default async function ServicePage({ params }: Props) {
                 <a href={SITE_CONFIG.phoneTel} className="inline-flex items-center gap-2 rounded-full bg-[#64FF01] px-6 py-3.5 text-[15px] font-bold text-[#0d402e] transition-transform hover:scale-105">
                   <Phone className="h-4 w-4" />Call {SITE_CONFIG.phone}
                 </a>
-                <Link href={SITE_CONFIG.booking.url} className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-6 py-3.5 text-[15px] font-bold text-white transition-colors hover:border-white hover:bg-white/10">
-                  Book Online
-                </Link>
               </div>
             </div>
 
@@ -137,15 +161,15 @@ export default async function ServicePage({ params }: Props) {
                 </div>
                 <div className="flex items-center gap-3 text-[14px]">
                   <Shield className="h-5 w-5 shrink-0 text-[#64FF01]" />
-                  <span className="text-white/80">DHHS licensed technicians</span>
+                  <span className="text-white/80">licensed technicians</span>
                 </div>
                 <div className="flex items-center gap-3 text-[14px]">
                   <Star className="h-5 w-5 shrink-0 text-[#64FF01]" />
-                  <span className="text-white/80">4.9★ rated on Google</span>
+                  <span className="text-white/80">Highly rated on Google</span>
                 </div>
                 <div className="flex items-center gap-3 text-[14px]">
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-[#64FF01]" />
-                  <span className="text-white/80">Child & pet safe treatments</span>
+                  <span className="text-white/80">Family-friendly treatments</span>
                 </div>
               </div>
             </div>
@@ -156,7 +180,7 @@ export default async function ServicePage({ params }: Props) {
       {/* ===== TRUST BAR ===== */}
       <section className="border-b border-[#e5e5e5] bg-[#f8f5f2] py-3.5">
         <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-5 text-[13px] font-semibold text-[#0d402e]">
-          {['Eco-Friendly', 'Fully Insured', 'Licensed', 'Pet Safe', 'Same-Day'].map((t) => (
+          {['Accredited', 'Fully Insured', 'Licensed', 'Family Friendly', 'Same-Day'].map((t) => (
             <span key={t} className="flex items-center gap-1.5">
               <CheckCircle2 className="h-3.5 w-3.5 text-[#3fa535]" strokeWidth={2.5} />{t}
             </span>
@@ -171,10 +195,23 @@ export default async function ServicePage({ params }: Props) {
             {/* Main content */}
             <div className="lg:col-span-3">
               <h2 className="mb-6 text-2xl font-bold text-[#131a1c] md:text-3xl">About {page.title.replace(' Melbourne', '')}</h2>
-              <p className="mb-8 text-[16px] leading-[1.8] text-[#414042]">{page.content}</p>
+              <div className="mb-8 space-y-4 text-[16px] leading-[1.8] text-[#414042]">
+                {page.content.split('\n\n').map((para, i) => {
+                  // Bold marker at start (e.g. "**German cockroaches**") becomes a sub-heading
+                  const headingMatch = para.match(/^\*\*(.+?)\*\*$/);
+                  if (headingMatch) {
+                    return (
+                      <h3 key={i} className="mt-2 text-[18px] font-bold text-[#131a1c] md:text-[20px]">
+                        {headingMatch[1]}
+                      </h3>
+                    );
+                  }
+                  return <p key={i}>{para}</p>;
+                })}
+              </div>
 
               <div className="overflow-hidden rounded-2xl">
-                <Image src="/images/residential/melbourne-fleet.png" alt={`Zap It ${page.title} service`} width={700} height={400} className="h-auto w-full" />
+                <Image src="/images/residential/melbourne-fleet.png" alt={`Zapit ${page.title} service`} width={700} height={400} className="h-auto w-full" />
               </div>
             </div>
 
@@ -215,7 +252,7 @@ export default async function ServicePage({ params }: Props) {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             {[
               { step: '1', title: 'Inspect & Identify', desc: `We conduct a thorough inspection of your property, identify the ${page.title.replace(' Melbourne', '').toLowerCase()} species and map out activity hotspots.` },
-              { step: '2', title: 'Treat & Eliminate', desc: 'Using DHHS-approved, eco-friendly treatments, we target the infestation at its source—not just the visible signs.' },
+              { step: '2', title: 'Treat & Eliminate', desc: 'Using approved treatments, we target the infestation at its source—not just the visible signs.' },
               { step: '3', title: 'Protect & Prevent', desc: 'Follow-up inspections and prevention strategies ensure pests don\'t return. We provide clear aftercare guidance.' },
             ].map((item) => (
               <div key={item.step} className="rounded-2xl border border-white/10 bg-white/5 p-6">
@@ -239,10 +276,10 @@ export default async function ServicePage({ params }: Props) {
         </div>
       </section>
 
-      {/* ===== IMAGE BREAK ===== */}
-      <section className="relative">
-        <div className="relative aspect-[375/180] w-full sm:aspect-[16/5]">
-          <Image src="/images/residential/townhouse.png" alt="We treat your home as if it were ours" fill className="object-cover object-center" sizes="100vw" />
+      {/* ===== IMAGE BREAK — capped on desktop so baked-in green overlay isn't cropped/stretched ===== */}
+      <section className="bg-[#0d402e] py-4 sm:py-6 lg:py-12">
+        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[560px] lg:px-6">
+          <Image src="/images/residential/townhouse.png" alt="We treat your home as if it were ours" width={650} height={702} className="h-auto w-full overflow-hidden rounded-3xl shadow-xl" sizes="(min-width: 1024px) 560px, 100vw" />
         </div>
       </section>
 
@@ -285,17 +322,14 @@ export default async function ServicePage({ params }: Props) {
       {/* ===== CTA ===== */}
       <section className="bg-[#0d402e] py-14 text-white lg:py-16">
         <div className="mx-auto max-w-[800px] px-5 text-center sm:px-6">
-          <h2 className="mb-4 text-2xl font-bold md:text-3xl">Book {page.title} Today</h2>
+          <h2 className="mb-4 text-2xl font-bold md:text-3xl">Need {page.title} in Melbourne?</h2>
           <p className="mb-8 text-[15px] text-white/80">
-            Call {SITE_CONFIG.phone} for urgent advice, or book online for a time that suits you. {SITE_CONFIG.operatingHours} for emergencies and enquiries.
+            Call {SITE_CONFIG.phone} for urgent advice or to arrange a visit. {SITE_CONFIG.operatingHours}.
           </p>
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href={SITE_CONFIG.phoneTel} className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#64FF01] px-8 py-4 text-[16px] font-bold text-[#0d402e] shadow-lg transition-transform hover:scale-105 sm:w-auto">
               <Phone className="h-5 w-5 shrink-0" />Call Now — {SITE_CONFIG.phone}
             </a>
-            <Link href={SITE_CONFIG.booking.url} target="_blank" rel="noopener noreferrer" className="inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-white/30 px-8 py-4 text-[16px] font-bold text-white transition-colors hover:border-white hover:bg-white/10 sm:w-auto">
-              Book Online
-            </Link>
           </div>
         </div>
       </section>

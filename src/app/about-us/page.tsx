@@ -5,25 +5,25 @@ import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/sch
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
 const TRUST_PILLS = [
-  'Child safe',
-  'Pet safe',
-  'Eco friendly',
+  'Family focused',
+  'Responsible products',
+  'Environmentally aware',
   'Accredited',
   'Insured',
-  'DHHS Licensed',
+  'Licensed',
   'Online compliance certificates',
 ] as const;
 
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'Zap It Pest & Termite Control Melbourne: built on trust, with an uncompromising commitment to customer satisfaction, professional standards, and safe pest protection across Melbourne.',
+    'Zapit Pest & Termite Control Melbourne: built on trust, with an uncompromising commitment to customer satisfaction, professional standards, and safe pest protection across Melbourne.',
   alternates: { canonical: '/about-us' },
   openGraph: {
     url: '/about-us',
     title: 'About Us',
     description:
-      'Learn about Zap It — Melbourne pest control built on trust, child- and pet-safe methods, and trade-qualified professionals.',
+      'Learn about Zapit — Melbourne pest control built on trust, responsible methods, and trade-qualified professionals.',
   },
 };
 
@@ -92,20 +92,18 @@ export default function AboutUsPage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 4. FOUNDER IMAGE ===== */}
-      <section className="w-full">
-        <div className="relative">
+      {/* ===== 4. FOUNDER IMAGE — text overlay baked into the image. Desktop = framed card pattern. ===== */}
+      <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
+        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[640px] lg:px-6">
           <Image
             src="/images/about/founder-adam.png"
             alt="Founder, Adam Balli"
             width={1200}
             height={900}
-            className="h-auto w-full"
+            className="h-auto w-full lg:rounded-3xl lg:shadow-2xl"
             priority
+            sizes="(min-width: 1024px) 640px, 100vw"
           />
-          <p className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-5 py-4 text-[16px] font-medium text-white sm:text-[18px]">
-            Founder, Adam Balli
-          </p>
         </div>
       </section>
 
@@ -119,7 +117,7 @@ export default function AboutUsPage() {
                 Founded in 2020 by Adam Balli, the business began by servicing Melbourne&apos;s northern suburbs with a strong commitment to customer care and professional service.
               </p>
               <p>
-                Within a short period, Adam earned a reputation for delivering effective, eco-friendly, and long-lasting results, reflected in a 5-star Google rating.
+                Within a short period, Adam earned a reputation for delivering effective and long-lasting results, reflected in outstanding Google reviews.
               </p>
               <p>
                 Building on this success, the business has expanded across Melbourne&apos;s eastern, northern, western, and inner suburbs. Our experienced and dedicated team of licensed professionals continues to deliver the same high level of care the Zapit was founded on.
@@ -132,49 +130,67 @@ export default function AboutUsPage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 6. CERTIFICATIONS ===== */}
+      {/* ===== 6. INSURED, LICENSED, ACCREDITED & LEGALLY COMPLIANT ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-3xl">
-            <h2 className="mb-3 text-[24px] font-bold text-[#131a1c] sm:text-[28px]">
+            <h2 className="mb-4 text-[22px] font-semibold leading-tight text-[#131a1c] sm:text-[26px]">
               Insured, licensed, accredited and legally compliant
             </h2>
-            <p className="mb-3 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
-              Your health and safety is at the heart of everything we do. Your trust in us is backed by our industry memberships, accreditations, licences and professional insurance.
+            <p className="mb-4 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
+              Your health and safety is at the heart of everything we do. Your trust in us is backed
+              by our industry memberships, accreditations, licences and professional insurance.
             </p>
             <p className="mb-6 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
-              We&apos;re committed to provide the safest and best possible pest control solutions. We maintain our professional currency by staying at the forefront of advances in technology, regulatory compliance and industry standards.
+              We&apos;re committed to providing the safest and best possible pest control solutions.
+              We maintain our professional currency by staying at the forefront of advances in
+              technology, regulatory compliance and industry standards.
             </p>
 
-            <ul className="mb-8 space-y-4">
-              <li>
-                <p className="text-[16px] font-bold text-[#131a1c]">The Australian Environmental Pest Managers Association</p>
-                <p className="text-[14px] text-[#414042]">Membership number: XXXXXX</p>
-              </li>
-              <li>
-                <p className="text-[16px] font-bold text-[#131a1c]">HACCP Food Safety Certificate</p>
-                <p className="text-[14px] text-[#414042]">Certificate number: XXXXXX</p>
-              </li>
-              <li>
-                <p className="text-[16px] font-bold text-[#131a1c]">VIC Government Wildlife Licence</p>
-                <p className="text-[14px] text-[#414042]">Licence number: XXXXXX</p>
-              </li>
+            <ul className="mb-8 list-disc space-y-3 pl-5 text-[15px] text-[#414042] sm:text-[16px]">
+              <li className="font-semibold text-[#131a1c]">The Australian Environmental Pest Managers Association</li>
+              <li className="font-semibold text-[#131a1c]">HACCP Food Safety Certificate</li>
+              <li className="font-semibold text-[#131a1c]">VIC Government Wildlife Licence</li>
             </ul>
 
-            <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-col items-center gap-6 border-t border-[#e5e5e5] pt-8">
               <div className="flex items-center justify-center gap-8">
                 <figure className="flex flex-col items-center text-center">
-                  <Image src="/images/commercial/cert-wildlife.png" alt="Wildlife Licensed" width={120} height={100} className="h-20 w-auto object-contain sm:h-24" />
-                  <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">Wildlife Licenced</figcaption>
+                  <Image
+                    src="/images/commercial/cert-wildlife.png"
+                    alt="Wildlife Licensed"
+                    width={120}
+                    height={100}
+                    className="h-20 w-auto object-contain sm:h-24"
+                  />
+                  <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
+                    Wildlife Licenced
+                  </figcaption>
                 </figure>
                 <figure className="flex flex-col items-center text-center">
-                  <Image src="/images/commercial/cert-haccp.png" alt="HACCP Food Safety Certification" width={120} height={100} className="h-20 w-auto object-contain sm:h-24" />
-                  <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">HACCP Food Safety<br />Certification</figcaption>
+                  <Image
+                    src="/images/commercial/cert-haccp.png"
+                    alt="HACCP Food Safety Certification"
+                    width={120}
+                    height={100}
+                    className="h-20 w-auto object-contain sm:h-24"
+                  />
+                  <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
+                    HACCP Food Safety<br />Certification
+                  </figcaption>
                 </figure>
               </div>
               <figure className="flex flex-col items-center text-center">
-                <Image src="/images/commercial/cert-aepma.png" alt="AEPMA" width={160} height={80} className="h-16 w-auto object-contain sm:h-20" />
-                <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">Australian Environmental<br />Pest Managers Association</figcaption>
+                <Image
+                  src="/images/commercial/cert-aepma.png"
+                  alt="Australian Environmental Pest Managers Association"
+                  width={160}
+                  height={80}
+                  className="h-16 w-auto object-contain sm:h-20"
+                />
+                <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
+                  Australian Environmental<br />Pest Managers Association
+                </figcaption>
               </figure>
             </div>
           </div>

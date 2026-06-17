@@ -30,6 +30,13 @@ export default function ScrollReveal({
     const el = ref.current;
     if (!el) return;
 
+    // Honour user motion preference — render immediately, skip animation.
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || typeof IntersectionObserver === 'undefined') {
+      setVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -41,7 +48,13 @@ export default function ScrollReveal({
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    // Safety net: if the observer never fires within 1s (eg. element starts already
+    // in-view, or browser quirk), reveal anyway so content can't be permanently hidden.
+    const safety = window.setTimeout(() => setVisible(true), 1000);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(safety);
+    };
   }, []);
 
   return (

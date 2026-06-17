@@ -13,12 +13,18 @@ function toSlug(name: string) {
     .replace(/^-|-$/g, '');
 }
 
+// Suburbs that have dedicated top-level routes (e.g. /coburg). Excluded from
+// the dynamic /pest-control-[suburb] route to avoid duplicate canonicals.
+const DEDICATED_ROUTE_SUBURBS = new Set(['Coburg', 'Reservoir']);
+
 const regionSuburbs = MELBOURNE_SERVICE_REGIONS.flatMap((region) =>
-  region.suburbs.map((name) => ({
-    name,
-    slug: `pest-control-${toSlug(name)}`,
-    region: region.name,
-  })),
+  region.suburbs
+    .filter((name) => !DEDICATED_ROUTE_SUBURBS.has(name))
+    .map((name) => ({
+      name,
+      slug: `pest-control-${toSlug(name)}`,
+      region: region.name,
+    })),
 );
 
 const CLIENT_REQUESTED_SUBURBS: SuburbData[] = [

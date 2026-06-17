@@ -7,7 +7,7 @@ import ContactForm from '@/components/sections/ContactForm';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
 const DISPLAY_PHONE = '(03) 9126 0555';
-const BUSINESS_LINE = 'Zap It Pest & Termite Control';
+const BUSINESS_LINE = 'Zapit Pest & Termite Control';
 const ADDRESS_LINE = '80 Porter Rd, Heidelberg Heights , VIC 3081';
 
 const OPERATING_HOURS = [
@@ -22,8 +22,8 @@ const OPERATING_HOURS = [
 
 export function generateMetadata(): Metadata {
   return {
-    title: { absolute: 'Contact Us | Zap It Pest Control Melbourne' },
-    description: `Contact ${BUSINESS_LINE}. ${DISPLAY_PHONE} · ${SITE_CONFIG.emailWork} · ${ADDRESS_LINE}. Pest protection you can trust. 24 hour response time guarantee. Same day service available — call now.`,
+    title: { absolute: 'Contact Us | Zapit Pest Control Melbourne' },
+    description: `Contact ${BUSINESS_LINE}. ${DISPLAY_PHONE} · ${SITE_CONFIG.emailWork} · ${ADDRESS_LINE}. Pest protection you can trust. Same day service available — call now.`,
     alternates: { canonical: '/contact-us' },
     openGraph: { url: '/contact-us' },
   };
@@ -47,25 +47,36 @@ export default function ContactUsPage() {
         </div>
       </section>
 
-      {/* ===== 2. CONTACT DETAILS ===== */}
+      {/* ===== 2. CONTACT DETAILS — Figma spec: Graphik 20px / 28lh / #E5E5E5.
+          Headers (business name + "Operating Hours") are bold; details below stay regular. ===== */}
       <section className="bg-[#2B2B2B] px-5 py-8 sm:px-6 sm:py-10">
-        <div className="mx-auto max-w-3xl text-[#f8f5f2]">
-          <h2 className="mb-3 text-[18px] font-bold">{BUSINESS_LINE}</h2>
-          <div className="space-y-0.5 text-[15px] text-[#f8f5f2]/85">
-            <p>{ADDRESS_LINE}</p>
-            <p>ABN 61 682 004 655</p>
-            <p><a href={SITE_CONFIG.phoneTel} className="hover:text-[#1cdc38]">{DISPLAY_PHONE}</a></p>
-            <p><a href={`mailto:${SITE_CONFIG.emailWork}`} className="text-[#1cdc38] underline hover:opacity-80">{SITE_CONFIG.emailWork}</a></p>
-          </div>
+        <div
+          className="mx-auto max-w-[300px] sm:max-w-[400px]"
+          style={{ fontSize: '20px', lineHeight: '28px', color: '#E5E5E5' }}
+        >
+          {/* Business name — bold */}
+          <p style={{ fontWeight: 700 }}>{BUSINESS_LINE}</p>
+          <p className="mt-3" style={{ fontWeight: 400 }}>{ADDRESS_LINE}</p>
+          <p className="mt-3" style={{ fontWeight: 400 }}>ABN 61 682 004 655</p>
+          <p className="mt-3" style={{ fontWeight: 400 }}>
+            <a href={SITE_CONFIG.phoneTel} className="hover:text-[#1cdc38]">
+              {DISPLAY_PHONE}
+            </a>
+          </p>
+          <p className="mt-3" style={{ fontWeight: 400 }}>
+            <a
+              href={`mailto:${SITE_CONFIG.emailWork}`}
+              className="underline underline-offset-2 hover:text-[#1cdc38]"
+            >
+              {SITE_CONFIG.emailWork}
+            </a>
+          </p>
 
-          {/* Operating Hours */}
-          <h3 className="mb-2 mt-6 text-[16px] font-bold">Operating Hours</h3>
-          <ul className="space-y-0.5 text-[15px] text-[#f8f5f2]/85">
+          {/* Operating Hours — header bold, list regular */}
+          <p className="mt-7" style={{ fontWeight: 700 }}>Operating Hours</p>
+          <ul className="mt-2 space-y-2" style={{ fontWeight: 400 }}>
             {OPERATING_HOURS.map((h) => (
-              <li key={h} className="flex items-center gap-1.5">
-                <span className="inline-block h-1 w-1 shrink-0 rounded-full bg-white/50" />
-                {h}
-              </li>
+              <li key={h}>{h}</li>
             ))}
           </ul>
         </div>
@@ -97,7 +108,7 @@ export default function ContactUsPage() {
       <section className="bg-[#2B2B2B] px-5 pb-10 sm:px-6 sm:pb-14">
         <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl shadow-md">
           <iframe
-            title="Zap It Pest Control Melbourne Location"
+            title="Zapit Pest Control Melbourne Location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.5!2d144.99!3d-37.74!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z80+Porter+Rd+Heidelberg+Heights+VIC+3081!5e0!3m2!1sen!2sau!4v1"
             width="100%"
             height="300"

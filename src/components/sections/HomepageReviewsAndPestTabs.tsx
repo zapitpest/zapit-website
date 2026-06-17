@@ -11,6 +11,9 @@ const GOOGLE_REVIEWS_URL =
 
 const WP = '/images/wp-assets';
 
+// Brief item 28: Reviews removed pending real Google review content from client.
+// Do NOT add fake/AI-generated testimonials. Restore once client supplies real reviews
+// (verified Google review name + suburb + text + date).
 const REVIEWS: {
   name: string;
   initial: string;
@@ -18,65 +21,17 @@ const REVIEWS: {
   suburb: string;
   timeAgo: string;
   text: string;
-}[] = [
-  {
-    name: 'Jane S.',
-    initial: 'J',
-    initialBg: 'bg-[#1a73e8]',
-    suburb: 'Heidelberg',
-    timeAgo: '2 weeks ago',
-    text: 'Sorted the problem fast. No mess, no fuss. Would call them again without hesitation.',
-  },
-  {
-    name: 'Marcus T.',
-    initial: 'M',
-    initialBg: 'bg-[#0f9d58]',
-    suburb: 'Bundoora',
-    timeAgo: '1 month ago',
-    text: 'Professional team. On time, explained everything clearly. Pests are gone and haven\'t come back.',
-  },
-  {
-    name: 'Margo Kelly',
-    initial: 'M',
-    initialBg: 'bg-[#e8711a]',
-    suburb: 'Preston',
-    timeAgo: '2 months ago',
-    text: 'Fantastic pest control service. They assisted us with rodent control and the improvement was noticeable straight away. Professional and extremely effective.',
-  },
-  {
-    name: 'Jemi Audi',
-    initial: 'J',
-    initialBg: 'bg-[#5f6368]',
-    suburb: 'Reservoir',
-    timeAgo: '3 months ago',
-    text: "Amazing job honestly. Thorough, professional, and the difference was clear from the first visit.",
-  },
-  {
-    name: 'Tammy Fox',
-    initial: 'T',
-    initialBg: 'bg-[#9c27b0]',
-    suburb: 'Eltham',
-    timeAgo: '1 month ago',
-    text: 'Excellent experience. The technician was friendly, on time, and explained the treatment in plain language.',
-  },
-];
+}[] = [];
 
+// Possum tab removed per client item 4 (de-emphasize wildlife work). Service page still exists at /possum-removal-melbourne.
 const PEST_TABS = [
   {
     id: 'bedbugs',
     label: 'Bed Bug Control',
     title: 'Bed Bug Pest Control Melbourne',
     copy:
-      "Bed bugs can disrupt your sleep and comfort. Our professional bed bug control services provide thorough elimination of bed bugs and their eggs in a single session. Enjoy a peaceful, bed bug–free home within just 24 hours.",
+      "Bed bugs can disrupt your sleep and comfort. Our professional bed bug control services provide thorough elimination of bed bugs and their eggs. Call us to arrange a treatment and get your home back.",
     href: '/bed-bug-control-melbourne',
-  },
-  {
-    id: 'possum',
-    label: 'Possum Control',
-    title: 'Possum Control Melbourne',
-    copy:
-      'Possums may look harmless, but when they invade your roof or ceiling, they can cause serious damage and sleepless nights. Their constant scratching, droppings, and chewing on electrical wires can lead to costly repairs and even fire hazards. Protect your home and family with professional possum control in Melbourne. Our licensed experts use industry-best methods to safely remove possums and prevent them from returning. Hire the most trusted pest control team in Melbourne and enjoy a peaceful, possum-free home.',
-    href: '/possum-removal-melbourne',
   },
   {
     id: 'ants',
@@ -87,19 +42,11 @@ const PEST_TABS = [
     href: '/ant-pest-control-melbourne',
   },
   {
-    id: 'birds',
-    label: 'Birds Protection',
-    title: 'Bird Control',
-    copy:
-      "Who likes bird droppings when they're actually destroying your property? Obviously, no one wants birds leaving waste on their furniture and home, as it's acidic and can damage roofs, doors, windows, and awnings, and is difficult to remove for untrained hands. That's why you should buy our bird pest control services and let experts use physical deterrents to protect your property.",
-    href: '/birds-control-melbourne',
-  },
-  {
     id: 'fleas',
     label: 'Flea & Tick Prevention',
     title: 'Flea and Tick Solutions',
     copy:
-      "Fleas and ticks pose a serious threat to the health of your pets and family, as they can cause significant health issues. Protect your home from the inside out with our pet-safe solution. Don't let ticks transmit Lyme disease—book an inspection today and keep your loved ones safe.",
+      "Fleas and ticks pose a serious threat to the health of your family. Protect your home from the inside out with our targeted flea and tick treatments. Don't let pests take hold — call us today to arrange a treatment.",
     href: '/flea-control-melbourne',
   },
   {
@@ -133,50 +80,63 @@ export function HomepageReviews() {
 
   return (
     <div className="w-full max-w-[1200px] mx-auto">
-      {/* Rating badge — centered on mobile, left on desktop */}
+      {/* Section header */}
       <div className="mb-6 flex flex-col items-center gap-1 sm:items-start">
-        <div className="flex items-baseline gap-2.5">
-          <span className="text-[40px] font-extrabold text-[#131a1c] leading-none sm:text-[44px]">4.9</span>
-          <div className="flex gap-0.5">
-            {[0, 1, 2, 3, 4].map((s) => (
-              <Star key={s} className="h-5 w-5 fill-amber-400 text-amber-400" />
+        <p className="text-[12px] font-bold uppercase tracking-wider text-[#3fa535]">WHAT CUSTOMERS SAY</p>
+        <h2 className="text-[24px] font-bold text-[#131a1c] sm:text-[28px]">Customer testimonials</h2>
+      </div>
+
+      {/* Reviews — auto-scrolling cards when data is supplied; CTA fallback otherwise */}
+      {REVIEWS.length > 0 ? (
+        <div className="relative overflow-hidden">
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-8 bg-gradient-to-r from-white to-transparent sm:w-0" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-8 bg-gradient-to-l from-white to-transparent" />
+          <div
+            ref={scrollRef}
+            className="flex gap-4 overflow-x-auto scroll-smooth pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {REVIEWS.map((rev) => (
+              <div key={rev.name} className="min-w-[270px] w-[290px] flex-shrink-0 rounded-xl border border-[#e5e5e5] bg-white p-5 shadow-sm">
+                <div className="flex gap-0.5 mb-3">
+                  {[0, 1, 2, 3, 4].map((s) => (
+                    <Star key={s} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <p className="text-[14px] leading-[1.65] text-[#414042] line-clamp-3 mb-4">&ldquo;{rev.text}&rdquo;</p>
+                <div className="flex items-center justify-between border-t border-[#f0f0f0] pt-3">
+                  <div>
+                    <p className="text-[14px] font-bold text-[#131a1c]">{rev.name}</p>
+                    <p className="text-[12px] text-[#636363]">{rev.suburb}</p>
+                  </div>
+                  <p className="text-[12px] text-[#636363]">{rev.timeAgo}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-        <p className="text-[14px] font-bold uppercase tracking-wide text-[#131a1c]">EXCELLENT</p>
-        <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-[13px] text-[#636363] transition-colors hover:text-[#3fa535]">
-          <Image src="/images/logo/google-g.png" alt="Google" width={16} height={16} className="h-4 w-4" />
-          {SITE_CONFIG.rating.count}+ Google Reviews
-        </a>
-      </div>
-
-      {/* Auto-scrolling review cards */}
-      <div className="relative overflow-hidden">
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-8 bg-gradient-to-r from-white to-transparent sm:w-0" />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-8 bg-gradient-to-l from-white to-transparent" />
-        <div
-          ref={scrollRef}
-          className="flex gap-4 overflow-x-auto scroll-smooth pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {REVIEWS.map((rev) => (
-            <div key={rev.name} className="min-w-[270px] w-[290px] flex-shrink-0 rounded-xl border border-[#e5e5e5] bg-white p-5 shadow-sm">
-              <div className="flex gap-0.5 mb-3">
-                {[0, 1, 2, 3, 4].map((s) => (
-                  <Star key={s} className="h-4 w-4 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-[14px] leading-[1.65] text-[#414042] line-clamp-3 mb-4">&ldquo;{rev.text}&rdquo;</p>
-              <div className="flex items-center justify-between border-t border-[#f0f0f0] pt-3">
-                <div>
-                  <p className="text-[14px] font-bold text-[#131a1c]">{rev.name}</p>
-                  <p className="text-[12px] text-[#636363]">{rev.suburb}</p>
-                </div>
-                <p className="text-[12px] text-[#636363]">{rev.timeAgo}</p>
-              </div>
-            </div>
-          ))}
+      ) : (
+        <div className="rounded-2xl border border-[#e5e5e5] bg-[#f8f5f2] px-6 py-10 text-center">
+          <div className="mb-4 flex items-center justify-center gap-0.5">
+            {[0, 1, 2, 3, 4].map((s) => (
+              <Star key={s} className="h-6 w-6 fill-amber-400 text-amber-400" />
+            ))}
+          </div>
+          <p className="mb-2 text-[20px] font-bold text-[#131a1c] sm:text-[24px]">
+            {SITE_CONFIG.rating.value}<span className="text-[#414042]"> from {SITE_CONFIG.rating.count} Google reviews</span>
+          </p>
+          <p className="mb-6 text-[14px] text-[#414042] sm:text-[15px]">
+            Real reviews from Melbourne homeowners and businesses we&apos;ve protected.
+          </p>
+          <a
+            href={GOOGLE_REVIEWS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-[#3fa535] px-6 py-3 text-[14px] font-bold text-white transition-transform hover:scale-105"
+          >
+            Read reviews on Google
+          </a>
         </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -192,9 +152,6 @@ export function HomepagePestServiceTabs() {
           <h3 className="mb-2 text-[17px] font-bold text-[#131a1c] md:text-[20px] leading-[1.2]">{tab.title}</h3>
           <p className="mb-4 text-[13px] leading-[1.6] text-[#414042] sm:text-[14px] md:text-[15px] line-clamp-5 sm:line-clamp-none">{tab.copy}</p>
           <div>
-            <Link href={tab.href} className="zapit-learn-more-btn">
-              Learn More
-            </Link>
           </div>
         </div>
         <div className="relative aspect-[4/3] w-full min-w-0 max-w-full overflow-hidden rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.15)]">
@@ -258,7 +215,7 @@ export function HomepageFAQ() {
 }
 
 const CTA_LINES = [
-  '200% Money Back Guarantee',
+  'Satisfaction Commitment',
   'Industry Leaders in Pest Control',
   'Local, Licensed and Insured',
   'Latest Technologies and Techniques',
@@ -311,7 +268,7 @@ const MELBOURNE_REGIONS: {
     features: [
       'CBD Coverage',
       'High-rise Specialists',
-      '24/7 Emergency',
+      'Same-Day Service',
       'Heritage Properties',
       'Discreet Service',
       'Commercial Focus',
@@ -388,34 +345,33 @@ export function HomepageMelbourneCoverage() {
     <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
       <div className="bg-[#252C33] text-white rounded-xl p-6 md:p-8 shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
         <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight">
-          Why Choose Zap It Pest &amp; Termite Control Melbourne Services?
+          Why Choose Zapit Pest &amp; Termite Control Melbourne Services?
         </h3>
         <p className="mt-3 text-sm md:text-base text-white/85 leading-relaxed">
-          Melbourne&apos;s most experienced pest control experts with licenses and certifications are available to provide
-          emergency pest control services across Melbourne within hours of the call.
+          Licensed, accredited pest control experts serving Melbourne homes and businesses with professional, thorough treatments.
         </p>
         <div className="mt-6 grid grid-cols-2 gap-3">
           <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
-            <p className="text-2xl md:text-3xl font-bold text-[#3fa535]">{stats.emergenciesSolved}</p>
-            <p className="text-xs md:text-sm text-white/80 mt-1">Pest Emergencies Solved</p>
+            <p className="text-2xl md:text-3xl font-bold text-[#3fa535]">{stats.residentialCustomers}</p>
+            <p className="text-xs md:text-sm text-white/80 mt-1">Residential Customers</p>
+          </div>
+          <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
+            <p className="text-2xl md:text-3xl font-bold text-[#3fa535]">{stats.commercialClients}</p>
+            <p className="text-xs md:text-sm text-white/80 mt-1">Commercial Clients</p>
           </div>
           <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
             <p className="text-2xl md:text-3xl font-bold text-[#3fa535]">{stats.yearsExperience}</p>
-            <p className="text-xs md:text-sm text-white/80 mt-1">Years of Experience in Protecting Homes</p>
+            <p className="text-xs md:text-sm text-white/80 mt-1">Years Experience</p>
           </div>
           <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
-            <p className="text-2xl md:text-3xl font-bold text-[#3fa535]">{stats.firstVisitSuccess}</p>
-            <p className="text-xs md:text-sm text-white/80 mt-1">First Visit Success Rate</p>
-          </div>
-          <div className="rounded-lg bg-white/5 border border-white/10 px-3 py-4 text-center">
-            <p className="text-2xl md:text-3xl font-bold text-[#3fa535]">{stats.availability}</p>
-            <p className="text-xs md:text-sm text-white/80 mt-1">Emergency Response Team</p>
+            <p className="text-2xl md:text-3xl font-bold text-[#3fa535]">Licensed</p>
+            <p className="text-xs md:text-sm text-white/80 mt-1">Licensed</p>
           </div>
         </div>
         <div className="mt-4 rounded-lg bg-[#3fa535]/15 border border-[#3fa535]/20 px-4 py-4 text-center">
           <div className="flex items-center justify-center gap-2 text-white/80 text-sm mb-1">
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#3fa535] text-white text-lg">⚡</span>
-            <span>Average Response Time</span>
+            <span>Service Availability</span>
           </div>
           <p className="text-2xl md:text-3xl font-bold text-[#3fa535] italic">{stats.responseTime}</p>
         </div>
@@ -449,12 +405,10 @@ export function HomepageMelbourneCoverage() {
         </ul>
         <div className="mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
           <a
-            href={SITE_CONFIG.booking.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={SITE_CONFIG.phoneTel}
             className="inline-flex min-h-[48px] items-center justify-center bg-[#3fa535] hover:bg-[#0d402e] text-white text-sm font-semibold uppercase tracking-wide px-6 py-3 rounded-lg shadow-sm text-center"
           >
-            Get a Free Quote Now
+            Call Now
           </a>
           <Link
             href="/service-areas"
@@ -479,18 +433,12 @@ const PRICING_DATA = [
   { service: 'Fleas Treatment', type: 'All', price: '$385', duration: '45' },
   { service: 'Termite Inspections', type: 'All', price: '$399', duration: '120' },
   { service: 'Mice & Rat Treatment', type: 'All', price: '$200', duration: '40' },
-  { service: 'Cobweb Removal (Extra Service)', type: 'Single-story', price: '$125', duration: '30' },
-  { service: '', type: 'Double-story', price: '$250', duration: '60' },
   { service: 'General Inspection', type: 'All', price: '$100', duration: '30' },
   { service: 'Rodent Removal', type: 'All', price: '$380', duration: '30' },
   { service: 'Initial Business Setup', type: 'All', price: '$129', duration: '60' },
   { service: 'Wasp Control', type: 'All', price: '$250', duration: '60' },
   { service: 'Possum Treatment', type: 'Single-story', price: '$450', duration: '30' },
   { service: '', type: 'Double-story', price: '$630', duration: '60' },
-  { service: 'Bird Control', type: 'Single-story', price: '$450', duration: '30' },
-  { service: '', type: 'Double-story', price: '$650', duration: '60' },
-  { service: 'Bird Nest Removal', type: 'Single-story', price: '$450', duration: '30' },
-  { service: '', type: 'Double-story', price: '$650', duration: '60' },
   { service: 'Spider & General Pest Treatment', type: 'Single-story', price: '$290', duration: '60' },
   { service: '', type: 'Double-story', price: '$335', duration: '60' },
   { service: '', type: 'Other', price: '$275', duration: '60' },
@@ -544,12 +492,10 @@ export function HomepagePestCards() {
   const cards = [
     {
       title: 'Residential Property Owners',
-      sub: 'Pest-Free Home Guaranteed',
+      sub: 'Trusted Melbourne Pest Control',
       more: (
         <p>
-          Pests pose a serious threat to your property and wellbeing. Our licensed experts use eco-friendly or DHHS approved
-          solutions to eliminate dangerous pests quickly and safely. Book today and enjoy same-day service to protect your
-          home and family.
+          Pests pose a serious threat to your property and wellbeing. Our licensed experts eliminate dangerous pests quickly and safely with same-day service across Melbourne.
         </p>
       ),
       href: '/residential',
@@ -558,7 +504,7 @@ export function HomepagePestCards() {
     },
     {
       title: 'Commercial Business Owners',
-      sub: 'Customer-Friendly Environment Guaranteed',
+      sub: 'Professional Commercial Pest Control',
       more: (
         <p>
           Imagine what one viral customer post capturing a cockroach in your restaurant can do? It can cost you the business
@@ -571,7 +517,7 @@ export function HomepagePestCards() {
           <Link href="/wasp-removal-melbourne" className="text-[#3fa535] underline font-medium">
             wasps
           </Link>
-          . Book a free business inspection today!
+          . Call us to discuss a commercial pest management plan for your business.
         </p>
       ),
       href: '/commercial-pest-control',
@@ -580,11 +526,11 @@ export function HomepagePestCards() {
     },
     {
       title: 'Termite Risk Structures',
-      sub: 'Healthy-Property Protection Guaranteed',
+      sub: 'Licensed Termite Specialists',
       more: (
         <p>
           Termites are the silent killers, slowly eating up the wood of your home or business, either in the walls, flooring,
-          or kitchen. Don&apos;t let termites damage your property. We offer DHHS approved termite control solutions in
+          or kitchen. Don&apos;t let termites damage your property. We offer professional termite control solutions in
           Melbourne at affordable prices. Call now and save your property.
         </p>
       ),
@@ -628,7 +574,7 @@ export function HomepagePestCards() {
             <div className="pest-card-subtext">{c.sub}</div>
             <div className="pest-card-more">{c.more}</div>
             <Link href={c.href} className="pest-card-btn" onClick={(e) => e.stopPropagation()}>
-              Learn More
+              View pricing
             </Link>
           </div>
           <div className="pest-card-img">

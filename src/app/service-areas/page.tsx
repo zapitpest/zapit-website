@@ -4,7 +4,6 @@ import { SITE_CONFIG } from '@/lib/constants';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 
-
 const MELBOURNE_MAP_EMBED =
   'https://www.google.com/maps?q=' +
   encodeURIComponent('Melbourne, Victoria, Australia') +
@@ -33,19 +32,19 @@ export default function ServiceAreasPage() {
 
       <div className="font-sans text-[#414042]">
         {/* Header */}
-        <section className="bg-[#f8f5f2] px-4 pb-4 pt-6 sm:px-6 sm:pt-8">
-          <div className="mx-auto max-w-3xl">
-            <h1 className="text-left text-[26px] font-bold leading-tight text-[#414042] sm:text-[30px]">Service areas</h1>
-            <p className="mx-auto mt-4 max-w-2xl text-center text-[18px] italic leading-snug text-[#414042] sm:text-[22px]">
+        <section className="bg-[#f8f5f2] px-4 pb-4 pt-6 sm:px-6 sm:pt-8 lg:pt-12">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="text-[26px] font-bold leading-tight text-[#414042] sm:text-[30px] lg:text-[36px]">Service areas</h1>
+            <p className="mx-auto mt-4 max-w-2xl text-[18px] italic leading-snug text-[#414042] sm:text-[22px]">
               We service Melbourne&apos;s central, north-west, northern and north-eastern suburbs.
             </p>
           </div>
         </section>
 
-        {/* Map */}
+        {/* Map — capped to match the text-section width below for visual consistency on desktop */}
         <section className="relative bg-[#f8f5f2] px-0 pb-10 sm:px-4 sm:pb-14">
-          <div className="relative mx-auto w-full max-w-5xl overflow-hidden sm:rounded-2xl">
-            <div className="relative aspect-[4/3] w-full min-h-[220px] bg-[#e5e5e5] sm:aspect-[16/9] sm:min-h-[280px]">
+          <div className="relative mx-auto w-full max-w-3xl overflow-hidden sm:rounded-2xl lg:shadow-xl">
+            <div className="relative aspect-[4/3] w-full min-h-[220px] bg-[#e5e5e5] sm:aspect-[16/9] sm:min-h-[280px] lg:aspect-[16/10]">
               <iframe
                 title="Melbourne service area map"
                 src={MELBOURNE_MAP_EMBED}
@@ -102,7 +101,6 @@ export default function ServiceAreasPage() {
               alt="Same day service available. Call now!"
               className="h-[160px] w-auto"
             />
-            <p className="mt-4 text-[20px] font-bold text-[#1cdc38] sm:text-[24px]">24/7 same day service available. Call now!</p>
           </div>
         </section>
       </div>

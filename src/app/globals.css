@@ -7,9 +7,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: 'Graphik', Arial, Helvetica, sans-serif;
+  /* Brand font: Graphik (self-hosted via next/font/local in layout.tsx). */
+  --font-sans: var(--font-graphik), Arial, Helvetica, sans-serif;
   --font-mono: var(--font-geist-mono);
-  --font-heading: 'Graphik', Arial, Helvetica, sans-serif;
+  --font-heading: var(--font-graphik), Arial, Helvetica, sans-serif;
   --color-zapit-green: #3fa535;
   --color-zapit-green-dark: #0d402e;
   --color-zapit-dark: #131a1c;
@@ -139,7 +140,7 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
-    font-family: 'Graphik', Arial, Helvetica, sans-serif;
+    font-family: var(--font-graphik), Arial, Helvetica, sans-serif;
     line-height: 1.6;
   }
 }
@@ -161,7 +162,7 @@
   box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
   border: 1px solid #ebebeb;
   padding: 1.25rem 1.5rem;
-  font-family: 'Graphik', Arial, Helvetica, sans-serif;
+  font-family: var(--font-graphik), Arial, Helvetica, sans-serif;
 }
 
 .ti-review-stars {
@@ -203,7 +204,7 @@
 .pest-cards {
   max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Graphik', Arial, Helvetica, sans-serif;
+  font-family: var(--font-graphik), Arial, Helvetica, sans-serif;
   box-sizing: border-box;
 }
 
@@ -341,7 +342,7 @@
 
 .our-services-heading {
   font-size: 20px;
-  font-family: 'Graphik', Arial, Helvetica, sans-serif;
+  font-family: var(--font-graphik), Arial, Helvetica, sans-serif;
   font-weight: 600;
   color: #222;
   margin-bottom: 32px;

@@ -143,14 +143,12 @@ export default function PriceCalculatorPreview() {
         >
           Enquire
         </Link>
-        <Link
-          href={SITE_CONFIG.booking.url}
-          target="_blank"
-          rel="noopener noreferrer"
+        <a
+          href={SITE_CONFIG.phoneTel}
           className="flex items-center justify-center gap-2 bg-zapit-green hover:bg-zapit-green-dark text-white font-semibold py-3 rounded-full transition-colors text-sm"
         >
-          Book online
-        </Link>
+          Call Now
+        </a>
       </div>
 
       <p className="text-xs text-red-500 mt-3">*required fields</p>

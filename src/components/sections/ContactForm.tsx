@@ -10,7 +10,7 @@ interface Props {
 
 export default function ContactForm({ displayPhone, phoneTel }: Props) {
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: '', phone: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,6 +58,22 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
         />
       </div>
 
+      {/* Email — sits before Phone per Figma + client form spec */}
+      <div className="mb-4">
+        <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-[#131a1c]">
+          Email<span className="text-[#1cdc38]">*</span>
+        </label>
+        <input
+          id="contact-email"
+          type="email"
+          required
+          placeholder="your@email.com"
+          value={form.email}
+          onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+          className="w-full rounded-lg border border-[#c8c8c8] bg-white px-4 py-3 text-sm text-[#414042] placeholder-[#aaa] outline-none transition focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
+        />
+      </div>
+
       {/* Phone */}
       <div className="mb-4">
         <label htmlFor="contact-phone" className="mb-1.5 block text-sm font-medium text-[#131a1c]">
@@ -92,10 +108,9 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
         type="submit"
         className="w-full rounded-full bg-[#414042] py-3.5 text-sm font-bold text-white transition-colors hover:bg-[#131a1c] sm:text-[15px]"
       >
-        Get My Free Quote Now
+        Submit query
       </button>
 
-      {/* 24-hour guarantee */}
       <div className="mt-5 flex items-center gap-3 border-t border-[#e5e5e5] pt-5">
         <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1cdc38]" aria-hidden>
           <svg className="h-3.5 w-3.5 text-white" viewBox="0 0 12 12" fill="currentColor">

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `Privacy Policy | ${SITE_CONFIG.name}`,
-    description: 'Privacy policy for Zap It Pest & Termite Control Melbourne.',
+    description: 'Privacy policy for Zapit Pest & Termite Control Melbourne.',
     url: '/privacy-policy',
   },
 };

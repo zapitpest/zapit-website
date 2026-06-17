@@ -13,7 +13,7 @@ function SocialIconFacebook({ className }: { className?: string }) {
 function SocialIconTiktok({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.11V9a6.33 6.33 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.43v-7.44a8.16 8.16 0 005.58 2.17V11a4.85 4.85 0 01-3.77-1.72v4.48" />
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.11V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.16 8.16 0 004.77 1.52V6.76a4.85 4.85 0 01-3.0-.07z" />
     </svg>
   );
 }
@@ -28,7 +28,7 @@ function SocialIconInstagram({ className }: { className?: string }) {
 
 const DISPLAY_PHONE = '(03) 9126 0555';
 const ABN = 'ABN 61 682 004 655';
-const BUSINESS = 'Zap It Pest & Termite Control';
+const BUSINESS = 'Zapit Pest & Termite Control';
 const ADDRESS = '80 Porter Rd, Heidelberg Heights, VIC 3081';
 
 const OPERATING_HOURS = [
@@ -42,7 +42,7 @@ const OPERATING_HOURS = [
 ] as const;
 
 const OUR_PROMISE =
-  "When you protect your home and property from pests with us, your peace of mind is assured. Our services are eco-friendly, child safe, pet safe and we're fully insured and DHHS Licensed. We treat your home with the same care as you do, using high-quality long-lasting solutions you can rely on.";
+  "When you protect your home and property from pests with us, your peace of mind is our priority. We're fully insured, and we treat your home with the same care as our own — using high-quality, long-lasting solutions you can rely on.";
 
 const SITEMAP_LINKS: { label: string; href: string }[] = [
   { label: 'Residential', href: '/residential' },
@@ -155,7 +155,7 @@ export default function PageInfoFooterBlock() {
 
         {/* Legal */}
         <div className="space-y-2 border-t border-white/10 pt-6 text-sm text-white/70">
-          <p>&copy; Zap It Pest &amp; Termite Control of Melbourne</p>
+          <p>&copy; Zapit Pest &amp; Termite Control of Melbourne</p>
           <p>Managed by Delivix</p>
           <Link
             href="/privacy-policy"

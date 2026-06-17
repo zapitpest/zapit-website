@@ -8,7 +8,7 @@ import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceS
 import { JsonLd } from '@/components/seo/JsonLd';
 import StatsCounter from '@/components/sections/StatsCounter';
 
-const PEST_SOLUTION_SLUGS = [
+export const PEST_SOLUTION_SLUGS = [
   'seasonal-pest-control',
   'organic-pest-control',
   'garden-pest-control',
@@ -31,9 +31,9 @@ type PestSolutionPage = {
 const PEST_SOLUTION_PAGES: Record<PestSolutionSlug, PestSolutionPage> = {
   'seasonal-pest-control': {
     title: 'Seasonal Pest Control',
-    metaTitle: 'Seasonal Pest Control Melbourne | Year-Round Protection | Zap It',
+    metaTitle: 'Seasonal Pest Control Melbourne | Year-Round Protection | Zapit',
     metaDescription:
-      'Target pests by Melbourne season: cockroaches in summer, rodents in winter, ants in spring, spiders in autumn. Licensed treatments and scheduling with Zap It.',
+      'Target pests by Melbourne season: cockroaches in summer, rodents in winter, ants in spring, spiders in autumn. Licensed treatments and scheduling with Zapit.',
     h1: 'Seasonal Pest Control in Melbourne',
     heroDescription:
       'Pest pressure changes with the weather. We time inspections and treatments so your home stays protected through every Melbourne season.',
@@ -54,10 +54,10 @@ const PEST_SOLUTION_PAGES: Record<PestSolutionSlug, PestSolutionPage> = {
   },
   'organic-pest-control': {
     title: 'Organic Pest Control',
-    metaTitle: 'Organic & Low-Toxic Pest Control Melbourne | Child & Pet Safe | Zap It',
+    metaTitle: 'Organic & Low-Toxic Pest Control Melbourne | Zapit',
     metaDescription:
-      'Eco-friendly pest control for Melbourne homes: natural and low-toxic options, IPM, and treatments suited to families, pets, and sensitive spaces. Call Zap It.',
-    h1: 'Organic & Eco-Friendly Pest Control',
+      'Low-toxic pest control for Melbourne homes: natural options, IPM, and responsible treatments suited to families and sensitive spaces. Call Zapit.',
+    h1: 'Organic & Low-Toxic Pest Control',
     heroDescription:
       'When you want effective results without harsh chemicals, we use careful product choice, integrated pest management, and methods suited to kids, pets, and sensitive environments.',
     heroImage: '/images/residential/hero-family.png',
@@ -77,7 +77,7 @@ const PEST_SOLUTION_PAGES: Record<PestSolutionSlug, PestSolutionPage> = {
   },
   'garden-pest-control': {
     title: 'Garden Pest Control',
-    metaTitle: 'Garden Pest Control Melbourne | Lawns, Vege Patches & Outdoor Living | Zap It',
+    metaTitle: 'Garden Pest Control Melbourne | Lawns, Vege Patches & Outdoor Living | Zapit',
     metaDescription:
       'Protect Melbourne gardens, lawns, and outdoor living areas from pests. Targeted outdoor treatments for plant health, entertainment spaces, and boundaries.',
     h1: 'Garden & Outdoor Pest Control',
@@ -199,9 +199,6 @@ export default async function PestSolutionSubPage({ params }: Props) {
             <a href={SITE_CONFIG.phoneTel} className="inline-flex items-center gap-2 rounded-full bg-[#64FF01] px-6 py-3.5 text-[15px] font-bold text-[#0d402e] transition-transform hover:scale-105">
               <Phone className="h-4 w-4" />Call {SITE_CONFIG.phone}
             </a>
-            <Link href={SITE_CONFIG.booking.url} className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-6 py-3.5 text-[15px] font-bold text-white transition-colors hover:border-white hover:bg-white/10">
-              Book Online
-            </Link>
           </div>
         </div>
       </section>
@@ -209,7 +206,7 @@ export default async function PestSolutionSubPage({ params }: Props) {
       {/* ===== TRUST BAR ===== */}
       <section className="border-b border-[#e5e5e5] bg-[#f8f5f2] py-3.5">
         <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-5 text-[13px] font-semibold text-[#0d402e]">
-          {['DHHS Licensed', 'Child & Pet Safe', 'Eco-Friendly', 'Fully Insured', 'Same-Day Available'].map((t) => (
+          {['Licensed', 'Family Friendly', 'Accredited', 'Fully Insured', 'Same-Day Available'].map((t) => (
             <span key={t} className="flex items-center gap-1.5">
               <CheckCircle2 className="h-3.5 w-3.5 text-[#3fa535]" strokeWidth={2.5} />{t}
             </span>
@@ -260,11 +257,11 @@ export default async function PestSolutionSubPage({ params }: Props) {
                     </div>
                     <div className="flex items-center gap-3 text-[14px]">
                       <Shield className="h-5 w-5 shrink-0 text-[#64FF01]" />
-                      <span className="text-white/80">DHHS licensed technicians</span>
+                      <span className="text-white/80">Licensed technicians</span>
                     </div>
                     <div className="flex items-center gap-3 text-[14px]">
                       <Star className="h-5 w-5 shrink-0 text-[#64FF01]" />
-                      <span className="text-white/80">4.9★ Google rating</span>
+                      <span className="text-white/80">Highly rated on Google</span>
                     </div>
                   </div>
                   <a href={SITE_CONFIG.phoneTel} className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#64FF01] px-5 py-3 text-[14px] font-bold text-[#0d402e]">
@@ -321,17 +318,14 @@ export default async function PestSolutionSubPage({ params }: Props) {
       {/* ===== CTA ===== */}
       <section className="bg-[#0d402e] py-14 text-white lg:py-16">
         <div className="mx-auto max-w-[800px] px-5 text-center sm:px-6">
-          <h2 className="mb-4 text-2xl font-bold md:text-3xl">Book {page.title} Today</h2>
+          <h2 className="mb-4 text-2xl font-bold md:text-3xl">Need {page.title} in Melbourne?</h2>
           <p className="mb-8 text-[15px] text-white/80">
-            Call {SITE_CONFIG.phone} for urgent advice, or book online for a time that suits you. {SITE_CONFIG.operatingHours} for emergencies and enquiries.
+            Call {SITE_CONFIG.phone} for urgent advice or to arrange a visit. {SITE_CONFIG.operatingHours}.
           </p>
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href={SITE_CONFIG.phoneTel} className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#64FF01] px-8 py-4 text-[16px] font-bold text-[#0d402e] shadow-lg transition-transform hover:scale-105 sm:w-auto">
               <Phone className="h-5 w-5 shrink-0" />Call Now — {SITE_CONFIG.phone}
             </a>
-            <Link href={SITE_CONFIG.booking.url} target="_blank" rel="noopener noreferrer" className="inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-white/30 px-8 py-4 text-[16px] font-bold text-white transition-colors hover:border-white hover:bg-white/10 sm:w-auto">
-              Book Online
-            </Link>
           </div>
         </div>
       </section>

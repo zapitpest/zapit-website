@@ -7,7 +7,7 @@ import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceS
 import { JsonLd } from '@/components/seo/JsonLd';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
-import GoogleReviewsCarousel from '../../residential/GoogleReviewsCarousel';
+import { HomepageReviews } from '@/components/sections/HomepageReviewsAndPestTabs';
 
 type CommercialIndustryPage = {
   h1: string;
@@ -19,7 +19,7 @@ type CommercialIndustryPage = {
   features: readonly string[];
 };
 
-const COMMERCIAL_INDUSTRY_SLUGS = [
+export const COMMERCIAL_INDUSTRY_SLUGS = [
   'warehousing-and-storage',
   'restaurants-pest-control',
   'pest-control-in-supermarkets',
@@ -55,7 +55,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     metaTitle: 'Restaurant pest control Melbourne | Cafés & dining',
     metaDescription: 'Melbourne restaurant and café pest control.',
     content: 'Dining rooms, bars, and busy kitchens are under constant pressure from cockroaches, flies, and rodents that follow grease, waste, and delivery traffic. A sighting in front of guests affects reviews, local reputation, and health inspections overnight. We work the way you run service: we listen to your menu flow and waste routines, time visits to reduce disruption, and focus on harbourage, drains, and entry points.',
-    features: ['Cockroach, fly, and ant control focused on kitchen and prep zones', 'Rodent control around cool rooms, storage, and delivery doors', 'HACCP-aware processes and product selection', 'After-hours and pre-service windows', 'Clear reporting for every visit'],
+    features: ['Cockroach, fly, and ant control focused on kitchen and prep zones', 'Rodent control around cool rooms, storage, and delivery doors', 'food-safety aware processes and product selection', 'After-hours and pre-service windows', 'Clear reporting for every visit'],
   },
   'pest-control-in-supermarkets': {
     h1: 'Pest control for supermarkets in Melbourne',
@@ -64,7 +64,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     metaTitle: 'Supermarket pest control Melbourne | Grocery & retail',
     metaDescription: 'Pest control for Melbourne supermarkets and grocery retail.',
     content: 'Supermarkets juggle public-facing aisles, high-turnover perishables, and constant deliveries — so pests have food, warmth, and hiding places from shelf bases to mezzanines. You need a partner who can plan around peak trading, work without alarming shoppers, and keep clear communication with store management.',
-    features: ['Bird and fly management for entries and fresh sections', 'Rodent programs that respect cold chain layout', 'Service timing aligned to store hours', 'Structured documentation for group compliance', 'Site-specific risk review after seasonal changes'],
+    features: ['Fly management for entries and fresh sections', 'Rodent programs that respect cold chain layout', 'Service timing aligned to store hours', 'Structured documentation for group compliance', 'Site-specific risk review after seasonal changes'],
   },
   'function-venues': {
     h1: 'Pest control for function & event venues in Melbourne',
@@ -104,21 +104,21 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
   },
   transport: {
     h1: 'Pest control for transport & logistics in Melbourne',
-    heroDescription: 'Yards, workshops, and offices need protection from rodents and birds.',
+    heroDescription: 'Yards, workshops, and offices need protection from rodents, insects, and other site-specific pests.',
     title: 'Transport & logistics',
     metaTitle: 'Transport & logistics pest control Melbourne',
     metaDescription: 'Pest control for Melbourne transport and freight operations.',
     content: 'Transport operations attract pests with food packaging, voids in trailers, and long runs along fence lines. Issues show up as gnawing in wiring, stock damage, or droppings in drivers\' facilities. We look at the whole site.',
-    features: ['Rodent and bird control for depots and yards', 'Workshop-adjacent programs', 'Out-of-hours and weekend options', 'HACCP-linked freight support', 'Practical proofing advice'],
+    features: ['Rodent control for depots and yards', 'Workshop-adjacent programs', 'Out-of-hours and weekend options', 'Freight-supporting documentation', 'Practical proofing advice'],
   },
   'food-manufacturing': {
     h1: 'Pest control for food manufacturing in Melbourne',
-    heroDescription: 'GMP- and HACCP-aligned support for production lines.',
+    heroDescription: 'GMP- and food-safety aware support for production lines.',
     title: 'Food manufacturing',
-    metaTitle: 'Food manufacturing pest control Melbourne | HACCP',
+    metaTitle: 'Food manufacturing pest control Melbourne',
     metaDescription: 'Commercial pest control for Melbourne food manufacturers.',
     content: 'Food manufacturing is where pest control directly meets shelf life and audit outcomes. You need systematic monitoring, trend analysis, and targeted response. We walk your line from raw intake through to dispatch.',
-    features: ['IPM approach with monitoring and trend review', 'Support for HACCP, GMP, and third-party standards', 'Flying insect, rodent, and stored-product programs', 'Pre-audit and seasonal reviews', 'Coordination with hygiene and engineering'],
+    features: ['IPM approach with monitoring and trend review', 'Support for food-safety, quality, and third-party standards', 'Flying insect, rodent, and stored-product programs', 'Pre-audit and seasonal reviews', 'Coordination with hygiene and engineering'],
   },
   'aged-care-facilities': {
     h1: 'Pest control for aged care facilities in Melbourne',
@@ -127,7 +127,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     metaTitle: 'Aged care facility pest control Melbourne',
     metaDescription: 'Pest control for Melbourne aged care and residential care facilities.',
     content: 'Aged care homes balance hospitality, medical oversight, and 24/7 living. We treat every visit with patience: clear scheduling with lifestyle teams, careful product choices, and communication that doesn\'t add stress.',
-    features: ['Discreet service delivery', 'Ant, fly, and cockroach control', 'Bed bug response planning', 'Rodent and bird management', 'Product and timing options discussed'],
+    features: ['Discreet service delivery', 'Ant, fly, and cockroach control', 'Bed bug response planning', 'Rodent management', 'Product and timing options discussed'],
   },
   hospitals: {
     h1: 'Pest control for hospitals & health facilities in Melbourne',
@@ -144,8 +144,8 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     title: 'Agriculture & packhouse',
     metaTitle: 'Agriculture & packhouse pest control Melbourne',
     metaDescription: 'Pest control for Melbourne-region agriculture.',
-    content: 'Agricultural sites deal with open doors, seasonality, and fast-moving product — ideal for rodents, birds, and stored-product insects. We focus on intake tables, voids, insulation, and waste.',
-    features: ['Rodent, bird, and insect programs', 'Cool room and high-care areas', 'Seasonal reviews before peak harvest', 'WHS-aware site behaviour', 'Practical proofing advice'],
+    content: 'Agricultural sites deal with open doors, seasonality, and fast-moving product — ideal for rodents and stored-product insects. We focus on intake tables, voids, insulation, and waste.',
+    features: ['Rodent and insect programs', 'Cool room and high-care areas', 'Seasonal reviews before peak harvest', 'WHS-aware site behaviour', 'Practical proofing advice'],
   },
   'educational-facilities': {
     h1: 'Pest control for schools & educational facilities in Melbourne',
@@ -163,7 +163,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     metaTitle: 'Distribution centre pest control Melbourne | 3PL & DC',
     metaDescription: 'Pest control for Melbourne distribution centres and 3PL.',
     content: 'Distribution centres are built for speed, which pests exploit: long sight lines along racking, dark voids, and debris from damaged freight. We work from perimeter to mezzanine understanding where MHE traffic creates gaps.',
-    features: ['Rodent and insect control for racking and docks', 'Out-of-hours and weekend service', 'Reporting for retail and grocery customers', 'Bird and fly pressure management', 'Joint review of proofing and doors'],
+    features: ['Rodent and insect control for racking and docks', 'Out-of-hours and weekend service', 'Reporting for retail and grocery customers', 'Fly pressure management', 'Joint review of proofing and doors'],
   },
 };
 
@@ -219,7 +219,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
 
   const otherIndustries = ALL_INDUSTRIES.filter((i) => i.slug !== slug).slice(0, 6);
 
-  const COMPLIANCE = ['DHHS Licensed', 'HACCP Certified', 'Fully Insured', 'AEPMA Member', 'Wildlife Licence'] as const;
+  const COMPLIANCE = ['Licensed', 'Insured', 'Fully Insured', 'Local Team', 'Family Friendly'] as const;
 
   const PROCESS_STEPS = [
     { n: '01', title: 'Site assessment', body: 'We inspect your premises, identify risks, and map high-activity zones specific to your industry.' },
@@ -235,7 +235,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
       {/* ===== HERO ===== */}
       <section className="relative w-full overflow-hidden bg-[#0d402e]">
         <div className="absolute inset-0">
-          <Image src="/images/commercial/aerial-view.png" alt="" fill className="object-cover object-center opacity-25" sizes="100vw" />
+          <Image src="/images/residential/melbourne-fleet.png" alt="" fill className="object-cover object-center opacity-25" sizes="100vw" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0d402e] via-[#0d402e]/70 to-[#0d402e]/30" />
         <div className="relative z-10 px-5 pb-10 pt-6 sm:px-6 sm:pb-14 sm:pt-8">
@@ -333,7 +333,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
 
       {/* ===== GOOGLE REVIEWS ===== */}
       <ScrollReveal direction="up" delay={100}>
-        <GoogleReviewsCarousel />
+        <HomepageReviews />
       </ScrollReveal>
 
       {/* ===== STATS ===== */}
@@ -345,7 +345,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
               {([
                 { val: '500+', label: 'Businesses Protected' },
                 { val: '5+ yr', label: 'Client Partnerships' },
-                { val: '<2hr', label: 'Emergency Response' },
+                { val: 'Same Day', label: 'Service Available' },
                 { val: '100%', label: 'Compliance Reporting' },
               ] as const).map((s) => (
                 <div key={s.label}>
@@ -358,11 +358,13 @@ export default async function CommercialIndustryPage({ params }: Props) {
         </section>
       </ScrollReveal>
 
-      {/* ===== FLEET IMAGE ===== */}
+      {/* ===== FLEET IMAGE — desktop framed card pattern (matches residential treatment) ===== */}
       <ScrollReveal direction="fade">
-        <section className="relative w-full overflow-hidden">
-          <div className="relative aspect-[375/200] w-full sm:aspect-[16/6]">
-            <Image src="/images/commercial/aerial-view.png" alt="Zap It fleet ready to serve commercial clients" fill className="object-cover object-center" sizes="100vw" />
+        <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
+          <div className="mx-auto w-full max-w-[860px] px-3 sm:px-4 lg:px-6">
+            <div className="relative aspect-[375/200] w-full sm:aspect-[16/6] lg:aspect-[16/7] lg:overflow-hidden lg:rounded-3xl lg:shadow-2xl">
+              <Image src="/images/residential/melbourne-fleet.png" alt="Zapit fleet ready to serve commercial clients" fill className="object-cover object-center" sizes="(min-width: 1024px) 860px, 100vw" />
+            </div>
           </div>
         </section>
       </ScrollReveal>
@@ -371,18 +373,16 @@ export default async function CommercialIndustryPage({ params }: Props) {
       <ScrollReveal direction="up">
         <section className="bg-[#131a1c] px-5 py-12 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-md text-center">
-            <h2 className="mb-3 text-[22px] font-bold text-white sm:text-[26px]">Book {pageName.toLowerCase()} pest control today</h2>
+            <h2 className="mb-3 text-[22px] font-bold text-white sm:text-[26px]">Ready to protect your {pageName.toLowerCase()} business?</h2>
             <p className="mb-6 text-[14px] leading-[1.7] text-white/70 sm:text-[15px]">
-              Call {SITE_CONFIG.phone} for urgent advice, or book online for a time that suits you.
+              Call {SITE_CONFIG.phone} to discuss your requirements.
             </p>
             <p className="mb-5 text-[28px] font-black text-[#1cdc38] sm:text-[34px]">{SITE_CONFIG.phone}</p>
-            <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <a href={SITE_CONFIG.phoneTel} className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#3fa535] px-7 py-3 text-[15px] font-bold text-white shadow-lg transition-transform hover:scale-105 sm:w-auto">
+            <div className="flex justify-center">
+              {/* Client item: single primary CTA (no duplicate "Book a commercial meeting") */}
+              <a href={SITE_CONFIG.phoneTel} className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-[#3fa535] px-7 py-3 text-[15px] font-bold text-white shadow-lg transition-transform hover:scale-105">
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                 Call Now
-              </a>
-              <a href={SITE_CONFIG.booking.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full border-2 border-[#1cdc38] px-7 py-3 text-[15px] font-bold text-[#1cdc38] transition-colors hover:bg-[#1cdc38] hover:text-[#131a1c] sm:w-auto">
-                Book online
               </a>
             </div>
           </div>

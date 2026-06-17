@@ -20,17 +20,19 @@ function SocialIconFacebook(props: { className?: string }) {
 function SocialIconTiktok(props: { className?: string }) {
   return (
     <svg className={props.className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.11V9a6.33 6.33 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.43v-7.44a8.16 8.16 0 005.58 2.17V11a4.85 4.85 0 01-3.77-1.72v4.48" />
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.11V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.16 8.16 0 004.77 1.52V6.76a4.85 4.85 0 01-3.0-.07z" />
     </svg>
   );
 }
 
+// Sitemap links match Figma 6-page main user journey. Hidden SEO pages
+// (suburb/commercial/pest-solutions/termite) intentionally excluded — they
+// stay indexable via /sitemap.xml but aren't surfaced in user-facing nav.
 const SITEMAP_LINKS = [
-  { label: 'Residential', href: '/residential' },
+  { label: 'Residential', href: '/' },
   { label: 'Commercial', href: '/commercial-pest-control' },
   { label: 'About us', href: '/about-us' },
-  { label: 'Service area', href: '/service-areas' },
-  { label: 'Price list', href: '/pricing' },
+  { label: 'Service Areas', href: '/service-areas' },
   { label: 'FAQs', href: '/frequently-asked-questions' },
   { label: 'Contact us', href: '/contact-us' },
 ] as const;
@@ -50,18 +52,18 @@ export default function Footer() {
     <footer className="bg-[#2B2B2B] font-sans text-white">
       <div className="mx-auto max-w-3xl px-5 py-10 sm:px-6 sm:py-12">
         {/* Company info */}
-        <h3 className="mb-3 text-[18px] font-bold">Zap It Pest &amp; Termite Control</h3>
+        <h3 className="mb-3 text-[18px] font-bold">Zapit Pest &amp; Termite Control</h3>
         <div className="mb-6 space-y-0.5 text-[15px] text-white/85">
           <p>80 Porter Rd, Heidelberg Heights , VIC 3081</p>
           <p>ABN 61 682 004 655</p>
-          <p><a href={SITE_CONFIG.phoneTel} className="hover:text-[#1cdc38]">(03) 9126 0555</a></p>
-          <p><a href={`mailto:${SITE_CONFIG.email}`} className="text-[#1cdc38] underline hover:opacity-80">{SITE_CONFIG.email}</a></p>
+          <p><a href={SITE_CONFIG.phoneTel} className="hover:text-[#1cdc38]">03 9126 0555</a></p>
+          <p><a href={`mailto:${SITE_CONFIG.emailWork}`} className="text-white/85 underline decoration-white underline-offset-2 hover:text-[#1cdc38]">{SITE_CONFIG.emailWork}</a></p>
         </div>
 
         {/* Our promise */}
         <h4 className="mb-2 text-[16px] font-bold">Our promise</h4>
         <p className="mb-6 text-[15px] leading-[1.7] text-white/85">
-          When you protect your home and property from pests with us, your piece of mind is assured. Our services are eco-friendly, child safe, pet safe and we&apos;re fully insured and DHHS Licensed. We treat your home with same care as you do, using high-quality long-lasting solutions you can rely on.
+          When you protect your home and property from pests with us, your peace of mind is our priority. We&apos;re fully insured, and we treat your home with the same care as our own — using high-quality, long-lasting solutions you can rely on.
         </p>
 
         {/* Operating Hours */}
@@ -86,8 +88,8 @@ export default function Footer() {
           ))}
         </ul>
 
-        {/* Social icons */}
-        <div className="mb-8 flex items-center gap-5">
+        {/* Social icons — centered per client refinement */}
+        <div className="mb-8 flex items-center justify-center gap-6">
           <a href={SITE_CONFIG.social.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="Instagram">
             <SocialIconInstagram className="h-6 w-6" />
           </a>
@@ -99,24 +101,15 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Same day service */}
-        <div className="mb-8 flex flex-col items-center text-center">
-          <a href={SITE_CONFIG.phoneTel} aria-label="Same day service available. Call now!">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/icons/group-350.svg" alt="Same day service available. Call now!" className="h-[140px] w-auto" />
-          </a>
-          <p className="mt-3 text-[18px] font-bold text-[#1cdc38]">24/7 same day service available</p>
-        </div>
-
         {/* Copyright */}
         <div className="border-t border-white/10 pt-5">
-          <p className="text-[12px] text-white/70">
+          <p className="text-[14px] text-white">
             &copy; {SITE_CONFIG.name}
           </p>
-          <p className="text-[12px] text-white/70">
+          <p className="text-[14px] text-white">
             Managed by Delivix
           </p>
-          <Link href="/privacy-policy" className="mt-1 inline-block text-[12px] text-white/70 underline transition-colors hover:text-[#1cdc38]">
+          <Link href="/privacy-policy" className="mt-1 inline-block text-[14px] text-white underline transition-colors hover:text-[#1cdc38]">
             Privacy Policies
           </Link>
         </div>
