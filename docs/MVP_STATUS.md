@@ -122,3 +122,4 @@
 
 - **2026-06-18** — Phase 0 complete (analytics module, SQL files, GTM blueprint, Looker wireframes, env.example updated, build verified). Build green. Waiting on Adam reply for Phase 1 unblock. Repo decision open (recommendation: keep in website repo for MVP).
 - **2026-06-18 (cont.)** — Added `PageViewTracker` (auto-context on route change) + `AnalyticsDebugOverlay` (`?debug=tracking` event log). Phase 2 QA accelerated. Build still green.
+- **2026-06-18 (commit `7f6ff27`)** — Pushed Phase 0 work to `origin/main`. 16 files, 1168 insertions. Added `docs/PRE_LAUNCH_CHECKLIST.md` — single-page runbook for Phases 1–3. **Phase 0 is fully complete and pushed.** All further work gated on Adam's access grants.
