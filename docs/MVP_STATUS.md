@@ -27,6 +27,8 @@
 | 0.14 | `.env.local.example` documents `NEXT_PUBLIC_GTM_ID` | ✅ | Updated |
 | 0.15 | `PageViewTracker` — auto-push service_line + page_type on every route change | ✅ | `src/components/layout/PageViewTracker.tsx` |
 | 0.16 | `AnalyticsDebugOverlay` — `?debug=tracking` shows live event log | ✅ | `src/components/layout/AnalyticsDebugOverlay.tsx` |
+| 0.17 | Analytics barrel export | ✅ | `src/lib/analytics/index.ts` |
+| 0.18 | `/debug/analytics` QA tester page (noindex, gated by `?debug=tracking`) | ✅ | Fires every event shape manually — critical Phase 2 QA tool |
 | 0.13 | Decide: keep analytics in website repo OR new `Apex-AI-Clients/zapit-analytics` | ⏳ | **Blocker:** Awaiting Sharjeel confirmation. Recommendation: keep in website repo for MVP |
 
 ---
