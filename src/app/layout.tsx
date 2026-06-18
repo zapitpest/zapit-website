@@ -6,6 +6,9 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import FloatingCTA from '@/components/layout/FloatingCTA';
 import GTMScript from '@/components/layout/GTMScript';
+import ClickTracker from '@/components/layout/ClickTracker';
+import PageViewTracker from '@/components/layout/PageViewTracker';
+import AnalyticsDebugOverlay from '@/components/layout/AnalyticsDebugOverlay';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateOrganizationSchema, generateWebSiteSchema, generateLocalBusinessSchema } from '@/lib/schema';
 
@@ -78,6 +81,9 @@ export default function RootLayout({
     <html lang="en-AU" className={`${graphik.variable} h-full antialiased overflow-x-hidden`}>
       <body className="min-h-full flex flex-col font-sans overflow-x-hidden">
         <GTMScript />
+        <ClickTracker />
+        <PageViewTracker />
+        <AnalyticsDebugOverlay />
         <JsonLd data={[generateWebSiteSchema(), generateOrganizationSchema(), generateLocalBusinessSchema()]} />
         <Header />
         <main className="flex-1">{children}</main>
