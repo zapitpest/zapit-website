@@ -91,7 +91,7 @@
 | Adam | Staging URL of rebuilt Netlify site | 2026-06-17 | ⏳ |
 | Adam | Production domain (confirmed `zapitpestmelbourne.com.au`) | 2026-06-17 | ✅ 2026-06-17 |
 | Adam | DNS cutover timeline | 2026-06-17 | ⏳ |
-| Adam | Create GCP project + add Editor | 2026-06-18 (next email) | 🟡 In progress — Domain-Restricted Sharing org policy hit; Adam fixing (Option 1: allowlist `meetapex.ai`) 2026-06-19 |
+| Adam | Create GCP project + add Editor | 2026-06-18 (next email) | 🟡 In progress — Domain-Restricted Sharing org policy hit; Adam fixing (Option 1: allowlist `meetapex.ai`) 2026-06-19. Sharjeel-side GCP console access verified 2026-06-19 (Work profile, no projects yet — expected until Adam completes IAM add). |
 | Adam | Create GA4 property + grant Editor | 2026-06-18 (next email) | ⏳ |
 | Adam | Create new GTM container + grant Publish | 2026-06-18 (next email) | ⏳ |
 | Adam | Meta Business Manager Pixel access | 2026-06-18 (next email) | ⏳ |
