@@ -91,11 +91,11 @@
 | Adam | Staging URL of rebuilt Netlify site | 2026-06-17 | ⏳ |
 | Adam | Production domain (confirmed `zapitpestmelbourne.com.au`) | 2026-06-17 | ✅ 2026-06-17 |
 | Adam | DNS cutover timeline | 2026-06-17 | ⏳ |
-| Adam | Create GCP project + add Editor | 2026-06-18 (next email) | ⏳ |
+| Adam | Create GCP project + add Editor | 2026-06-18 (next email) | 🟡 In progress — Domain-Restricted Sharing org policy hit; Adam fixing (Option 1: allowlist `meetapex.ai`) 2026-06-19 |
 | Adam | Create GA4 property + grant Editor | 2026-06-18 (next email) | ⏳ |
 | Adam | Create new GTM container + grant Publish | 2026-06-18 (next email) | ⏳ |
 | Adam | Meta Business Manager Pixel access | 2026-06-18 (next email) | ⏳ |
-| Amandi | Portal-balance / 6hr top-up allocation | 2026-06-17 | ⏳ |
+| Amandi | Portal-balance / 6hr top-up allocation | 2026-06-17 | ✅ Resolved 2026-06-19 — Adam handling top-up directly: *"I'll also organise the additional hours allocation so there is enough available for Phase 1 to proceed without interruption."* No Amandi action needed. |
 | Sharjeel | Repo decision (website repo vs new analytics repo in Apex-AI-Clients) | 2026-06-18 | ⏳ |
 
 ---
@@ -125,3 +125,4 @@
 - **2026-06-18** — Phase 0 complete (analytics module, SQL files, GTM blueprint, Looker wireframes, env.example updated, build verified). Build green. Waiting on Adam reply for Phase 1 unblock. Repo decision open (recommendation: keep in website repo for MVP).
 - **2026-06-18 (cont.)** — Added `PageViewTracker` (auto-context on route change) + `AnalyticsDebugOverlay` (`?debug=tracking` event log). Phase 2 QA accelerated. Build still green.
 - **2026-06-18 (commit `7f6ff27`)** — Pushed Phase 0 work to `origin/main`. 16 files, 1168 insertions. Added `docs/PRE_LAUNCH_CHECKLIST.md` — single-page runbook for Phases 1–3. **Phase 0 is fully complete and pushed.** All further work gated on Adam's access grants.
+- **2026-06-19** — Adam confirmed (a) hours top-up being organised on his side, no Amandi action needed, (b) Friday weekly status format approved with 5 required fields: hours consumed, hours remaining, work completed, blockers, planned work next week. Domain-Restricted Sharing org policy blocked initial IAM add — Adam allowlisting `meetapex.ai` (Option 1). Also asked for long-term architecture recommendation for Zoom + GHL + BigQuery + OpenClaw — replied with BigQuery-as-central-bus + n8n thin ingest layer pattern (no MVP impact).
