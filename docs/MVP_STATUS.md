@@ -45,7 +45,7 @@
 | 1.6 | Link GA4 → BigQuery export (daily, `australia-southeast1`) | ⬜ | After 1.4 + 1.5 |
 | 1.7 | Create new GTM container under Adam's GTM account | ⏳ | Adam grants Publish |
 | 1.8 | Add `NEXT_PUBLIC_GTM_ID` (new container ID) to Netlify env vars (staging) | 🟡 Env var exists (empty) — waiting on new GTM container ID | After 1.7 |
-| 1.8a | Netlify auto-deploy from GitHub | ✅ Done 2026-06-23 | Confirmed: site at `zapitpestmelbourne.netlify.app` serves latest commit |
+| 1.8a | Netlify auto-deploy from GitHub | ✅ Done + verified 2026-06-23 | Smoke test push (`4151af7`) auto-deployed in 31s. Build pipeline confirmed end-to-end. |
 | 1.9 | Verify Search Console domain (TXT record) | ⏳ | Adam delegates Owner; DNS access decision |
 | 1.10 | End-to-end smoke test: load staging → confirm `gtm.js` fires → confirm GA4 DebugView event lands → confirm BigQuery row 24h later | ⬜ | After 1.6 + 1.8 |
 
