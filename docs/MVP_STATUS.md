@@ -44,7 +44,8 @@
 | 1.5 | Create GA4 property under Adam's Google account | ⏳ | Adam grants account-level Editor first |
 | 1.6 | Link GA4 → BigQuery export (daily, `australia-southeast1`) | ⬜ | After 1.4 + 1.5 |
 | 1.7 | Create new GTM container under Adam's GTM account | ⏳ | Adam grants Publish |
-| 1.8 | Add `NEXT_PUBLIC_GTM_ID` (new container ID) to Netlify env vars (staging) | ⬜ | After 1.7 + Netlify access |
+| 1.8 | Add `NEXT_PUBLIC_GTM_ID` (new container ID) to Netlify env vars (staging) | 🟡 Env var exists (empty) — waiting on new GTM container ID | After 1.7 |
+| 1.8a | Netlify auto-deploy from GitHub | ✅ Done 2026-06-23 | Confirmed: site at `zapitpestmelbourne.netlify.app` serves latest commit |
 | 1.9 | Verify Search Console domain (TXT record) | ⏳ | Adam delegates Owner; DNS access decision |
 | 1.10 | End-to-end smoke test: load staging → confirm `gtm.js` fires → confirm GA4 DebugView event lands → confirm BigQuery row 24h later | ⬜ | After 1.6 + 1.8 |
 
@@ -126,3 +127,4 @@
 - **2026-06-18 (cont.)** — Added `PageViewTracker` (auto-context on route change) + `AnalyticsDebugOverlay` (`?debug=tracking` event log). Phase 2 QA accelerated. Build still green.
 - **2026-06-18 (commit `7f6ff27`)** — Pushed Phase 0 work to `origin/main`. 16 files, 1168 insertions. Added `docs/PRE_LAUNCH_CHECKLIST.md` — single-page runbook for Phases 1–3. **Phase 0 is fully complete and pushed.** All further work gated on Adam's access grants.
 - **2026-06-19** — Adam confirmed (a) hours top-up being organised on his side, no Amandi action needed, (b) Friday weekly status format approved with 5 required fields: hours consumed, hours remaining, work completed, blockers, planned work next week. Domain-Restricted Sharing org policy blocked initial IAM add — Adam allowlisting `meetapex.ai` (Option 1). Also asked for long-term architecture recommendation for Zoom + GHL + BigQuery + OpenClaw — replied with BigQuery-as-central-bus + n8n thin ingest layer pattern (no MVP impact).
+- **2026-06-23** — Netlify auto-deploy wired up. Site converted from Netlify Drop (last drag-drop deploy May 28) to Git-driven auto-deploy. Build config: `npm run build` / publish dir `out` / env var `NEXT_PUBLIC_GTM_ID` (empty, falls back to existing container). Latest commit serving at https://zapitpestmelbourne.netlify.app. Verified static export rendering, GTM script present, `/debug/analytics/` page accessible.
