@@ -18,7 +18,7 @@
 set -euo pipefail
 
 readonly PROJECT_ID="zapit-business-intelligence"
-readonly EXPECTED_REGION="australia-southeast1"
+readonly REGION="australia-southeast1"
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 readonly SQL_DIR="${REPO_ROOT}/sql"
@@ -65,17 +65,20 @@ echo
 
 # --- Step 4: Smoke test BigQuery access ---
 bold "Step 4/5 — Smoke testing BigQuery access"
-smoke_result="$(bq query --use_legacy_sql=false --format=json --quiet 'SELECT 1 AS test' 2>&1 || true)"
+smoke_result="$(bq --location="${REGION}" query --use_legacy_sql=false --format=json --quiet 'SELECT 1 AS test' 2>&1 || true)"
 if ! echo "${smoke_result}" | grep -q '"test":"1"'; then
   red "BigQuery smoke test failed."
   echo "${smoke_result}" >&2
   exit 1
 fi
-green "BigQuery responsive — SELECT 1 returned successfully"
+green "BigQuery responsive — SELECT 1 returned successfully in ${REGION}"
 echo
 
 # --- Step 5: Run SQL files ---
-bold "Step 5/5 — Running SQL bootstrap files"
+# IMPORTANT: --location=australia-southeast1 must match the dataset region.
+# Without it, bq defaults to US and fails with "Location specified in query
+# australia-southeast1 is not consistent with current execution region US".
+bold "Step 5/5 — Running SQL bootstrap files (region: ${REGION})"
 for sql_file in "001_create_datasets.sql" "003_reserved_schemas.sql"; do
   full_path="${SQL_DIR}/${sql_file}"
   if [[ ! -f "${full_path}" ]]; then
@@ -83,14 +86,14 @@ for sql_file in "001_create_datasets.sql" "003_reserved_schemas.sql"; do
     exit 1
   fi
   info "Running ${sql_file}…"
-  bq query --use_legacy_sql=false --quiet < "${full_path}"
+  bq --location="${REGION}" query --use_legacy_sql=false --quiet < "${full_path}"
   green "Completed: ${sql_file}"
 done
 echo
 
 # --- Verification ---
 bold "Verification — listing datasets created"
-bq ls --project_id="${PROJECT_ID}" --format=prettyjson | grep -E '"datasetId"|"location"' | head -40
+bq --location="${REGION}" ls --project_id="${PROJECT_ID}" --format=prettyjson 2>/dev/null | grep -E '"datasetId"|"location"' | head -40
 echo
 
 bold "Bootstrap complete."
