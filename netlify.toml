@@ -8,3 +8,19 @@
 [build.environment]
   NODE_VERSION = "20"
   NEXT_TELEMETRY_DISABLED = "1"
+
+# Security headers — production hardening
+# Documentation: https://docs.netlify.com/routing/headers/
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevent clickjacking by disallowing the site from being framed
+    X-Frame-Options = "DENY"
+    # Prevent MIME-sniffing browsers from interpreting files as different types
+    X-Content-Type-Options = "nosniff"
+    # Limit referrer information sent on cross-origin requests
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # Restrict access to powerful browser features by default
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    # Cross-Origin policies for modern hardening
+    X-DNS-Prefetch-Control = "on"
