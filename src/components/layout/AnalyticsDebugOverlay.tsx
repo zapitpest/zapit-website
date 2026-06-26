@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 
 // QA accelerator. Append ?debug=tracking to any URL to see the last 20 events
 // pushed to window.dataLayer in real time. Never renders in normal navigation —
@@ -15,16 +15,21 @@ interface CapturedEvent {
   payload: Record<string, unknown>;
 }
 
+// Read URL flag via useSyncExternalStore (avoids the "setState in effect"
+// cascading-render lint warning, and is the React-correct way to derive state
+// from an external source like window.location).
+const subscribeUrl = () => () => {};
+const readDebugFlag = () =>
+  new URLSearchParams(window.location.search).get('debug') === 'tracking';
+const serverDebugFlag = () => false;
+
 export default function AnalyticsDebugOverlay() {
-  const [enabled, setEnabled] = useState(false);
+  const enabled = useSyncExternalStore(subscribeUrl, readDebugFlag, serverDebugFlag);
   const [events, setEvents] = useState<CapturedEvent[]>([]);
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('debug') !== 'tracking') return;
-    setEnabled(true);
+    if (!enabled || typeof window === 'undefined') return;
 
     window.dataLayer = window.dataLayer || [];
     const original = window.dataLayer.push.bind(window.dataLayer);
@@ -48,7 +53,7 @@ export default function AnalyticsDebugOverlay() {
         window.dataLayer.push = original;
       }
     };
-  }, []);
+  }, [enabled]);
 
   if (!enabled) return null;
 

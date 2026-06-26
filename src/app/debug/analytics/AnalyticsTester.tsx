@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import {
   trackFormSubmit,
   trackClickPhone,
@@ -11,17 +11,18 @@ import type { FormType, ServiceLine } from '@/lib/analytics';
 const FORM_TYPES: FormType[] = ['quote', 'booking', 'contact', 'callback', 'emergency'];
 const SERVICE_LINES: ServiceLine[] = ['residential', 'commercial', 'termite', 'emergency', 'generic'];
 
+// React-correct way to read URL query param without triggering the
+// "setState in effect" cascading-render warning.
+const subscribeUrl = () => () => {};
+const readDebugFlag = () =>
+  new URLSearchParams(window.location.search).get('debug') === 'tracking';
+const serverDebugFlag = () => false;
+
 export default function AnalyticsTester() {
-  const [enabled, setEnabled] = useState(false);
+  const enabled = useSyncExternalStore(subscribeUrl, readDebugFlag, serverDebugFlag);
   const [serviceLine, setServiceLine] = useState<ServiceLine>('residential');
   const [email, setEmail] = useState('test+qa@example.com');
   const [phone, setPhone] = useState('0391260555');
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const params = new URLSearchParams(window.location.search);
-    setEnabled(params.get('debug') === 'tracking');
-  }, []);
 
   if (!enabled) {
     return (
