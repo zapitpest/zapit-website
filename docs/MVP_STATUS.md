@@ -106,14 +106,13 @@
 
 ## Hours Burned (estimate)
 
-| Bucket | Used | Budget |
-|---|---|---|
-| Pre-work (Phase 0 — analytics code, SQL, GTM doc, build verify) | ~3 hr | — (rolls into Phase 1) |
-| Phase 1 Foundation | 0 | ~12–15 |
-| Phase 2 Event Config | 0 | ~12–15 |
-| Phase 3 Reporting + Handover | 0 | ~10–12 |
-| Buffer | 0 | ~5 |
-| **Total used** | **~3 hr** | **40–45** |
+| Bucket | Used | Budget | Notes |
+|---|---|---|---|
+| Phase 1 Foundation | ~8.5 hr | ~12–15 | Pre-work foundation (3), Netlify auto-deploy (0.5), GCP IAM Stage A (1.5), bootstrap script (0.5), `_redirects` impl + verify (1.5), build/sanity tests (0.5), status & comm overhead (1) |
+| Phase 2 Event Config | 0 | ~12–15 | Starts after GA4/GTM created in Stage B |
+| Phase 3 Reporting + Handover | ~2 hr | ~10–12 | Feature Parity audit started early (URL inventory + gap analysis + draft doc) |
+| Buffer (transparent, separate) | 0 | ~5 | Rolls forward if unused |
+| **Total used** | **~10.5 hr** | **35 + 5 buffer** | Remaining: ~24.5 hr against 35-hr core MVP scope |
 
 ---
 
@@ -133,3 +132,4 @@
 - **2026-06-23** — Netlify auto-deploy wired up. Site converted from Netlify Drop (last drag-drop deploy May 28) to Git-driven auto-deploy. Build config: `npm run build` / publish dir `out` / env var `NEXT_PUBLIC_GTM_ID` (empty, falls back to existing container). Latest commit serving at https://zapitpestmelbourne.netlify.app. Verified static export rendering, GTM script present, `/debug/analytics/` page accessible.
 - **2026-06-23 (cont.)** — Workspace Customer ID received from Apex admin. Adam approved full MVP hours top-up + Feature Parity & Cutover Readiness audit + endorsed BigQuery-as-central-bus architecture. Adam separately asked for a SMALL OUT-OF-SCOPE setup: enable Google Calendar API + Tasks API + Desktop OAuth credentials for his OpenClaw Telegram Production Bot. To track as a separate portal line item (NOT MVP hours). Will execute MVP GCP setup + bot setup in one login session once Adam confirms project structure (recommended: separate GCP project `zapit-production-bot`) + secure delivery channel for OAuth JSON.
 - **2026-06-25** — STAGE A COMPLETE. Adam shared `info@zapitpestmelbourne.com.au` credentials with explicit written consent. Single focused incognito session: DRS policy fix applied at org level (both customer IDs allowlisted), `zapit-business-intelligence` GCP project created, billing linked, BigQuery API enabled, `sharjeel@meetapex.ai` added as Editor. Verified from own login. Existing GA4 accounts + GTM container found admin-locked by external party — deferred to Stage B (fresh accounts under our login + invite Adam as admin). Signed out cleanly, audit log saved to 1Password. Confirmation email sent to Adam requesting password rotation + decision on GA4/GTM Option A vs B.
+- **2026-06-27** — STAGE B EXECUTION (no-Adam-dependency work). Shipped: `scripts/bootstrap-bigquery.sh` (idempotent infrastructure-as-code automation for BigQuery setup), `docs/FEATURE_PARITY_AUDIT.md` (cutover gate document with 430-URL old-site inventory + gap analysis + draft redirect map), `docs/weekly-status/2026-06-27-week-1.md` (first Friday status in agreed 5-field format), and 50+ new high-confidence 301 redirects in `public/_redirects` (pest-solutions path restructure, commercial slug migrations, intentional-removal redirects). All verified end-to-end: TypeScript clean, build green (120 pages), Netlify auto-deploy completed in 31s, curl-tested 5 redirects returning HTTP 301 with correct location headers, sanity-verified targets return 200, existing redirects unaffected.
