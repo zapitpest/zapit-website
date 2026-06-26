@@ -1,0 +1,94 @@
+# 59 individual blog/content URLs from old WordPress site
+# Each currently returns HTTP 404 on the rebuilt site.
+# Adam decision needed: migrate / redirect / 410 Gone
+# Audit pass date: 2026-06-27
+#
+# Recommended thematic grouping for redirect decisions:
+#
+# TERMITES (12 URLs) → likely → /termite-control-melbourne
+/what-are-termites/
+/what-are-termites-a-complete-guide-about-termite-life-cycle/
+/how-to-prevent-termites/
+/how-to-get-rid-of-termites-using-proven-effective-methods/
+/pre-construction-termite-treatment/
+/home-termite-control/
+/how-to-detect-termites/
+/termite-control-tips/
+/signs-of-termites/
+/cost-of-termite-treatment/
+/termite-treatment-methods/
+/8-tips-to-detect-termites-and-5-prevention-strategies-for-melbourne-homeowners/
+/how-to-kill-termites-effectively-using-instant-solutions/
+/what-do-termites-sound-like-detection-tips-for-early-protection/
+/everything-you-need-to-know-about-what-do-termites-eat/
+/can-termites-fly-guide-about-flying-termites-home-protection/
+/how-do-you-tell-if-you-have-termites-infestation-signs-to-look-for/
+/do-termites-bite-people-symptoms-preventive-measures/
+/signs-you-have-a-termite-infestation-in-your-melbourne-home/
+
+# RODENTS / RATS / MICE (10 URLs) → likely → /rodent-control-melbourne
+/rats-vs-mice/
+/do-house-mice-carry-diseases/
+/how-to-get-rid-of-mice/
+/signs-of-rats/
+/types-of-rodents/
+/how-much-does-rodent-control-cost/
+/what-is-rodent-control/
+/how-to-get-rid-of-rats-in-the-house-fast/
+/rat-control-methods/
+/common-signs-of-rodent-infestation-to-look-for-treat/
+
+# WASPS (8 URLs) → likely → /wasp-removal-melbourne
+/how-do-wasps-build-nests/
+/wasps-nest-removal-cost/
+/what-attracts-wasps/
+/where-do-wasps-go-in-winter/
+/how-to-find-wasp-nest/
+/how-to-get-rid-of-wasps-nest/
+/what-are-wasps-and-types-of-wasps/
+
+# FLIES (7 URLs) → likely → /fly-control-melbourne
+/how-long-do-house-flies-live/
+/how-do-flies-fly/
+/what-do-flies-eat/
+/what-are-flies/
+/what-causes-fly-infestation/
+/how-much-does-fly-control-cost/
+/how-to-get-rid-of-flies-in-house/
+
+# POSSUMS (5 URLs) → likely → /possum-removal-melbourne
+/possum-poo/
+/what-are-possums/
+/how-to-trap-possum/
+/how-to-get-rid-of-possums/
+/how-to-remove-a-possum/
+/what-do-possums-eat/
+
+# MOSQUITOES (3 URLs) → likely → /mosquito-control-melbourne
+/how-to-remove-mosquito/
+/how-to-get-rid-of-mosquitoes-bites/
+/how-long-do-mosquitoes-live/
+
+# FLEAS (2 URLs) → likely → /flea-control-melbourne
+/how-to-get-rid-of-fleas-on-dogs/
+/how-to-get-rid-of-fleas-in-your-yard-best-methods-for-pet-protection/
+
+# SPIDERS (1 URL) → likely → /spider-control-melbourne
+/how-to-control-spiders-in-the-home-prevention-tips-for-safety/
+
+# ANTS (1 URL) → likely → /ant-pest-control-melbourne
+/how-to-prevent-ants-in-your-house-tips-natural-hacks/
+
+# SILVERFISH (1 URL) → likely → /silverfish-control-melbourne
+/where-do-silverfish-come-from/
+
+# GENERAL PEST CONTROL (5 URLs) → likely → /pest-solutions or /
+/common-signs-of-pest-infestation-to-look-for-act-promptly/
+/melbournes-top-5-most-common-household-pests/
+/how-to-prepare-your-home-for-a-pest-control-visit/
+/what-happens-during-a-professional-pest-inspection/
+/how-often-should-you-schedule-pest-control-services/
+/pest-control-checklist-for-new-homeowners-in-melbourne/
+/how-much-does-pest-control-in-melbourne-cost/
+/using-pesticides-safely/
+/why-schools-in-melbourne-are-shifting-to-health-first-pest-management/

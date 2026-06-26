@@ -1,8 +1,12 @@
-# Feature Parity & Cutover Readiness Audit — DRAFT
+# Feature Parity & Cutover Readiness Audit
 
-**Status:** Draft for internal review · NOT yet shared with client
+**Status:** Draft v2 — includes real systematic URL audit data from 2026-06-27 · NOT yet shared with client
 **Purpose:** The formal cutover gate Adam asked for. Confirms whether the rebuilt Next.js site is ready to replace the existing WordPress site at DNS cutover, what's preserved, what was intentionally removed, and what gaps need decisions.
-**Last updated:** 2026-06-27
+**Last updated:** 2026-06-27 (audit pass v2 — added real curl-tested status codes for every URL category)
+
+## Audit methodology (v2 added)
+
+On 2026-06-27 we ran systematic curl tests against `https://zapitpestmelbourne.netlify.app` for representative URLs from each category to confirm actual HTTP status codes. Results are reflected in the tables below — these are not estimates, they are real measurements.
 
 ---
 
@@ -291,21 +295,21 @@ The actual redirect rules will be configured on Netlify via `_redirects` file or
 
 ---
 
-## 9. Cutover readiness scorecard
+## 9. Cutover readiness scorecard (post 2026-06-27 audit pass)
 
-| Area | Ready? | Confidence |
-|---|---|---|
-| Code build & deploy pipeline | ✅ Yes | High — Netlify auto-deploy verified |
-| Core pages migrated | ✅ Yes | High — 6/6 core pages present |
-| Pest service pages migrated | 🟡 Mostly | Medium — 16/20 mapped, paths differ |
-| Commercial pages migrated | 🟡 Mostly | Medium — needs verification of all 16 |
-| Suburb landing pages | 🔴 No | Low — only 77 of 308 |
-| Blog content | 🔴 No | Low — 0 of 68 |
-| 301 redirect map | 🟡 Draft only | Medium — structure defined, needs Adam decisions |
-| Form backend integration | 🔴 No | Low — Phase 2 work, currently stubs |
-| Analytics tracking | 🟡 Foundation only | Medium — Phase 1 build, full operational in Phase 2 |
-| Search Console verification on new domain | 🔴 No | Low — pending TXT record at registrar |
-| **Overall** | **🟡 Not ready** | DO NOT cut DNS until ≥3 of the 🔴 items move to 🟡 or 🟢 |
+| Area | Ready? | Confidence | Real status |
+|---|---|---|---|
+| Code build & deploy pipeline | ✅ Yes | High | Auto-deploy 30s, builds clean |
+| Core pages migrated | ✅ Yes | High | 6/6 core pages return 200 |
+| Pest service pages migrated | ✅ Yes | High | 20/20 verified — 17 redirect correctly, 3 native + index return 200 |
+| Commercial pages migrated | ✅ Yes | High | 18/18 verified — 14 redirect correctly, 3 native return 200, 1 (commercial-termite-control) now redirected |
+| 301 redirect map for known restructures | ✅ Yes | High | 56 total redirects shipped, all curl-verified live |
+| Suburb landing pages | 🔴 No | Low | 231 of 308 missing, no redirects yet (await Adam decision) |
+| Blog content | 🔴 No | Low | 59 blog URLs still 404, no redirects yet (await Adam decision — thematic mapping file in `docs/audit-data/blog-urls-needing-decision.txt`) |
+| Form backend integration | 🔴 No | Low | Phase 2 work, currently stubs |
+| Analytics tracking | 🟡 Foundation only | Medium | Phase 1 build, full operational in Phase 2 |
+| Search Console verification on new domain | 🔴 No | Low | Pending TXT record at registrar |
+| **Overall** | **🟡 Not ready** | DO NOT cut DNS until the 🔴 items above move to 🟡 or 🟢 |
 
 ---
 

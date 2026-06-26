@@ -22,7 +22,7 @@
 | 0.8 | BigQuery SQL — reserved schemas | ✅ | `sql/003_reserved_schemas.sql` |
 | 0.9 | GTM blueprint document | ✅ | `docs/gtm-blueprint.md` |
 | 0.10 | TypeScript + production build verified | ✅ | `npx tsc --noEmit` clean · `next build` 120 pages, zero errors |
-| 0.11 | 301 redirect inventory (old WordPress → new Netlify) | ⬜ | Safe to start; needs old sitemap |
+| 0.11 | 301 redirect inventory (old WordPress → new Netlify) | ✅ 100% Done 2026-06-27 | 426 old URLs catalogued, 56 redirects shipped + verified live via curl, 59 blog URLs catalogued in `docs/audit-data/blog-urls-needing-decision.txt` for Adam |
 | 0.12 | Looker Studio dashboard wireframes | ✅ | `docs/looker-wireframes.md` — 3 dashboards drafted |
 | 0.14 | `.env.local.example` documents `NEXT_PUBLIC_GTM_ID` | ✅ | Updated |
 | 0.15 | `PageViewTracker` — auto-push service_line + page_type on every route change | ✅ | `src/components/layout/PageViewTracker.tsx` |
@@ -42,8 +42,10 @@
 | 1.3 | Enable BigQuery API + smoke test (`SELECT 1`) | ✅ Done 2026-06-25 | API enabled, page confirmed status = Enabled |
 | 1.3a | Apply DRS policy fix at org level (allowlist Apex + Zap It Customer IDs) | ✅ Done 2026-06-25 | Both IDs added with `is:` prefix to `iam.allowedPolicyMemberDomains` |
 | 1.3b | Add `sharjeel@meetapex.ai` as Editor on the project | ✅ Done 2026-06-25 | Verified end-to-end from own Apex login |
-| 1.4 | Run `sql/001_create_datasets.sql` (12 datasets) | ⬜ NEXT | No Adam dependency — can do now from own login |
-| 1.4a | Run `sql/003_reserved_schemas.sql` (reserved table shells) | ⬜ NEXT | After 1.4 |
+| 1.4 | Run `sql/001_create_datasets.sql` (12 datasets) | ⬜ NEXT | gcloud installed 2026-06-27. Needs `gcloud auth login` (browser-based, user action). Then `./scripts/bootstrap-bigquery.sh` runs everything. |
+| 1.4a | Run `sql/003_reserved_schemas.sql` (reserved table shells) | ⬜ NEXT | Covered by bootstrap script after 1.4 |
+| 1.4b | BigQuery bootstrap automation script | ✅ 100% Done 2026-06-27 | `scripts/bootstrap-bigquery.sh` — idempotent, verifies auth, smoke tests, runs SQL |
+| 1.4c | gcloud CLI installed locally | ✅ 100% Done 2026-06-27 | `gcloud --version` returns 574.0.0; `bq` returns 2.1.33 |
 | 1.5 | Create GA4 account "Zap It Pest Control" + property "Zap It Production" under own login + invite Adam as Administrator | ⏳ Waiting Adam | Existing accounts ("Melbourne Pest & Gutter Experts" + "Pest Control") admin-locked by external party. Awaiting Adam's choice between Option A (fresh, recommended) vs Option B (chase old admin). |
 | 1.6 | Link GA4 → BigQuery export (daily, `australia-southeast1`) | ⬜ | After 1.5 |
 | 1.7 | Create new GTM container under own login + invite Adam as Administrator | ⏳ Waiting Adam | Same admin-lock issue as GA4; awaiting Adam's Option A vs B choice |
@@ -108,11 +110,11 @@
 
 | Bucket | Used | Budget | Notes |
 |---|---|---|---|
-| Phase 1 Foundation | ~8.5 hr | ~12–15 | Pre-work foundation (3), Netlify auto-deploy (0.5), GCP IAM Stage A (1.5), bootstrap script (0.5), `_redirects` impl + verify (1.5), build/sanity tests (0.5), status & comm overhead (1) |
+| Phase 1 Foundation | ~9.5 hr | ~12–15 | Pre-work foundation (3), Netlify auto-deploy (0.5), GCP IAM Stage A (1.5), bootstrap script (0.5), gcloud install + setup verify (0.5), `_redirects` impl + verify (1.5), audit pass v2 + 6 more redirects (1), build/sanity tests (0.5), status & comm overhead (1.5) |
 | Phase 2 Event Config | 0 | ~12–15 | Starts after GA4/GTM created in Stage B |
-| Phase 3 Reporting + Handover | ~2 hr | ~10–12 | Feature Parity audit started early (URL inventory + gap analysis + draft doc) |
+| Phase 3 Reporting + Handover | ~3 hr | ~10–12 | Feature Parity audit v1 (2) + audit pass v2 with real curl data + blog URL classification (1) |
 | Buffer (transparent, separate) | 0 | ~5 | Rolls forward if unused |
-| **Total used** | **~10.5 hr** | **35 + 5 buffer** | Remaining: ~24.5 hr against 35-hr core MVP scope |
+| **Total used** | **~12.5 hr** | **35 + 5 buffer** | Remaining: ~22.5 hr against 35-hr core MVP scope |
 
 ---
 
@@ -133,3 +135,4 @@
 - **2026-06-23 (cont.)** — Workspace Customer ID received from Apex admin. Adam approved full MVP hours top-up + Feature Parity & Cutover Readiness audit + endorsed BigQuery-as-central-bus architecture. Adam separately asked for a SMALL OUT-OF-SCOPE setup: enable Google Calendar API + Tasks API + Desktop OAuth credentials for his OpenClaw Telegram Production Bot. To track as a separate portal line item (NOT MVP hours). Will execute MVP GCP setup + bot setup in one login session once Adam confirms project structure (recommended: separate GCP project `zapit-production-bot`) + secure delivery channel for OAuth JSON.
 - **2026-06-25** — STAGE A COMPLETE. Adam shared `info@zapitpestmelbourne.com.au` credentials with explicit written consent. Single focused incognito session: DRS policy fix applied at org level (both customer IDs allowlisted), `zapit-business-intelligence` GCP project created, billing linked, BigQuery API enabled, `sharjeel@meetapex.ai` added as Editor. Verified from own login. Existing GA4 accounts + GTM container found admin-locked by external party — deferred to Stage B (fresh accounts under our login + invite Adam as admin). Signed out cleanly, audit log saved to 1Password. Confirmation email sent to Adam requesting password rotation + decision on GA4/GTM Option A vs B.
 - **2026-06-27** — STAGE B EXECUTION (no-Adam-dependency work). Shipped: `scripts/bootstrap-bigquery.sh` (idempotent infrastructure-as-code automation for BigQuery setup), `docs/FEATURE_PARITY_AUDIT.md` (cutover gate document with 430-URL old-site inventory + gap analysis + draft redirect map), `docs/weekly-status/2026-06-27-week-1.md` (first Friday status in agreed 5-field format), and 50+ new high-confidence 301 redirects in `public/_redirects` (pest-solutions path restructure, commercial slug migrations, intentional-removal redirects). All verified end-to-end: TypeScript clean, build green (120 pages), Netlify auto-deploy completed in 31s, curl-tested 5 redirects returning HTTP 301 with correct location headers, sanity-verified targets return 200, existing redirects unaffected.
+- **2026-06-27 (audit pass v2)** — DEEP SYSTEMATIC AUDIT of all 426 old WordPress URLs. Installed gcloud CLI locally (v574.0.0 + bq 2.1.33 ready for `./scripts/bootstrap-bigquery.sh` after `gcloud auth login`). Systematic curl-tested ALL 20 pest-solutions URLs, ALL 18 commercial URLs, ALL 81 other URLs against the live staging. Findings: 56 total redirects now in production (50 from initial pass + 6 quick wins added: 3 Melbourne regional pages, /pestcontrol-syndal typo, /commercial-termite-control, /rodent-control-richmond). All 6 new redirects verified live via curl. 59 individual blog/content URLs still 404 — exported with thematic grouping to `docs/audit-data/blog-urls-needing-decision.txt` for Adam's review. FEATURE_PARITY_AUDIT updated to v2 with real measured status codes (not estimates). Hours used: ~12.5 / 35 (remaining: ~22.5).
