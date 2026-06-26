@@ -100,6 +100,24 @@
 /blogs/*                                                          /pest-solutions                    301
 
 # =====================================================================
+# Section 4b — Additional quick wins discovered in 2026-06-27 audit pass
+# =====================================================================
+
+# Melbourne regional landing pages → /service-areas (which lists all regions)
+/melbourne-western-suburbs       /service-areas              301
+/melbourne-inner-city-suburbs    /service-areas              301
+/melbourne-east-suburbs          /service-areas              301
+
+# Typo URL from old site
+/pestcontrol-syndal              /service-areas              301
+
+# Service-specific URL no longer present on new site
+/commercial-termite-control      /termite-control-melbourne  301
+
+# Service x suburb combo URL → suburb page (Richmond is in inner-city service area)
+/rodent-control-richmond         /pest-control-richmond      301
+
+# =====================================================================
 # Section 5 — Pending decisions (DO NOT add until Adam confirms)
 # =====================================================================
 #
