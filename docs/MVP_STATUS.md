@@ -37,16 +37,19 @@
 
 | # | Step | State | Blocker |
 |---|---|---|---|
-| 1.1 | Create GCP project `zapit-business-intelligence` | ⏳ | Adam must create on his Google account, then add `sharjeel@meetapex.ai` as Editor |
-| 1.2 | Link billing to GCP project | ⏳ | Adam |
-| 1.3 | Enable BigQuery API + smoke test (`SELECT 1`) | ⏳ | After 1.1 + 1.2 |
-| 1.4 | Run `sql/001_create_datasets.sql` (12 datasets) | ⬜ | After 1.3 |
-| 1.5 | Create GA4 property under Adam's Google account | ⏳ | Adam grants account-level Editor first |
-| 1.6 | Link GA4 → BigQuery export (daily, `australia-southeast1`) | ⬜ | After 1.4 + 1.5 |
-| 1.7 | Create new GTM container under Adam's GTM account | ⏳ | Adam grants Publish |
-| 1.8 | Add `NEXT_PUBLIC_GTM_ID` (new container ID) to Netlify env vars (staging) | 🟡 Env var exists (empty) — waiting on new GTM container ID | After 1.7 |
+| 1.1 | Create GCP project `zapit-business-intelligence` | ✅ Done 2026-06-25 | Under organisation `zapitpestmelbourne.com.au`. Created via Adam's session at his explicit written request. |
+| 1.2 | Link billing to GCP project | ✅ Done 2026-06-25 | Linked to Adam's existing billing account ("Paid account") |
+| 1.3 | Enable BigQuery API + smoke test (`SELECT 1`) | ✅ Done 2026-06-25 | API enabled, page confirmed status = Enabled |
+| 1.3a | Apply DRS policy fix at org level (allowlist Apex + Zap It Customer IDs) | ✅ Done 2026-06-25 | Both IDs added with `is:` prefix to `iam.allowedPolicyMemberDomains` |
+| 1.3b | Add `sharjeel@meetapex.ai` as Editor on the project | ✅ Done 2026-06-25 | Verified end-to-end from own Apex login |
+| 1.4 | Run `sql/001_create_datasets.sql` (12 datasets) | ⬜ NEXT | No Adam dependency — can do now from own login |
+| 1.4a | Run `sql/003_reserved_schemas.sql` (reserved table shells) | ⬜ NEXT | After 1.4 |
+| 1.5 | Create GA4 account "Zap It Pest Control" + property "Zap It Production" under own login + invite Adam as Administrator | ⏳ Waiting Adam | Existing accounts ("Melbourne Pest & Gutter Experts" + "Pest Control") admin-locked by external party. Awaiting Adam's choice between Option A (fresh, recommended) vs Option B (chase old admin). |
+| 1.6 | Link GA4 → BigQuery export (daily, `australia-southeast1`) | ⬜ | After 1.5 |
+| 1.7 | Create new GTM container under own login + invite Adam as Administrator | ⏳ Waiting Adam | Same admin-lock issue as GA4; awaiting Adam's Option A vs B choice |
+| 1.8 | Update Netlify env var `NEXT_PUBLIC_GTM_ID` to new container ID + verify auto-deploy | ⬜ | After 1.7 |
 | 1.8a | Netlify auto-deploy from GitHub | ✅ Done + verified 2026-06-23 | Smoke test push (`4151af7`) auto-deployed in 31s. Build pipeline confirmed end-to-end. |
-| 1.9 | Verify Search Console domain (TXT record) | ⏳ | Adam delegates Owner; DNS access decision |
+| 1.9 | Verify Search Console domain (TXT record) | ⏳ | Awaiting our trigger (we send TXT value, Adam adds at registrar) |
 | 1.10 | End-to-end smoke test: load staging → confirm `gtm.js` fires → confirm GA4 DebugView event lands → confirm BigQuery row 24h later | ⬜ | After 1.6 + 1.8 |
 
 **Phase 1 demo gate:** Screenshare of one real GA4 row in BigQuery. Adam sign-off, then move to Phase 2.
@@ -129,3 +132,4 @@
 - **2026-06-19** — Adam confirmed (a) hours top-up being organised on his side, no Amandi action needed, (b) Friday weekly status format approved with 5 required fields: hours consumed, hours remaining, work completed, blockers, planned work next week. Domain-Restricted Sharing org policy blocked initial IAM add — Adam allowlisting `meetapex.ai` (Option 1). Also asked for long-term architecture recommendation for Zoom + GHL + BigQuery + OpenClaw — replied with BigQuery-as-central-bus + n8n thin ingest layer pattern (no MVP impact).
 - **2026-06-23** — Netlify auto-deploy wired up. Site converted from Netlify Drop (last drag-drop deploy May 28) to Git-driven auto-deploy. Build config: `npm run build` / publish dir `out` / env var `NEXT_PUBLIC_GTM_ID` (empty, falls back to existing container). Latest commit serving at https://zapitpestmelbourne.netlify.app. Verified static export rendering, GTM script present, `/debug/analytics/` page accessible.
 - **2026-06-23 (cont.)** — Workspace Customer ID received from Apex admin. Adam approved full MVP hours top-up + Feature Parity & Cutover Readiness audit + endorsed BigQuery-as-central-bus architecture. Adam separately asked for a SMALL OUT-OF-SCOPE setup: enable Google Calendar API + Tasks API + Desktop OAuth credentials for his OpenClaw Telegram Production Bot. To track as a separate portal line item (NOT MVP hours). Will execute MVP GCP setup + bot setup in one login session once Adam confirms project structure (recommended: separate GCP project `zapit-production-bot`) + secure delivery channel for OAuth JSON.
+- **2026-06-25** — STAGE A COMPLETE. Adam shared `info@zapitpestmelbourne.com.au` credentials with explicit written consent. Single focused incognito session: DRS policy fix applied at org level (both customer IDs allowlisted), `zapit-business-intelligence` GCP project created, billing linked, BigQuery API enabled, `sharjeel@meetapex.ai` added as Editor. Verified from own login. Existing GA4 accounts + GTM container found admin-locked by external party — deferred to Stage B (fresh accounts under our login + invite Adam as admin). Signed out cleanly, audit log saved to 1Password. Confirmation email sent to Adam requesting password rotation + decision on GA4/GTM Option A vs B.
