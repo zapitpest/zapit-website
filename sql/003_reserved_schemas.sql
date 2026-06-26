@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_whatconve
   recording_url     STRING,
   status            STRING,            -- 'connected', 'missed', 'voicemail'
   service_line      STRING,            -- 'residential' | 'commercial' | 'termite' | 'emergency' | 'generic'
-  ingested_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+  ingested_at       TIMESTAMP  -- ingest workers set to CURRENT_TIMESTAMP() at insert time
 )
 OPTIONS (description = 'Reserved — WhatConverts inbound call records. Populated when WhatConverts→BigQuery block ships.');
 
@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_zoom.call
   direction         STRING,            -- 'inbound' | 'outbound'
   recording_url     STRING,
   transcript_url    STRING,
-  has_transcript    BOOL DEFAULT FALSE,
-  ingested_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+  has_transcript    BOOL,  -- ingest workers set explicitly (default FALSE conceptually)
+  ingested_at       TIMESTAMP  -- ingest workers set to CURRENT_TIMESTAMP() at insert time
 )
 OPTIONS (description = 'Reserved — Zoom Phone call records. Populated when Zoom block ships.');
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_zoom.tran
   text              STRING,
   start_seconds     FLOAT64,
   end_seconds       FLOAT64,
-  ingested_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+  ingested_at       TIMESTAMP  -- ingest workers set to CURRENT_TIMESTAMP() at insert time
 )
 OPTIONS (description = 'Reserved — Zoom transcript segments keyed to zoom_call_id.');
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_ghl.conta
   source            STRING,
   tags              ARRAY<STRING>,
   custom_fields     JSON,
-  ingested_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+  ingested_at       TIMESTAMP  -- ingest workers set to CURRENT_TIMESTAMP() at insert time
 )
 OPTIONS (description = 'Reserved — GHL contacts. Populated when GHL block ships.');
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_ghl.oppor
   updated_at         TIMESTAMP,
   closed_at          TIMESTAMP,
   service_line       STRING,
-  ingested_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+  ingested_at        TIMESTAMP  -- ingest workers set to CURRENT_TIMESTAMP() at insert time
 )
 OPTIONS (description = 'Reserved — GHL opportunities (sales pipeline records).');
 
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_ghl.pipel
   stage_id      STRING NOT NULL,
   stage_name    STRING,
   stage_order   INT64,
-  ingested_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+  ingested_at   TIMESTAMP  -- ingest workers set to CURRENT_TIMESTAMP() at insert time
 )
 OPTIONS (description = 'Reserved — GHL pipeline stage definitions for join.');
 
@@ -110,11 +110,11 @@ CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_openclaw.
   payload                JSON,               -- raw analysis output
   summary                STRING,             -- human-readable headline
   -- Adam's mandatory rule: human approval before anything customer-facing ships.
-  human_approval_status  STRING NOT NULL DEFAULT 'pending',  -- 'pending' | 'approved' | 'rejected' | 'edited'
+  human_approval_status  STRING NOT NULL,  -- 'pending' | 'approved' | 'rejected' | 'edited' (ingest sets to 'pending' on insert)
   approved_by            STRING,
   approved_at            TIMESTAMP,
   notes                  STRING,
-  ingested_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+  ingested_at            TIMESTAMP  -- ingest workers set to CURRENT_TIMESTAMP() at insert time
 )
 OPTIONS (description = 'Reserved — OpenClaw AI outputs. Every row carries human_approval_status — nothing customer-facing ships without approval.');
 
@@ -133,6 +133,6 @@ CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_clarity.s
   excessive_scroll    BOOL,
   url_first           STRING,
   url_last            STRING,
-  ingested_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
+  ingested_at         TIMESTAMP  -- ingest workers set to CURRENT_TIMESTAMP() at insert time
 )
 OPTIONS (description = 'Reserved — Microsoft Clarity session metadata for UX analysis.');
