@@ -14,7 +14,10 @@ import TermiteFAQClient from './TermiteFAQClient';
 const WP = '/images/wp-assets';
 
 export const metadata: Metadata = {
-  title: 'Termite Control Melbourne | Top-Rated Termite Treatment & Inspections',
+  // Absolute title kept under ~60 chars (Google search-result truncation
+  // threshold). Was previously 118 chars total once the root layout's template
+  // appended the site name, causing truncation in SERPs.
+  title: { absolute: 'Termite Control Melbourne | Zapit Pest & Termite Control' },
   description:
     'Zapit Pest & Termite Control Melbourne — certified, licensed & insured termite specialists. Same-day inspections, liquid & bait treatments, approved. Call 9126 0555.',
   alternates: { canonical: '/termite-control-melbourne' },
