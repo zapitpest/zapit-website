@@ -35,7 +35,7 @@ export const SITE_CONFIG = {
   // Env-driven so staging/prod can target separate containers. The hardcoded
   // fallback is the prior build's container ID — must be confirmed (or replaced
   // with the new Zap-It-owned container) before launch.
-  gtmId: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-WBZC2BHL',
+  gtmId: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PFGV87RB',
   operatingHours: 'Mon–Fri 8am–5pm, Sat 8am–12pm',
   stats: {
     residentialCustomers: '5000+',

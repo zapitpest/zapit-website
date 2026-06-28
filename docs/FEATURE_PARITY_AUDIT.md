@@ -94,10 +94,10 @@ The old site has TWO URL patterns: `/commercial/...` AND `/commercial-pest-contr
 |---|---|---|
 | `/commercial/aged-care-facilities/` | ⚠️ Different path | 301 → `/commercial-pest-control/aged-care-facilities` (if exists) |
 | `/commercial/restaurants-pest-control/` | ✅ Exists at `/commercial-pest-control/restaurants-pest-control` | 301 redirect |
-| `/commercial/property-pest-control/` | ❓ Unknown — verify | TBD |
-| `/commercial/industrial-pest-control/` | ❓ Unknown — verify | TBD |
-| `/commercial/government-buildings/` | ❓ Unknown — verify | TBD |
-| ...all other `/commercial/` URLs | Need individual mapping | TBD |
+| `/commercial/property-pest-control/` | ⚠️ No direct equivalent — redirected to parent | ✅ 301 → `/commercial-pest-control` (shipped) |
+| `/commercial/industrial-pest-control/` | ⚠️ No direct equivalent — closest match | ✅ 301 → `/commercial-pest-control/warehousing-and-storage` (shipped) |
+| `/commercial/government-buildings/` | ✅ Exists at new path | ✅ 301 → `/commercial-pest-control/government-buildings` (shipped) |
+| ...all other `/commercial/*` URLs | Catch-all in place | ✅ 301 → `/commercial-pest-control` (shipped) |
 
 ### 🔴 Blog posts — 68 missing (68 old → 0 new)
 

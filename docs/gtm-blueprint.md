@@ -6,7 +6,8 @@ Foundation v4 data contract Appendix A.
 
 ## Container settings
 
-- **Container name:** `Zap It — Production` (separate container for staging)
+- **Container name:** `Zap It Production`
+- **Container ID:** `GTM-PFGV87RB` (created 2026-06-29 under Zap-It-owned ownership)
 - **Target:** Web
 - **Default workspace:** rename to `Default`
 - **Install:** already in code via `src/components/layout/GTMScript.tsx`,
@@ -103,7 +104,7 @@ community gallery — provides the `sha256()` helper used above.
 ### GA4 Configuration tag
 
 - **Type:** Google Analytics: GA4 Configuration
-- **Measurement ID:** `G-XXXXXXXXXX` (replace with the production GA4 ID)
+- **Measurement ID:** `G-YRVHNE66GH` (Zap It Production property, created 2026-06-29)
 - **Send page_view:** ON
 - **Fields to set:**
   - `service_line` = `{{dlv.service_line}}`
