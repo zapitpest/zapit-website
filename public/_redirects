@@ -117,6 +117,13 @@
 # Service x suburb combo URL → suburb page (Richmond is in inner-city service area)
 /rodent-control-richmond         /pest-control-richmond      301
 
+# DEDICATED_ROUTE_SUBURBS (Coburg + Reservoir) have their own /[suburb]/ pages on the
+# new site and are excluded from the dynamic /pest-control-[suburb] route to avoid
+# duplicate canonicals. Old WordPress had /pest-control-{suburb}/ URLs for both —
+# redirect them to the new dedicated routes.
+/pest-control-coburg             /coburg                     301
+/pest-control-reservoir          /reservoir                  301
+
 # =====================================================================
 # Section 5 — Pending decisions (DO NOT add until Adam confirms)
 # =====================================================================
