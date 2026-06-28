@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Phone } from 'lucide-react';
+import { trackFormSubmit } from '@/lib/analytics';
 
 interface Props {
   displayPhone: string;
@@ -14,6 +15,11 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    trackFormSubmit({
+      formType: 'contact',
+      email: form.email || undefined,
+      phone: form.phone || undefined,
+    });
     setSubmitted(true);
   };
 
