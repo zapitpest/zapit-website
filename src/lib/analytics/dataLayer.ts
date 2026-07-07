@@ -66,3 +66,15 @@ export function trackClickEmail(emailAddress: string): void {
     page_path: pagePath,
   });
 }
+
+export function trackBookIntent(destinationUrl: string): void {
+  const pagePath = currentPath();
+  push({
+    event: 'book_intent',
+    click_target: 'square_booking',
+    destination_url: destinationUrl,
+    service_line: getServiceLine(pagePath),
+    page_type: getPageType(pagePath),
+    page_path: pagePath,
+  });
+}

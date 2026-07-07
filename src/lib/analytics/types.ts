@@ -7,7 +7,7 @@ export type PageType = 'home' | 'service' | 'location' | 'info' | 'contact' | 'o
 
 export type FormType = 'quote' | 'booking' | 'contact' | 'callback' | 'emergency';
 
-export type ClickTarget = 'phone' | 'email';
+export type ClickTarget = 'phone' | 'email' | 'square_booking';
 
 interface BaseEventContext {
   service_line: ServiceLine;
@@ -36,7 +36,13 @@ export interface ClickEmailEvent extends BaseEventContext {
   email_address: string;
 }
 
-export type AnalyticsEvent = FormSubmitEvent | ClickPhoneEvent | ClickEmailEvent;
+export interface BookIntentEvent extends BaseEventContext {
+  event: 'book_intent';
+  click_target: 'square_booking';
+  destination_url: string;
+}
+
+export type AnalyticsEvent = FormSubmitEvent | ClickPhoneEvent | ClickEmailEvent | BookIntentEvent;
 
 declare global {
   interface Window {
