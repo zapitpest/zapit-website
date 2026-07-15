@@ -165,12 +165,10 @@ export default function SuburbLandingPage({ suburb, region, slug }: Props) {
               Call {SITE_CONFIG.phone}
             </Link>
             <Link
-              href={SITE_CONFIG.booking.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/contact-us"
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-full text-lg transition-colors border border-white/20"
             >
-              Book online
+              Get a Quote
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -541,7 +539,7 @@ export default function SuburbLandingPage({ suburb, region, slug }: Props) {
           </h2>
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
             Same-day service available across {suburb} and surrounding {region} Melbourne suburbs.
-            Call now or book online — our team will be in touch within minutes.
+            Call now or request a quote — our team will be in touch within minutes.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
@@ -552,12 +550,10 @@ export default function SuburbLandingPage({ suburb, region, slug }: Props) {
               {SITE_CONFIG.phone}
             </Link>
             <Link
-              href={SITE_CONFIG.booking.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/contact-us"
               className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white font-semibold px-8 py-4 rounded-full text-lg transition-colors border border-white/30"
             >
-              Book online
+              Get a Quote
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
