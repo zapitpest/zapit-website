@@ -209,7 +209,7 @@
   - **`tag.meta.pixel_base`** — Custom HTML with Meta Pixel base snippet (fbevents.js loader + `fbq('init', '1088414402938841')` + `fbq('track', 'PageView')`), fires on All Pages trigger. SAVED ✅
   - **`tag.clarity.script`** — Custom HTML with Microsoft Clarity snippet (Project ID `xl7ljoavrz`), fires on All Pages. SAVED ✅
   - **`tag.meta.pixel_lead`** — Custom HTML with `fbq('track', 'Lead', {content_category, content_name, em, ph})` — 4 event parameters using dlv.service_line, dlv.form_type, dlv.user_email_hash, dlv.user_phone_hash. Fires on all 5 form_submit triggers (trg.form_submit_contact, quote, booking, callback, emergency). Tag Sequencing: `tag.meta.pixel_base` fires before + Don't fire if base fails. SAVED ✅
-  - **`tag.meta.pixel_contact`** — Custom HTML with `fbq('track', 'Contact', {content_category: dlv.service_line})`. Fires on trg.click_phone + trg.click_email. Tag Sequencing: same as pixel_lead. Save + trigger verification pending user screenshot.
-  Total tags in workspace: 14. Next: verify tag.meta.pixel_contact is saved with both click triggers, then Book Now → Get a Quote code change, then Publish V3.
+  - **`tag.meta.pixel_contact`** — Custom HTML with `fbq('track', 'Contact', {content_category: dlv.service_line})`. Fires on trg.click_phone + trg.click_email. Tag Sequencing: same as pixel_lead. VERIFIED SAVED with green "Added in this workspace" banner + both click triggers present.
+  Total tags in workspace: 14 (all correctly configured + saved). Workspace Changes counter: 4. Next: Book Now → Get a Quote code change (SuburbLandingPage.tsx — Adam approved Option B on 08 Jul), then Publish GTM Version 3, then mark 8 conversions in GA4 Admin + link GA4 → BigQuery.
 
 
