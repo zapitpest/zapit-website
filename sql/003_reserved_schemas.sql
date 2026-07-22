@@ -97,14 +97,20 @@ CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_ghl.pipel
 OPTIONS (description = 'Reserved — GHL pipeline stage definitions for join.');
 
 -- ============================================================================
--- zapit_reserved_openclaw — AI analysis outputs. Approval-gated.
+-- zapit_reserved_ai — Platform-agnostic AI outputs. Approval-gated.
+-- Renamed from zapit_reserved_openclaw on 23-Jul-2026 per Adam's 20-Jul request:
+-- architecture stays vendor-neutral so the pipeline works with Hermes,
+-- Claude, Codex, or any future AI agent. Three tables per Adam's spec:
+-- ai_outputs (raw analysis), ai_recommendations (actionable proposals),
+-- ai_learning (measured outcomes for closed-loop feedback).
 -- ============================================================================
 
-CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_openclaw.outputs` (
+CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_ai.ai_outputs` (
   output_id              STRING NOT NULL,
   generated_at           TIMESTAMP NOT NULL,
+  source_agent           STRING,             -- 'hermes' | 'claude' | 'codex' | future agents — model-agnostic
   reserved_source_type   STRING NOT NULL,    -- 'call_transcript' | 'session_replay' | 'page_content' | 'seo_data' | ...
-  reserved_output_type   STRING NOT NULL,    -- 'report' | 'proposal' | 'call_analysis' | 'recommendation' | 'seo_audit'
+  reserved_output_type   STRING NOT NULL,    -- 'report' | 'proposal' | 'call_analysis' | 'recommendation' | 'seo_audit' | 'action_proposed'
   subject_ref            STRING,             -- pointer to the source row (e.g. zoom_call_id, page_path, opportunity_id)
   service_line           STRING,
   payload                JSON,               -- raw analysis output
@@ -116,7 +122,45 @@ CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_openclaw.
   notes                  STRING,
   ingested_at            TIMESTAMP  -- ingest workers set to CURRENT_TIMESTAMP() at insert time
 )
-OPTIONS (description = 'Reserved — OpenClaw AI outputs. Every row carries human_approval_status — nothing customer-facing ships without approval.');
+OPTIONS (description = 'Reserved — AI analysis outputs (platform-agnostic: Hermes, Claude, Codex, etc.). Every row carries human_approval_status — nothing customer-facing ships without approval.');
+
+CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_ai.ai_recommendations` (
+  recommendation_id      STRING NOT NULL,
+  generated_at           TIMESTAMP NOT NULL,
+  source_agent           STRING,             -- which AI agent produced it
+  category               STRING,             -- 'ux' | 'seo' | 'cro' | 'business_intelligence' | 'operations'
+  priority               STRING,             -- 'high' | 'medium' | 'low'
+  title                  STRING,             -- headline of the recommendation
+  rationale              STRING,             -- why the AI recommends this
+  expected_impact        STRING,             -- what will improve if implemented
+  confidence_score       FLOAT64,            -- 0.0–1.0 model confidence
+  supporting_evidence    JSON,               -- data points backing the recommendation
+  affected_dimension     STRING,             -- what part of the business it affects
+  -- Adam's mandatory rule: human approval before implementation.
+  human_approval_status  STRING NOT NULL,  -- 'pending' | 'approved' | 'rejected' | 'edited' (ingest sets to 'pending' on insert)
+  approved_by            STRING,
+  approved_at            TIMESTAMP,
+  implemented_at         TIMESTAMP,          -- set when the recommendation gets actioned
+  implementation_notes   STRING,
+  ingested_at            TIMESTAMP  -- ingest workers set to CURRENT_TIMESTAMP() at insert time
+)
+OPTIONS (description = 'Reserved — AI-generated prioritised recommendations (UX, SEO, CRO, BI). Each row has human_approval_status; nothing implements without approval.');
+
+CREATE TABLE IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_ai.ai_learning` (
+  learning_id                STRING NOT NULL,
+  recorded_at                TIMESTAMP NOT NULL,
+  recommendation_id          STRING,             -- FK → ai_recommendations.recommendation_id
+  outcome_type               STRING,             -- 'conversion_rate' | 'revenue' | 'customer_ltv' | 'engagement' | 'churn' | ...
+  baseline_value             FLOAT64,            -- metric value before implementation
+  measured_value             FLOAT64,            -- metric value after implementation
+  measurement_window_days    INT64,              -- how long we measured for
+  delta_absolute             FLOAT64,            -- measured - baseline
+  delta_percent              FLOAT64,            -- percentage change
+  outcome_verdict            STRING,             -- 'positive' | 'neutral' | 'negative' | 'inconclusive'
+  outcome_notes              STRING,
+  ingested_at                TIMESTAMP  -- ingest workers set to CURRENT_TIMESTAMP() at insert time
+)
+OPTIONS (description = 'Reserved — Closed-loop learning table. Records measured business outcomes of implemented recommendations so future AI weightings improve over time.');
 
 -- ============================================================================
 -- zapit_reserved_clarity — Microsoft Clarity session metadata

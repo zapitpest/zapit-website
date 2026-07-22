@@ -1,5 +1,7 @@
 # Looker Studio Dashboard Wireframes
 
+> **SUPERSEDED 2026-07-16.** Engagement letter v2 locks MVP to **one** executive dashboard with 13 sections (per Adam's Message 3 direction). The current mockup is at [`LOOKER_DASHBOARD_MOCKUP_v1.md`](./LOOKER_DASHBOARD_MOCKUP_v1.md) — send that to Adam for pre-approval before build. The three-dashboard split below is deferred (falls under engagement letter §Deferred Items — "multi-dashboard Looker"). Kept here for future reference only.
+
 Three dashboards for MVP. All query `zapit-business-intelligence.zapit_staging` views. Designed for Adam to read without explanation — every chart answers one question.
 
 ---

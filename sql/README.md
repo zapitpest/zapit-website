@@ -10,7 +10,7 @@ are safe.
 2. `002_staging_views.sql` — `stg_events`, `stg_sessions`, `stg_leads` views on
    top of the raw GA4 export
 3. `003_reserved_schemas.sql` — Empty table shells for future ingest blocks
-   (WhatConverts, GHL, Zoom, OpenClaw). Not populated in MVP — design only.
+   (WhatConverts, GHL, Zoom, AI layer). Not populated in MVP — design only.
 
 ## Prerequisites
 

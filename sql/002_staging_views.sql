@@ -48,7 +48,15 @@ SELECT
   geo.country AS country,
   geo.region AS region,
   geo.city AS city
-FROM `zapit-business-intelligence.zapit_raw_ga4.events_*`;
+-- GA4's daily export lives in `analytics_543350918` (auto-created 17 Jul 2026,
+-- named from the GA4 property ID). Wildcard `events_*` matches both the finalized
+-- daily tables (`events_YYYYMMDD`) and the current-day intraday table
+-- (`events_intraday_YYYYMMDD`) — GA4 supersedes intraday with the daily once
+-- the day closes, so no duplicate risk.
+-- Note: `traffic_source` here is user-first-touch attribution (stable GA4
+-- schema). For session-level last-click attribution we can switch to
+-- `session_traffic_source_last_click` in a v2 pass — not needed for MVP.
+FROM `zapit-business-intelligence.analytics_543350918.events_*`;
 
 -- ============================================================================
 -- stg_sessions — one row per GA4 session.
@@ -88,8 +96,20 @@ SELECT
   CASE
     WHEN event_name LIKE 'form_submit_%' THEN 'form'
     WHEN event_name IN ('click_phone', 'click_email') THEN 'click'
+    WHEN event_name = 'book_intent' THEN 'booking_intent'
+    WHEN event_name = 'call_connect_inbound' THEN 'confirmed_call'
     ELSE 'other'
   END AS lead_channel,
+  -- lead_class classifies every event into two families per Adam's Condition 3
+  -- (17 Jul 2026 sign-off): distinguishes user INTENT from CONFIRMED conversions.
+  -- Executive Summary "Leads" KPI uses lead_class = 'confirmed_lead' only,
+  -- so click_phone / click_email never inflate the top-line conversion number.
+  CASE
+    WHEN event_name LIKE 'form_submit_%' THEN 'confirmed_lead'
+    WHEN event_name = 'call_connect_inbound' THEN 'confirmed_lead'
+    WHEN event_name IN ('click_phone', 'click_email', 'book_intent') THEN 'intent_signal'
+    ELSE 'other'
+  END AS lead_class,
   service_line,
   page_type,
   page_path,
@@ -104,4 +124,4 @@ SELECT
   city
 FROM `zapit-business-intelligence.zapit_staging.stg_events`
 WHERE event_name LIKE 'form_submit_%'
-   OR event_name IN ('click_phone', 'click_email', 'call_connect_inbound');
+   OR event_name IN ('click_phone', 'click_email', 'call_connect_inbound', 'book_intent');

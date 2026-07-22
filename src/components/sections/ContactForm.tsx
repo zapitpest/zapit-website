@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Phone } from 'lucide-react';
-import { trackFormSubmit } from '@/lib/analytics';
+import { trackFormSubmit, submitLeadToWhatConverts } from '@/lib/analytics';
 
 interface Props {
   displayPhone: string;
@@ -15,11 +15,26 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     trackFormSubmit({
       formType: 'contact',
       email: form.email || undefined,
       phone: form.phone || undefined,
     });
+
+    // Fire-and-forget: never block thank-you UI on the WhatConverts call.
+    // No-ops when WC env vars aren't set, so this is safe pre-token.
+    void submitLeadToWhatConverts({
+      lead_type: 'Web Form',
+      form_name: 'Contact Form',
+      contact_name: form.name || undefined,
+      contact_email: form.email || undefined,
+      contact_phone_number: form.phone || undefined,
+      message: form.message || undefined,
+      lead_url: typeof window !== 'undefined' ? window.location.href : undefined,
+      additional_fields: { form_type: 'contact' },
+    });
+
     setSubmitted(true);
   };
 

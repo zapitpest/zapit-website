@@ -34,7 +34,7 @@ CREATE SCHEMA IF NOT EXISTS `zapit-business-intelligence.zapit_raw_search_consol
   OPTIONS (
     location = 'australia-southeast1',
     default_table_expiration_days = 1095,
-    description = 'Raw Search Console daily export. SEO performance source for staging + OpenClaw.'
+    description = 'Raw Search Console daily export. SEO performance source for staging + future AI layer.'
   );
 
 -- ============================================================================
@@ -69,11 +69,13 @@ CREATE SCHEMA IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_clarity`
     description = 'Reserved — Microsoft Clarity UX session data. Schema defined, not populated.'
   );
 
-CREATE SCHEMA IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_openclaw`
+-- Renamed from zapit_reserved_openclaw on 23-Jul-2026 per Adam's 20-Jul request
+-- for platform-agnostic AI naming (works with Hermes/Claude/Codex/future agents).
+CREATE SCHEMA IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_ai`
   OPTIONS (
     location = 'australia-southeast1',
     default_table_expiration_days = 1095,
-    description = 'Reserved — OpenClaw analysis outputs (reports, proposals, call analysis). Approval-gated.'
+    description = 'Reserved — AI analysis outputs, recommendations, and closed-loop learning (platform-agnostic). Approval-gated per Adam''s mandatory rule.'
   );
 
 CREATE SCHEMA IF NOT EXISTS `zapit-business-intelligence.zapit_reserved_operational`

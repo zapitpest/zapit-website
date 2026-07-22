@@ -3,6 +3,8 @@
 
 export { trackFormSubmit, trackClickPhone, trackClickEmail, trackBookIntent } from './dataLayer';
 export { getServiceLine, getPageType } from './service-line';
+export { submitLeadToWhatConverts } from './whatconverts';
+export type { WhatConvertsLead } from './whatconverts';
 export type {
   ServiceLine,
   PageType,

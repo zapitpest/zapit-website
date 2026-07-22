@@ -153,7 +153,7 @@ Per `docs/looker-wireframes.md`:
 - **Never push to a non-org repo** — current remote `github.com/zapitpest/zapit-website` is client-owned and approved; verify with `git remote -v` before any new push destination
 - **PII never leaves the browser unhashed** — verify in Phase 2 QA by checking network tab on every event
 - **Adam ownership rule** — all infrastructure (GCP, GA4, GTM, Pixel) created under Adam's accounts; Apex only takes Editor/Publish access; never Owner
-- **Approval-gated AI** — when OpenClaw block ships later, every `zapit_reserved_openclaw.outputs` row starts with `human_approval_status='pending'` and never goes to a customer without Adam's approval
+- **Approval-gated AI** — when the AI layer ships later, every `zapit_reserved_ai.ai_outputs` + `.ai_recommendations` row starts with `human_approval_status='pending'` and never goes to a customer without Adam's approval (platform-agnostic: Hermes/Claude/Codex/future agents)
 
 ---
 
