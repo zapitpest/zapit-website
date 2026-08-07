@@ -1,0 +1,18 @@
+# Security headers for the site.
+#
+# This file works on both Cloudflare Pages and Netlify — both platforms read
+# `_headers` from the publish directory root. Netlify additionally reads
+# `netlify.toml` [[headers]], and where the two overlap this file's rules
+# take precedence in Netlify. Keeping the same rules in both files means the
+# site behaves identically wherever it is deployed.
+#
+# Docs:
+# - https://developers.cloudflare.com/pages/configuration/headers/
+# - https://docs.netlify.com/routing/headers/
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  X-DNS-Prefetch-Control: on
