@@ -1,0 +1,127 @@
+# Pending redirect rules — apply once Adam approves the macro-decisions
+# in docs/FEATURE_PARITY_DECISION_HELPER.md.
+#
+# When Adam approves, paste the relevant blocks below at the END of
+# public/_redirects (before Section 5's "pending decisions" comment,
+# which then gets removed).
+#
+# IMPORTANT: Netlify redirect order matters. Existing specific rules like
+# /pest-control-coburg → /coburg and /pest-control-reservoir → /reservoir
+# MUST remain ABOVE any catch-all like /pest-control-* → /service-areas.
+
+# =====================================================================
+# BLOCK A — Suburb catch-all (Option A recommended)
+# Add if Adam approves Option A on Macro-decision 1
+# =====================================================================
+
+/pest-control-*    /service-areas    301
+
+# =====================================================================
+# BLOCK B — Regional deep-link redirects (Option B alternative)
+# Add if Adam approves Option B on Macro-decision 1 INSTEAD of Block A
+# (Inner City region as example — full list generated from
+# src/lib/melbourne-service-areas.ts when Adam picks Option B)
+# =====================================================================
+
+# Inner City (15 suburbs)
+# /pest-control-carlton          /service-areas#inner-city    301
+# /pest-control-fitzroy          /service-areas#inner-city    301
+# ... etc for all 75 curated suburbs, generated from melbourne-service-areas.ts
+
+# =====================================================================
+# BLOCK C — Blog group redirects (if Adam picks "No blog planned")
+# Full list of 66 URLs from docs/audit-data/blog-urls-needing-decision.txt
+# =====================================================================
+
+# --- TERMITES (19 URLs) → /termite-control-melbourne
+/what-are-termites/                                                  /termite-control-melbourne    301
+/what-are-termites-a-complete-guide-about-termite-life-cycle/        /termite-control-melbourne    301
+/how-to-prevent-termites/                                            /termite-control-melbourne    301
+/how-to-get-rid-of-termites-using-proven-effective-methods/          /termite-control-melbourne    301
+/pre-construction-termite-treatment/                                 /termite-control-melbourne    301
+/home-termite-control/                                               /termite-control-melbourne    301
+/how-to-detect-termites/                                             /termite-control-melbourne    301
+/termite-control-tips/                                               /termite-control-melbourne    301
+/signs-of-termites/                                                  /termite-control-melbourne    301
+/cost-of-termite-treatment/                                          /termite-control-melbourne    301
+/termite-treatment-methods/                                          /termite-control-melbourne    301
+/8-tips-to-detect-termites-and-5-prevention-strategies-for-melbourne-homeowners/    /termite-control-melbourne    301
+/how-to-kill-termites-effectively-using-instant-solutions/           /termite-control-melbourne    301
+/what-do-termites-sound-like-detection-tips-for-early-protection/    /termite-control-melbourne    301
+/everything-you-need-to-know-about-what-do-termites-eat/             /termite-control-melbourne    301
+/can-termites-fly-guide-about-flying-termites-home-protection/       /termite-control-melbourne    301
+/how-do-you-tell-if-you-have-termites-infestation-signs-to-look-for/ /termite-control-melbourne    301
+/do-termites-bite-people-symptoms-preventive-measures/               /termite-control-melbourne    301
+/signs-you-have-a-termite-infestation-in-your-melbourne-home/        /termite-control-melbourne    301
+
+# --- RODENTS / RATS / MICE (10 URLs) → /rodent-control-melbourne
+/rats-vs-mice/                                                       /rodent-control-melbourne    301
+/do-house-mice-carry-diseases/                                       /rodent-control-melbourne    301
+/how-to-get-rid-of-mice/                                             /rodent-control-melbourne    301
+/signs-of-rats/                                                      /rodent-control-melbourne    301
+/types-of-rodents/                                                   /rodent-control-melbourne    301
+/how-much-does-rodent-control-cost/                                  /rodent-control-melbourne    301
+/what-is-rodent-control/                                             /rodent-control-melbourne    301
+/how-to-get-rid-of-rats-in-the-house-fast/                           /rodent-control-melbourne    301
+/rat-control-methods/                                                /rodent-control-melbourne    301
+/common-signs-of-rodent-infestation-to-look-for-treat/               /rodent-control-melbourne    301
+
+# --- WASPS (7 URLs) → /wasp-removal-melbourne
+/how-do-wasps-build-nests/                                           /wasp-removal-melbourne    301
+/wasps-nest-removal-cost/                                            /wasp-removal-melbourne    301
+/what-attracts-wasps/                                                /wasp-removal-melbourne    301
+/where-do-wasps-go-in-winter/                                        /wasp-removal-melbourne    301
+/how-to-find-wasp-nest/                                              /wasp-removal-melbourne    301
+/how-to-get-rid-of-wasps-nest/                                       /wasp-removal-melbourne    301
+/what-are-wasps-and-types-of-wasps/                                  /wasp-removal-melbourne    301
+
+# --- FLIES (7 URLs) → /fly-control-melbourne
+/how-long-do-house-flies-live/                                       /fly-control-melbourne    301
+/how-do-flies-fly/                                                   /fly-control-melbourne    301
+/what-do-flies-eat/                                                  /fly-control-melbourne    301
+/what-are-flies/                                                     /fly-control-melbourne    301
+/what-causes-fly-infestation/                                        /fly-control-melbourne    301
+/how-much-does-fly-control-cost/                                     /fly-control-melbourne    301
+/how-to-get-rid-of-flies-in-house/                                   /fly-control-melbourne    301
+
+# --- POSSUMS (6 URLs) → /possum-removal-melbourne
+/possum-poo/                                                         /possum-removal-melbourne    301
+/what-are-possums/                                                   /possum-removal-melbourne    301
+/how-to-trap-possum/                                                 /possum-removal-melbourne    301
+/how-to-get-rid-of-possums/                                          /possum-removal-melbourne    301
+/how-to-remove-a-possum/                                             /possum-removal-melbourne    301
+/what-do-possums-eat/                                                /possum-removal-melbourne    301
+
+# --- MOSQUITOES (3 URLs) → /mosquito-control-melbourne
+/how-to-remove-mosquito/                                             /mosquito-control-melbourne    301
+/how-to-get-rid-of-mosquitoes-bites/                                 /mosquito-control-melbourne    301
+/how-long-do-mosquitoes-live/                                        /mosquito-control-melbourne    301
+
+# --- FLEAS (2 URLs) → /flea-control-melbourne
+/how-to-get-rid-of-fleas-on-dogs/                                    /flea-control-melbourne    301
+/how-to-get-rid-of-fleas-in-your-yard-best-methods-for-pet-protection/    /flea-control-melbourne    301
+
+# --- SPIDERS (1 URL) → /spider-control-melbourne
+/how-to-control-spiders-in-the-home-prevention-tips-for-safety/      /spider-control-melbourne    301
+
+# --- ANTS (1 URL) → /ant-pest-control-melbourne
+/how-to-prevent-ants-in-your-house-tips-natural-hacks/               /ant-pest-control-melbourne    301
+
+# --- SILVERFISH (1 URL) → /silverfish-control-melbourne
+/where-do-silverfish-come-from/                                      /silverfish-control-melbourne    301
+
+# --- GENERAL PEST CONTENT (9 URLs) → /pest-solutions
+/common-signs-of-pest-infestation-to-look-for-act-promptly/          /pest-solutions    301
+/melbournes-top-5-most-common-household-pests/                       /pest-solutions    301
+/how-to-prepare-your-home-for-a-pest-control-visit/                  /pest-solutions    301
+/what-happens-during-a-professional-pest-inspection/                 /pest-solutions    301
+/how-often-should-you-schedule-pest-control-services/                /pest-solutions    301
+/pest-control-checklist-for-new-homeowners-in-melbourne/             /pest-solutions    301
+/how-much-does-pest-control-in-melbourne-cost/                       /#price-calculator    301
+/using-pesticides-safely/                                            /pest-solutions    301
+/why-schools-in-melbourne-are-shifting-to-health-first-pest-management/    /pest-solutions    301
+
+# =====================================================================
+# Total: 66 blog URLs across 11 topic groups.
+# Combined with Block A (suburb catch-all): all 372 old URLs are covered.
+# =====================================================================

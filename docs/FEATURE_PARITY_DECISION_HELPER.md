@@ -1,70 +1,92 @@
-# Feature Parity Decision Helper — 231 Suburbs + 59 Blog URLs
+# Feature Parity Decision Helper — Suburbs + Blog URLs
 
-**Purpose:** compress 290 individual decisions into ~5 macro-decisions so Adam can unblock Phase 3 redirects in one 10-minute review instead of URL-by-URL.
+**Purpose:** compress ~300 individual decisions into 2 macro-decisions so Adam can unblock redirects in a 5-minute review instead of URL-by-URL.
 
-**Timing:** needed before DNS cutover. Not urgent — doesn't block dashboard build.
+**Timing:** needed before DNS cutover. Not urgent for the dashboard build.
 
-**Companion doc:** [docs/FEATURE_PARITY_AUDIT.md](FEATURE_PARITY_AUDIT.md) has the full URL-by-URL audit; [docs/audit-data/blog-urls-needing-decision.txt](audit-data/blog-urls-needing-decision.txt) has the raw blog list.
+**Companion docs:**
+- Full URL-by-URL audit: [`docs/FEATURE_PARITY_AUDIT.md`](FEATURE_PARITY_AUDIT.md)
+- Raw blog list: [`docs/audit-data/blog-urls-needing-decision.txt`](audit-data/blog-urls-needing-decision.txt)
+- Live redirect rules: [`public/_redirects`](../public/_redirects)
 
----
-
-## Summary of the situation
-
-The old WordPress site had 426 URLs. The rebuilt Next.js site was audited for feature parity and 56 clean 301 redirects were shipped in June (verified live). What's left:
-
-- **231 suburb URLs** — old WordPress had a `/pest-control-{suburb}/` page for every Melbourne suburb. Many overlap with the rebuild's clean architecture; some don't.
-- **59 blog/content URLs** — old WordPress had ~59 individual blog articles. The rebuild doesn't have a blog yet.
-
-Each URL is currently returning HTTP 404. Search engines will de-index these over 3-6 months. For any URL that had SEO value or accumulated backlinks, that's lost equity.
-
-**Three possible fates per URL:**
-- **Redirect (301)** — permanent redirect to a related page on the new site. Preserves SEO equity, keeps external backlinks working.
-- **Serve** — build a new page at the same URL. Highest SEO value but most work.
-- **410 Gone** — explicit "this page no longer exists". Fastest de-indexing. Right choice if the content was low-value or duplicate.
+**Doc revision — 2026-08-07:** Corrected two inaccuracies from the earlier draft. No dynamic suburb route exists in the codebase (only `/coburg/` and `/reservoir/` are hardcoded suburb pages). Blog raw file contains 66 URLs, not 59 as previously stated. Updated below.
 
 ---
 
-## Macro-decision 1 — Suburb URLs (231 pages)
+## Situation
 
-**The pattern:** every old URL is `/pest-control-{suburb}/`. The rebuild has:
-- 2 dedicated suburb pages: `/coburg/`, `/reservoir/`
-- Dynamic route: `/pest-control-{suburb}/` served by SuburbLandingPage.tsx for all other suburbs
+The old WordPress site had ~426 indexed URLs. The rebuilt Next.js site currently has ~120 static URLs. 58 clean 301 redirects were shipped in June and are live and curl-verified.
 
-**Adam's macro-decision (pick one):**
+**Still needing decisions before DNS cutover:**
 
-### Option A ⭐ RECOMMENDED — Auto-serve everything via dynamic route
+- **306 old suburb URLs** — old WordPress had `/pest-control-{suburb}/` for 308 suburbs. New site has dedicated pages only for Coburg + Reservoir (2 already redirected). The remaining **306 suburb URLs are currently 404-ing.**
+- **66 old blog/content URLs** — the new site has no blog. Each is currently 404-ing.
 
-Every old `/pest-control-{suburb}/` URL is already being served by the dynamic route in the rebuild. **No decisions needed** — the site already answers.
+**Two possible fates per URL:**
 
-**Action from you:** confirm this is the intended behaviour (which it is per your original brief).
+- **301 redirect** — permanent redirect to a related page on the new site. Preserves SEO equity, keeps external backlinks working.
+- **410 Gone** — explicit "this page no longer exists". Right choice if the content was low-value or duplicate.
 
-**Effort:** 0 hours. Already done.
-
-**SEO impact:** neutral-to-positive — same URL, same-or-better content, keeps all suburbs indexed.
-
-### Option B — Trim the suburb list
-
-If some Melbourne suburbs are NOT services Zap It wants to appear for (e.g. distant regional areas), we can 410 those and only serve suburbs in your target service area.
-
-**Action from you:** send me a list of suburbs to remove (or a rule like "only within 50 km of Melbourne CBD").
-
-**Effort:** 30 minutes ours (once list defined).
-
-**When this matters:** if your team can't actually service some suburbs and doesn't want SEO leads from them.
+Building new pages for all 372 URLs is out of scope for MVP.
 
 ---
 
-## Macro-decision 2 — Blog URLs (59 pages, grouped by topic)
+## Macro-decision 1 — 306 suburb URLs
 
-The blog URLs cluster into 12 topic groups. Instead of deciding 59 URLs, decide 12 groups.
+**The pattern:** every old URL is `/pest-control-{suburb}/`. The rebuilt site has:
 
-**Table for review — one decision per group:**
+- `/service-areas/` — a single listing page covering all 77 suburbs Zap It services (75 curated across 5 regions + Coburg + Reservoir)
+- `/coburg/` and `/reservoir/` — dedicated dedicated pages for two flagship suburbs
+- **No other individual suburb pages exist.** No dynamic route serves `/pest-control-{suburb}/` on the new site.
+
+### Recommended: Option A — one catch-all redirect (5 min execution)
+
+Add a single Netlify redirect rule:
+
+```
+/pest-control-*    /service-areas    301
+```
+
+This catches all 306 remaining `/pest-control-{suburb}/` URLs and 301s them to the `/service-areas/` listing page. Existing specific rules for `/pest-control-coburg` and `/pest-control-reservoir` continue to take precedence (order matters in Netlify redirects file — specific rules go above catch-alls).
+
+**SEO impact:** SEO equity mostly preserved via the 301. Individual suburb rankings won't survive (there's no individual page to rank), but the aggregate `/service-areas/` page inherits the link juice.
+
+**Execution effort:** 5 minutes.
+
+### Option B — Regional deep-links (30 min execution)
+
+Add region-aware redirects so old URLs land closer to their content:
+
+```
+/pest-control-carlton        /service-areas#inner-city      301
+/pest-control-fitzroy        /service-areas#inner-city      301
+[... 75 curated suburbs each mapped to their region anchor]
+/pest-control-*              /service-areas                 301
+```
+
+**SEO impact:** slightly better — visitors land on the region section already scrolled to their area.
+
+**Execution effort:** 30 minutes ours (once you approve).
+
+### Option C — Build individual pages for the 75 curated suburbs
+
+Requires building a `[suburb]` dynamic route or 75 static pages. Preserves individual suburb rankings.
+
+**Execution effort:** 4-6 hours. **Outside current MVP scope** — would need buffer usage sign-off or a change order.
+
+**Recommendation:** **Option A** for the fastest safe unblock. Option B is a small polish upgrade if you want the deep-link behaviour. Option C is future work.
+
+---
+
+## Macro-decision 2 — 66 blog URLs
+
+The blog URLs cluster into 11 topic groups. Instead of deciding 66 URLs individually, decide 11 groups.
 
 | Group | # URLs | Recommended action | Alternative | Notes |
 |---|---|---|---|---|
-| Termites | 19 | 301 → `/termite-control-melbourne` | Serve as blog posts if you want SEO content | Termite is your highest-value service line. Redirecting preserves backlink equity |
+| Termites | 19 | 301 → `/termite-control-melbourne` | Serve as blog posts | Termite is your highest-value service line. Redirecting preserves backlink equity |
 | Rodents / rats / mice | 10 | 301 → `/rodent-control-melbourne` | Serve as blog posts | Same reasoning |
-| Wasps | 7 | 301 → `/wasp-removal-melbourne` | 410 Gone if not a priority service | Depends whether you want to rank for wasp queries |
+| Wasps | 7 | 301 → `/wasp-removal-melbourne` | 410 Gone if not priority | Depends whether you want to rank for wasp queries |
 | Flies | 7 | 301 → `/fly-control-melbourne` | 410 Gone | Same |
 | Possums | 6 | 301 → `/possum-removal-melbourne` | 410 Gone | Same |
 | Mosquitoes | 3 | 301 → `/mosquito-control-melbourne` | 410 Gone | Same |
@@ -72,48 +94,70 @@ The blog URLs cluster into 12 topic groups. Instead of deciding 59 URLs, decide 
 | Spiders | 1 | 301 → `/spider-control-melbourne` | 410 Gone | Same |
 | Ants | 1 | 301 → `/ant-pest-control-melbourne` | 410 Gone | Same |
 | Silverfish | 1 | 301 → `/silverfish-control-melbourne` | 410 Gone | Same |
-| General pest content | 9 | 301 → `/pest-solutions` OR `/` | 410 Gone if content was low-quality | Depends whether you plan a future blog |
-| Future blog planned? | — | If YES → serve these as blog posts (long-term SEO win); if NO → 301 to nearest service page | | Meta-decision that shapes 3-5 above |
+| General pest content | 9 | 301 → `/pest-solutions` | 410 Gone if low-quality | Depends whether you plan a future blog |
+
+**Total: 66 URLs across 11 groups.** Grand total for the redirect map: 306 suburbs + 66 blogs = **372 old URLs handled**.
 
 ---
 
-## The one big meta-question for Adam
+## The meta-question — do you plan a blog on the new site?
 
-**Do you plan to have a blog on the new site in the next 6-12 months?**
+**If YES:** for the highest-value groups (Termites, Rodents), we should migrate 10-15 top-performing articles to their same URLs on the new site. Preserves SEO ranking + gives you content to rank on. The rest of each group 301s to the service page.
 
-- **If YES:** the recommended action for many groups above shifts from "301 redirect" to "serve as blog post at same URL" — preserves SEO + gives you content to rank on. We'd migrate the highest-value old content and redirect the rest.
-- **If NO:** we 301 everything to the closest service page. Fastest, cheapest, still preserves most SEO equity.
+**Effort if YES:** 4-6 hours for the 10-15 migrations. Would need buffer usage sign-off or change order.
 
-Both paths are inside the current MVP scope; the difference is ~1 hour of my time (redirects) vs ~4-6 hours (blog migration for maybe 10-15 best articles). Redirect path stays within engagement letter cap; blog migration would need buffer + your sign-off.
+**If NO:** we 301 everything to the closest service page (per the table above). Fastest, cleanest, preserves most SEO equity in aggregate.
+
+**Effort if NO:** ~1 hour to add all 11 group redirects plus catch-all. Inside current MVP scope.
 
 ---
 
-## Decision template — copy/paste back to me
+## Decision template — copy-paste back to reply
 
-Fastest path for you: reply with just this filled in.
+Fastest path: paste this in an email with your ticks.
 
 ```
 Macro-decision 1 (suburbs):
-[X] Option A — auto-serve all via dynamic route (recommended)
-[ ] Option B — trim list. Suburbs to remove: _______________
+[X] Option A — single catch-all /pest-control-* → /service-areas (recommended)
+[ ] Option B — regional deep-links for 75 curated suburbs
+[ ] Option C — build individual suburb pages (outside MVP scope)
 
 Macro-decision 2 (blog groups):
 Blog on new site in next 6-12 months?
-[ ] Yes — migrate best 10-15 articles + 301 the rest
+[ ] Yes — migrate top 10-15 articles + 301 the rest (needs buffer sign-off)
 [ ] No — 301 everything to nearest service page (recommended if no blog planned)
 
-Groups I want to 410 Gone entirely (comma-separated group names, e.g. "Wasps, Fleas, Silverfish"):
+Groups I want to 410 Gone instead of redirect (comma-separated, or "none"):
 _______________
 
-Anything else you want handled differently: _______________
+Anything else: _______________
 ```
 
-**Once you send this back, redirect execution is ~1 hour on my side and gets shipped before DNS cutover.**
+**Once you send this back, redirect execution is ~1 hour on our side and gets shipped before DNS cutover. No further sign-off needed.**
+
+---
+
+## What happens after Adam approves
+
+1. Add the approved redirect block to `public/_redirects` — one commit
+2. Local `next build` verification
+3. Push to `origin/main` — auto-deploys via Netlify (and later Cloudflare Pages)
+4. curl-verify 5-10 sample URLs from each macro-decision to confirm the redirects fire correctly
+5. Note the completed redirect count in `MVP_STATUS.md` change log
+
+Estimated total from Adam-approval to live: **~1 hour**.
 
 ---
 
 ## Why this matters
 
-Every day these URLs return 404, search engines slowly drop them. Cumulative SEO equity lost from 290 URLs over 6 months = potentially 2-6 months of organic-lead delay after cutover. Getting the redirects in early = lead pipeline doesn't dip during the transition.
+Every day the 372 URLs return 404, search engines slowly drop them. Cumulative SEO equity lost from 372 URLs over 6 months = potentially 2-6 months of organic-lead delay after cutover. Getting the redirects in early = lead pipeline does not dip during the DNS transition.
 
-Also — the old URLs will show up in Google Search Console as 404 errors once you verify the domain. Not a critical alarm bell but easier to have them all 301'd first than to handle the noise later.
+Also — the old URLs will appear as 404 errors in Search Console once the domain is verified there. Not a critical alarm, but tidier to have them all 301'd first than to handle the noise later.
+
+---
+
+## Version history
+
+- **2026-06-27** — Initial draft with suburb + blog decision framework
+- **2026-08-07** — Corrected inaccuracies: no dynamic suburb route exists in codebase (306 suburbs need catch-all redirect, not 231); blog raw file contains 66 URLs (not 59). Clarified Option C is outside MVP scope. Restructured recommendations for clarity.
