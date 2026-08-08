@@ -191,16 +191,15 @@ These live in two different places depending on what you're changing.
 5. Top-right → **Submit** to publish a new container version. Add a version name like "Updated Meta Pixel ID".
 6. Live in about 30 seconds.
 
-**WhatConverts token or GTM Container ID** (both are Netlify env vars):
+**GTM Container ID** (env var on the hosting platform):
 
-1. Netlify dashboard → your site → **Site settings** → **Environment variables**.
-2. Find the variable to change:
-   - `NEXT_PUBLIC_GTM_ID` for the GTM container ID
-   - `NEXT_PUBLIC_WHATCONVERTS_TOKEN` for the WhatConverts API token
-   - `NEXT_PUBLIC_WHATCONVERTS_PROFILE_ID` for the WhatConverts profile ID
+1. Hosting dashboard → **Environment variables** (Netlify on the current stopgap, Cloudflare Pages once the permanent migration completes).
+2. Find `NEXT_PUBLIC_GTM_ID`.
 3. Click Edit → change the value → Save.
-4. Trigger a redeploy: **Deploys** tab → **Trigger deploy** → **Deploy site**.
+4. Trigger a redeploy from the Deploys tab.
 5. Live in about 30 seconds.
+
+**WhatConverts** — call tracking is live via the tracking script installed in GTM (`tag.whatconverts.script`). Form-lead ingestion into WhatConverts requires the Plus plan on the WhatConverts side. As of 7 Aug 2026 Adam is on the Call Tracking base tier; a Plus plan upgrade would enable form-lead ingest with about 15 minutes of integration work on our side. Until then, form leads flow via GA4 into BigQuery and the dashboard, and WhatConverts covers phone leads only.
 
 ### 4.5 Check whether GA4 is receiving events (from the site)
 
@@ -334,9 +333,10 @@ Practical fixes for common issues.
 
 Each of these gets a matching page or panel added to the dashboard when it lands. No dashboard rebuild needed — the pattern is: new data source → new BigQuery staging view → new Looker Studio page.
 
-- **Dashboard Pages 2-6** — Acquisition, Behaviour, Conversion Detail, Segments, Search Console. Build starts after your Page 1 approval.
+- **Dashboard Pages 2-6** — all six pages now built. Awaiting your approval on Pages 2-6 (Page 1 already approved 22 Jul).
 - **WhatConverts phone tracking** — needs your OK on a Melbourne 03 forwarding number. Once set up + Australian carrier verification (24-48h), all phone leads get source attribution.
-- **WhatConverts form ingest** — code is deployed and waiting on your WhatConverts API token (an env var flip in Netlify + redeploy = live).
+- **WhatConverts form ingest** — requires a Plus plan upgrade on the WhatConverts side (~$30/month above your current Call Tracking tier). About 15 minutes of integration work on our side after the upgrade. Not required for MVP — form leads already flow via GA4 → BigQuery → dashboard.
+- **Cloudflare Pages migration** — hosting decision confirmed 1 Aug. Migration prep complete (`docs/CLOUDFLARE_PAGES_MIGRATION.md` and `docs/DNS_CUTOVER_RUNBOOK.md`). Execution takes about 30 minutes once you grant `sharjeel@meetapex.ai` access to your Cloudflare account.
 - **Search Console** — activates when you add the TXT record at your domain registrar. Then the Search Console page in the dashboard shows queries + impressions + clicks + CTR.
 - **GoHighLevel CRM ingest** — future block. Adds a "Sales Pipeline" page with deals, close rates, and revenue by source.
 - **Zoom Phone call recordings + transcripts** — future block.

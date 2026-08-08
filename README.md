@@ -21,7 +21,7 @@ Website + analytics platform for [Zap It Pest & Termite Control Melbourne](https
 - **UI primitives:** `@base-ui/react`, `shadcn/ui` (only where needed)
 - **Icons:** `lucide-react`
 - **Analytics:** custom module in `src/lib/analytics/` with dataLayer helpers
-- **Deployment:** Netlify (site is currently hosted on a temporary personal Netlify account. Permanent host — Cloudflare Pages or Zap-It-owned Netlify — is a pre-cutover decision; see `docs/HOSTING_DECISION_HELPER.md`)
+- **Deployment:** currently on a temporary Apex Netlify account. Permanent host is **Cloudflare Pages** (confirmed by Adam 1 Aug 2026). Migration prep is complete — see `docs/CLOUDFLARE_PAGES_MIGRATION.md` and `docs/DNS_CUTOVER_RUNBOOK.md`. Both `public/_headers` and `public/_redirects` are portable across both platforms without changes.
 - **Data warehouse:** Google BigQuery (project `zapit-business-intelligence`, region `australia-southeast1`)
 - **Package manager:** npm
 
