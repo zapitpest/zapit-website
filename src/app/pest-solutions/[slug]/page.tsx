@@ -37,7 +37,7 @@ const PEST_SOLUTION_PAGES: Record<PestSolutionSlug, PestSolutionPage> = {
     h1: 'Seasonal Pest Control in Melbourne',
     heroDescription:
       'Pest pressure changes with the weather. We time inspections and treatments so your home stays protected through every Melbourne season.',
-    heroImage: '/images/residential/hero-cottage.png',
+    heroImage: '/images/residential/hero-cottage.webp',
     icon: Sun,
     paragraphs: [
       'Melbourne\u2019s seasons do not just change what you wear outdoors\u2014they change which pests are most likely to move in. In summer, warmth and moisture often bring cockroaches and flies into kitchens and roof voids. Winter sends rodents looking for shelter and easy food. Spring wakes ant colonies, and autumn can push spiders and other critters toward the drier, warmer edges of your property.',
@@ -83,7 +83,7 @@ const PEST_SOLUTION_PAGES: Record<PestSolutionSlug, PestSolutionPage> = {
     h1: 'Garden & Outdoor Pest Control',
     heroDescription:
       'From vege beds to entertaining decks, we help keep your outdoor spaces enjoyable by managing the pests that damage plants, lawns, and your peace of mind.',
-    heroImage: '/images/residential/townhouse.png',
+    heroImage: '/images/residential/townhouse.webp',
     icon: Flower2,
     paragraphs: [
       'Your garden is an extension of your home: barbecues, kids\u2019 play, pets, and weekend gardening all happen outside. Pests in the soil, on foliage, or along fences can wreck plants, annoy guests, and sometimes find a path indoors. We treat outdoor areas with an eye for both plant health and the way you use the space\u2014minimising impact on the bits you actually live in.',
@@ -226,7 +226,7 @@ export default async function PestSolutionSubPage({ params }: Props) {
               </div>
 
               <div className="mt-10 overflow-hidden rounded-2xl">
-                <Image src="/images/residential/cat-girl.png" alt={`${page.title} Melbourne`} width={700} height={500} className="h-auto w-full" />
+                <Image src="/images/residential/pet-safe.webp" alt="Pet-safe pest treatment by a Zapit technician — protection that keeps children and pets safe" width={700} height={500} className="h-auto w-full" />
               </div>
             </div>
 

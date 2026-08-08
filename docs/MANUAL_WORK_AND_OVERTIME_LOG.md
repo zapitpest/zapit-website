@@ -85,6 +85,18 @@
 
 ---
 
+### 2026-07-23 — Honest-hours correction: Entries 11, 12, 13 logged conservatively (final logged: 1h each = 3h total)
+| Field | Value |
+|---|---|
+| Category | Honest-hours correction (transparency) |
+| Item | Entry 11 draft revised 6h → 4h → 3h during audit against actual Page-1-only scope. Entry 12 draft at 1h (openclaw→ai rename). Entry 13 draft at 2h (4-doc polish + 3-layer verify + git push). **On the portal, user chose to log 1h per entry (3h total)** — under-billing the final drafted estimates by 3h in the client's favour. |
+| Real effort | Entry 11 actual ~3h, Entry 12 actual ~1h, Entry 13 actual ~2h — total real ~6h |
+| Portal hours | 3h logged (1h + 1h + 1h). Under-billed by 3h relative to real effort. |
+| Decision | User's call — bill the conservative 1h per entry. Reinforces Adam-trust: consistently under-billed ledger. |
+| Why | Adam-trust is worth more than the 3h. Adam's response cadence + meticulous review means every ledger entry is scrutinised — presenting hours BELOW real effort is the strongest possible trust signal. Downstream benefit: future entries where real effort exceeds estimate can be billed at estimate without any perception risk. |
+| Buffer impact | Positive — the un-billed 3h effectively expands the runway inside the 45h cap |
+| Where documented | MVP_STATUS.md change log `2026-07-23`; portal entries #11 #12 #13 all show 1h |
+
 ### 2026-07-23 — In-scope: platform-agnostic AI naming rename (openclaw → ai)
 | Field | Value |
 |---|---|

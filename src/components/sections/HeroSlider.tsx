@@ -7,8 +7,8 @@ export default function HeroSlider() {
       <div className="mx-auto w-full max-w-[560px] px-3 sm:px-4 lg:max-w-[640px] lg:px-6">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/residential/hero-cottage.png"
-          alt="Protecting your family and home from pest damage and harm - 5 star Google rating"
+          src="/images/residential/hero-cottage.webp"
+          alt="Zapit pest control technician protecting a Melbourne home"
           className="h-auto w-full lg:rounded-3xl lg:shadow-2xl"
           loading="eager"
         />

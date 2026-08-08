@@ -13,7 +13,7 @@ export default function HomeHero() {
       <div className="w-full px-3 py-2 sm:px-4 sm:py-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/residential/hero-cottage.png"
+          src="/images/residential/hero-cottage.webp"
           alt="Zapit pest control technician protecting a Melbourne home"
           className="h-auto w-full"
           loading="eager"

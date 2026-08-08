@@ -147,7 +147,7 @@ Never send unhashed PII to any external service. See R2.
 
 ### BigQuery as the single source of truth
 
-All analytics data — from GA4, WhatConverts, Meta Pixel, Clarity, future Zoom/GHL/PostHog — lands in BigQuery. Reporting reads from BigQuery. No vendor's dashboard is treated as the source of truth. This means:
+All analytics data — from GA4, WhatConverts, Meta Pixel, Clarity, future Zoom/CRM/PostHog — lands in BigQuery. Reporting reads from BigQuery. No vendor's dashboard is treated as the source of truth. This means:
 - Zero lock-in to any specific analytics vendor
 - Cross-source joins are always possible via the identity-stitching layer (`user_pseudo_id`, hashed email + phone)
 - Historical data is preserved even if a vendor is switched or shut down
@@ -158,9 +158,28 @@ Each future data source has a reserved BigQuery dataset already provisioned (Wha
 
 See `docs/ADAM_15_SOURCES_ALIGNMENT.md` for the full map.
 
+### CRM-agnostic warehouse (Adam directive, 23 Jul 2026)
+
+Adam is reconsidering CRM direction — may use a custom Lovable/Supabase CRM instead of GoHighLevel. The warehouse and identity-stitching layer must stay CRM-agnostic.
+
+- Use generic concepts across CRM data: **contacts, leads, opportunities, outcomes, revenue.**
+- Any future CRM ingest (whether GHL, Lovable/Supabase, HubSpot, or otherwise) populates these generic tables. Vendor identity becomes a field, not the schema name.
+- `zapit_reserved_ghl` stays as an optional vendor-specific ingest target if GHL ships, but it is NOT the assumed system of record.
+- Reporting reads from the generic layer only. Never write a widget that references a specific vendor's raw table.
+- **How to apply:** When any CRM ingest gets scheduled, land data in a generic `zapit_reserved_crm` schema (contacts / leads / opportunities / outcomes / revenue), regardless of which CRM Adam picks.
+
+### AI stack naming (Adam directive, 23 Jul 2026)
+
+Adam has moved off OpenClaw. Current AI stack:
+- **Hermes** — orchestration layer
+- **Claude** — reasoning + analysis layer
+- **Coding agents** — implementation of approved changes
+
+The `zapit_reserved_ai` dataset naming is correct and platform-agnostic. `ai_outputs.source_agent` records which specific agent produced a row (Hermes, Claude, coding-agent, or future). Documentation and diagrams should NAME Hermes + Claude + coding-agents as the assumed stack, not "future AI agents" generically.
+
 ### Human-approval gate on all AI-generated actions
 
-Every row in `zapit_reserved_ai.ai_outputs`, `zapit_reserved_ai.ai_recommendations`, and any future AI table has a `human_approval_status` field. Nothing implements without approval. Same rule applies to any AI agent — Hermes, Claude, Codex, future — the `source_agent` column tells you which agent produced it, but the approval requirement is the same regardless.
+Every row in `zapit_reserved_ai.ai_outputs`, `zapit_reserved_ai.ai_recommendations`, and any future AI table has a `human_approval_status` field. Nothing implements without approval. Same rule applies to any AI agent — Hermes, Claude, coding-agents, future — the `source_agent` column tells you which agent produced it, but the approval requirement is the same regardless.
 
 See R6.
 

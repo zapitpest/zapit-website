@@ -59,7 +59,7 @@ const PEST_TABS = [
   },
 ] as const;
 
-const TAB_IMAGE = '/images/residential/highrise-specialist.png';
+const TAB_IMAGE = '/images/residential/highrise-specialist.webp';
 
 export function HomepageReviews() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -155,7 +155,7 @@ export function HomepagePestServiceTabs() {
           </div>
         </div>
         <div className="relative aspect-[4/3] w-full min-w-0 max-w-full overflow-hidden rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.15)]">
-          <Image src={TAB_IMAGE} alt={tab.title} fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
+          <Image src={TAB_IMAGE} alt="Zapit high-rise pest specialist on a Melbourne apartment balcony" fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
         </div>
       </div>
 

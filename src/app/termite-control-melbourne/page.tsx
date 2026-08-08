@@ -332,7 +332,7 @@ export default function TermiteControlMelbournePage() {
         <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
             <div className="overflow-hidden rounded-2xl">
-              <Image src="/images/residential/highrise-specialist.png" alt="Zapit pest control technician" width={600} height={600} className="h-auto w-full" />
+              <Image src="/images/residential/highrise-specialist.webp" alt="Zapit high-rise pest specialist on a Melbourne apartment balcony" width={600} height={600} className="h-auto w-full" />
             </div>
             <div>
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#64FF01]/15">

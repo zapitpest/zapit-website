@@ -231,7 +231,7 @@ export default function HomePage() {
         <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
           <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
             <Image
-              src="/images/residential/cat-girl.png"
+              src="/images/residential/pet-safe.webp"
               alt="Zapit were great to deal with and I felt confident they took my cat's safety seriously — Jenny, Hawthorn resident"
               width={750}
               height={880}
@@ -328,7 +328,7 @@ export default function HomePage() {
           Mobile = full-bleed Figma; desktop = framed card with proper breathing room. */}
       <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
-          <Image src="/images/residential/family-trust.png" alt="Protection you can trust — We have serviced over 20,000 homes in Melbourne" width={712} height={1002} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
+          <Image src="/images/residential/family-trust.webp" alt="Protection you can trust — We have serviced over 20,000 homes in Melbourne" width={712} height={1002} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
         </div>
       </section>
 
@@ -344,7 +344,7 @@ export default function HomePage() {
       {/* 11d. Townhouse image — text is already in the image */}
       <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
-          <Image src="/images/residential/townhouse.png" alt="We treat your home as if it were ours — Your satisfaction is our highest priority" width={650} height={702} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
+          <Image src="/images/residential/townhouse.webp" alt="We treat your home as if it were ours — Your satisfaction is our highest priority" width={650} height={702} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
         </div>
       </section>
 
@@ -360,7 +360,7 @@ export default function HomePage() {
       {/* 11f. High rise specialist image — text is already in the image */}
       <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
-          <Image src="/images/residential/highrise-specialist.png" alt="We're high rise specialists — We have quickly become specialists in high rise living pest protection" width={648} height={878} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
+          <Image src="/images/residential/highrise-specialist.webp" alt="We're high rise specialists — We have quickly become specialists in high rise living pest protection" width={648} height={878} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
         </div>
       </section>
 

@@ -26,13 +26,13 @@
 | 6 | WhatConverts | `zapit_reserved_whatconverts` | 🟡 Partial | Yes — `calls` table shell defined in [sql/003_reserved_schemas.sql](../sql/003_reserved_schemas.sql) | Tracking script LIVE; call data ingestion is Phase 2 follow-up work |
 | 7 | Microsoft Clarity | `zapit_reserved_clarity` | 🟡 Partial | Yes — `sessions` table shell defined | Tag LIVE + collecting; ingest to BigQuery is future block |
 | 8 | Zoom Phone | `zapit_reserved_zoom` | 📋 Reserved | Yes — `calls` + `transcripts` tables defined | Ingest is future block |
-| 9 | GoHighLevel | `zapit_reserved_ghl` | 📋 Reserved | Yes — `contacts` + `opportunities` + `pipeline_stages` tables defined | Ingest is future block |
+| 9 | CRM (Lovable/Supabase custom OR GoHighLevel — Adam reconsidering as of 23 Jul) | `zapit_reserved_crm` (generic — contacts / leads / opportunities / outcomes / revenue). `zapit_reserved_ghl` remains as an optional vendor-specific ingest target if GHL ends up being used. | 📋 Reserved | Vendor-specific `ghl` shell exists (`contacts` + `opportunities` + `pipeline_stages`) but is NOT assumed system of record. Generic `crm` schema will be provisioned when CRM ingest is scheduled. | Adam's 23 Jul directive: keep CRM-agnostic. Use generic concepts. GHL becomes optional future source, not the assumed CRM. |
 | 10 | Commercial Portal data | `zapit_reserved_operational` | 📋 Reserved | Dataset created; specific table shells pending Adam clarifying portal schema | Custom to Zap It's commercial workflow |
 | 11 | Operational KPIs | `zapit_reserved_operational` (proposed `kpi_snapshots`) | 📋 Reserved | Dataset created | Wide-format daily KPI snapshots for exec view |
 | 12 | Technician performance | `zapit_reserved_operational` (proposed `technician_daily`) | 📋 Reserved | Dataset created | Per-tech per-day metrics — jobs completed, revenue, quality scores |
 | 13 | Proposal pipeline | `zapit_reserved_operational` (proposed `proposals`) | 📋 Reserved | Dataset created | Proposal lifecycle — draft → sent → viewed → accepted/declined |
 | 14 | Revenue reporting | `zapit_reserved_operational` (proposed `revenue_daily`) | 📋 Reserved | Dataset created | Daily revenue rollup by service line + source |
-| 15 | Future AI insights (platform-agnostic layer) | `zapit_reserved_ai` | 📋 Reserved | Yes — `ai_outputs` + `ai_recommendations` + `ai_learning` tables, all with **`human_approval_status`** NOT NULL field per Adam's mandatory rule | Verified in `sql/003_reserved_schemas.sql`. Renamed from `zapit_reserved_openclaw` on 23-Jul-2026 per Adam's 20-Jul platform-agnostic naming request — works with Hermes, Claude, Codex, and future AI agents. |
+| 15 | AI insights layer (Hermes orchestration + Claude reasoning + coding agents implementation, per Adam's 23 Jul directive) | `zapit_reserved_ai` | 📋 Reserved | Yes — `ai_outputs` + `ai_recommendations` + `ai_learning` tables, all with **`human_approval_status`** NOT NULL field per Adam's mandatory rule. `source_agent` column records which specific agent produced each row. | Verified in `sql/003_reserved_schemas.sql`. Renamed from `zapit_reserved_openclaw` on 23-Jul-2026. Assumed stack: Hermes (orchestration), Claude (reasoning + analysis), coding agents (implementation of approved changes). |
 | 16 | PostHog (product analytics for internal apps — future) | `zapit_reserved_posthog` | 📋 Reserved (dataset pending provisioning until first internal app is instrumented) | Not yet — schema documented in `docs/POSTHOG_FUTURE_ARCHITECTURE.md` | Adam raised 20 Jul; endorsed for Commercial Portal + CRM + technician portal + AI apps. Same ingest pattern as other reserved sources. |
 
 **Totals:** 16 sources · 16 have a home · 1 LIVE · 2 partial · 13 reserved. **Zero closed off.**
@@ -63,7 +63,7 @@ Every reserved schema has fields that allow join back to `stg_leads` — that's 
 |---|---|
 | WhatConverts calls | `caller_phone_hash` → `user_phone_hash` on `stg_leads` |
 | Zoom Phone | `caller_phone_hash` → `user_phone_hash` (same pattern) |
-| GHL contacts | `email_hash` → `user_email_hash`, `phone_hash` → `user_phone_hash` |
+| CRM contacts (Lovable/Supabase, GHL, or other) | `email_hash` → `user_email_hash`, `phone_hash` → `user_phone_hash` |
 | Meta Ads | `traffic_source = 'facebook'` + `traffic_medium` + `campaign` |
 | Google Ads | `traffic_source = 'google'` + `traffic_medium = 'cpc'` + `campaign` |
 | Clarity sessions | `ga_client_id` → `user_pseudo_id` on `stg_leads` |

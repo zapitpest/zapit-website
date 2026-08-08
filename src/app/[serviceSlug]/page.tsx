@@ -279,7 +279,7 @@ export default async function ServicePage({ params }: Props) {
       {/* ===== IMAGE BREAK — capped on desktop so baked-in green overlay isn't cropped/stretched ===== */}
       <section className="bg-[#0d402e] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[560px] lg:px-6">
-          <Image src="/images/residential/townhouse.png" alt="We treat your home as if it were ours" width={650} height={702} className="h-auto w-full overflow-hidden rounded-3xl shadow-xl" sizes="(min-width: 1024px) 560px, 100vw" />
+          <Image src="/images/residential/townhouse.webp" alt="We treat your home as if it were ours" width={650} height={702} className="h-auto w-full overflow-hidden rounded-3xl shadow-xl" sizes="(min-width: 1024px) 560px, 100vw" />
         </div>
       </section>
 

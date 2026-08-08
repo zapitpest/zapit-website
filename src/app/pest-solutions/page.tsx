@@ -183,7 +183,7 @@ export default function PestSolutionsPage() {
       <section className="bg-white py-10 sm:py-14 lg:py-16">
         <div className="mx-auto w-full max-w-[640px] px-5 sm:px-6 lg:max-w-[560px]">
           <div className="overflow-hidden rounded-3xl shadow-xl">
-            <Image src="/images/residential/family-trust.png" alt="Protection you can trust — Zapit Pest Control Melbourne" width={712} height={1002} className="h-auto w-full" sizes="(min-width: 1024px) 560px, (min-width: 640px) 560px, 100vw" />
+            <Image src="/images/residential/family-trust.webp" alt="Protection you can trust — Zapit Pest Control Melbourne" width={712} height={1002} className="h-auto w-full" sizes="(min-width: 1024px) 560px, (min-width: 640px) 560px, 100vw" />
           </div>
         </div>
       </section>
@@ -201,7 +201,7 @@ export default function PestSolutionsPage() {
         <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div className="overflow-hidden rounded-2xl shadow-lg">
-              <Image src="/images/residential/cat-girl.png" alt="Zapit pest control technician treating a Melbourne home" width={600} height={500} className="h-auto w-full" />
+              <Image src="/images/residential/pet-safe.webp" alt="Pet-safe pest treatment by a Zapit technician — protection that keeps children and pets safe" width={600} height={500} className="h-auto w-full" />
             </div>
             <div>
               <span className="mb-3 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Professional Standards</span>
@@ -280,7 +280,7 @@ export default function PestSolutionsPage() {
               </div>
             </div>
             <div className="overflow-hidden rounded-2xl shadow-lg">
-              <Image src="/images/residential/highrise-specialist.png" alt="Zapit pest control specialists" width={600} height={700} className="h-auto w-full" />
+              <Image src="/images/residential/highrise-specialist.webp" alt="Zapit high-rise pest specialist on a Melbourne apartment balcony" width={600} height={700} className="h-auto w-full" />
             </div>
           </div>
         </div>
