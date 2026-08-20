@@ -23,7 +23,7 @@ const OPERATING_HOURS = [
 export function generateMetadata(): Metadata {
   return {
     title: { absolute: 'Contact Us | Zapit Pest & Termite Control Melbourne' },
-    description: `Contact ${BUSINESS_LINE}. ${DISPLAY_PHONE} · ${SITE_CONFIG.emailWork} · ${ADDRESS_LINE}. Pest protection you can trust. Same day service available — call now.`,
+    description: `Contact ${BUSINESS_LINE}. Call ${DISPLAY_PHONE} or email ${SITE_CONFIG.emailWork}. Same-day service available.`,
     alternates: { canonical: '/contact-us' },
     openGraph: { url: '/contact-us' },
   };

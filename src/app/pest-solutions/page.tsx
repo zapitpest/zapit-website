@@ -9,7 +9,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import StatsCounter from '@/components/sections/StatsCounter';
 
 export const metadata: Metadata = {
-  title: { absolute: `Pest Control Solutions in Melbourne | ${SITE_CONFIG.name}` },
+  title: { absolute: `Pest Control Solutions Melbourne | ${SITE_CONFIG.shortName}` },
   description: `Complete pest control solutions for Melbourne homes and businesses. From ants and termites to rodents and possums — Zapit handles it all. Call ${SITE_CONFIG.phone}.`,
   alternates: { canonical: '/pest-solutions' },
 };

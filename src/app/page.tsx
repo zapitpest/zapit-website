@@ -81,7 +81,7 @@ function PestIcon({ slug, label }: { slug: string; label: string }) {
 }
 
 export const metadata: Metadata = {
-  title: { absolute: `Pest Control Melbourne | ${SITE_CONFIG.name}` },
+  title: { absolute: `Pest Control Melbourne | ${SITE_CONFIG.shortName}` },
   description: `Protect your Melbourne home with Zapit. Child & pet safe, same-day residential pest control. Termite inspections from $349. Call ${SITE_CONFIG.phone}.`,
   alternates: { canonical: '/' },
   openGraph: {

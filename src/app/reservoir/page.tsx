@@ -7,8 +7,8 @@ const REGION = 'North';
 const SLUG = 'reservoir';
 
 export const metadata: Metadata = {
-  title: { absolute: `Pest Control ${SUBURB} | ${SITE_CONFIG.name}` },
-  description: `Professional pest control in ${SUBURB}, Melbourne. Same-day service, licensed technicians, safe for pets & people. Call ${SITE_CONFIG.phone} for fast pest removal in ${SUBURB}.`,
+  title: { absolute: `Pest Control ${SUBURB} | Same-Day | ${SITE_CONFIG.shortName}` },
+  description: `Same-day pest control in ${SUBURB}, Melbourne. Licensed technicians, treatments safe for pets & people. Call ${SITE_CONFIG.phone} to book.`,
   alternates: { canonical: `/${SLUG}` },
   openGraph: {
     title: `Pest Control ${SUBURB} | ${SITE_CONFIG.name}`,
