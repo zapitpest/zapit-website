@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { SITE_CONFIG } from '@/lib/constants';
 
 const ASSURANCES = ['Child safe', 'Pet safe', 'Eco friendly'] as const;
@@ -78,21 +77,6 @@ export default function HomeHero() {
             <span className="text-[14px] font-medium text-zapit-dark">
               Google rating ({SITE_CONFIG.rating.count})
             </span>
-          </div>
-
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a
-              href={SITE_CONFIG.phoneTel}
-              className="inline-flex min-h-[48px] items-center rounded-full bg-zapit-green px-7 py-3 text-[15px] font-bold text-white transition-transform hover:scale-105"
-            >
-              Call {SITE_CONFIG.phone}
-            </a>
-            <Link
-              href="/pest-solutions"
-              className="inline-flex min-h-[48px] items-center rounded-full border border-white/40 px-7 py-3 text-[15px] font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
-            >
-              Pest solutions &amp; price list
-            </Link>
           </div>
         </div>
       </div>
