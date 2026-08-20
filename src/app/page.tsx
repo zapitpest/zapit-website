@@ -357,10 +357,11 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* 11f. High rise specialist image — text is already in the image */}
+      {/* 11f. High rise specialist image (Figma Apartments_02). The "We're high rise
+          specialists" label from the design is not yet built as markup. */}
       <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
-          <Image src="/images/residential/highrise-specialist.webp" alt="We're high rise specialists — We have quickly become specialists in high rise living pest protection" width={648} height={878} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
+          <Image src="/images/residential/highrise-specialist.webp" alt="A Melbourne high-rise apartment building serviced by Zapit pest control" width={1400} height={1225} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
         </div>
       </section>
 
