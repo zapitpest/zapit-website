@@ -7,7 +7,7 @@ import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceS
 
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import type { BreadcrumbItem } from '@/types';
-import HeroSlider from '@/components/sections/HeroSlider';
+import HomeHero from '@/components/sections/HomeHero';
 import GoogleReviewsCarousel from '@/components/sections/GoogleReviewsCarousel';
 import PriceCalculator from '@/components/sections/PriceCalculator';
 
@@ -105,9 +105,8 @@ export default function HomePage() {
     <>
       <JsonLd data={schemas} />
 
-      {/* ===== 1. HERO IMAGE SLIDER (images already contain text/border/badge) ===== */}
-      <HeroSlider />
-      <h1 className="sr-only">Residential Pest Control Services Melbourne — Zapit</h1>
+      {/* ===== 1. HERO — real markup, not a baked image. Carries the visible h1. ===== */}
+      <HomeHero />
 
       {/* ===== 2. WE TREAT ALL HOUSEHOLD PESTS — dark green bg, left aligned per Figma ===== */}
       {/* Typography: H 20px Bold / line-height 29px. Body 14px Regular / line-height 18px. */}

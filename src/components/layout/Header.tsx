@@ -140,7 +140,11 @@ export default function Header() {
           </div>
         </div>
 
-        {/* ----- DESKTOP LAYOUT (single row): logo + nav + phone ----- */}
+        {/* ----- DESKTOP LAYOUT: logo + nav + phone, then tagline + tabs -----
+             The Residential/Commercial tabs already existed on mobile but not here,
+             so on desktop the split was buried in the nav. Zapit_desktop_03 puts it
+             directly under the header on both pages. Same tabCls + active state as
+             mobile — this is an addition, not a second implementation. ----- */}
         <div className="hidden lg:block">
           <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-6 py-4">
             <Link href="/" className="shrink-0" aria-label="Zapit home">
@@ -156,6 +160,16 @@ export default function Header() {
             <a href={SITE_CONFIG.phoneTel} className="whitespace-nowrap text-[16px] font-semibold text-white hover:text-[#64FF01]">
               {SITE_CONFIG.phone}
             </a>
+          </div>
+
+          <div className="mx-auto flex max-w-[1280px] items-center gap-8 px-6 pb-4">
+            <p className="text-white/85" style={{ fontSize: '15px', lineHeight: '28px', fontWeight: 300 }}>
+              {SITE_CONFIG.tagline}
+            </p>
+            <div className="flex w-[340px] gap-2.5">
+              <Link href="/" className={tabCls(isResidential, 'lg')}>Residential</Link>
+              <Link href="/commercial-pest-control" className={tabCls(isCommercial, 'lg')}>Commercial</Link>
+            </div>
           </div>
         </div>
       </div>
