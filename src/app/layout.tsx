@@ -41,8 +41,11 @@ const graphik = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: `Pest Control Melbourne | ${SITE_CONFIG.name}`,
-    template: `%s | ${SITE_CONFIG.name}`,
+    // The full brand name is 38 chars, which pushed every templated title past
+    // Google's ~60 char cut-off. shortName ("Zapit Pest Control") keeps the brand
+    // visible without eating the differentiator.
+    default: `Pest Control Melbourne | ${SITE_CONFIG.shortName}`,
+    template: `%s | ${SITE_CONFIG.shortName}`,
   },
   description: `Pest protection you can trust. Zapit protects Melbourne homes and businesses from pests with licensed, approved solutions. Call ${SITE_CONFIG.phone}.`,
   openGraph: {

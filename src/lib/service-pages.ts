@@ -15,7 +15,7 @@ export const SERVICE_PAGES = {
     h1: 'Ant Pest Control Melbourne',
     metaTitle: 'Ant Pest Control Melbourne',
     metaDescription:
-      'Professional ant control in Melbourne. Targeted treatments for trails, nests, and entry points. Licensed technicians, approved methods, and fast response times.',
+      'Professional ant control in Melbourne. Targeted treatments for trails, nests and entry points. Licensed technicians using approved methods.',
     content:
       'Ants may be small, but Melbourne homes and businesses often face large-scale infestations once a scent trail is established. We identify the species, locate nesting areas, and apply targeted treatments that break the colony cycle—not just the workers you see on your benchtop. Whether you are dealing with black house ants, coastal brown ants, or persistent pavement ants, our team maps activity and uses integrated pest management to deliver lasting relief.',
     features: [
@@ -49,7 +49,7 @@ export const SERVICE_PAGES = {
     h1: 'Bee Removal Melbourne',
     metaTitle: 'Bee Removal Melbourne',
     metaDescription:
-      'Safe bee and swarm management across Melbourne. Assessment of hive location, access, and the best next step to protect your family and the colony where possible.',
+      'Safe bee and swarm management across Melbourne. We assess hive location and access, then choose the step that protects your family and the colony.',
     content:
       'Bees are vital pollinators, but a swarm in a wall cavity, chimney, or eave can create a sting risk, especially for allergic residents. We assess the situation, identify whether relocation or controlled removal is appropriate, and work with care around children, pets, and public areas. If you notice intense flight activity or a growing cluster, call us before the colony becomes more established in the structure.',
     features: [
@@ -203,7 +203,7 @@ export const SERVICE_PAGES = {
     h1: 'Spider Control Melbourne',
     metaTitle: 'Spider Control Melbourne',
     metaDescription:
-      'Spider treatments for homes and sheds across Melbourne. Web clearing, void dusting, and external perimeter work to cut down activity before it moves indoors.',
+      'Spider treatments for homes and sheds across Melbourne. Web clearing, void dusting and perimeter work to cut activity before it moves indoors.',
     content:
       'Most spiders are beneficial predators, but redbacks near play equipment and webbing on alfresco areas are not what you want. We treat harbourage, entry points, and voids, and can focus on outbuildings, pool fencing, and letterboxes. Seasonal external treatments are popular before warm weather lifts hunting activity.',
     features: [

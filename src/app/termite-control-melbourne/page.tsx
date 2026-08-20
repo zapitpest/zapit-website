@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   // appended the site name, causing truncation in SERPs.
   title: { absolute: 'Termite Control Melbourne | Zapit Pest & Termite Control' },
   description:
-    'Zapit Pest & Termite Control Melbourne — certified, licensed & insured termite specialists. Same-day inspections, liquid & bait treatments, approved. Call 9126 0555.',
+    'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
   alternates: { canonical: '/termite-control-melbourne' },
   openGraph: { url: '/termite-control-melbourne' },
 };

@@ -28,8 +28,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (isSuburbSlug(serviceSlug)) {
     const data = getSuburbBySlug(serviceSlug);
     if (!data) return {};
-    const title = `Pest Control ${data.name} | ${SITE_CONFIG.name}`;
-    const description = `Professional pest control in ${data.name}, Melbourne. Same-day service, licensed technicians, safe for pets & people. Call ${SITE_CONFIG.phone} for fast pest removal in ${data.name}.`;
+    // Google truncates titles past ~60 chars and descriptions past ~155. The old
+    // template ran 61-70 chars on every suburb (the full brand name alone is 38),
+    // so the differentiator was always cut off. Step down through variants and use
+    // the longest one that still fits. Claims are unchanged from the previous copy.
+    const title =
+      [
+        `Pest Control ${data.name} | Same-Day Service | ${SITE_CONFIG.shortName}`,
+        `Pest Control ${data.name} | Same-Day | ${SITE_CONFIG.shortName}`,
+        `Pest Control ${data.name} | ${SITE_CONFIG.shortName}`,
+      ].find((t) => t.length <= 60) ?? `Pest Control ${data.name} | Zapit`;
+    const description = `Same-day pest control in ${data.name}, Melbourne. Licensed technicians, treatments safe for pets & people. Call ${SITE_CONFIG.phone} to book.`;
     return {
       title: { absolute: title },
       description,

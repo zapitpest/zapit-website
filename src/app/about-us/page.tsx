@@ -17,7 +17,7 @@ const TRUST_PILLS = [
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'Zapit Pest & Termite Control Melbourne: built on trust, with an uncompromising commitment to customer satisfaction, professional standards, and safe pest protection across Melbourne.',
+    'Zapit Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.',
   alternates: { canonical: '/about-us' },
   openGraph: {
     url: '/about-us',

@@ -31,9 +31,9 @@ type PestSolutionPage = {
 const PEST_SOLUTION_PAGES: Record<PestSolutionSlug, PestSolutionPage> = {
   'seasonal-pest-control': {
     title: 'Seasonal Pest Control',
-    metaTitle: 'Seasonal Pest Control Melbourne | Year-Round Protection | Zapit',
+    metaTitle: 'Seasonal Pest Control Melbourne',
     metaDescription:
-      'Target pests by Melbourne season: cockroaches in summer, rodents in winter, ants in spring, spiders in autumn. Licensed treatments and scheduling with Zapit.',
+      'Target pests by Melbourne season: cockroaches in summer, rodents in winter, ants in spring, spiders in autumn. Licensed treatments, scheduled.',
     h1: 'Seasonal Pest Control in Melbourne',
     heroDescription:
       'Pest pressure changes with the weather. We time inspections and treatments so your home stays protected through every Melbourne season.',
@@ -54,7 +54,7 @@ const PEST_SOLUTION_PAGES: Record<PestSolutionSlug, PestSolutionPage> = {
   },
   'organic-pest-control': {
     title: 'Organic Pest Control',
-    metaTitle: 'Organic & Low-Toxic Pest Control Melbourne | Zapit',
+    metaTitle: 'Organic Pest Control Melbourne',
     metaDescription:
       'Low-toxic pest control for Melbourne homes: natural options, IPM, and responsible treatments suited to families and sensitive spaces. Call Zapit.',
     h1: 'Organic & Low-Toxic Pest Control',
@@ -77,7 +77,7 @@ const PEST_SOLUTION_PAGES: Record<PestSolutionSlug, PestSolutionPage> = {
   },
   'garden-pest-control': {
     title: 'Garden Pest Control',
-    metaTitle: 'Garden Pest Control Melbourne | Lawns, Vege Patches & Outdoor Living | Zapit',
+    metaTitle: 'Garden Pest Control Melbourne',
     metaDescription:
       'Protect Melbourne gardens, lawns, and outdoor living areas from pests. Targeted outdoor treatments for plant health, entertainment spaces, and boundaries.',
     h1: 'Garden & Outdoor Pest Control',
