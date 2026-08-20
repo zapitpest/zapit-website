@@ -7,7 +7,7 @@ import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceS
 
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import type { BreadcrumbItem } from '@/types';
-import HeroSlider from '@/components/sections/HeroSlider';
+import HomeHero from '@/components/sections/HomeHero';
 import GoogleReviewsCarousel from '@/components/sections/GoogleReviewsCarousel';
 import PriceCalculator from '@/components/sections/PriceCalculator';
 
@@ -105,9 +105,8 @@ export default function HomePage() {
     <>
       <JsonLd data={schemas} />
 
-      {/* ===== 1. HERO IMAGE SLIDER (images already contain text/border/badge) ===== */}
-      <HeroSlider />
-      <h1 className="sr-only">Residential Pest Control Services Melbourne — Zapit</h1>
+      {/* ===== 1. HERO — real markup, not a baked image. Carries the visible h1. ===== */}
+      <HomeHero />
 
       {/* ===== 2. WE TREAT ALL HOUSEHOLD PESTS — dark green bg, left aligned per Figma ===== */}
       {/* Typography: H 20px Bold / line-height 29px. Body 14px Regular / line-height 18px. */}
@@ -223,18 +222,18 @@ export default function HomePage() {
       </section>
       </ScrollReveal>
 
-      {/* ===== 8. CAT GIRL TESTIMONIAL IMAGE ===== */}
-      {/* Brief #6: overlay text removed — image already has the testimonial text baked in.
-          Mobile keeps full-bleed (Figma); desktop caps + frames the natural-aspect image
-          so the testimonial overlay reads at a comfortable size and the cat isn't cropped. */}
+      {/* ===== 8. HIGH-RISE APARTMENTS IMAGE (Figma Apartments_02) ===== */}
+      {/* Replaced an AI-generated technician-and-dog shot. The old alt described a
+          "Jenny, Hawthorn resident" testimonial that was not visible in the image.
+          The "We're high rise specialists" label from the design is not yet markup. */}
       <ScrollReveal direction="right">
         <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
           <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
             <Image
-              src="/images/residential/pet-safe.webp"
-              alt="Zapit were great to deal with and I felt confident they took my cat's safety seriously — Jenny, Hawthorn resident"
-              width={750}
-              height={880}
+              src="/images/residential/highrise-apartments.webp"
+              alt="A Melbourne high-rise apartment building protected by Zapit pest control"
+              width={1400}
+              height={1225}
               className="h-auto w-full lg:rounded-3xl lg:shadow-2xl"
               sizes="(min-width: 1024px) 520px, 100vw"
             />
@@ -357,10 +356,11 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* 11f. High rise specialist image — text is already in the image */}
+      {/* 11f. High rise specialist image. Declared dimensions were 648x878 against a
+          1376x768 file, which caused layout shift; corrected to the real size. */}
       <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
-          <Image src="/images/residential/highrise-specialist.webp" alt="We're high rise specialists — We have quickly become specialists in high rise living pest protection" width={648} height={878} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
+          <Image src="/images/residential/highrise-specialist.webp" alt="A Zapit technician on a high-rise pest control visit" width={1376} height={768} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
         </div>
       </section>
 
