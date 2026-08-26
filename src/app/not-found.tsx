@@ -6,10 +6,16 @@ import { SITE_CONFIG } from '@/lib/constants';
 // Branded 404. Replaces the unbranded Next default. Post-cutover this page
 // will receive traffic from ~300 legacy WordPress URLs that aren't yet in
 // public/_redirects, so it needs a clear path back to a booking action.
+//
+// SEO care:
+// - No canonical: a 404 shouldn't fold into the homepage (soft-404 risk). We
+//   explicitly null the inherited canonical from the root layout.
+// - Single robots meta: rely on Next's built-in 404 noindex injection; don't
+//   add our own or the page renders TWO conflicting <meta name="robots"> tags.
 export const metadata: Metadata = {
   title: 'Page not found',
   description: `The page you're looking for has moved or no longer exists. Reach ${SITE_CONFIG.shortName} on ${SITE_CONFIG.phone}.`,
-  robots: { index: false, follow: true },
+  alternates: { canonical: null },
 };
 
 export default function NotFound() {

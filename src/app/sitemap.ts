@@ -25,7 +25,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/service-areas/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/privacy-policy/`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     // Hidden-from-nav but kept for SEO:
-    { url: `${baseUrl}/termite-control-melbourne/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    // termite-control-melbourne is already emitted by SERVICE_SLUGS below, so do
+    // NOT hard-code it here — a duplicate <loc> is a Search Console sitemap error.
     { url: `${baseUrl}/pest-solutions/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/coburg/`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${baseUrl}/reservoir/`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },

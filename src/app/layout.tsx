@@ -69,10 +69,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: ['/images/logo/zapit-logo-dark.jpeg'],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  // No explicit robots meta at root — `index, follow` is Google's default so
+  // omitting it keeps the tag off every page, which lets the 404 route render
+  // only Next's auto-injected `noindex` without a conflicting root-layout tag.
+  // Per-page metadata can still opt into noindex where needed (e.g. debug page).
   alternates: {
     canonical: SITE_CONFIG.url,
   },
