@@ -15,26 +15,26 @@ const TRUST_PILLS = [
   'Online compliance certificates',
 ] as const;
 
+// Prior title "About Us" was 29 chars — under Google's 40-char lower bound and
+// missed the keyword tail. Extended title still fits in ~55 char SERP window.
+const ABOUT_TITLE = 'About Zapit | Melbourne Pest Control Specialists';
+const ABOUT_DESCRIPTION =
+  'Zapit Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.';
+
 export const metadata: Metadata = {
-  title: 'About Us',
-  description:
-    'Zapit Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.',
+  title: { absolute: ABOUT_TITLE },
+  description: ABOUT_DESCRIPTION,
   alternates: { canonical: '/about-us' },
-  // Previous split had SERP description and OG description saying different
-  // things — social preview lost the professional-standards + safe-protection
-  // angle Google was ranking on. Aligning both to the SERP description.
   openGraph: {
     url: '/about-us',
-    title: 'About Us | Zapit Pest Control',
-    description:
-      'Zapit Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.',
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
     images: [...OG_DEFAULT_IMAGES],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Us | Zapit Pest Control',
-    description:
-      'Zapit Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.',
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
     images: [...TWITTER_DEFAULT_IMAGES],
   },
 };

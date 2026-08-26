@@ -5,7 +5,7 @@ import { ChevronRight, Phone, Shield, Bug, Leaf, Sun, CheckCircle2 } from 'lucid
 import { SITE_CONFIG } from '@/lib/constants';
 import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { SERVICE_PAGES } from '@/lib/service-pages';
-import { generateBreadcrumbSchema } from '@/lib/schema';
+import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 import StatsCounter from '@/components/sections/StatsCounter';
 
@@ -63,10 +63,15 @@ export default function PestSolutionsPage() {
     { name: 'Home', href: SITE_CONFIG.url },
     { name: 'Pest Solutions', href: `${SITE_CONFIG.url}/pest-solutions` },
   ]);
+  const localBusiness = generateLocalBusinessSchema('Melbourne');
+  const serviceSchema = generateServiceSchema(
+    'Pest Control Solutions Melbourne',
+    'Complete pest control solutions for Melbourne homes and businesses — ants, termites, cockroaches, rodents, spiders, bed bugs, wasps, possums, and more. Licensed technicians, approved treatments.',
+  );
 
   return (
     <>
-      <JsonLd data={[breadcrumb]} />
+      <JsonLd data={[breadcrumb, localBusiness, serviceSchema]} />
 
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden bg-[#0d402e] text-white">

@@ -24,7 +24,9 @@ const OPERATING_HOURS = [
 export function generateMetadata(): Metadata {
   // Use shortName in title to match the site-wide template — was 52 chars
   // with full brand, which pushed close to Google's SERP truncation edge.
-  const title = 'Contact Us | Zapit Pest Control';
+  // Prior title was 31 chars — under Google's 40 lower bound. Extended with
+  // the Melbourne keyword tail; still comfortably under the 60-char cap.
+  const title = 'Contact Zapit Pest Control Melbourne | Call Today';
   const description = `Contact ${BUSINESS_LINE}. Call ${DISPLAY_PHONE} or email ${SITE_CONFIG.emailWork}. Same-day service available.`;
   return {
     title: { absolute: title },
