@@ -6,6 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema';
 
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import { ALL_INDUSTRIES } from './[slug]/page';
 import type { BreadcrumbItem } from '@/types';
 
 const BREADCRUMBS: BreadcrumbItem[] = [
@@ -15,7 +16,7 @@ const BREADCRUMBS: BreadcrumbItem[] = [
 
 export function generateMetadata(): Metadata {
   return {
-    title: { absolute: 'Commercial Pest Control Melbourne | Zapit Pest & Termite Control' },
+    title: { absolute: 'Commercial Pest Control Melbourne | Zapit Pest Control' },
     description: 'Protect your business with structured, compliant pest management. Restaurants, warehouses, hospitals, schools and more across Melbourne.',
     openGraph: { title: 'Commercial Pest Control Melbourne | Zapit', description: 'Reliable, compliant commercial pest control across Melbourne.', url: `${SITE_CONFIG.url}/commercial-pest-control` },
     alternates: { canonical: '/commercial-pest-control' },
@@ -102,6 +103,34 @@ export default function CommercialPestControlPage() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* ===== 2b. INDUSTRIES WE SERVE — target of the hero's "#industries" button.
+           Previously that button pointed at an id that did not exist on the page, and
+           12 of the 14 industry pages had no link from the hub at all. ===== */}
+      <ScrollReveal direction="up">
+        <section id="industries" className="scroll-mt-24 bg-[#f8f5f2] px-5 py-12 sm:px-6 sm:py-14">
+          <div className="mx-auto max-w-xl">
+            <h2 className="mb-2 text-center text-[22px] font-bold text-[#131a1c] sm:text-[26px]">
+              Industries we serve
+            </h2>
+            <p className="mb-7 text-center text-[15px] leading-[1.6] text-[#131a1c]/75">
+              Every site has its own compliance load and its own pest pressure. Pick yours to see
+              how we run the program.
+            </p>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {ALL_INDUSTRIES.map((ind) => (
+                <Link
+                  key={ind.slug}
+                  href={ind.href}
+                  className="rounded-xl border border-[#e5e5e5] bg-white px-4 py-3.5 text-center text-[13px] font-semibold text-[#131a1c] transition-all hover:border-[#3fa535] hover:shadow-md sm:text-[14px]"
+                >
+                  {ind.label}
+                </Link>
+              ))}
             </div>
           </div>
         </section>

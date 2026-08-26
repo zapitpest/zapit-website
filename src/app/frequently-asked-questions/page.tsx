@@ -121,9 +121,9 @@ const FAQ_ITEMS: FAQ[] = [
 
 export function generateMetadata(): Metadata {
   return {
-    title: { absolute: 'Frequently Asked Questions | Zapit Pest & Termite Control Melbourne' },
+    title: { absolute: 'Pest Control FAQs Melbourne | Zapit Pest Control' },
     description:
-      'Answers to common questions about Zapit Pest & Termite Control Melbourne: safety, same-day service, preparation, costs, and what to expect from treatment.',
+      'Answers to common pest control questions: safety, same-day service, preparation, costs, and what to expect from your Zapit treatment in Melbourne.',
     openGraph: {
       title: 'Frequently Asked Questions | Zapit Pest & Termite Control Melbourne',
       description:

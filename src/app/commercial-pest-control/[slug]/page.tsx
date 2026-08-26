@@ -43,7 +43,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for warehousing & storage in Melbourne',
     heroDescription: 'Keep racking, loading docks, and high-bay areas clear of pests that damage stock and slow operations.',
     title: 'Warehousing & storage',
-    metaTitle: 'Commercial pest control for warehouses & storage | Melbourne',
+    metaTitle: 'Warehouse pest control Melbourne',
     metaDescription: 'Pest control for Melbourne warehouses, 3PL, and storage facilities.',
     content: 'Warehouses and storage sites give pests long runs along walls, warm pockets near machinery, and plenty of food from spillage, packaging, and staff break areas. A single problem can lead to chewed product, failed retailer audits, and contamination that spreads before anyone notices. We treat these spaces with logistics in mind: we map high-traffic rodent lines, voids, and loading dock entry points, then set up a program that works with your shifts and your WH&S rules — without slowing pick paths or creating slip hazards.',
     features: ['Rodent programs tailored to racking, docks, and compactor areas', 'Fly and stored-product insect control in dispatch and Q zones', 'Discreet treatments scheduled around your peak dispatch windows', 'Documentation to support WHS, food-industry, and client audits', 'Recommendations to seal voids, doors, and cable penetrations'],
@@ -52,7 +52,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Restaurant pest control in Melbourne',
     heroDescription: 'Confident, compliant support for front-of-house, kitchens, and back dock.',
     title: 'Restaurant',
-    metaTitle: 'Restaurant pest control Melbourne | Cafés & dining',
+    metaTitle: 'Restaurant pest control Melbourne',
     metaDescription: 'Melbourne restaurant and café pest control.',
     content: 'Dining rooms, bars, and busy kitchens are under constant pressure from cockroaches, flies, and rodents that follow grease, waste, and delivery traffic. A sighting in front of guests affects reviews, local reputation, and health inspections overnight. We work the way you run service: we listen to your menu flow and waste routines, time visits to reduce disruption, and focus on harbourage, drains, and entry points.',
     features: ['Cockroach, fly, and ant control focused on kitchen and prep zones', 'Rodent control around cool rooms, storage, and delivery doors', 'food-safety aware processes and product selection', 'After-hours and pre-service windows', 'Clear reporting for every visit'],
@@ -61,7 +61,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for supermarkets in Melbourne',
     heroDescription: 'From bakery and deli to produce and back dock — treatments that support chain standards.',
     title: 'Supermarket',
-    metaTitle: 'Supermarket pest control Melbourne | Grocery & retail',
+    metaTitle: 'Supermarket pest control Melbourne',
     metaDescription: 'Pest control for Melbourne supermarkets and grocery retail.',
     content: 'Supermarkets juggle public-facing aisles, high-turnover perishables, and constant deliveries — so pests have food, warmth, and hiding places from shelf bases to mezzanines. You need a partner who can plan around peak trading, work without alarming shoppers, and keep clear communication with store management.',
     features: ['Fly management for entries and fresh sections', 'Rodent programs that respect cold chain layout', 'Service timing aligned to store hours', 'Structured documentation for group compliance', 'Site-specific risk review after seasonal changes'],
@@ -70,7 +70,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for function & event venues in Melbourne',
     heroDescription: 'Weddings, conferences, and live events need immaculate venues.',
     title: 'Function venue',
-    metaTitle: 'Function venue pest control Melbourne | Event spaces',
+    metaTitle: 'Function venue pest control Melbourne',
     metaDescription: 'Pest control for Melbourne function centres and event venues.',
     content: 'Event venues see irregular peaks, late finishes, and multiple catering setups. That mix attracts flies, cockroaches, and rodents to kitchens, sculleries, and waste areas — right when you\'re hosting milestone moments for clients. We structure programs around your calendar.',
     features: ['Flexible timing around bump-in and bump-out', 'Kitchen, bar, and scullery programs', 'Discreet service conduct for high-end events', 'Flying insect and rodent control', 'Simple written summaries after visits'],
@@ -79,7 +79,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for brewhouses & distilleries in Melbourne',
     heroDescription: 'Keep grain, fermentation, and packaging areas protected.',
     title: 'Brewhouse & distillery',
-    metaTitle: 'Brewery & distillery pest control Melbourne',
+    metaTitle: 'Brewery pest control Melbourne',
     metaDescription: 'Commercial pest control for Melbourne craft breweries and distilleries.',
     content: 'Brewing and distilling bring together grain, moisture, and warmth — ideal for stored-product insects and rodent interest around silos, mills, and packaging lines. We work with your production flow, identifying ingress and recommending monitoring.',
     features: ['Stored-product insect and rodent control', 'Drain and loading bay inspection', 'Taproom and cellar door support', 'Coordination with cleaning routines', 'Scalable from pilot plant to high-volume'],
@@ -88,7 +88,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for recreational facilities in Melbourne',
     heroDescription: 'Pools, courts, canteens, and change rooms.',
     title: 'Recreational facility',
-    metaTitle: 'Recreational facility pest control Melbourne',
+    metaTitle: 'Recreation pest control Melbourne',
     metaDescription: 'Pest control for Melbourne gyms, sports clubs, and recreational facilities.',
     content: 'Gyms, stadiums, and community facilities combine food service, moisture, and large roof spaces — perfect for ants, cockroaches, and spiders. We target harbourage, lighting, and waste flows to keep your facility safe.',
     features: ['Ant, cockroach, and spider control', 'Member-sensitive timing', 'Canteen and changeroom focus', 'Exterior and lighting advice', 'Support for community and private operators'],
@@ -97,7 +97,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for government buildings in Melbourne',
     heroDescription: 'Reliable, documented service for public-sector sites.',
     title: 'Government building',
-    metaTitle: 'Government building pest control Melbourne',
+    metaTitle: 'Government pest control Melbourne',
     metaDescription: 'Pest control for Melbourne government offices and public buildings.',
     content: 'Public-sector buildings serve thousands of people under strict rules. We work with access passes, after-hours clearances, and clear method statements. Treatments are chosen with workplace safety and mixed-use space in mind.',
     features: ['Access control coordination', 'General pest and rodent programs', 'Respect for shared spaces', 'Clear visit reporting', 'Integration with maintenance schedules'],
@@ -106,7 +106,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for transport & logistics in Melbourne',
     heroDescription: 'Yards, workshops, and offices need protection from rodents, insects, and other site-specific pests.',
     title: 'Transport & logistics',
-    metaTitle: 'Transport & logistics pest control Melbourne',
+    metaTitle: 'Transport pest control Melbourne',
     metaDescription: 'Pest control for Melbourne transport and freight operations.',
     content: 'Transport operations attract pests with food packaging, voids in trailers, and long runs along fence lines. Issues show up as gnawing in wiring, stock damage, or droppings in drivers\' facilities. We look at the whole site.',
     features: ['Rodent control for depots and yards', 'Workshop-adjacent programs', 'Out-of-hours and weekend options', 'Freight-supporting documentation', 'Practical proofing advice'],
@@ -115,7 +115,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for food manufacturing in Melbourne',
     heroDescription: 'GMP- and food-safety aware support for production lines.',
     title: 'Food manufacturing',
-    metaTitle: 'Food manufacturing pest control Melbourne',
+    metaTitle: 'Food factory pest control Melbourne',
     metaDescription: 'Commercial pest control for Melbourne food manufacturers.',
     content: 'Food manufacturing is where pest control directly meets shelf life and audit outcomes. You need systematic monitoring, trend analysis, and targeted response. We walk your line from raw intake through to dispatch.',
     features: ['IPM approach with monitoring and trend review', 'Support for food-safety, quality, and third-party standards', 'Flying insect, rodent, and stored-product programs', 'Pre-audit and seasonal reviews', 'Coordination with hygiene and engineering'],
@@ -124,7 +124,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for aged care facilities in Melbourne',
     heroDescription: 'Dignity, safety, and calm environments.',
     title: 'Aged care',
-    metaTitle: 'Aged care facility pest control Melbourne',
+    metaTitle: 'Aged care pest control Melbourne',
     metaDescription: 'Pest control for Melbourne aged care and residential care facilities.',
     content: 'Aged care homes balance hospitality, medical oversight, and 24/7 living. We treat every visit with patience: clear scheduling with lifestyle teams, careful product choices, and communication that doesn\'t add stress.',
     features: ['Discreet service delivery', 'Ant, fly, and cockroach control', 'Bed bug response planning', 'Rodent management', 'Product and timing options discussed'],
@@ -133,7 +133,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for hospitals & health facilities in Melbourne',
     heroDescription: 'Infection control, sensitive areas, and round-the-clock operations.',
     title: 'Hospital & health facility',
-    metaTitle: 'Hospital & healthcare pest control Melbourne',
+    metaTitle: 'Hospital pest control Melbourne',
     metaDescription: 'Pest control for Melbourne hospitals and healthcare facilities.',
     content: 'Healthcare sites are high-consequence: pests in catering, voids, or ground-floor access can\'t wait. We work with your infection prevention and facilities teams, sticking to agreed products and access routes.',
     features: ['Governed service delivery', 'Catering and back dock coverage', 'Ant, cockroach, fly, and rodent control', 'Rapid response pathways', 'Clear documentation for multi-shift teams'],
@@ -142,7 +142,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Agriculture & rural commercial pest control in Melbourne',
     heroDescription: 'Sheds, packhouses, cool rooms, and staff amenities.',
     title: 'Agriculture & packhouse',
-    metaTitle: 'Agriculture & packhouse pest control Melbourne',
+    metaTitle: 'Agriculture pest control Melbourne',
     metaDescription: 'Pest control for Melbourne-region agriculture.',
     content: 'Agricultural sites deal with open doors, seasonality, and fast-moving product — ideal for rodents and stored-product insects. We focus on intake tables, voids, insulation, and waste.',
     features: ['Rodent and insect programs', 'Cool room and high-care areas', 'Seasonal reviews before peak harvest', 'WHS-aware site behaviour', 'Practical proofing advice'],
@@ -151,7 +151,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for schools & educational facilities in Melbourne',
     heroDescription: 'Canteens, classrooms, ovals, and staff areas.',
     title: 'School & educational facility',
-    metaTitle: 'School & education facility pest control Melbourne',
+    metaTitle: 'School pest control Melbourne',
     metaDescription: 'Pest control for Melbourne schools and education campuses.',
     content: 'Schools and campuses are mini cities: kitchens, woodland edges, storage sheds, and thousands of people. A proactive program beats reactive panic every time. We plan around term time and event calendars.',
     features: ['Ant, wasp, rodent, and spider control', 'Schedule alignment with school holidays', 'Canteen and storage priority review', 'Respect for child safety and access rules', 'Ongoing support for public and private operators'],
@@ -160,7 +160,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     h1: 'Pest control for distribution centres in Melbourne',
     heroDescription: 'High-velocity pick, pack, and ship operations.',
     title: 'Distribution centre',
-    metaTitle: 'Distribution centre pest control Melbourne | 3PL & DC',
+    metaTitle: 'DC & 3PL pest control Melbourne',
     metaDescription: 'Pest control for Melbourne distribution centres and 3PL.',
     content: 'Distribution centres are built for speed, which pests exploit: long sight lines along racking, dark voids, and debris from damaged freight. We work from perimeter to mezzanine understanding where MHE traffic creates gaps.',
     features: ['Rodent and insect control for racking and docks', 'Out-of-hours and weekend service', 'Reporting for retail and grocery customers', 'Fly pressure management', 'Joint review of proofing and doors'],
@@ -193,7 +193,7 @@ function titleCase(title: string): string {
   return title.split(' ').map((w) => (w.length ? w[0].toUpperCase() + w.slice(1) : w)).join(' ');
 }
 
-const ALL_INDUSTRIES = COMMERCIAL_INDUSTRY_SLUGS.map((slug) => ({
+export const ALL_INDUSTRIES = COMMERCIAL_INDUSTRY_SLUGS.map((slug) => ({
   slug,
   label: COMMERCIAL_INDUSTRY_PAGES[slug].title,
   href: `/commercial-pest-control/${slug}`,
@@ -217,7 +217,14 @@ export default async function CommercialIndustryPage({ params }: Props) {
     generateBreadcrumbSchema(breadcrumbItems),
   ];
 
-  const otherIndustries = ALL_INDUSTRIES.filter((i) => i.slug !== slug).slice(0, 6);
+  // Rotate the window by the current page's position instead of always slicing the
+  // first six. A fixed slice(0, 6) left industries 8-14 (transport, food manufacturing,
+  // aged care, hospitals, agriculture, education, distribution) with no inbound link
+  // from anywhere on the site. Rotating is deterministic, so static builds stay stable.
+  const currentIndex = ALL_INDUSTRIES.findIndex((i) => i.slug === slug);
+  const otherIndustries = Array.from({ length: 6 }, (_, n) =>
+    ALL_INDUSTRIES[(currentIndex + 1 + n) % ALL_INDUSTRIES.length]
+  ).filter((i) => i.slug !== slug);
 
   const COMPLIANCE = ['Licensed', 'Insured', 'Fully Insured', 'Local Team', 'Family Friendly'] as const;
 
