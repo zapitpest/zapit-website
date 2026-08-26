@@ -15,10 +15,15 @@ const BREADCRUMBS: BreadcrumbItem[] = [
 ];
 
 export function generateMetadata(): Metadata {
+  // Keep SERP + social title identical so both surfaces show the same headline.
+  // Prior split had og:title "... | Zapit" while <title> was "... | Zapit Pest Control".
+  const title = 'Commercial Pest Control Melbourne | Zapit Pest Control';
+  const description = 'Protect your business with structured, compliant pest management. Restaurants, warehouses, hospitals, schools and more across Melbourne.';
   return {
-    title: { absolute: 'Commercial Pest Control Melbourne | Zapit Pest Control' },
-    description: 'Protect your business with structured, compliant pest management. Restaurants, warehouses, hospitals, schools and more across Melbourne.',
-    openGraph: { title: 'Commercial Pest Control Melbourne | Zapit', description: 'Reliable, compliant commercial pest control across Melbourne.', url: `${SITE_CONFIG.url}/commercial-pest-control` },
+    title: { absolute: title },
+    description,
+    openGraph: { title, description, url: `${SITE_CONFIG.url}/commercial-pest-control` },
+    twitter: { card: 'summary_large_image', title, description },
     alternates: { canonical: '/commercial-pest-control' },
   };
 }

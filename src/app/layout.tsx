@@ -48,6 +48,9 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_CONFIG.shortName}`,
   },
   description: `Pest protection you can trust. Zapit protects Melbourne homes and businesses from pests with licensed, approved solutions. Call ${SITE_CONFIG.phone}.`,
+  // OpenGraph title/description default to the metadata.title/description above.
+  // Per-page metadata can override with their own openGraph.title/description
+  // to keep social previews consistent with the SERP pair on that page.
   openGraph: {
     type: 'website',
     locale: 'en_AU',

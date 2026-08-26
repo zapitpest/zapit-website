@@ -181,11 +181,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   if (!isCommercialIndustrySlug(slug)) return {};
   const page = COMMERCIAL_INDUSTRY_PAGES[slug];
+  // shortName matches the SERP title so social previews stay consistent.
+  const socialTitle = `${page.metaTitle} | ${SITE_CONFIG.shortName}`;
   return {
     title: page.metaTitle,
     description: page.metaDescription,
     alternates: { canonical: `/commercial-pest-control/${slug}` },
-    openGraph: { title: `${page.metaTitle} | ${SITE_CONFIG.name}`, description: page.metaDescription, url: `/commercial-pest-control/${slug}` },
+    openGraph: { title: socialTitle, description: page.metaDescription, url: `/commercial-pest-control/${slug}` },
+    twitter: { card: 'summary_large_image', title: socialTitle, description: page.metaDescription },
   };
 }
 

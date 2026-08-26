@@ -80,17 +80,33 @@ function PestIcon({ slug, label }: { slug: string; label: string }) {
   );
 }
 
+// Homepage-specific SEO metadata.
+//
+// - <title> matches the shortName template so Google SERP is not truncated.
+// - meta description sits in the ideal 120-155 band with benefit + differentiator + CTA.
+// - OpenGraph title/description mirror the SERP pair to keep social previews
+//   consistent (previously og:title used the full brand name, overflowing 55
+//   chars in most social previews, and og:description was 46 chars — under
+//   the 60-160 range Facebook/LinkedIn render).
+const HOMEPAGE_TITLE = `Pest Control Melbourne | ${SITE_CONFIG.shortName}`;
+const HOMEPAGE_DESCRIPTION = `Protect your Melbourne home with Zapit. Child & pet safe, same-day residential pest control. Termite inspections from $349. Call ${SITE_CONFIG.phone}.`;
+
 export const metadata: Metadata = {
-  title: { absolute: `Pest Control Melbourne | ${SITE_CONFIG.shortName}` },
-  description: `Protect your Melbourne home with Zapit. Child & pet safe, same-day residential pest control. Termite inspections from $349. Call ${SITE_CONFIG.phone}.`,
+  title: { absolute: HOMEPAGE_TITLE },
+  description: HOMEPAGE_DESCRIPTION,
   alternates: { canonical: '/' },
   openGraph: {
-    title: `Pest Control Melbourne | ${SITE_CONFIG.name}`,
-    description: `Pest protection you can trust. Call ${SITE_CONFIG.phone}.`,
+    title: HOMEPAGE_TITLE,
+    description: HOMEPAGE_DESCRIPTION,
     url: SITE_CONFIG.url,
     siteName: SITE_CONFIG.name,
     locale: 'en_AU',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: HOMEPAGE_TITLE,
+    description: HOMEPAGE_DESCRIPTION,
   },
 };
 

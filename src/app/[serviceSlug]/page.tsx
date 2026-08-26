@@ -51,6 +51,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
   const page = SERVICE_PAGES[serviceSlug];
+  // OG title uses shortName to match the SERP title exactly. Previously used
+  // SITE_CONFIG.name which is 38 chars — social previews and SERP disagreed.
+  const socialTitle = `${page.metaTitle} | ${SITE_CONFIG.shortName}`;
   return {
     title: page.metaTitle,
     description: page.metaDescription,
@@ -58,9 +61,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/${serviceSlug}`,
     },
     openGraph: {
-      title: `${page.metaTitle} | ${SITE_CONFIG.name}`,
+      title: socialTitle,
       description: page.metaDescription,
       url: `/${serviceSlug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: socialTitle,
+      description: page.metaDescription,
     },
   };
 }
