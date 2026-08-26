@@ -21,7 +21,22 @@ export const metadata: Metadata = {
   description:
     'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
   alternates: { canonical: '/termite-control-melbourne' },
-  openGraph: { url: '/termite-control-melbourne' },
+  // Explicit OG title/description keeps social previews consistent with the
+  // SERP pair. Without these, Next.js falls back to the root layout defaults
+  // which used the full brand name (38 chars) and produced a mismatch with
+  // the <title> shortName template.
+  openGraph: {
+    title: 'Termite Control Melbourne | Zapit Pest & Termite Control',
+    description:
+      'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
+    url: '/termite-control-melbourne',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Termite Control Melbourne | Zapit Pest & Termite Control',
+    description:
+      'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
+  },
 };
 
 const TERMITE_TYPES = [

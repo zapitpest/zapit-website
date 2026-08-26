@@ -18,10 +18,18 @@ export const metadata: Metadata = {
   title: 'Pest Control Service Areas in Melbourne',
   description: `${SITE_CONFIG.shortName} services Melbourne's central, northern, north-west, north-eastern, and eastern suburbs. Same day service available. Call ${SITE_CONFIG.phone}.`,
   alternates: { canonical: '/service-areas' },
+  // SERP + social title/description kept in lock-step. Previous split used
+  // SITE_CONFIG.name (full 38-char brand) in og:title and a 62-char og:description
+  // that ranked worse than the meta description would in a social preview.
   openGraph: {
-    title: `Service Areas | ${SITE_CONFIG.name}`,
-    description: `See where we work across Melbourne. ${SITE_CONFIG.tagline}`,
+    title: `Pest Control Service Areas in Melbourne | ${SITE_CONFIG.shortName}`,
+    description: `${SITE_CONFIG.shortName} services Melbourne's central, northern, north-west, north-eastern, and eastern suburbs. Same day service available. Call ${SITE_CONFIG.phone}.`,
     url: '/service-areas',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Pest Control Service Areas in Melbourne | ${SITE_CONFIG.shortName}`,
+    description: `${SITE_CONFIG.shortName} services Melbourne's central, northern, north-west, north-eastern, and eastern suburbs. Same day service available. Call ${SITE_CONFIG.phone}.`,
   },
 };
 

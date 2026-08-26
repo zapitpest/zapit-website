@@ -19,11 +19,20 @@ export const metadata: Metadata = {
   description:
     'Zapit Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.',
   alternates: { canonical: '/about-us' },
+  // Previous split had SERP description and OG description saying different
+  // things — social preview lost the professional-standards + safe-protection
+  // angle Google was ranking on. Aligning both to the SERP description.
   openGraph: {
     url: '/about-us',
-    title: 'About Us',
+    title: 'About Us | Zapit Pest Control',
     description:
-      'Learn about Zapit — Melbourne pest control built on trust, responsible methods, and trade-qualified professionals.',
+      'Zapit Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Us | Zapit Pest Control',
+    description:
+      'Zapit Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.',
   },
 };
 

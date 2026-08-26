@@ -120,16 +120,21 @@ const FAQ_ITEMS: FAQ[] = [
 ];
 
 export function generateMetadata(): Metadata {
+  // SERP + social title identical (shortName, not full brand — was overflowing 55 chars).
+  // OG description matches meta description so social previews carry the same
+  // benefit + differentiator + CTA the SERP snippet ranks on.
+  const title = 'Pest Control FAQs Melbourne | Zapit Pest Control';
+  const description =
+    'Answers to common pest control questions: safety, same-day service, preparation, costs, and what to expect from your Zapit treatment in Melbourne.';
   return {
-    title: { absolute: 'Pest Control FAQs Melbourne | Zapit Pest Control' },
-    description:
-      'Answers to common pest control questions: safety, same-day service, preparation, costs, and what to expect from your Zapit treatment in Melbourne.',
+    title: { absolute: title },
+    description,
     openGraph: {
-      title: 'Frequently Asked Questions | Zapit Pest & Termite Control Melbourne',
-      description:
-        'Answers to common questions about Zapit Pest & Termite Control Melbourne.',
+      title,
+      description,
       url: `${SITE_CONFIG.url}/frequently-asked-questions`,
     },
+    twitter: { card: 'summary_large_image', title, description },
     alternates: { canonical: '/frequently-asked-questions' },
   };
 }

@@ -8,10 +8,26 @@ import { generateBreadcrumbSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 import StatsCounter from '@/components/sections/StatsCounter';
 
+// Explicit openGraph + twitter keeps social previews consistent with the SERP.
+// Without these, previews inherit from root layout defaults which used the
+// full brand name and produced a different headline than <title>.
+const PEST_SOLUTIONS_TITLE = `Pest Control Solutions Melbourne | ${SITE_CONFIG.shortName}`;
+const PEST_SOLUTIONS_DESCRIPTION = `Complete pest control solutions for Melbourne homes and businesses. From ants and termites to rodents and possums — Zapit handles it all. Call ${SITE_CONFIG.phone}.`;
+
 export const metadata: Metadata = {
-  title: { absolute: `Pest Control Solutions Melbourne | ${SITE_CONFIG.shortName}` },
-  description: `Complete pest control solutions for Melbourne homes and businesses. From ants and termites to rodents and possums — Zapit handles it all. Call ${SITE_CONFIG.phone}.`,
+  title: { absolute: PEST_SOLUTIONS_TITLE },
+  description: PEST_SOLUTIONS_DESCRIPTION,
   alternates: { canonical: '/pest-solutions' },
+  openGraph: {
+    title: PEST_SOLUTIONS_TITLE,
+    description: PEST_SOLUTIONS_DESCRIPTION,
+    url: '/pest-solutions',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: PEST_SOLUTIONS_TITLE,
+    description: PEST_SOLUTIONS_DESCRIPTION,
+  },
 };
 
 const PEST_ICON_MAP: Record<string, string> = {

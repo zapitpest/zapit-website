@@ -21,11 +21,16 @@ const OPERATING_HOURS = [
 ] as const;
 
 export function generateMetadata(): Metadata {
+  // Use shortName in title to match the site-wide template — was 52 chars
+  // with full brand, which pushed close to Google's SERP truncation edge.
+  const title = 'Contact Us | Zapit Pest Control';
+  const description = `Contact ${BUSINESS_LINE}. Call ${DISPLAY_PHONE} or email ${SITE_CONFIG.emailWork}. Same-day service available.`;
   return {
-    title: { absolute: 'Contact Us | Zapit Pest & Termite Control Melbourne' },
-    description: `Contact ${BUSINESS_LINE}. Call ${DISPLAY_PHONE} or email ${SITE_CONFIG.emailWork}. Same-day service available.`,
+    title: { absolute: title },
+    description,
     alternates: { canonical: '/contact-us' },
-    openGraph: { url: '/contact-us' },
+    openGraph: { title, description, url: '/contact-us' },
+    twitter: { card: 'summary_large_image', title, description },
   };
 }
 
