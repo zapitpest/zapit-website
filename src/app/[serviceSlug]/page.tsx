@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Phone, ChevronRight, Check, Shield, CheckCircle2, ArrowRight, Clock, Star } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { isServiceSlug, SERVICE_PAGES, SERVICE_SLUGS } from '@/lib/service-pages';
 import { SUBURB_SLUGS, getSuburbBySlug, isSuburbSlug } from '@/lib/suburb-data';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema';
@@ -43,7 +44,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: { absolute: title },
       description,
       alternates: { canonical: `/${serviceSlug}` },
-      openGraph: { title, description, url: `${SITE_CONFIG.url}/${serviceSlug}` },
+      openGraph: { title, description, url: `${SITE_CONFIG.url}/${serviceSlug}`, images: [...OG_DEFAULT_IMAGES] },
+      twitter: { card: 'summary_large_image', title, description, images: [...TWITTER_DEFAULT_IMAGES] },
     };
   }
 
@@ -64,11 +66,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: socialTitle,
       description: page.metaDescription,
       url: `/${serviceSlug}`,
+      images: [...OG_DEFAULT_IMAGES],
     },
     twitter: {
       card: 'summary_large_image',
       title: socialTitle,
       description: page.metaDescription,
+      images: [...TWITTER_DEFAULT_IMAGES],
     },
   };
 }

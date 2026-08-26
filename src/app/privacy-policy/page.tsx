@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { generateBreadcrumbSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 
@@ -12,9 +13,16 @@ export const metadata: Metadata = {
     canonical: '/privacy-policy',
   },
   openGraph: {
-    title: `Privacy Policy | ${SITE_CONFIG.name}`,
+    title: `Privacy Policy | ${SITE_CONFIG.shortName}`,
     description: 'Privacy policy for Zapit Pest & Termite Control Melbourne.',
     url: '/privacy-policy',
+    images: [...OG_DEFAULT_IMAGES],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Privacy Policy | ${SITE_CONFIG.shortName}`,
+    description: 'Privacy policy for Zapit Pest & Termite Control Melbourne.',
+    images: [...TWITTER_DEFAULT_IMAGES],
   },
 };
 

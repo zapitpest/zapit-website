@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 
@@ -25,11 +26,13 @@ export const metadata: Metadata = {
     title: `Pest Control Service Areas in Melbourne | ${SITE_CONFIG.shortName}`,
     description: `${SITE_CONFIG.shortName} services Melbourne's central, northern, north-west, north-eastern, and eastern suburbs. Same day service available. Call ${SITE_CONFIG.phone}.`,
     url: '/service-areas',
+    images: [...OG_DEFAULT_IMAGES],
   },
   twitter: {
     card: 'summary_large_image',
     title: `Pest Control Service Areas in Melbourne | ${SITE_CONFIG.shortName}`,
     description: `${SITE_CONFIG.shortName} services Melbourne's central, northern, north-west, north-eastern, and eastern suburbs. Same day service available. Call ${SITE_CONFIG.phone}.`,
+    images: [...TWITTER_DEFAULT_IMAGES],
   },
 };
 

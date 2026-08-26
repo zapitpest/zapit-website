@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight, Phone, Shield, Bug, Leaf, Sun, CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { SERVICE_PAGES } from '@/lib/service-pages';
 import { generateBreadcrumbSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -22,11 +23,13 @@ export const metadata: Metadata = {
     title: PEST_SOLUTIONS_TITLE,
     description: PEST_SOLUTIONS_DESCRIPTION,
     url: '/pest-solutions',
+    images: [...OG_DEFAULT_IMAGES],
   },
   twitter: {
     card: 'summary_large_image',
     title: PEST_SOLUTIONS_TITLE,
     description: PEST_SOLUTIONS_DESCRIPTION,
+    images: [...TWITTER_DEFAULT_IMAGES],
   },
 };
 

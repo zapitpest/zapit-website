@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, CheckCircle2, Shield, ChevronRight, Star, AlertTriangle } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/schema';
 
@@ -30,12 +31,14 @@ export const metadata: Metadata = {
     description:
       'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
     url: '/termite-control-melbourne',
+    images: [...OG_DEFAULT_IMAGES],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Termite Control Melbourne | Zapit Pest & Termite Control',
     description:
       'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
+    images: [...TWITTER_DEFAULT_IMAGES],
   },
 };
 

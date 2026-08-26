@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SITE_CONFIG } from '@/lib/constants';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -187,8 +188,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: page.metaTitle,
     description: page.metaDescription,
     alternates: { canonical: `/commercial-pest-control/${slug}` },
-    openGraph: { title: socialTitle, description: page.metaDescription, url: `/commercial-pest-control/${slug}` },
-    twitter: { card: 'summary_large_image', title: socialTitle, description: page.metaDescription },
+    openGraph: { title: socialTitle, description: page.metaDescription, url: `/commercial-pest-control/${slug}`, images: [...OG_DEFAULT_IMAGES] },
+    twitter: { card: 'summary_large_image', title: socialTitle, description: page.metaDescription, images: [...TWITTER_DEFAULT_IMAGES] },
   };
 }
 

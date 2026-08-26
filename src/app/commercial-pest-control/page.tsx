@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SITE_CONFIG } from '@/lib/constants';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema';
 
@@ -22,8 +23,8 @@ export function generateMetadata(): Metadata {
   return {
     title: { absolute: title },
     description,
-    openGraph: { title, description, url: `${SITE_CONFIG.url}/commercial-pest-control` },
-    twitter: { card: 'summary_large_image', title, description },
+    openGraph: { title, description, url: `${SITE_CONFIG.url}/commercial-pest-control`, images: [...OG_DEFAULT_IMAGES] },
+    twitter: { card: 'summary_large_image', title, description, images: [...TWITTER_DEFAULT_IMAGES] },
     alternates: { canonical: '/commercial-pest-control' },
   };
 }

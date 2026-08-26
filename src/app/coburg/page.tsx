@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { SITE_CONFIG } from '@/lib/constants';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import SuburbLandingPage from '@/components/sections/SuburbLandingPage';
 
 const SUBURB = 'Coburg';
@@ -11,9 +12,17 @@ export const metadata: Metadata = {
   description: `Same-day pest control in ${SUBURB}, Melbourne. Licensed technicians, treatments safe for pets & people. Call ${SITE_CONFIG.phone} to book.`,
   alternates: { canonical: `/${SLUG}` },
   openGraph: {
-    title: `Pest Control ${SUBURB} | ${SITE_CONFIG.name}`,
-    description: `Professional pest control in ${SUBURB}, Melbourne. Same-day service available — licensed, insured technicians.`,
+    // Use shortName so social preview title matches SERP title exactly.
+    title: `Pest Control ${SUBURB} | Same-Day Service | ${SITE_CONFIG.shortName}`,
+    description: `Same-day pest control in ${SUBURB}, Melbourne. Licensed technicians, treatments safe for pets & people. Call ${SITE_CONFIG.phone} to book.`,
     url: `${SITE_CONFIG.url}/${SLUG}`,
+    images: [...OG_DEFAULT_IMAGES],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Pest Control ${SUBURB} | Same-Day Service | ${SITE_CONFIG.shortName}`,
+    description: `Same-day pest control in ${SUBURB}, Melbourne. Licensed technicians, treatments safe for pets & people. Call ${SITE_CONFIG.phone} to book.`,
+    images: [...TWITTER_DEFAULT_IMAGES],
   },
 };
 

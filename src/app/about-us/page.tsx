@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/schema';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -27,12 +28,14 @@ export const metadata: Metadata = {
     title: 'About Us | Zapit Pest Control',
     description:
       'Zapit Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.',
+    images: [...OG_DEFAULT_IMAGES],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About Us | Zapit Pest Control',
     description:
       'Zapit Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.',
+    images: [...TWITTER_DEFAULT_IMAGES],
   },
 };
 

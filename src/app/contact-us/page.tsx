@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { SITE_CONFIG } from '@/lib/constants';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/schema';
 
@@ -29,8 +30,8 @@ export function generateMetadata(): Metadata {
     title: { absolute: title },
     description,
     alternates: { canonical: '/contact-us' },
-    openGraph: { title, description, url: '/contact-us' },
-    twitter: { card: 'summary_large_image', title, description },
+    openGraph: { title, description, url: '/contact-us', images: [...OG_DEFAULT_IMAGES] },
+    twitter: { card: 'summary_large_image', title, description, images: [...TWITTER_DEFAULT_IMAGES] },
   };
 }
 

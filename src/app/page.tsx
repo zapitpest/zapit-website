@@ -4,6 +4,7 @@ import { CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import type { BreadcrumbItem } from '@/types';
@@ -102,11 +103,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     locale: 'en_AU',
     type: 'website',
+    images: [...OG_DEFAULT_IMAGES],
   },
   twitter: {
     card: 'summary_large_image',
     title: HOMEPAGE_TITLE,
     description: HOMEPAGE_DESCRIPTION,
+    images: [...TWITTER_DEFAULT_IMAGES],
   },
 };
 

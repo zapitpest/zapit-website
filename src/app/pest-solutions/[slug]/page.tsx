@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Phone, ChevronRight, Check, CheckCircle2, Sun, Leaf, Flower2, Clock, Shield, Star } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
+import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 import StatsCounter from '@/components/sections/StatsCounter';
@@ -116,6 +117,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
   const page = PEST_SOLUTION_PAGES[slug];
+  // OG title uses shortName to match the SERP title exactly.
+  const socialTitle = `${page.metaTitle} | ${SITE_CONFIG.shortName}`;
   return {
     title: page.metaTitle,
     description: page.metaDescription,
@@ -123,9 +126,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/pest-solutions/${slug}`,
     },
     openGraph: {
-      title: `${page.metaTitle} | ${SITE_CONFIG.name}`,
+      title: socialTitle,
       description: page.metaDescription,
       url: `${SITE_CONFIG.url}/pest-solutions/${slug}`,
+      images: [...OG_DEFAULT_IMAGES],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: socialTitle,
+      description: page.metaDescription,
+      images: [...TWITTER_DEFAULT_IMAGES],
     },
   };
 }
