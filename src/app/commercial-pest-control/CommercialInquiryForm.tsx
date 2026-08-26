@@ -1,7 +1,7 @@
 'use client';
 
 import { SITE_CONFIG } from '@/lib/constants';
-import { trackFormSubmit } from '@/lib/analytics';
+import { trackFormSubmit, submitLeadToFormspree } from '@/lib/analytics';
 
 const INDUSTRIES = [
   'Restaurant / Café',
@@ -26,6 +26,29 @@ export default function CommercialInquiryForm() {
       serviceLine: 'commercial',
       email: (data.get('email') as string) || undefined,
       phone: (data.get('phone') as string) || undefined,
+    });
+
+    // Formspree delivery — sends full commercial lead payload (business name,
+    // industry, message) to info@zapitpestmelbourne.com.au. Fire-and-forget.
+    const businessName = (data.get('business_name') as string) || undefined;
+    const industry = (data.get('industry') as string) || undefined;
+    const message = (data.get('message') as string) || undefined;
+    const messageWithContext = [
+      businessName && `Business: ${businessName}`,
+      industry && `Industry: ${industry}`,
+      message,
+    ]
+      .filter(Boolean)
+      .join('\n\n');
+    void submitLeadToFormspree({
+      form_name: 'Commercial Site Assessment',
+      name: (data.get('contact_name') as string) || undefined,
+      email: (data.get('email') as string) || undefined,
+      phone: (data.get('phone') as string) || undefined,
+      message: messageWithContext || undefined,
+      form_type: 'commercial_quote',
+      service_line: 'commercial',
+      source_page: typeof window !== 'undefined' ? window.location.href : undefined,
     });
   };
 

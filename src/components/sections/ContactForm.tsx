@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Phone } from 'lucide-react';
-import { trackFormSubmit, submitLeadToWhatConverts } from '@/lib/analytics';
+import { trackFormSubmit, submitLeadToWhatConverts, submitLeadToFormspree } from '@/lib/analytics';
 
 interface Props {
   displayPhone: string;
@@ -33,6 +33,19 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
       message: form.message || undefined,
       lead_url: typeof window !== 'undefined' ? window.location.href : undefined,
       additional_fields: { form_type: 'contact' },
+    });
+
+    // Formspree delivers the actual lead payload (name + message) to
+    // info@zapitpestmelbourne.com.au. Fire-and-forget so a delivery
+    // failure never blocks the thank-you UI.
+    void submitLeadToFormspree({
+      form_name: 'Contact Form',
+      name: form.name || undefined,
+      email: form.email || undefined,
+      phone: form.phone || undefined,
+      message: form.message || undefined,
+      form_type: 'contact',
+      source_page: typeof window !== 'undefined' ? window.location.href : undefined,
     });
 
     setSubmitted(true);

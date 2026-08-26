@@ -5,6 +5,8 @@ export { trackFormSubmit, trackClickPhone, trackClickEmail, trackBookIntent } fr
 export { getServiceLine, getPageType } from './service-line';
 export { submitLeadToWhatConverts } from './whatconverts';
 export type { WhatConvertsLead } from './whatconverts';
+export { submitLeadToFormspree } from './formspree';
+export type { FormspreeLead } from './formspree';
 export type {
   ServiceLine,
   PageType,

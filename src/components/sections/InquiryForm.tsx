@@ -1,7 +1,7 @@
 'use client';
 
 import { SITE_CONFIG } from '@/lib/constants';
-import { trackFormSubmit } from '@/lib/analytics';
+import { trackFormSubmit, submitLeadToFormspree } from '@/lib/analytics';
 
 export default function InquiryForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -11,6 +11,28 @@ export default function InquiryForm() {
       formType: 'quote',
       email: (data.get('email') as string) || undefined,
       phone: (data.get('phone') as string) || undefined,
+    });
+
+    // Formspree delivery — sends full lead payload (name, suburb, pest type,
+    // message) to info@zapitpestmelbourne.com.au. Fire-and-forget.
+    const suburb = (data.get('suburb') as string) || undefined;
+    const pestType = (data.get('pest_type') as string) || undefined;
+    const message = (data.get('message') as string) || undefined;
+    const messageWithContext = [
+      pestType && `Pest type: ${pestType}`,
+      suburb && `Suburb: ${suburb}`,
+      message,
+    ]
+      .filter(Boolean)
+      .join('\n\n');
+    void submitLeadToFormspree({
+      form_name: 'Quote Enquiry',
+      name: (data.get('name') as string) || undefined,
+      email: (data.get('email') as string) || undefined,
+      phone: (data.get('phone') as string) || undefined,
+      message: messageWithContext || undefined,
+      form_type: 'quote',
+      source_page: typeof window !== 'undefined' ? window.location.href : undefined,
     });
   };
 
