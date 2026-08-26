@@ -24,9 +24,16 @@ export const SITE_CONFIG = {
     url: 'https://book.squareup.com/appointments/3a4pl9xar87khq/location/LP1Y6JYA2E1S1/services',
     provider: 'Square',
   },
+  // Google Business Profile — Zap It Pest & Termite Control Melbourne
+  // (main brand listing, 80 Porter Rd, Heidelberg Heights VIC 3081).
+  // Verified 20 Aug 2026 against business.google.com/u/1/reviews.
+  //
+  // Coburg (84 moore St) and Reservoir (12/220 holt parade) are separate
+  // listings with their own review counts — those are surfaced on their
+  // respective suburb pages via generateLocalBusinessSchema(<suburb>).
   rating: {
-    value: '4.9',
-    count: '254',
+    value: '5.0',
+    count: '257',
     bestRating: '5',
   },
   logo: '/images/logo/zapit-logo-dark.jpeg',

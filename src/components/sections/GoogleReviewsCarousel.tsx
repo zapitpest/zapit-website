@@ -191,7 +191,7 @@ export default function GoogleReviewsCarousel() {
           ))}
         </div>
         <p className="mt-2 text-[14px] text-[#131a1c]">
-          Based on <span className="font-bold">254 reviews</span>
+          Based on <span className="font-bold">{SITE_CONFIG.rating.count} reviews</span>
         </p>
         <div className="mt-1 flex items-center justify-center">
           <GoogleWord />
