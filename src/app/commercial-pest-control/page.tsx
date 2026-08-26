@@ -139,7 +139,7 @@ export default function CommercialPestControlPage() {
       {/* ===== 3. ZAYDAN PHOTO — desktop = framed card; mobile = full-bleed ===== */}
       <section className="w-full bg-[#2B2B2B] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[560px] lg:px-6">
-          <Image src="/images/commercial/zaydan-photo.png" alt="Zaydan - Commercial Consultant at Zapit" width={1074} height={1200} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 560px, 100vw" />
+          <Image src="/images/commercial/zaydan-photo.webp" alt="Zaydan, Commercial Consultant at Zapit" width={1200} height={1800} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 560px, 100vw" />
         </div>
       </section>
 
@@ -147,7 +147,15 @@ export default function CommercialPestControlPage() {
       <ScrollReveal direction="up">
         <section className="bg-[#2B2B2B] px-5 pb-12 pt-8 sm:px-6 sm:pb-14 sm:pt-10">
           <div className="mx-auto max-w-[600px]">
-            {/* Name/role removed — already baked into the image above */}
+            {/* Name and role are real markup now. The previous portrait had them baked
+                into the pixels (and shipped the placeholder "Zaydan Surname" to
+                production). Surname deliberately omitted until the spelling is
+                confirmed — Osmanacic and Osmanagic both appear in our own records. */}
+            <div className="mb-5">
+              <p className="text-[22px] font-bold leading-[28px] text-[#f8f5f2]">Zaydan</p>
+              <p className="text-[16px] leading-[22px] text-[#f8f5f2]/85">Commercial Consultant</p>
+              <p className="text-[16px] leading-[22px] text-[#f8f5f2]/85">Zapit</p>
+            </div>
             <div className="space-y-4 text-[#f8f5f2]/90" style={{ fontSize: '15px', lineHeight: '22px', fontWeight: 400 }}>
               <p>
                 Hi, I&apos;m Zaydan, partner and business owner of Zapit. I manage our commercial
