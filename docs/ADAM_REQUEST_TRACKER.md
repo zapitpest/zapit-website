@@ -4,7 +4,7 @@ Single-page cross-reference of every explicit ask, decision, condition, or direc
 
 **Rule:** before sending any client-facing update, cross-check every row here. If a row is not addressed in the update, either address it or explicitly note why not.
 
-**Last full verification:** 2026-08-01 (Adam approved Pages 4-6 + long-term vision set + credentials shared for WhatConverts, Search Console; Cloudflare Pages confirmed) (after Adam's second-round format feedback landed)
+**Last full verification:** 2026-08-19 (Thursday call executed 13 Aug: Meta Pixel dashboard access ✅ + Search Console → BigQuery bulk export ✅ + GCP org policy override ✅. Strategic 6-question CTO advisory reply delivered. Consolidated `docs/ZAP_IT_COMPLETE_OVERVIEW.md` created. Netlify migration to Adam's `zapitpest's team` complete on 19 Aug with full Playwright audit PASS. BigQuery Search Console dataset verified — 19,830 URL impressions landed. MVP ~96% complete. Awaiting Adam: Pages 2/3 approval + WhatConverts plan + feature parity redirects + Cloudflare vs Netlify permanent host.)
 
 ---
 
@@ -161,4 +161,7 @@ Adam sent a substantial new brief on 29 July requesting an audit + 3-tier quote 
 
 ## Version history
 
+- **2026-08-19** — Netlify migration to Adam's `zapitpest's team` complete. Full Playwright audit PASS (0 console errors, all analytics firing, canonical URLs correct). BigQuery Search Console dataset verified populated (19,830 URL impressions from URL prefix property already-verified state, first data landed 15 Aug per Thursday 13 Aug setup). Personal Netlify site deleted, subdomain reclaimed. Consolidated overview MD delivered. Strategic 6-question CTO reply sent to Adam covering AI OS architecture (knowledge graph + APIs added), full-funnel tracking, technical debt flags, and 7-step priority roadmap. 4 items awaiting Adam: Pages 2/3 approval, WhatConverts plan, feature parity redirects, Cloudflare-vs-Netlify permanent host.
+- **2026-08-13** — Thursday 5:00 PM Melbourne live call executed. Meta Pixel dashboard access sorted via Business Portfolio share. Search Console → BigQuery bulk data export activated (dataset `searchconsole_raw_search_console` in `australia-southeast1`). Live-troubleshot GCP org policy block (DRS constraint), Adam overrode at project level. Strategic 6-question reply drafted, deep-audited across 4 iterations, delivered as PDF.
+- **2026-08-12** — Portal Entry 20 (1h 30m) logged. Meta Pixel access status refined: Business Portfolio invite accepted but pixel `1088414402938841` sits in Adam's personal account, not inside the portfolio. Follow-up email sent offering Option A (move-to-portfolio) or Option B (share via partner assignment). Search Console MFA session rescheduled to Thursday 13 Aug 5:00 PM Melbourne (Google Meet `meet.google.com/zuk-gtjc-drq`) after Slack call miss on 11 Aug. Comprehensive call prep pack built in `docs/call-prep/` (5 files, ~55 KB) for Thursday session covering MVP explanation + future vision + separate Square/Lovable/Xero project + during-call cheat sheet.
 - **2026-07-23** — Initial creation. Consolidates every Adam ask from June onwards into a single tracker. Anchor point after Adam's 23 Jul reply establishing the new comms format.
