@@ -6,22 +6,30 @@ import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 import { generateBreadcrumbSchema } from '@/lib/schema';
 import { JsonLd } from '@/components/seo/JsonLd';
 
+// SEO rule: og:description and twitter:description must equal <meta name="description">.
+// Building all three from the same string prevents silent drift.
+const PRIVACY_DESCRIPTION = `How ${SITE_CONFIG.name} collects, uses, and protects personal information in line with Australian privacy expectations.`;
+
+// `absolute` disables the root-layout %s template so the title we set here
+// isn't double-appended with the brand name.
+const PRIVACY_TITLE = `Privacy Policy | ${SITE_CONFIG.shortName} Melbourne`;
+
 export const metadata: Metadata = {
-  title: 'Privacy Policy',
-  description: `How ${SITE_CONFIG.name} collects, uses, and protects personal information in line with Australian privacy expectations.`,
+  title: { absolute: PRIVACY_TITLE },
+  description: PRIVACY_DESCRIPTION,
   alternates: {
     canonical: '/privacy-policy',
   },
   openGraph: {
-    title: `Privacy Policy | ${SITE_CONFIG.shortName}`,
-    description: 'Privacy policy for Zapit Pest & Termite Control Melbourne.',
+    title: PRIVACY_TITLE,
+    description: PRIVACY_DESCRIPTION,
     url: '/privacy-policy',
     images: [...OG_DEFAULT_IMAGES],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Privacy Policy | ${SITE_CONFIG.shortName}`,
-    description: 'Privacy policy for Zapit Pest & Termite Control Melbourne.',
+    title: PRIVACY_TITLE,
+    description: PRIVACY_DESCRIPTION,
     images: [...TWITTER_DEFAULT_IMAGES],
   },
 };

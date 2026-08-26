@@ -11,15 +11,30 @@ interface Props {
 
 export default function ContactForm({ displayPhone, phoneTel }: Props) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Guard against double-click / rapid Enter presses. Every downstream call
+    // (GA4 event, WhatConverts, Formspree) is idempotent per-submit, so we
+    // only fire once per user gesture.
+    if (submitting || submitted) return;
+
+    // Explicit validation — form used to run with noValidate + no in-handler
+    // check, so blank submissions fired junk GA4 events + empty Formspree POSTs.
+    const cleanName = form.name.trim();
+    const cleanEmail = form.email.trim();
+    const cleanPhone = form.phone.trim();
+    if (!cleanName || !cleanEmail || !cleanPhone) {
+      return;
+    }
+    setSubmitting(true);
 
     trackFormSubmit({
       formType: 'contact',
-      email: form.email || undefined,
-      phone: form.phone || undefined,
+      email: cleanEmail || undefined,
+      phone: cleanPhone || undefined,
     });
 
     // Fire-and-forget: never block thank-you UI on the WhatConverts call.
@@ -27,10 +42,10 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
     void submitLeadToWhatConverts({
       lead_type: 'Web Form',
       form_name: 'Contact Form',
-      contact_name: form.name || undefined,
-      contact_email: form.email || undefined,
-      contact_phone_number: form.phone || undefined,
-      message: form.message || undefined,
+      contact_name: cleanName || undefined,
+      contact_email: cleanEmail || undefined,
+      contact_phone_number: cleanPhone || undefined,
+      message: form.message.trim() || undefined,
       lead_url: typeof window !== 'undefined' ? window.location.href : undefined,
       additional_fields: { form_type: 'contact' },
     });
@@ -40,11 +55,14 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
     // failure never blocks the thank-you UI.
     void submitLeadToFormspree({
       form_name: 'Contact Form',
-      name: form.name || undefined,
-      email: form.email || undefined,
-      phone: form.phone || undefined,
-      message: form.message || undefined,
+      name: cleanName || undefined,
+      email: cleanEmail || undefined,
+      phone: cleanPhone || undefined,
+      message: form.message.trim() || undefined,
       form_type: 'contact',
+      // service_line added for Formspree inbox filtering parity with
+      // CommercialInquiryForm — both forms are answered from one inbox.
+      service_line: 'residential',
       source_page: typeof window !== 'undefined' ? window.location.href : undefined,
     });
 
@@ -75,7 +93,7 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={handleSubmit}>
       {/* Name */}
       <div className="mb-4">
         <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-[#131a1c]">
@@ -140,9 +158,10 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
       {/* Submit */}
       <button
         type="submit"
-        className="w-full rounded-full bg-[#414042] py-3.5 text-sm font-bold text-white transition-colors hover:bg-[#131a1c] sm:text-[15px]"
+        disabled={submitting}
+        className="w-full rounded-full bg-[#414042] py-3.5 text-sm font-bold text-white transition-colors hover:bg-[#131a1c] disabled:cursor-not-allowed disabled:opacity-60 sm:text-[15px]"
       >
-        Submit query
+        {submitting ? 'Sending…' : 'Submit query'}
       </button>
 
       <div className="mt-5 flex items-center gap-3 border-t border-[#e5e5e5] pt-5">

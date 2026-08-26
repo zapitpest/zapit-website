@@ -42,7 +42,19 @@ export interface BookIntentEvent extends BaseEventContext {
   destination_url: string;
 }
 
-export type AnalyticsEvent = FormSubmitEvent | ClickPhoneEvent | ClickEmailEvent | BookIntentEvent;
+// Fires on every client-side route change to attach service_line + page_type
+// context to GA4's next page_view. Referenced by GTM trg.page_view_context
+// (documented in docs/gtm-blueprint.md) so it MUST stay in the emitted set.
+export interface PageViewContextEvent extends BaseEventContext {
+  event: 'page_view_context';
+}
+
+export type AnalyticsEvent =
+  | FormSubmitEvent
+  | ClickPhoneEvent
+  | ClickEmailEvent
+  | BookIntentEvent
+  | PageViewContextEvent;
 
 declare global {
   interface Window {

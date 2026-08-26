@@ -86,13 +86,21 @@ export default function RootLayout({
   return (
     <html lang="en-AU" className={`${graphik.variable} h-full antialiased overflow-x-hidden`}>
       <body className="min-h-full flex flex-col font-sans overflow-x-hidden">
+        {/* Skip-to-content link — visually hidden until keyboard focus. WCAG 2.4.1 A.
+            Every keyboard user reaches this before the header. */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-[#0d402e] focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-white focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#64FF01]"
+        >
+          Skip to main content
+        </a>
         <GTMScript />
         <ClickTracker />
         <PageViewTracker />
         <AnalyticsDebugOverlay />
         <JsonLd data={[generateWebSiteSchema(), generateOrganizationSchema(), generateLocalBusinessSchema()]} />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <FloatingCTA />
       </body>

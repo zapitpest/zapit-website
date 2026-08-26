@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SITE_CONFIG } from '@/lib/constants';
@@ -19,6 +19,8 @@ const MENU_ITEMS = [
 export default function FloatingCTA() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -34,6 +36,47 @@ export default function FloatingCTA() {
   }, [menuOpen]);
 
   const close = useCallback(() => setMenuOpen(false), []);
+
+  // WCAG 2.1.2 / 2.4.3 — Esc closes the modal + Tab is trapped inside it.
+  // Also restores focus to the menu-opener button on close so keyboard flow
+  // continues from where it left off.
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    // Send initial focus into the dialog on open.
+    const first = menuRef.current?.querySelector<HTMLElement>(
+      'a[href], button:not([disabled])',
+    );
+    first?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+      if (e.key !== 'Tab' || !menuRef.current) return;
+
+      const focusables = menuRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled])',
+      );
+      if (focusables.length === 0) return;
+      const firstEl = focusables[0];
+      const lastEl = focusables[focusables.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      if (e.shiftKey && active === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && active === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [menuOpen]);
 
   return (
     <>
@@ -62,9 +105,12 @@ export default function FloatingCTA() {
           />
           {/* Menu click area — circle (right ~16%) */}
           <button
+            ref={menuButtonRef}
             onClick={() => setMenuOpen((o) => !o)}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            className="absolute rounded-full transition-transform hover:scale-[1.05]"
+            aria-expanded={menuOpen}
+            aria-controls="floating-menu-dialog"
+            className="absolute rounded-full transition-transform hover:scale-[1.05] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#64FF01]"
             style={{
               left: `${(221 / 287) * 100}%`,
               top: `${(20 / 86) * 100}%`,
@@ -79,18 +125,24 @@ export default function FloatingCTA() {
       {menuOpen && (
         <>
           <div className="fixed inset-0 z-[1050] bg-black/40 backdrop-blur-sm" onClick={close} aria-hidden />
-          {/* Menu overlay — exact spec from client menu.svg (354×420, rx=20, bg #F8F5F2):
-              X at top-right (~y=30-48), then 28px gap, then dividers every ~50px wrapping 6 items.
-              Each item is 50px tall with chevron right + #828282 divider below. */}
-          {/* Menu overlay — exact Figma menu.svg spec: Graphik Semibold 20px / 40lh,
-              color #414042, chevrons + X in #828282 stroke-width 3, 50px row height */}
-          <div className="fixed bottom-28 left-1/2 z-[1060] w-[calc(100%-32px)] max-w-[354px] -translate-x-1/2 rounded-[20px] bg-[#F8F5F2] px-[22px] py-[22px] shadow-2xl">
+          {/* Menu overlay — Figma menu.svg spec: 354×420, rx=20, bg #F8F5F2, Graphik Semibold
+              20px / 40lh, color #414042, chevrons + X in #828282 stroke-width 3, 50px row height.
+              role/aria-modal + focus trap wired in the parent effect (WCAG 2.4.3, 2.1.2). */}
+          <div
+            ref={menuRef}
+            id="floating-menu-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="floating-menu-heading"
+            className="fixed bottom-28 left-1/2 z-[1060] w-[calc(100%-32px)] max-w-[354px] -translate-x-1/2 rounded-[20px] bg-[#F8F5F2] px-[22px] py-[22px] shadow-2xl"
+          >
+            <h2 id="floating-menu-heading" className="sr-only">Site menu</h2>
             {/* Close X — bigger, matches chevron weight + colour */}
             <div className="mb-[16px] flex justify-end">
               <button
                 onClick={close}
                 aria-label="Close menu"
-                className="flex h-10 w-10 items-center justify-center text-[#828282] hover:text-[#414042]"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-[#828282] hover:text-[#414042] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0d402e]"
               >
                 <svg className="h-[34px] w-[34px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
                   <path d="M6 6l12 12M6 18L18 6" />

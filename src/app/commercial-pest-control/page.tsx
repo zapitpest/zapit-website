@@ -40,9 +40,6 @@ export default function CommercialPestControlPage() {
     <>
       <JsonLd data={schemas} />
 
-      {/* SEO H1 — sr-only because the visual headline is baked into the hero image */}
-      <h1 className="sr-only">Commercial Pest Control Melbourne — Zapit Pest &amp; Termite Control</h1>
-
       {/* ===== 1. HERO IMAGE — mobile full-bleed; desktop = framed card pattern (matches residential) ===== */}
       <section className="w-full bg-[#2B2B2B] py-2 sm:py-3 lg:py-10">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[680px] lg:px-6">
@@ -56,13 +53,15 @@ export default function CommercialPestControlPage() {
         </div>
       </section>
 
-      {/* ===== 2. PROTECTING WHAT MATTERS — heading + description + CTA + green checklist ===== */}
+      {/* ===== 2. PROTECTING WHAT MATTERS — visible H1 replaces prior sr-only H1
+             per PR #3 pattern (residential): the Figma-approved brand copy becomes
+             the visible top-level heading, keyword coverage in title + meta + schema. ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#2B2B2B] px-5 pb-10 pt-8 sm:px-6 sm:pb-14 sm:pt-10">
           <div className="mx-auto max-w-[600px]">
-            <h2 className="mb-4 font-bold leading-[29px] text-[#f8f5f2]" style={{ fontSize: '24px' }}>
+            <h1 className="mb-4 font-bold leading-[29px] text-[#f8f5f2]" style={{ fontSize: '24px' }}>
               Protecting what matters<br />to your business
-            </h2>
+            </h1>
 
             {/* Description per Figma: Graphik Regular 14/20 in a clean flowing block (no inline CTAs).
                 FloatingCTA already provides global Call + Menu, so we don't duplicate them here. */}

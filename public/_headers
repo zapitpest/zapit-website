@@ -16,3 +16,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   X-DNS-Prefetch-Control: on
+  # HSTS — Netlify injected this at the edge automatically; Cloudflare Pages
+  # does NOT. Declaring it here keeps the header live across both hosts.
+  # 1 year, include subdomains, preload-list eligible.
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload

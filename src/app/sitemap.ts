@@ -14,32 +14,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_CONFIG.url;
   const now = new Date();
 
+  // next.config.ts has `trailingSlash: true` — canonicals + rendered routes end in `/`.
+  // Sitemap URLs MUST match the canonical form, or every Google fetch incurs a 301.
   const staticPages: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: now, changeFrequency: 'weekly', priority: 1 },
-    { url: `${baseUrl}/commercial-pest-control`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${baseUrl}/about-us`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/contact-us`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/frequently-asked-questions`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/service-areas`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/privacy-policy`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${baseUrl}/`, lastModified: now, changeFrequency: 'weekly', priority: 1 },
+    { url: `${baseUrl}/commercial-pest-control/`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${baseUrl}/about-us/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/contact-us/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/frequently-asked-questions/`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${baseUrl}/service-areas/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/privacy-policy/`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     // Hidden-from-nav but kept for SEO:
-    { url: `${baseUrl}/termite-control-melbourne`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/pest-solutions`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/coburg`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/reservoir`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${baseUrl}/termite-control-melbourne/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/pest-solutions/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/coburg/`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${baseUrl}/reservoir/`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
   ];
 
   // /[serviceSlug] — covers per-pest service pages (ant-pest-control-melbourne, ...) and
   // per-suburb suburb-formatted slugs (pest-control-werribee, ...).
   const serviceAndSuburbPages: MetadataRoute.Sitemap = [
     ...SERVICE_SLUGS.map((slug) => ({
-      url: `${baseUrl}/${slug}`,
+      url: `${baseUrl}/${slug}/`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
     ...SUBURB_SLUGS.filter((s) => s.startsWith('pest-control-')).map((slug) => ({
-      url: `${baseUrl}/${slug}`,
+      url: `${baseUrl}/${slug}/`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.6,
@@ -47,14 +49,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const commercialPages: MetadataRoute.Sitemap = COMMERCIAL_INDUSTRY_SLUGS.map((slug) => ({
-    url: `${baseUrl}/commercial-pest-control/${slug}`,
+    url: `${baseUrl}/commercial-pest-control/${slug}/`,
     lastModified: now,
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));
 
   const pestSolutionSubPages: MetadataRoute.Sitemap = PEST_SOLUTION_SLUGS.map((slug) => ({
-    url: `${baseUrl}/pest-solutions/${slug}`,
+    url: `${baseUrl}/pest-solutions/${slug}/`,
     lastModified: now,
     changeFrequency: 'monthly' as const,
     priority: 0.6,
