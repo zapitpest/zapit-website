@@ -24,7 +24,7 @@ export function generateOrganizationSchema() {
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: SITE_CONFIG.phone,
+      telephone: SITE_CONFIG.phoneSchema,
       email: SITE_CONFIG.emailWork,
       contactType: 'customer service',
       areaServed: 'Melbourne',
@@ -40,7 +40,7 @@ export function generateLocalBusinessSchema(areaServed?: string) {
     '@id': `${SITE_CONFIG.url}#localbusiness`,
     name: SITE_CONFIG.name,
     url: SITE_CONFIG.url,
-    telephone: SITE_CONFIG.phone,
+    telephone: SITE_CONFIG.phoneSchema,
     email: SITE_CONFIG.emailWork,
     image: `${SITE_CONFIG.url}${SITE_CONFIG.logo}`,
     priceRange: '$$',
@@ -99,7 +99,7 @@ export function generateProductSchema() {
     provider: {
       '@type': 'LocalBusiness',
       name: SITE_CONFIG.name,
-      telephone: SITE_CONFIG.phone,
+      telephone: SITE_CONFIG.phoneSchema,
       url: SITE_CONFIG.url,
     },
     areaServed: {
@@ -177,7 +177,7 @@ export function generateServiceSchema(name: string, description: string) {
     provider: {
       '@type': 'LocalBusiness',
       name: SITE_CONFIG.name,
-      telephone: SITE_CONFIG.phone,
+      telephone: SITE_CONFIG.phoneSchema,
     },
     areaServed: {
       '@type': 'City',

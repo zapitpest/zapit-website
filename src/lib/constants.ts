@@ -4,6 +4,9 @@ export const SITE_CONFIG = {
   phone: '9126 0555',
   phoneTel: 'tel:0391260555',
   phoneRaw: '0391260555',
+  // Schema.org wants a dialable international number. 'phone' above stays the
+  // display string the header and footer render.
+  phoneSchema: '+61391260555',
   email: 'info@zapitpestmelbourne.com.au',
   emailWork: 'wo@zapitpestmelbourne.com.au',
   url: 'https://zapitpestmelbourne.com.au',

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { CheckCircle2 } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { generateBreadcrumbSchema, generateLocalBusinessSchema, generateServiceSchema } from '@/lib/schema';
+import { generateBreadcrumbSchema, generateServiceSchema } from '@/lib/schema';
 import { OG_DEFAULT_IMAGES, TWITTER_DEFAULT_IMAGES } from '@/lib/seo-defaults';
 
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -116,7 +116,6 @@ export const metadata: Metadata = {
 export default function HomePage() {
   const schemas = [
     generateServiceSchema('Residential Pest Control Services Melbourne', 'Professional home pest control in Melbourne. Safe, approved treatments.'),
-    generateLocalBusinessSchema('Melbourne'),
     generateBreadcrumbSchema(BREADCRUMBS),
   ];
 
