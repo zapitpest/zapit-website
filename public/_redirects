@@ -67,13 +67,17 @@
 /birds-control-melbourne                               /pest-solutions/                        301
 
 # Explicit keep-as-is guards for the 3 pages that live at /pest-solutions/{slug}
-# on the new site (seasonal/organic/garden). Without these the splat below would
-# 301 them to /{slug} which is a 404. These 200 lines are "rewrites" per CF Pages
-# convention — same URL in and out, so Cloudflare serves the static page and does
-# not fall through to the splat rule below.
+# on the new site (seasonal/organic/garden). Two rules per page:
+#   - trailing-slash form: 200 rewrite so CF serves the static page and does
+#     not fall through to the splat below.
+#   - no-slash form: 301 to the trailing-slash canonical (would otherwise hit
+#     the splat and 301 to a 404 at /{slug}).
 /pest-solutions/seasonal-pest-control/                 /pest-solutions/seasonal-pest-control/                  200
+/pest-solutions/seasonal-pest-control                  /pest-solutions/seasonal-pest-control/                  301
 /pest-solutions/organic-pest-control/                  /pest-solutions/organic-pest-control/                   200
+/pest-solutions/organic-pest-control                   /pest-solutions/organic-pest-control/                   301
 /pest-solutions/garden-pest-control/                   /pest-solutions/garden-pest-control/                    200
+/pest-solutions/garden-pest-control                    /pest-solutions/garden-pest-control/                    301
 
 # Splat: any remaining /pest-solutions/{slug} → /{slug}
 # Handles all 15 canonical pest slugs (ant, bed-bug, bee, clothes-moths,
