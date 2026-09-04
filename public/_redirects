@@ -15,6 +15,11 @@
 #   routes and avoid a needless double-hop through Next.js's own 308.
 #   Fragment targets (e.g. /#price-calculator) intentionally have no slash.
 #
+# RULE-BUDGET NOTE: an earlier version of this file paired every static rule
+# and hit ~109 rules — CF Pages silently ignored rules beyond position ~102.
+# Section 2 (pest-solutions) and Section 4 (blogs) are now expressed as splats
+# so the file stays well under whatever the effective ceiling is.
+
 # =====================================================================
 # Section 1 — Core page removals (intentional per Figma brief)
 # =====================================================================
@@ -42,63 +47,39 @@
 
 # =====================================================================
 # Section 2 — Pest service URL restructuring
-# Old: /pest-solutions/{pest-slug}   →   New: /{pest-slug}/
+# Old: /pest-solutions/{pest-slug}   →   New: /{pest-slug}
+#
+# Specific overrides first, then splat catches the 15 remaining pest slugs.
+# Splat with-slash form uses trailing-slash target so the user lands on the
+# canonical route in one hop; no-slash form falls through to the same splat
+# and Next.js does its own 308 to the canonical (two-hop, unavoidable when
+# collapsing 32 individual rules into a splat).
 # =====================================================================
-
-/pest-solutions/ant-pest-control-melbourne/            /ant-pest-control-melbourne/            301
-/pest-solutions/ant-pest-control-melbourne             /ant-pest-control-melbourne/            301
-
-/pest-solutions/bed-bug-control-melbourne/             /bed-bug-control-melbourne/             301
-/pest-solutions/bed-bug-control-melbourne              /bed-bug-control-melbourne/             301
-
-/pest-solutions/bee-removal-melbourne/                 /bee-removal-melbourne/                 301
-/pest-solutions/bee-removal-melbourne                  /bee-removal-melbourne/                 301
-
-/pest-solutions/clothes-moths-treatment-melbourne/     /clothes-moths-treatment-melbourne/     301
-/pest-solutions/clothes-moths-treatment-melbourne      /clothes-moths-treatment-melbourne/     301
-
-/pest-solutions/cockroach-control-melbourne/           /cockroach-control-melbourne/           301
-/pest-solutions/cockroach-control-melbourne            /cockroach-control-melbourne/           301
-
-/pest-solutions/flea-control-melbourne/                /flea-control-melbourne/                301
-/pest-solutions/flea-control-melbourne                 /flea-control-melbourne/                301
-
-/pest-solutions/fly-control-melbourne/                 /fly-control-melbourne/                 301
-/pest-solutions/fly-control-melbourne                  /fly-control-melbourne/                 301
-
-/pest-solutions/mosquito-control-melbourne/            /mosquito-control-melbourne/            301
-/pest-solutions/mosquito-control-melbourne             /mosquito-control-melbourne/            301
-
-/pest-solutions/possum-removal-melbourne/              /possum-removal-melbourne/              301
-/pest-solutions/possum-removal-melbourne               /possum-removal-melbourne/              301
-
-/pest-solutions/silverfish-control-melbourne/          /silverfish-control-melbourne/          301
-/pest-solutions/silverfish-control-melbourne           /silverfish-control-melbourne/          301
-
-/pest-solutions/spider-control-melbourne/              /spider-control-melbourne/              301
-/pest-solutions/spider-control-melbourne               /spider-control-melbourne/              301
-
-/pest-solutions/termite-control-melbourne/             /termite-control-melbourne/             301
-/pest-solutions/termite-control-melbourne              /termite-control-melbourne/             301
-
-/pest-solutions/treatment-for-wood-borers-in-melbourne/   /treatment-for-wood-borers-in-melbourne/   301
-/pest-solutions/treatment-for-wood-borers-in-melbourne    /treatment-for-wood-borers-in-melbourne/   301
-
-/pest-solutions/wasp-removal-melbourne/                /wasp-removal-melbourne/                301
-/pest-solutions/wasp-removal-melbourne                 /wasp-removal-melbourne/                301
 
 # Renamed: /pest-solutions/rodent-removal → /rodent-control-melbourne
 /pest-solutions/rodent-removal/                        /rodent-control-melbourne/              301
 /pest-solutions/rodent-removal                         /rodent-control-melbourne/              301
 
-# Removed pest pages (not migrated; redirect to closest equivalent)
+# Removed pest pages — redirect to closest equivalent (must precede splat)
 /pest-solutions/birds-control-melbourne/               /pest-solutions/                        301
 /pest-solutions/birds-control-melbourne                /pest-solutions/                        301
 /birds-control-melbourne/                              /pest-solutions/                        301
 /birds-control-melbourne                               /pest-solutions/                        301
 
-# /pest-solutions/seasonal-pest-control, /organic-pest-control, /garden-pest-control
-# all exist on new site at same path → no redirect needed.
+# Explicit keep-as-is guards for the 3 pages that live at /pest-solutions/{slug}
+# on the new site (seasonal/organic/garden). Without these the splat below would
+# 301 them to /{slug} which is a 404. These 200 lines are "rewrites" per CF Pages
+# convention — same URL in and out, so Cloudflare serves the static page and does
+# not fall through to the splat rule below.
+/pest-solutions/seasonal-pest-control/                 /pest-solutions/seasonal-pest-control/                  200
+/pest-solutions/organic-pest-control/                  /pest-solutions/organic-pest-control/                   200
+/pest-solutions/garden-pest-control/                   /pest-solutions/garden-pest-control/                    200
+
+# Splat: any remaining /pest-solutions/{slug} → /{slug}
+# Handles all 15 canonical pest slugs (ant, bed-bug, bee, clothes-moths,
+# cockroach, flea, fly, mosquito, possum, silverfish, spider, termite,
+# treatment-for-wood-borers, wasp) plus any legacy URL we haven't listed.
+/pest-solutions/*                                      /:splat                                 301
 
 # =====================================================================
 # Section 3 — Commercial URL path restructuring
@@ -148,38 +129,24 @@
 /commercial/industrial-pest-control          /commercial-pest-control/warehousing-and-storage/         301
 
 # Catch-all for any other /commercial/* not explicitly mapped above.
-# Placed AFTER specific rules so they take precedence.
 /commercial/*                                /commercial-pest-control/                                 301
 
 # =====================================================================
 # Section 4 — Blog post removals (intentional per Figma brief)
+# Specific overrides that go somewhere OTHER than /pest-solutions/ first;
+# then splat catches the rest.
 # =====================================================================
 
-/blogs/                                                             /                              301
-/blogs                                                              /                              301
+/blogs/                                                            /                              301
+/blogs                                                             /                              301
 
-/blogs/how-to-prepare-your-home-for-a-pest-control-visit/           /pest-solutions/               301
-/blogs/how-to-prepare-your-home-for-a-pest-control-visit            /pest-solutions/               301
+/blogs/how-much-does-pest-control-in-melbourne-cost/               /#price-calculator             301
+/blogs/how-much-does-pest-control-in-melbourne-cost                /#price-calculator             301
 
-/blogs/what-happens-during-a-professional-pest-inspection/          /pest-solutions/               301
-/blogs/what-happens-during-a-professional-pest-inspection           /pest-solutions/               301
+/blogs/signs-you-have-a-termite-infestation-in-your-melbourne-home/  /termite-control-melbourne/  301
+/blogs/signs-you-have-a-termite-infestation-in-your-melbourne-home   /termite-control-melbourne/  301
 
-/blogs/pest-control-checklist-for-new-homeowners-in-melbourne/      /pest-solutions/               301
-/blogs/pest-control-checklist-for-new-homeowners-in-melbourne       /pest-solutions/               301
-
-/blogs/how-often-should-you-schedule-pest-control-services/         /pest-solutions/               301
-/blogs/how-often-should-you-schedule-pest-control-services          /pest-solutions/               301
-
-/blogs/how-much-does-pest-control-in-melbourne-cost/                /#price-calculator             301
-/blogs/how-much-does-pest-control-in-melbourne-cost                 /#price-calculator             301
-
-/blogs/melbournes-top-5-most-common-household-pests/                /pest-solutions/               301
-/blogs/melbournes-top-5-most-common-household-pests                 /pest-solutions/               301
-
-/blogs/signs-you-have-a-termite-infestation-in-your-melbourne-home/ /termite-control-melbourne/    301
-/blogs/signs-you-have-a-termite-infestation-in-your-melbourne-home  /termite-control-melbourne/    301
-
-/blogs/*                                                            /pest-solutions/               301
+/blogs/*                                                           /pest-solutions/               301
 
 # =====================================================================
 # Section 4b — Regional landing pages, typo URLs, dedicated-route suburbs
