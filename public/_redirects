@@ -1,137 +1,225 @@
-# Netlify redirects — Zap It Pest Control
+# Zap It Pest Control — URL redirects
+#
 # Format: <from-path>  <to-path>  <status-code>
-# Order matters: more specific rules go ABOVE catch-alls.
-# Edit guide: docs/FEATURE_PARITY_AUDIT.md
-
+# Order:  more specific rules ABOVE catch-alls.
+# Portable format — read identically by both Netlify and Cloudflare Pages.
+#
+# TRAILING-SLASH TREATMENT (2026-09-04, per Zaydan email 2026-09-03):
+#   Cloudflare Pages does NOT normalise trailing slash before matching
+#   _redirects rules — Netlify did automatically. Google's Yoast sitemap
+#   serves every legacy URL with a trailing slash, so every rule needs
+#   BOTH source forms or we lose 301 coverage on the form Google has
+#   already indexed.
+#
+#   TARGETS end with `/` to match Next.js `trailingSlash: true` canonical
+#   routes and avoid a needless double-hop through Next.js's own 308.
+#   Fragment targets (e.g. /#price-calculator) intentionally have no slash.
+#
 # =====================================================================
 # Section 1 — Core page removals (intentional per Figma brief)
 # =====================================================================
 
 # /residential merged into / (home page now serves as residential-focused page)
-/residential          /                       301
-/residential/*        /                       301
+/residential/                     /                                                   301
+/residential                      /                                                   301
+/residential/*                    /                                                   301
 
 # /pricing — kept anchor redirect to home price-calculator section
-/pricing              /#price-calculator      301
-/price-calculator     /#price-calculator      301
+/pricing/                         /#price-calculator                                  301
+/pricing                          /#price-calculator                                  301
+/price-calculator/                /#price-calculator                                  301
+/price-calculator                 /#price-calculator                                  301
 
 # Other utility/legacy pages removed
-/links                /                       301
-/sitemap              /                       301
-/certificates         /about-us               301
-/industrial           /commercial-pest-control/warehousing-and-storage   301
+/links/                           /                                                   301
+/links                            /                                                   301
+/sitemap/                         /                                                   301
+/sitemap                          /                                                   301
+/certificates/                    /about-us/                                          301
+/certificates                     /about-us/                                          301
+/industrial/                      /commercial-pest-control/warehousing-and-storage/   301
+/industrial                       /commercial-pest-control/warehousing-and-storage/   301
 
 # =====================================================================
 # Section 2 — Pest service URL restructuring
-# Old: /pest-solutions/{pest-slug}   →   New: /{pest-slug}
-# 15 pest service pages migrated to the dynamic /[serviceSlug] route
+# Old: /pest-solutions/{pest-slug}   →   New: /{pest-slug}/
 # =====================================================================
-/pest-solutions/ant-pest-control-melbourne          /ant-pest-control-melbourne          301
-/pest-solutions/bed-bug-control-melbourne           /bed-bug-control-melbourne           301
-/pest-solutions/bee-removal-melbourne               /bee-removal-melbourne               301
-/pest-solutions/clothes-moths-treatment-melbourne   /clothes-moths-treatment-melbourne   301
-/pest-solutions/cockroach-control-melbourne         /cockroach-control-melbourne         301
-/pest-solutions/flea-control-melbourne              /flea-control-melbourne              301
-/pest-solutions/fly-control-melbourne               /fly-control-melbourne               301
-/pest-solutions/mosquito-control-melbourne          /mosquito-control-melbourne          301
-/pest-solutions/possum-removal-melbourne            /possum-removal-melbourne            301
-/pest-solutions/silverfish-control-melbourne        /silverfish-control-melbourne        301
-/pest-solutions/spider-control-melbourne            /spider-control-melbourne            301
-/pest-solutions/termite-control-melbourne           /termite-control-melbourne           301
-/pest-solutions/treatment-for-wood-borers-in-melbourne   /treatment-for-wood-borers-in-melbourne   301
-/pest-solutions/wasp-removal-melbourne              /wasp-removal-melbourne              301
+
+/pest-solutions/ant-pest-control-melbourne/            /ant-pest-control-melbourne/            301
+/pest-solutions/ant-pest-control-melbourne             /ant-pest-control-melbourne/            301
+
+/pest-solutions/bed-bug-control-melbourne/             /bed-bug-control-melbourne/             301
+/pest-solutions/bed-bug-control-melbourne              /bed-bug-control-melbourne/             301
+
+/pest-solutions/bee-removal-melbourne/                 /bee-removal-melbourne/                 301
+/pest-solutions/bee-removal-melbourne                  /bee-removal-melbourne/                 301
+
+/pest-solutions/clothes-moths-treatment-melbourne/     /clothes-moths-treatment-melbourne/     301
+/pest-solutions/clothes-moths-treatment-melbourne      /clothes-moths-treatment-melbourne/     301
+
+/pest-solutions/cockroach-control-melbourne/           /cockroach-control-melbourne/           301
+/pest-solutions/cockroach-control-melbourne            /cockroach-control-melbourne/           301
+
+/pest-solutions/flea-control-melbourne/                /flea-control-melbourne/                301
+/pest-solutions/flea-control-melbourne                 /flea-control-melbourne/                301
+
+/pest-solutions/fly-control-melbourne/                 /fly-control-melbourne/                 301
+/pest-solutions/fly-control-melbourne                  /fly-control-melbourne/                 301
+
+/pest-solutions/mosquito-control-melbourne/            /mosquito-control-melbourne/            301
+/pest-solutions/mosquito-control-melbourne             /mosquito-control-melbourne/            301
+
+/pest-solutions/possum-removal-melbourne/              /possum-removal-melbourne/              301
+/pest-solutions/possum-removal-melbourne               /possum-removal-melbourne/              301
+
+/pest-solutions/silverfish-control-melbourne/          /silverfish-control-melbourne/          301
+/pest-solutions/silverfish-control-melbourne           /silverfish-control-melbourne/          301
+
+/pest-solutions/spider-control-melbourne/              /spider-control-melbourne/              301
+/pest-solutions/spider-control-melbourne               /spider-control-melbourne/              301
+
+/pest-solutions/termite-control-melbourne/             /termite-control-melbourne/             301
+/pest-solutions/termite-control-melbourne              /termite-control-melbourne/             301
+
+/pest-solutions/treatment-for-wood-borers-in-melbourne/   /treatment-for-wood-borers-in-melbourne/   301
+/pest-solutions/treatment-for-wood-borers-in-melbourne    /treatment-for-wood-borers-in-melbourne/   301
+
+/pest-solutions/wasp-removal-melbourne/                /wasp-removal-melbourne/                301
+/pest-solutions/wasp-removal-melbourne                 /wasp-removal-melbourne/                301
 
 # Renamed: /pest-solutions/rodent-removal → /rodent-control-melbourne
-/pest-solutions/rodent-removal      /rodent-control-melbourne     301
+/pest-solutions/rodent-removal/                        /rodent-control-melbourne/              301
+/pest-solutions/rodent-removal                         /rodent-control-melbourne/              301
 
 # Removed pest pages (not migrated; redirect to closest equivalent)
-/pest-solutions/birds-control-melbourne     /pest-solutions     301
-/birds-control-melbourne                    /pest-solutions     301
+/pest-solutions/birds-control-melbourne/               /pest-solutions/                        301
+/pest-solutions/birds-control-melbourne                /pest-solutions/                        301
+/birds-control-melbourne/                              /pest-solutions/                        301
+/birds-control-melbourne                               /pest-solutions/                        301
 
 # /pest-solutions/seasonal-pest-control, /organic-pest-control, /garden-pest-control
-# all exist on new site at same path → no redirect needed
+# all exist on new site at same path → no redirect needed.
 
 # =====================================================================
 # Section 3 — Commercial URL path restructuring
-# Old patterns:
-#   /commercial/{slug}              →   New: /commercial-pest-control/{slug}
-#   /commercial-pest-control/{slug-with-pest-control-in-name}  →  /commercial-pest-control/{cleaner-slug}
 # =====================================================================
 
 # /commercial/* → /commercial-pest-control/* (clean slug matches)
-/commercial/aged-care-facilities          /commercial-pest-control/aged-care-facilities         301
-/commercial/brewhouses-and-distilleries   /commercial-pest-control/brewhouses-and-distilleries  301
-/commercial/distribution-center           /commercial-pest-control/distribution-center          301
-/commercial/government-buildings          /commercial-pest-control/government-buildings         301
-/commercial/restaurants-pest-control      /commercial-pest-control/restaurants-pest-control     301
+/commercial/aged-care-facilities/            /commercial-pest-control/aged-care-facilities/            301
+/commercial/aged-care-facilities             /commercial-pest-control/aged-care-facilities/            301
+
+/commercial/brewhouses-and-distilleries/     /commercial-pest-control/brewhouses-and-distilleries/     301
+/commercial/brewhouses-and-distilleries      /commercial-pest-control/brewhouses-and-distilleries/     301
+
+/commercial/distribution-center/             /commercial-pest-control/distribution-center/             301
+/commercial/distribution-center              /commercial-pest-control/distribution-center/             301
+
+/commercial/government-buildings/            /commercial-pest-control/government-buildings/            301
+/commercial/government-buildings             /commercial-pest-control/government-buildings/            301
+
+/commercial/restaurants-pest-control/        /commercial-pest-control/restaurants-pest-control/        301
+/commercial/restaurants-pest-control         /commercial-pest-control/restaurants-pest-control/        301
 
 # Slug rename: old verbose slug → new cleaner slug
-/commercial/function-venues-pest-control  /commercial-pest-control/function-venues              301
-/commercial/pest-control-in-hospitals     /commercial-pest-control/hospitals                    301
-/commercial/pest-control-in-agriculture   /commercial-pest-control/agriculture                  301
+/commercial/function-venues-pest-control/    /commercial-pest-control/function-venues/                 301
+/commercial/function-venues-pest-control     /commercial-pest-control/function-venues/                 301
 
-# Same path-pattern but new slug name on the existing /commercial-pest-control branch
-/commercial-pest-control/food-manufacturing-pest-control       /commercial-pest-control/food-manufacturing  301
-/commercial-pest-control/educational-facilities-pest-control   /commercial-pest-control/educational-facilities  301
-/commercial-pest-control/transport-pest-control-in-melbourne   /commercial-pest-control/transport            301
+/commercial/pest-control-in-hospitals/       /commercial-pest-control/hospitals/                       301
+/commercial/pest-control-in-hospitals        /commercial-pest-control/hospitals/                       301
+
+/commercial/pest-control-in-agriculture/     /commercial-pest-control/agriculture/                     301
+/commercial/pest-control-in-agriculture      /commercial-pest-control/agriculture/                     301
+
+# Same path-pattern but new slug name on the /commercial-pest-control branch
+/commercial-pest-control/food-manufacturing-pest-control/    /commercial-pest-control/food-manufacturing/    301
+/commercial-pest-control/food-manufacturing-pest-control     /commercial-pest-control/food-manufacturing/    301
+
+/commercial-pest-control/educational-facilities-pest-control/   /commercial-pest-control/educational-facilities/   301
+/commercial-pest-control/educational-facilities-pest-control    /commercial-pest-control/educational-facilities/   301
+
+/commercial-pest-control/transport-pest-control-in-melbourne/   /commercial-pest-control/transport/                301
+/commercial-pest-control/transport-pest-control-in-melbourne    /commercial-pest-control/transport/                301
 
 # No direct equivalent — redirect to parent commercial page
-/commercial/property-pest-control     /commercial-pest-control     301
-/commercial/industrial-pest-control   /commercial-pest-control/warehousing-and-storage    301
+/commercial/property-pest-control/           /commercial-pest-control/                                 301
+/commercial/property-pest-control            /commercial-pest-control/                                 301
 
-# Catch-all for any other /commercial/* not explicitly mapped above
-# Placed AFTER specific rules so they take precedence
-/commercial/*     /commercial-pest-control     301
+/commercial/industrial-pest-control/         /commercial-pest-control/warehousing-and-storage/         301
+/commercial/industrial-pest-control          /commercial-pest-control/warehousing-and-storage/         301
+
+# Catch-all for any other /commercial/* not explicitly mapped above.
+# Placed AFTER specific rules so they take precedence.
+/commercial/*                                /commercial-pest-control/                                 301
 
 # =====================================================================
 # Section 4 — Blog post removals (intentional per Figma brief)
-# Old WordPress blog posts lived at /{slug}/ root, not /blogs/{slug}
 # =====================================================================
 
-# /blogs index and any /blogs/* URLs from internal links
-/blogs                                                            /                                  301
-/blogs/how-to-prepare-your-home-for-a-pest-control-visit          /pest-solutions                    301
-/blogs/what-happens-during-a-professional-pest-inspection         /pest-solutions                    301
-/blogs/pest-control-checklist-for-new-homeowners-in-melbourne     /pest-solutions                    301
-/blogs/how-often-should-you-schedule-pest-control-services        /pest-solutions                    301
-/blogs/how-much-does-pest-control-in-melbourne-cost               /#price-calculator                 301
-/blogs/melbournes-top-5-most-common-household-pests               /pest-solutions                    301
-/blogs/signs-you-have-a-termite-infestation-in-your-melbourne-home /termite-control-melbourne        301
-/blogs/*                                                          /pest-solutions                    301
+/blogs/                                                             /                              301
+/blogs                                                              /                              301
+
+/blogs/how-to-prepare-your-home-for-a-pest-control-visit/           /pest-solutions/               301
+/blogs/how-to-prepare-your-home-for-a-pest-control-visit            /pest-solutions/               301
+
+/blogs/what-happens-during-a-professional-pest-inspection/          /pest-solutions/               301
+/blogs/what-happens-during-a-professional-pest-inspection           /pest-solutions/               301
+
+/blogs/pest-control-checklist-for-new-homeowners-in-melbourne/      /pest-solutions/               301
+/blogs/pest-control-checklist-for-new-homeowners-in-melbourne       /pest-solutions/               301
+
+/blogs/how-often-should-you-schedule-pest-control-services/         /pest-solutions/               301
+/blogs/how-often-should-you-schedule-pest-control-services          /pest-solutions/               301
+
+/blogs/how-much-does-pest-control-in-melbourne-cost/                /#price-calculator             301
+/blogs/how-much-does-pest-control-in-melbourne-cost                 /#price-calculator             301
+
+/blogs/melbournes-top-5-most-common-household-pests/                /pest-solutions/               301
+/blogs/melbournes-top-5-most-common-household-pests                 /pest-solutions/               301
+
+/blogs/signs-you-have-a-termite-infestation-in-your-melbourne-home/ /termite-control-melbourne/    301
+/blogs/signs-you-have-a-termite-infestation-in-your-melbourne-home  /termite-control-melbourne/    301
+
+/blogs/*                                                            /pest-solutions/               301
 
 # =====================================================================
-# Section 4b — Additional quick wins discovered in 2026-06-27 audit pass
+# Section 4b — Regional landing pages, typo URLs, dedicated-route suburbs
 # =====================================================================
 
-# Melbourne regional landing pages → /service-areas (which lists all regions)
-/melbourne-western-suburbs       /service-areas              301
-/melbourne-inner-city-suburbs    /service-areas              301
-/melbourne-east-suburbs          /service-areas              301
+/melbourne-western-suburbs/       /service-areas/              301
+/melbourne-western-suburbs        /service-areas/              301
 
-# Typo URL from old site
-/pestcontrol-syndal              /service-areas              301
+/melbourne-inner-city-suburbs/    /service-areas/              301
+/melbourne-inner-city-suburbs     /service-areas/              301
 
-# Service-specific URL no longer present on new site
-/commercial-termite-control      /termite-control-melbourne  301
+/melbourne-east-suburbs/          /service-areas/              301
+/melbourne-east-suburbs           /service-areas/              301
 
-# Service x suburb combo URL → suburb page (Richmond is in inner-city service area)
-/rodent-control-richmond         /pest-control-richmond      301
+/pestcontrol-syndal/              /service-areas/              301
+/pestcontrol-syndal               /service-areas/              301
 
-# DEDICATED_ROUTE_SUBURBS (Coburg + Reservoir) have their own /[suburb]/ pages on the
-# new site and are excluded from the dynamic /pest-control-[suburb] route to avoid
-# duplicate canonicals. Old WordPress had /pest-control-{suburb}/ URLs for both —
-# redirect them to the new dedicated routes.
-/pest-control-coburg             /coburg                     301
-/pest-control-reservoir          /reservoir                  301
+/commercial-termite-control/      /termite-control-melbourne/  301
+/commercial-termite-control       /termite-control-melbourne/  301
+
+/rodent-control-richmond/         /pest-control-richmond/      301
+/rodent-control-richmond          /pest-control-richmond/      301
+
+# DEDICATED_ROUTE_SUBURBS (Coburg + Reservoir) have their own /[suburb]/
+# pages on the new site and are excluded from the dynamic /pest-control-[suburb]
+# route to avoid duplicate canonicals. Old WordPress had /pest-control-{suburb}/
+# URLs for both — redirect them to the new dedicated routes.
+/pest-control-coburg/             /coburg/                     301
+/pest-control-coburg              /coburg/                     301
+
+/pest-control-reservoir/          /reservoir/                  301
+/pest-control-reservoir           /reservoir/                  301
 
 # =====================================================================
-# Section 5 — Pending decisions (DO NOT add until Adam confirms)
-# =====================================================================
+# Section 5 — Awaiting Zaydan's 331-row legacy WordPress redirects
+# (see email 2026-09-03: 262 /pest-control-<dead-suburb>/ URLs
+# + 3 old-naming URLs + 66 blog posts)
 #
-# 231 suburb-level URLs from old site that are NOT on new site:
-#   /pest-control-{suburb}/  →  TBD (await Adam: build OR redirect to /service-areas OR redirect to nearest covered suburb)
-#   See docs/FEATURE_PARITY_AUDIT.md section 2
-#
-# 68 individual blog post URLs at root (/{post-slug}/):
-#   TBD (await Adam: migrate top performers / redirect to home / 410 Gone)
-#   See docs/FEATURE_PARITY_AUDIT.md section 2
+# Zaydan's HARD CONDITION on the 262-suburb list: 73 /pest-control-<suburb>/
+# pages are LIVE on the preview and return 200. Any legacy suburb rule must
+# be a NON-FORCED per-URL rule (never a catch-all /pest-control-*) so the
+# live 73 stay 200. Curl every one of the 73 after deploy to confirm.
+# =====================================================================
