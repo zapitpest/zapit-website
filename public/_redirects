@@ -66,12 +66,20 @@
 /birds-control-melbourne/                              /pest-solutions/                        301
 /birds-control-melbourne                               /pest-solutions/                        301
 
-# Explicit keep-as-is guards for the 3 pages that live at /pest-solutions/{slug}
-# on the new site (seasonal/organic/garden). Two rules per page:
+# Explicit keep-as-is guards for pages that live under /pest-solutions/ on
+# the new site (seasonal / organic / garden) AND the /pest-solutions/ hub
+# root itself. Two rules per page:
 #   - trailing-slash form: 200 rewrite so CF serves the static page and does
 #     not fall through to the splat below.
 #   - no-slash form: 301 to the trailing-slash canonical (would otherwise hit
 #     the splat and 301 to a 404 at /{slug}).
+#
+# ROOT GUARD: the splat `/pest-solutions/*` matches `/pest-solutions/` too
+# with an empty splat capture, so without the explicit /pest-solutions/ rule
+# below the hub page 301s to `/` (site root). Regression Zaydan would catch
+# on his 426-URL sweep — do NOT remove.
+/pest-solutions/                                       /pest-solutions/                                        200
+/pest-solutions                                        /pest-solutions/                                        301
 /pest-solutions/seasonal-pest-control/                 /pest-solutions/seasonal-pest-control/                  200
 /pest-solutions/seasonal-pest-control                  /pest-solutions/seasonal-pest-control/                  301
 /pest-solutions/organic-pest-control/                  /pest-solutions/organic-pest-control/                   200
