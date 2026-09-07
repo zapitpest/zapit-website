@@ -143,12 +143,39 @@ export default function HomePage() {
               care as you do, using high-quality, long-lasting solutions you can rely on.
             </p>
 
-            {/* Trust badges — sized to match Figma proportions */}
-            <div className="flex items-center justify-center gap-6 sm:gap-10">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/icons/group-373.svg" alt="Child safe, Pet safe, Eco friendly" className="h-[80px] w-auto sm:h-[88px] lg:h-[96px]" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/icons/group-374.svg" alt="Insured, Licensed, Local team" className="h-[80px] w-auto sm:h-[88px] lg:h-[96px]" />
+            {/* Trust badges — rebuilt as real markup on 2026-09-07 per Zaydan's
+                audit finding: the previous SVGs (group-373.svg, group-374.svg)
+                had "DHHS licensed" baked in as outlined vector paths — grep-
+                invisible but visible on screen. We are NOT DHHS licensed, so
+                the artwork made a false claim. Real-markup version below is
+                audit-verifiable, matches the accurate claim set, and keeps the
+                Figma 2-column / 3-badges-per-column visual pattern (green tick
+                on #64FF01 circle, #E5E5E5 label text on the #0d402e background). */}
+            <div className="flex items-start justify-center gap-8 sm:gap-14">
+              <ul className="space-y-3 sm:space-y-4">
+                {(['Child safe', 'Pet safe', 'Eco friendly'] as const).map((label) => (
+                  <li key={label} className="flex items-center gap-2.5 sm:gap-3">
+                    <span className="flex h-[21px] w-[21px] shrink-0 items-center justify-center rounded-full bg-[#64FF01] sm:h-6 sm:w-6" aria-hidden>
+                      <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 12 12" fill="none" stroke="#414042" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M2 6.5l2.5 2.5L10 3" />
+                      </svg>
+                    </span>
+                    <span className="text-[14px] font-semibold text-[#E5E5E5] sm:text-[15px]">{label}</span>
+                  </li>
+                ))}
+              </ul>
+              <ul className="space-y-3 sm:space-y-4">
+                {(['Insured', 'Licensed', 'Local team'] as const).map((label) => (
+                  <li key={label} className="flex items-center gap-2.5 sm:gap-3">
+                    <span className="flex h-[21px] w-[21px] shrink-0 items-center justify-center rounded-full bg-[#64FF01] sm:h-6 sm:w-6" aria-hidden>
+                      <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 12 12" fill="none" stroke="#414042" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M2 6.5l2.5 2.5L10 3" />
+                      </svg>
+                    </span>
+                    <span className="text-[14px] font-semibold text-[#E5E5E5] sm:text-[15px]">{label}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
