@@ -1,7 +1,6 @@
 # Zap It Pest Control — URL redirects
 #
 # Format: <from-path>  <to-path>  <status-code>
-# Order:  more specific rules ABOVE catch-alls.
 # Portable format — read identically by both Netlify and Cloudflare Pages.
 #
 # TRAILING-SLASH TREATMENT (2026-09-04, per Zaydan email 2026-09-03):
@@ -15,10 +14,12 @@
 #   routes and avoid a needless double-hop through Next.js's own 308.
 #   Fragment targets (e.g. /#price-calculator) intentionally have no slash.
 #
-# RULE-BUDGET NOTE: an earlier version of this file paired every static rule
-# and hit ~109 rules — CF Pages silently ignored rules beyond position ~102.
-# Section 2 (pest-solutions) and Section 4 (blogs) are now expressed as splats
-# so the file stays well under whatever the effective ceiling is.
+# RULE-BUDGET (per Zaydan email 2026-09-07 correction):
+#   Cloudflare Pages documents 2,000 static + 100 dynamic (splat/placeholder)
+#   redirect limits. Static rules must sit ABOVE dynamic rules in this file.
+#   Section 6 below is 662 static rules (Zaydan's 331 legacy URLs × 2 slash
+#   forms) — burns 33% of the static budget, zero of the dynamic budget.
+#   All 4 splats are consolidated at the bottom (Section 7).
 
 # =====================================================================
 # Section 1 — Core page removals (intentional per Figma brief)
@@ -27,7 +28,6 @@
 # /residential merged into / (home page now serves as residential-focused page)
 /residential/                     /                                                   301
 /residential                      /                                                   301
-/residential/*                    /                                                   301
 
 # /pricing — kept anchor redirect to home price-calculator section
 /pricing/                         /#price-calculator                                  301
@@ -91,7 +91,6 @@
 # Handles all 15 canonical pest slugs (ant, bed-bug, bee, clothes-moths,
 # cockroach, flea, fly, mosquito, possum, silverfish, spider, termite,
 # treatment-for-wood-borers, wasp) plus any legacy URL we haven't listed.
-/pest-solutions/*                                      /:splat                                 301
 
 # =====================================================================
 # Section 3 — Commercial URL path restructuring
@@ -141,7 +140,6 @@
 /commercial/industrial-pest-control          /commercial-pest-control/warehousing-and-storage/         301
 
 # Catch-all for any other /commercial/* not explicitly mapped above.
-/commercial/*                                /commercial-pest-control/                                 301
 
 # =====================================================================
 # Section 4 — Blog post removals (intentional per Figma brief)
@@ -157,8 +155,6 @@
 
 /blogs/signs-you-have-a-termite-infestation-in-your-melbourne-home/  /termite-control-melbourne/  301
 /blogs/signs-you-have-a-termite-infestation-in-your-melbourne-home   /termite-control-melbourne/  301
-
-/blogs/*                                                           /pest-solutions/               301
 
 # =====================================================================
 # Section 4b — Regional landing pages, typo URLs, dedicated-route suburbs
@@ -193,12 +189,810 @@
 /pest-control-reservoir           /reservoir/                  301
 
 # =====================================================================
-# Section 5 — Awaiting Zaydan's 331-row legacy WordPress redirects
-# (see email 2026-09-03: 262 /pest-control-<dead-suburb>/ URLs
-# + 3 old-naming URLs + 66 blog posts)
-#
-# Zaydan's HARD CONDITION on the 262-suburb list: 73 /pest-control-<suburb>/
-# pages are LIVE on the preview and return 200. Any legacy suburb rule must
-# be a NON-FORCED per-URL rule (never a catch-all /pest-control-*) so the
-# live 73 stay 200. Curl every one of the 73 after deploy to confirm.
+# Section 6 — Zaydan's 331 legacy WordPress URLs (662 static rules)
+# From email 2026-09-07 — file zapit-redirects-331/zapit-331-redirects.txt
+# 265 suburb URLs → /service-areas/
+# 66 blog posts → mapped to the service page matching the topic
+#   (19 termite, 10 rodent, 7 fly, 7 wasp, 6 possum, 3 mosquito, 2 flea,
+#    1 each ant/spider/silverfish/commercial/pricing, 7 general → /pest-solutions/)
+# Zero collisions with the 73 live suburb pages (verified by Zaydan + Sharjeel).
+# Every target returns 200 on the preview (verified 2026-09-07).
 # =====================================================================
+
+# Section 6 - Legacy WordPress URLs (331 dead URLs from the 3 old sitemaps)
+# Generated 7 Sep 2026 from page-sitemap.xml + post-sitemap.xml + commercial-sitemap.xml
+# Verified: these 331 return 404 on BOTH Netlify and the Pages preview today.
+#
+# ALL RULES BELOW ARE STATIC - no splats, no placeholders.
+# Static budget is 2,000; dynamic budget is only 100. These consume static only.
+# Both slash forms are written explicitly - Pages matches the source literally.
+# Per Cloudflare docs, static rules must sit ABOVE any dynamic (splat) rules.
+#
+# 331 URLs -> 662 rules. 0 dynamic. 0 collisions with the 73 live suburb pages.
+
+# --- 6a. Blog posts (66) - mapped to the service page matching the topic
+# 19 are termite content. Termite is ~30% of revenue - deliberately not catch-alled.
+
+# termite
+/8-tips-to-detect-termites-and-5-prevention-strategies-for-melbourne-homeowners/ /termite-control-melbourne/ 301
+/8-tips-to-detect-termites-and-5-prevention-strategies-for-melbourne-homeowners /termite-control-melbourne/ 301
+/can-termites-fly-guide-about-flying-termites-home-protection/ /termite-control-melbourne/ 301
+/can-termites-fly-guide-about-flying-termites-home-protection /termite-control-melbourne/ 301
+
+# general
+/common-signs-of-pest-infestation-to-look-for-act-promptly/ /pest-solutions/ 301
+/common-signs-of-pest-infestation-to-look-for-act-promptly /pest-solutions/ 301
+
+# rodent
+/common-signs-of-rodent-infestation-to-look-for-treat/ /rodent-control-melbourne/ 301
+/common-signs-of-rodent-infestation-to-look-for-treat /rodent-control-melbourne/ 301
+
+# termite
+/cost-of-termite-treatment/ /termite-control-melbourne/ 301
+/cost-of-termite-treatment /termite-control-melbourne/ 301
+
+# rodent
+/do-house-mice-carry-diseases/ /rodent-control-melbourne/ 301
+/do-house-mice-carry-diseases /rodent-control-melbourne/ 301
+
+# termite
+/do-termites-bite-people-symptoms-preventive-measures/ /termite-control-melbourne/ 301
+/do-termites-bite-people-symptoms-preventive-measures /termite-control-melbourne/ 301
+/everything-you-need-to-know-about-what-do-termites-eat/ /termite-control-melbourne/ 301
+/everything-you-need-to-know-about-what-do-termites-eat /termite-control-melbourne/ 301
+/home-termite-control/ /termite-control-melbourne/ 301
+/home-termite-control /termite-control-melbourne/ 301
+
+# fly
+/how-do-flies-fly/ /fly-control-melbourne/ 301
+/how-do-flies-fly /fly-control-melbourne/ 301
+
+# wasp
+/how-do-wasps-build-nests/ /wasp-removal-melbourne/ 301
+/how-do-wasps-build-nests /wasp-removal-melbourne/ 301
+
+# termite
+/how-do-you-tell-if-you-have-termites-infestation-signs-to-look-for/ /termite-control-melbourne/ 301
+/how-do-you-tell-if-you-have-termites-infestation-signs-to-look-for /termite-control-melbourne/ 301
+
+# fly
+/how-long-do-house-flies-live/ /fly-control-melbourne/ 301
+/how-long-do-house-flies-live /fly-control-melbourne/ 301
+
+# mosquito
+/how-long-do-mosquitoes-live/ /mosquito-control-melbourne/ 301
+/how-long-do-mosquitoes-live /mosquito-control-melbourne/ 301
+
+# fly
+/how-much-does-fly-control-cost/ /fly-control-melbourne/ 301
+/how-much-does-fly-control-cost /fly-control-melbourne/ 301
+
+# pricing
+/how-much-does-pest-control-in-melbourne-cost/ /#price-calculator 301
+/how-much-does-pest-control-in-melbourne-cost /#price-calculator 301
+
+# rodent
+/how-much-does-rodent-control-cost/ /rodent-control-melbourne/ 301
+/how-much-does-rodent-control-cost /rodent-control-melbourne/ 301
+
+# general
+/how-often-should-you-schedule-pest-control-services/ /pest-solutions/ 301
+/how-often-should-you-schedule-pest-control-services /pest-solutions/ 301
+
+# spider
+/how-to-control-spiders-in-the-home-prevention-tips-for-safety/ /spider-control-melbourne/ 301
+/how-to-control-spiders-in-the-home-prevention-tips-for-safety /spider-control-melbourne/ 301
+
+# termite
+/how-to-detect-termites/ /termite-control-melbourne/ 301
+/how-to-detect-termites /termite-control-melbourne/ 301
+
+# wasp
+/how-to-find-wasp-nest/ /wasp-removal-melbourne/ 301
+/how-to-find-wasp-nest /wasp-removal-melbourne/ 301
+
+# flea
+/how-to-get-rid-of-fleas-in-your-yard-best-methods-for-pet-protection/ /flea-control-melbourne/ 301
+/how-to-get-rid-of-fleas-in-your-yard-best-methods-for-pet-protection /flea-control-melbourne/ 301
+/how-to-get-rid-of-fleas-on-dogs/ /flea-control-melbourne/ 301
+/how-to-get-rid-of-fleas-on-dogs /flea-control-melbourne/ 301
+
+# fly
+/how-to-get-rid-of-flies-in-house/ /fly-control-melbourne/ 301
+/how-to-get-rid-of-flies-in-house /fly-control-melbourne/ 301
+
+# rodent
+/how-to-get-rid-of-mice/ /rodent-control-melbourne/ 301
+/how-to-get-rid-of-mice /rodent-control-melbourne/ 301
+
+# mosquito
+/how-to-get-rid-of-mosquitoes-bites/ /mosquito-control-melbourne/ 301
+/how-to-get-rid-of-mosquitoes-bites /mosquito-control-melbourne/ 301
+
+# possum
+/how-to-get-rid-of-possums/ /possum-removal-melbourne/ 301
+/how-to-get-rid-of-possums /possum-removal-melbourne/ 301
+
+# rodent
+/how-to-get-rid-of-rats-in-the-house-fast/ /rodent-control-melbourne/ 301
+/how-to-get-rid-of-rats-in-the-house-fast /rodent-control-melbourne/ 301
+
+# termite
+/how-to-get-rid-of-termites-using-proven-effective-methods/ /termite-control-melbourne/ 301
+/how-to-get-rid-of-termites-using-proven-effective-methods /termite-control-melbourne/ 301
+
+# wasp
+/how-to-get-rid-of-wasps-nest/ /wasp-removal-melbourne/ 301
+/how-to-get-rid-of-wasps-nest /wasp-removal-melbourne/ 301
+
+# termite
+/how-to-kill-termites-effectively-using-instant-solutions/ /termite-control-melbourne/ 301
+/how-to-kill-termites-effectively-using-instant-solutions /termite-control-melbourne/ 301
+
+# general
+/how-to-prepare-your-home-for-a-pest-control-visit/ /pest-solutions/ 301
+/how-to-prepare-your-home-for-a-pest-control-visit /pest-solutions/ 301
+
+# ant
+/how-to-prevent-ants-in-your-house-tips-natural-hacks/ /ant-pest-control-melbourne/ 301
+/how-to-prevent-ants-in-your-house-tips-natural-hacks /ant-pest-control-melbourne/ 301
+
+# termite
+/how-to-prevent-termites/ /termite-control-melbourne/ 301
+/how-to-prevent-termites /termite-control-melbourne/ 301
+
+# possum
+/how-to-remove-a-possum/ /possum-removal-melbourne/ 301
+/how-to-remove-a-possum /possum-removal-melbourne/ 301
+
+# mosquito
+/how-to-remove-mosquito/ /mosquito-control-melbourne/ 301
+/how-to-remove-mosquito /mosquito-control-melbourne/ 301
+
+# possum
+/how-to-trap-possum/ /possum-removal-melbourne/ 301
+/how-to-trap-possum /possum-removal-melbourne/ 301
+
+# general
+/melbournes-top-5-most-common-household-pests/ /pest-solutions/ 301
+/melbournes-top-5-most-common-household-pests /pest-solutions/ 301
+/pest-control-checklist-for-new-homeowners-in-melbourne/ /pest-solutions/ 301
+/pest-control-checklist-for-new-homeowners-in-melbourne /pest-solutions/ 301
+
+# possum
+/possum-poo/ /possum-removal-melbourne/ 301
+/possum-poo /possum-removal-melbourne/ 301
+
+# termite
+/pre-construction-termite-treatment/ /termite-control-melbourne/ 301
+/pre-construction-termite-treatment /termite-control-melbourne/ 301
+
+# rodent
+/rat-control-methods/ /rodent-control-melbourne/ 301
+/rat-control-methods /rodent-control-melbourne/ 301
+/rats-vs-mice/ /rodent-control-melbourne/ 301
+/rats-vs-mice /rodent-control-melbourne/ 301
+/signs-of-rats/ /rodent-control-melbourne/ 301
+/signs-of-rats /rodent-control-melbourne/ 301
+
+# termite
+/signs-of-termites/ /termite-control-melbourne/ 301
+/signs-of-termites /termite-control-melbourne/ 301
+/signs-you-have-a-termite-infestation-in-your-melbourne-home/ /termite-control-melbourne/ 301
+/signs-you-have-a-termite-infestation-in-your-melbourne-home /termite-control-melbourne/ 301
+/termite-control-tips/ /termite-control-melbourne/ 301
+/termite-control-tips /termite-control-melbourne/ 301
+/termite-treatment-methods/ /termite-control-melbourne/ 301
+/termite-treatment-methods /termite-control-melbourne/ 301
+
+# rodent
+/types-of-rodents/ /rodent-control-melbourne/ 301
+/types-of-rodents /rodent-control-melbourne/ 301
+
+# general
+/using-pesticides-safely/ /pest-solutions/organic-pest-control/ 301
+/using-pesticides-safely /pest-solutions/organic-pest-control/ 301
+
+# wasp
+/wasps-nest-removal-cost/ /wasp-removal-melbourne/ 301
+/wasps-nest-removal-cost /wasp-removal-melbourne/ 301
+
+# fly
+/what-are-flies/ /fly-control-melbourne/ 301
+/what-are-flies /fly-control-melbourne/ 301
+
+# possum
+/what-are-possums/ /possum-removal-melbourne/ 301
+/what-are-possums /possum-removal-melbourne/ 301
+
+# termite
+/what-are-termites-a-complete-guide-about-termite-life-cycle/ /termite-control-melbourne/ 301
+/what-are-termites-a-complete-guide-about-termite-life-cycle /termite-control-melbourne/ 301
+/what-are-termites/ /termite-control-melbourne/ 301
+/what-are-termites /termite-control-melbourne/ 301
+
+# wasp
+/what-are-wasps-and-types-of-wasps/ /wasp-removal-melbourne/ 301
+/what-are-wasps-and-types-of-wasps /wasp-removal-melbourne/ 301
+/what-attracts-wasps/ /wasp-removal-melbourne/ 301
+/what-attracts-wasps /wasp-removal-melbourne/ 301
+
+# fly
+/what-causes-fly-infestation/ /fly-control-melbourne/ 301
+/what-causes-fly-infestation /fly-control-melbourne/ 301
+/what-do-flies-eat/ /fly-control-melbourne/ 301
+/what-do-flies-eat /fly-control-melbourne/ 301
+
+# possum
+/what-do-possums-eat/ /possum-removal-melbourne/ 301
+/what-do-possums-eat /possum-removal-melbourne/ 301
+
+# termite
+/what-do-termites-sound-like-detection-tips-for-early-protection/ /termite-control-melbourne/ 301
+/what-do-termites-sound-like-detection-tips-for-early-protection /termite-control-melbourne/ 301
+
+# general
+/what-happens-during-a-professional-pest-inspection/ /pest-solutions/ 301
+/what-happens-during-a-professional-pest-inspection /pest-solutions/ 301
+
+# rodent
+/what-is-rodent-control/ /rodent-control-melbourne/ 301
+/what-is-rodent-control /rodent-control-melbourne/ 301
+
+# silverfish
+/where-do-silverfish-come-from/ /silverfish-control-melbourne/ 301
+/where-do-silverfish-come-from /silverfish-control-melbourne/ 301
+
+# wasp
+/where-do-wasps-go-in-winter/ /wasp-removal-melbourne/ 301
+/where-do-wasps-go-in-winter /wasp-removal-melbourne/ 301
+
+# commercial
+/why-schools-in-melbourne-are-shifting-to-health-first-pest-management/ /commercial-pest-control/educational-facilities/ 301
+/why-schools-in-melbourne-are-shifting-to-health-first-pest-management /commercial-pest-control/educational-facilities/ 301
+
+# --- 6b. Suburb pages (265) - no equivalent on the new site -> /service-areas/
+# Explicit static rules, NOT a /pest-control-* splat. The 73 live suburb pages are
+# absent from this list by construction, so they cannot be shadowed.
+
+/braeside-pest-control/ /service-areas/ 301
+/braeside-pest-control /service-areas/ 301
+/dandenong-pest-control/ /service-areas/ 301
+/dandenong-pest-control /service-areas/ 301
+/deanside-pest-control/ /service-areas/ 301
+/deanside-pest-control /service-areas/ 301
+/pest-control-abbotsford/ /service-areas/ 301
+/pest-control-abbotsford /service-areas/ 301
+/pest-control-albanvale/ /service-areas/ 301
+/pest-control-albanvale /service-areas/ 301
+/pest-control-albert-park-barracks/ /service-areas/ 301
+/pest-control-albert-park-barracks /service-areas/ 301
+/pest-control-albert-park/ /service-areas/ 301
+/pest-control-albert-park /service-areas/ 301
+/pest-control-albion/ /service-areas/ 301
+/pest-control-albion /service-areas/ 301
+/pest-control-alphington/ /service-areas/ 301
+/pest-control-alphington /service-areas/ 301
+/pest-control-altona-east/ /service-areas/ 301
+/pest-control-altona-east /service-areas/ 301
+/pest-control-altona-meadows/ /service-areas/ 301
+/pest-control-altona-meadows /service-areas/ 301
+/pest-control-altona-north/ /service-areas/ 301
+/pest-control-altona-north /service-areas/ 301
+/pest-control-ardeer-south/ /service-areas/ 301
+/pest-control-ardeer-south /service-areas/ 301
+/pest-control-arthurs-seat/ /service-areas/ 301
+/pest-control-arthurs-seat /service-areas/ 301
+/pest-control-ashburton/ /service-areas/ 301
+/pest-control-ashburton /service-areas/ 301
+/pest-control-ashwood/ /service-areas/ 301
+/pest-control-ashwood /service-areas/ 301
+/pest-control-aspendale-gardens/ /service-areas/ 301
+/pest-control-aspendale-gardens /service-areas/ 301
+/pest-control-aspendale/ /service-areas/ 301
+/pest-control-aspendale /service-areas/ 301
+/pest-control-avonsliegh/ /service-areas/ 301
+/pest-control-avonsliegh /service-areas/ 301
+/pest-control-balaclava/ /service-areas/ 301
+/pest-control-balaclava /service-areas/ 301
+/pest-control-balcombe/ /service-areas/ 301
+/pest-control-balcombe /service-areas/ 301
+/pest-control-balwyn-north/ /service-areas/ 301
+/pest-control-balwyn-north /service-areas/ 301
+/pest-control-bayles/ /service-areas/ 301
+/pest-control-bayles /service-areas/ 301
+/pest-control-bayswater-north/ /service-areas/ 301
+/pest-control-bayswater-north /service-areas/ 301
+/pest-control-bayswater/ /service-areas/ 301
+/pest-control-bayswater /service-areas/ 301
+/pest-control-beacon-cove/ /service-areas/ 301
+/pest-control-beacon-cove /service-areas/ 301
+/pest-control-beaconsfield/ /service-areas/ 301
+/pest-control-beaconsfield /service-areas/ 301
+/pest-control-beaumaris/ /service-areas/ 301
+/pest-control-beaumaris /service-areas/ 301
+/pest-control-belgrave-heights/ /service-areas/ 301
+/pest-control-belgrave-heights /service-areas/ 301
+/pest-control-belgrave-south/ /service-areas/ 301
+/pest-control-belgrave-south /service-areas/ 301
+/pest-control-bembridge/ /service-areas/ 301
+/pest-control-bembridge /service-areas/ 301
+/pest-control-bentleigh-east/ /service-areas/ 301
+/pest-control-bentleigh-east /service-areas/ 301
+/pest-control-bentleigh/ /service-areas/ 301
+/pest-control-bentleigh /service-areas/ 301
+/pest-control-black-rock-north/ /service-areas/ 301
+/pest-control-black-rock-north /service-areas/ 301
+/pest-control-black-rock/ /service-areas/ 301
+/pest-control-black-rock /service-areas/ 301
+/pest-control-blackburn-north/ /service-areas/ 301
+/pest-control-blackburn-north /service-areas/ 301
+/pest-control-blackburn-south/ /service-areas/ 301
+/pest-control-blackburn-south /service-areas/ 301
+/pest-control-blairgowrie/ /service-areas/ 301
+/pest-control-blairgowrie /service-areas/ 301
+/pest-control-blind-bight/ /service-areas/ 301
+/pest-control-blind-bight /service-areas/ 301
+/pest-control-bonbeach/ /service-areas/ 301
+/pest-control-bonbeach /service-areas/ 301
+/pest-control-booran-road/ /service-areas/ 301
+/pest-control-booran-road /service-areas/ 301
+/pest-control-boronia/ /service-areas/ 301
+/pest-control-boronia /service-areas/ 301
+/pest-control-botanic-ridge/ /service-areas/ 301
+/pest-control-botanic-ridge /service-areas/ 301
+/pest-control-box-hill-north/ /service-areas/ 301
+/pest-control-box-hill-north /service-areas/ 301
+/pest-control-box-hill-south/ /service-areas/ 301
+/pest-control-box-hill-south /service-areas/ 301
+/pest-control-brandon-park/ /service-areas/ 301
+/pest-control-brandon-park /service-areas/ 301
+/pest-control-braybrook/ /service-areas/ 301
+/pest-control-braybrook /service-areas/ 301
+/pest-control-brentwood/ /service-areas/ 301
+/pest-control-brentwood /service-areas/ 301
+/pest-control-brighton-beach/ /service-areas/ 301
+/pest-control-brighton-beach /service-areas/ 301
+/pest-control-brighton-east/ /service-areas/ 301
+/pest-control-brighton-east /service-areas/ 301
+/pest-control-brighton-north/ /service-areas/ 301
+/pest-control-brighton-north /service-areas/ 301
+/pest-control-brighton/ /service-areas/ 301
+/pest-control-brighton /service-areas/ 301
+/pest-control-brimbank/ /service-areas/ 301
+/pest-control-brimbank /service-areas/ 301
+/pest-control-brookfield/ /service-areas/ 301
+/pest-control-brookfield /service-areas/ 301
+/pest-control-brooklyn/ /service-areas/ 301
+/pest-control-brooklyn /service-areas/ 301
+/pest-control-bunyip-north/ /service-areas/ 301
+/pest-control-bunyip-north /service-areas/ 301
+/pest-control-bunyip/ /service-areas/ 301
+/pest-control-bunyip /service-areas/ 301
+/pest-control-burnside-heights/ /service-areas/ 301
+/pest-control-burnside-heights /service-areas/ 301
+/pest-control-burnside/ /service-areas/ 301
+/pest-control-burnside /service-areas/ 301
+/pest-control-burwood-east/ /service-areas/ 301
+/pest-control-burwood-east /service-areas/ 301
+/pest-control-cairnlea/ /service-areas/ 301
+/pest-control-cairnlea /service-areas/ 301
+/pest-control-calder-park/ /service-areas/ 301
+/pest-control-calder-park /service-areas/ 301
+/pest-control-caldermeade/ /service-areas/ 301
+/pest-control-caldermeade /service-areas/ 301
+/pest-control-cannons-creek/ /service-areas/ 301
+/pest-control-cannons-creek /service-areas/ 301
+/pest-control-canterbury/ /service-areas/ 301
+/pest-control-canterbury /service-areas/ 301
+/pest-control-cardinia/ /service-areas/ 301
+/pest-control-cardinia /service-areas/ 301
+/pest-control-carlingford/ /service-areas/ 301
+/pest-control-carlingford /service-areas/ 301
+/pest-control-carlton-north/ /service-areas/ 301
+/pest-control-carlton-north /service-areas/ 301
+/pest-control-carlton-south/ /service-areas/ 301
+/pest-control-carlton-south /service-areas/ 301
+/pest-control-carrum-downs/ /service-areas/ 301
+/pest-control-carrum-downs /service-areas/ 301
+/pest-control-catani/ /service-areas/ 301
+/pest-control-catani /service-areas/ 301
+/pest-control-cations/ /service-areas/ 301
+/pest-control-cations /service-areas/ 301
+/pest-control-caulfield-east/ /service-areas/ 301
+/pest-control-caulfield-east /service-areas/ 301
+/pest-control-centreville/ /service-areas/ 301
+/pest-control-centreville /service-areas/ 301
+/pest-control-chartwell/ /service-areas/ 301
+/pest-control-chartwell /service-areas/ 301
+/pest-control-chirnside-park/ /service-areas/ 301
+/pest-control-chirnside-park /service-areas/ 301
+/pest-control-city-road/ /service-areas/ 301
+/pest-control-city-road /service-areas/ 301
+/pest-control-clematis/ /service-areas/ 301
+/pest-control-clematis /service-areas/ 301
+/pest-control-cleveland/ /service-areas/ 301
+/pest-control-cleveland /service-areas/ 301
+/pest-control-clifton-hill/ /service-areas/ 301
+/pest-control-clifton-hill /service-areas/ 301
+/pest-control-clyde-north/ /service-areas/ 301
+/pest-control-clyde-north /service-areas/ 301
+/pest-control-clyde/ /service-areas/ 301
+/pest-control-clyde /service-areas/ 301
+/pest-control-cobblebank/ /service-areas/ 301
+/pest-control-cobblebank /service-areas/ 301
+/pest-control-cockatoo/ /service-areas/ 301
+/pest-control-cockatoo /service-areas/ 301
+/pest-control-cocoroc/ /service-areas/ 301
+/pest-control-cocoroc /service-areas/ 301
+/pest-control-collingwood-north/ /service-areas/ 301
+/pest-control-collingwood-north /service-areas/ 301
+/pest-control-coode-island/ /service-areas/ 301
+/pest-control-coode-island /service-areas/ 301
+/pest-control-cora-lynn/ /service-areas/ 301
+/pest-control-cora-lynn /service-areas/ 301
+/pest-control-cranbourne-east/ /service-areas/ 301
+/pest-control-cranbourne-east /service-areas/ 301
+/pest-control-cranbourne-north/ /service-areas/ 301
+/pest-control-cranbourne-north /service-areas/ 301
+/pest-control-cranbourne-south/ /service-areas/ 301
+/pest-control-cranbourne-south /service-areas/ 301
+/pest-control-cranbourne-west/ /service-areas/ 301
+/pest-control-cranbourne-west /service-areas/ 301
+/pest-control-cremorne/ /service-areas/ 301
+/pest-control-cremorne /service-areas/ 301
+/pest-control-cromer/ /service-areas/ 301
+/pest-control-cromer /service-areas/ 301
+/pest-control-croydon-hills/ /service-areas/ 301
+/pest-control-croydon-hills /service-areas/ 301
+/pest-control-croydon-north/ /service-areas/ 301
+/pest-control-croydon-north /service-areas/ 301
+/pest-control-croydon-south/ /service-areas/ 301
+/pest-control-croydon-south /service-areas/ 301
+/pest-control-dalmore/ /service-areas/ 301
+/pest-control-dalmore /service-areas/ 301
+/pest-control-dandenong-east/ /service-areas/ 301
+/pest-control-dandenong-east /service-areas/ 301
+/pest-control-dandenong-north/ /service-areas/ 301
+/pest-control-dandenong-north /service-areas/ 301
+/pest-control-dandenong-plaza/ /service-areas/ 301
+/pest-control-dandenong-plaza /service-areas/ 301
+/pest-control-delahey/ /service-areas/ 301
+/pest-control-delahey /service-areas/ 301
+/pest-control-dendy/ /service-areas/ 301
+/pest-control-dendy /service-areas/ 301
+/pest-control-derrimut/ /service-areas/ 301
+/pest-control-derrimut /service-areas/ 301
+/pest-control-dewhurst/ /service-areas/ 301
+/pest-control-dewhurst /service-areas/ 301
+/pest-control-diggers/ /service-areas/ 301
+/pest-control-diggers /service-areas/ 301
+/pest-control-dingley-village/ /service-areas/ 301
+/pest-control-dingley-village /service-areas/ 301
+/pest-control-doncaster-east/ /service-areas/ 301
+/pest-control-doncaster-east /service-areas/ 301
+/pest-control-donvale/ /service-areas/ 301
+/pest-control-donvale /service-areas/ 301
+/pest-control-dromana/ /service-areas/ 301
+/pest-control-dromana /service-areas/ 301
+/pest-control-dunearn/ /service-areas/ 301
+/pest-control-dunearn /service-areas/ 301
+/pest-control-eastern-hill/ /service-areas/ 301
+/pest-control-eastern-hill /service-areas/ 301
+/pest-control-eastmoor/ /service-areas/ 301
+/pest-control-eastmoor /service-areas/ 301
+/pest-control-edithvale/ /service-areas/ 301
+/pest-control-edithvale /service-areas/ 301
+/pest-control-eliza-heights/ /service-areas/ 301
+/pest-control-eliza-heights /service-areas/ 301
+/pest-control-elwood/ /service-areas/ 301
+/pest-control-elwood /service-areas/ 301
+/pest-control-emerald-hill/ /service-areas/ 301
+/pest-control-emerald-hill /service-areas/ 301
+/pest-control-emerald/ /service-areas/ 301
+/pest-control-emerald /service-areas/ 301
+/pest-control-endeavour-hills/ /service-areas/ 301
+/pest-control-endeavour-hills /service-areas/ 301
+/pest-control-eumemmerring/ /service-areas/ 301
+/pest-control-eumemmerring /service-areas/ 301
+/pest-control-exford/ /service-areas/ 301
+/pest-control-exford /service-areas/ 301
+/pest-control-eynesbury/ /service-areas/ 301
+/pest-control-eynesbury /service-areas/ 301
+/pest-control-ferntree-gully-upper/ /service-areas/ 301
+/pest-control-ferntree-gully-upper /service-areas/ 301
+/pest-control-ferntree-gully/ /service-areas/ 301
+/pest-control-ferntree-gully /service-areas/ 301
+/pest-control-fieldstone/ /service-areas/ 301
+/pest-control-fieldstone /service-areas/ 301
+/pest-control-fishermans-bend/ /service-areas/ 301
+/pest-control-fishermans-bend /service-areas/ 301
+/pest-control-fitzroy-north/ /service-areas/ 301
+/pest-control-fitzroy-north /service-areas/ 301
+/pest-control-fitzroy-south/ /service-areas/ 301
+/pest-control-fitzroy-south /service-areas/ 301
+/pest-control-fiveways/ /service-areas/ 301
+/pest-control-fiveways /service-areas/ 301
+/pest-control-flemington/ /service-areas/ 301
+/pest-control-flemington /service-areas/ 301
+/pest-control-forest-hill/ /service-areas/ 301
+/pest-control-forest-hill /service-areas/ 301
+/pest-control-frankston-north/ /service-areas/ 301
+/pest-control-frankston-north /service-areas/ 301
+/pest-control-fraser-rise/ /service-areas/ 301
+/pest-control-fraser-rise /service-areas/ 301
+/pest-control-garden-city/ /service-areas/ 301
+/pest-control-garden-city /service-areas/ 301
+/pest-control-gardenvale/ /service-areas/ 301
+/pest-control-gardenvale /service-areas/ 301
+/pest-control-garfield-north/ /service-areas/ 301
+/pest-control-garfield-north /service-areas/ 301
+/pest-control-garfield/ /service-areas/ 301
+/pest-control-garfield /service-areas/ 301
+/pest-control-gembrook/ /service-areas/ 301
+/pest-control-gembrook /service-areas/ 301
+/pest-control-gilwell-park/ /service-areas/ 301
+/pest-control-gilwell-park /service-areas/ 301
+/pest-control-glen-iris/ /service-areas/ 301
+/pest-control-glen-iris /service-areas/ 301
+/pest-control-glengala/ /service-areas/ 301
+/pest-control-glengala /service-areas/ 301
+/pest-control-guys-hill/ /service-areas/ 301
+/pest-control-guys-hill /service-areas/ 301
+/pest-control-hallam/ /service-areas/ 301
+/pest-control-hallam /service-areas/ 301
+/pest-control-hampton-east/ /service-areas/ 301
+/pest-control-hampton-east /service-areas/ 301
+/pest-control-hampton-park/ /service-areas/ 301
+/pest-control-hampton-park /service-areas/ 301
+/pest-control-hampton/ /service-areas/ 301
+/pest-control-hampton /service-areas/ 301
+/pest-control-harkaway/ /service-areas/ 301
+/pest-control-harkaway /service-areas/ 301
+/pest-control-harkness/ /service-areas/ 301
+/pest-control-harkness /service-areas/ 301
+/pest-control-harrisfield/ /service-areas/ 301
+/pest-control-harrisfield /service-areas/ 301
+/pest-control-hawthorn-east/ /service-areas/ 301
+/pest-control-hawthorn-east /service-areas/ 301
+/pest-control-heath-hill/ /service-areas/ 301
+/pest-control-heath-hill /service-areas/ 301
+/pest-control-heathmont/ /service-areas/ 301
+/pest-control-heathmont /service-areas/ 301
+/pest-control-highett/ /service-areas/ 301
+/pest-control-highett /service-areas/ 301
+/pest-control-hillside/ /service-areas/ 301
+/pest-control-hillside /service-areas/ 301
+/pest-control-hopetoun-gardens/ /service-areas/ 301
+/pest-control-hopetoun-gardens /service-areas/ 301
+/pest-control-hotham-hill/ /service-areas/ 301
+/pest-control-hotham-hill /service-areas/ 301
+/pest-control-huntingdale/ /service-areas/ 301
+/pest-control-huntingdale /service-areas/ 301
+/pest-control-iona/ /service-areas/ 301
+/pest-control-iona /service-areas/ 301
+/pest-control-jolimont/ /service-areas/ 301
+/pest-control-jolimont /service-areas/ 301
+/pest-control-junction-village/ /service-areas/ 301
+/pest-control-junction-village /service-areas/ 301
+/pest-control-karingal/ /service-areas/ 301
+/pest-control-karingal /service-areas/ 301
+/pest-control-kealba/ /service-areas/ 301
+/pest-control-kealba /service-areas/ 301
+/pest-control-keilor-downs/ /service-areas/ 301
+/pest-control-keilor-downs /service-areas/ 301
+/pest-control-kerrimuir/ /service-areas/ 301
+/pest-control-kerrimuir /service-areas/ 301
+/pest-control-kew-east/ /service-areas/ 301
+/pest-control-kew-east /service-areas/ 301
+/pest-control-kew-north/ /service-areas/ 301
+/pest-control-kew-north /service-areas/ 301
+/pest-control-kilsyth-south/ /service-areas/ 301
+/pest-control-kilsyth-south /service-areas/ 301
+/pest-control-kilsyth/ /service-areas/ 301
+/pest-control-kilsyth /service-areas/ 301
+/pest-control-knoxfield/ /service-areas/ 301
+/pest-control-knoxfield /service-areas/ 301
+/pest-control-koo-wee-rup-north/ /service-areas/ 301
+/pest-control-koo-wee-rup-north /service-areas/ 301
+/pest-control-kunyung/ /service-areas/ 301
+/pest-control-kunyung /service-areas/ 301
+/pest-control-lakeside/ /service-areas/ 301
+/pest-control-lakeside /service-areas/ 301
+/pest-control-lang-lang-east/ /service-areas/ 301
+/pest-control-lang-lang-east /service-areas/ 301
+/pest-control-lang-lang/ /service-areas/ 301
+/pest-control-lang-lang /service-areas/ 301
+/pest-control-lisbaun/ /service-areas/ 301
+/pest-control-lisbaun /service-areas/ 301
+/pest-control-long-island/ /service-areas/ 301
+/pest-control-long-island /service-areas/ 301
+/pest-control-longwarry/ /service-areas/ 301
+/pest-control-longwarry /service-areas/ 301
+/pest-control-lysterfield-south/ /service-areas/ 301
+/pest-control-lysterfield-south /service-areas/ 301
+/pest-control-lysterfield/ /service-areas/ 301
+/pest-control-lysterfield /service-areas/ 301
+/pest-control-maribyrnong/ /service-areas/ 301
+/pest-control-maribyrnong /service-areas/ 301
+/pest-control-maryknoll/ /service-areas/ 301
+/pest-control-maryknoll /service-areas/ 301
+/pest-control-mckinnon/ /service-areas/ 301
+/pest-control-mckinnon /service-areas/ 301
+/pest-control-mentone-east/ /service-areas/ 301
+/pest-control-mentone-east /service-areas/ 301
+/pest-control-menzies-creek/ /service-areas/ 301
+/pest-control-menzies-creek /service-areas/ 301
+/pest-control-middle-park/ /service-areas/ 301
+/pest-control-middle-park /service-areas/ 301
+/pest-control-modella/ /service-areas/ 301
+/pest-control-modella /service-areas/ 301
+/pest-control-monashville/ /service-areas/ 301
+/pest-control-monashville /service-areas/ 301
+/pest-control-monomeith/ /service-areas/ 301
+/pest-control-monomeith /service-areas/ 301
+/pest-control-mont-albert-north/ /service-areas/ 301
+/pest-control-mont-albert-north /service-areas/ 301
+/pest-control-mont-albert/ /service-areas/ 301
+/pest-control-mont-albert /service-areas/ 301
+/pest-control-montague/ /service-areas/ 301
+/pest-control-montague /service-areas/ 301
+/pest-control-montrose/ /service-areas/ 301
+/pest-control-montrose /service-areas/ 301
+/pest-control-moorabbin-airport/ /service-areas/ 301
+/pest-control-moorabbin-airport /service-areas/ 301
+/pest-control-moorabbin-east/ /service-areas/ 301
+/pest-control-moorabbin-east /service-areas/ 301
+/pest-control-moorabbin/ /service-areas/ 301
+/pest-control-moorabbin /service-areas/ 301
+/pest-control-mordialloc-north/ /service-areas/ 301
+/pest-control-mordialloc-north /service-areas/ 301
+/pest-control-mordialloc/ /service-areas/ 301
+/pest-control-mordialloc /service-areas/ 301
+/pest-control-mount-burnett/ /service-areas/ 301
+/pest-control-mount-burnett /service-areas/ 301
+/pest-control-mount-dandenong/ /service-areas/ 301
+/pest-control-mount-dandenong /service-areas/ 301
+/pest-control-mount-erin/ /service-areas/ 301
+/pest-control-mount-erin /service-areas/ 301
+/pest-control-mount-evelyn/ /service-areas/ 301
+/pest-control-mount-evelyn /service-areas/ 301
+/pest-control-mulgrave-east/ /service-areas/ 301
+/pest-control-mulgrave-east /service-areas/ 301
+/pest-control-mulgrave-north/ /service-areas/ 301
+/pest-control-mulgrave-north /service-areas/ 301
+/pest-control-nangana/ /service-areas/ 301
+/pest-control-nangana /service-areas/ 301
+/pest-control-nar-nar-goon-north/ /service-areas/ 301
+/pest-control-nar-nar-goon-north /service-areas/ 301
+/pest-control-nar-nar-goon/ /service-areas/ 301
+/pest-control-nar-nar-goon /service-areas/ 301
+/pest-control-narre-warren-north/ /service-areas/ 301
+/pest-control-narre-warren-north /service-areas/ 301
+/pest-control-narre-warren-south/ /service-areas/ 301
+/pest-control-narre-warren-south /service-areas/ 301
+/pest-control-nobelius/ /service-areas/ 301
+/pest-control-nobelius /service-areas/ 301
+/pest-control-north-richmond/ /service-areas/ 301
+/pest-control-north-richmond /service-areas/ 301
+/pest-control-north-road/ /service-areas/ 301
+/pest-control-north-road /service-areas/ 301
+/pest-control-nunawading/ /service-areas/ 301
+/pest-control-nunawading /service-areas/ 301
+/pest-control-nyora/ /service-areas/ 301
+/pest-control-nyora /service-areas/ 301
+/pest-control-oakleigh-east/ /service-areas/ 301
+/pest-control-oakleigh-east /service-areas/ 301
+/pest-control-oakleigh-south/ /service-areas/ 301
+/pest-control-oakleigh-south /service-areas/ 301
+/pest-control-officer-south/ /service-areas/ 301
+/pest-control-officer-south /service-areas/ 301
+/pest-control-officer/ /service-areas/ 301
+/pest-control-officer /service-areas/ 301
+/pest-control-olinda/ /service-areas/ 301
+/pest-control-olinda /service-areas/ 301
+/pest-control-osborne/ /service-areas/ 301
+/pest-control-osborne /service-areas/ 301
+/pest-control-pakenham-south/ /service-areas/ 301
+/pest-control-pakenham-south /service-areas/ 301
+/pest-control-pakenham-upper/ /service-areas/ 301
+/pest-control-pakenham-upper /service-areas/ 301
+/pest-control-park-orchards/ /service-areas/ 301
+/pest-control-park-orchards /service-areas/ 301
+/pest-control-parkdale/ /service-areas/ 301
+/pest-control-parkdale /service-areas/ 301
+/pest-control-parkmore/ /service-areas/ 301
+/pest-control-parkmore /service-areas/ 301
+/pest-control-patterson-gardens/ /service-areas/ 301
+/pest-control-patterson-gardens /service-areas/ 301
+/pest-control-patterson-lakes/ /service-areas/ 301
+/pest-control-patterson-lakes /service-areas/ 301
+/pest-control-port-melbourne/ /service-areas/ 301
+/pest-control-port-melbourne /service-areas/ 301
+/pest-control-portsea/ /service-areas/ 301
+/pest-control-portsea /service-areas/ 301
+/pest-control-princes-hill/ /service-areas/ 301
+/pest-control-princes-hill /service-areas/ 301
+/pest-control-quarantine-station/ /service-areas/ 301
+/pest-control-quarantine-station /service-areas/ 301
+/pest-control-ringwood-east/ /service-areas/ 301
+/pest-control-ringwood-east /service-areas/ 301
+/pest-control-ringwood-north/ /service-areas/ 301
+/pest-control-ringwood-north /service-areas/ 301
+/pest-control-ripponlea/ /service-areas/ 301
+/pest-control-ripponlea /service-areas/ 301
+/pest-control-rosebud-west/ /service-areas/ 301
+/pest-control-rosebud-west /service-areas/ 301
+/pest-control-royal-park/ /service-areas/ 301
+/pest-control-royal-park /service-areas/ 301
+/pest-control-rushall/ /service-areas/ 301
+/pest-control-rushall /service-areas/ 301
+/pest-control-sandridge/ /service-areas/ 301
+/pest-control-sandridge /service-areas/ 301
+/pest-control-sassafras/ /service-areas/ 301
+/pest-control-sassafras /service-areas/ 301
+/pest-control-scoresby/ /service-areas/ 301
+/pest-control-scoresby /service-areas/ 301
+/pest-control-south-wharf/ /service-areas/ 301
+/pest-control-south-wharf /service-areas/ 301
+/pest-control-st-kilda-east/ /service-areas/ 301
+/pest-control-st-kilda-east /service-areas/ 301
+/pest-control-st-kilda-junction/ /service-areas/ 301
+/pest-control-st-kilda-junction /service-areas/ 301
+/pest-control-st-kilda-road/ /service-areas/ 301
+/pest-control-st-kilda-road /service-areas/ 301
+/pest-control-st-kilda-south/ /service-areas/ 301
+/pest-control-st-kilda-south /service-areas/ 301
+/pest-control-st-kilda-west/ /service-areas/ 301
+/pest-control-st-kilda-west /service-areas/ 301
+/pest-control-studfield/ /service-areas/ 301
+/pest-control-studfield /service-areas/ 301
+/pest-control-the-basin/ /service-areas/ 301
+/pest-control-the-basin /service-areas/ 301
+/pest-control-the-patch/ /service-areas/ 301
+/pest-control-the-patch /service-areas/ 301
+/pest-control-tynong-north/ /service-areas/ 301
+/pest-control-tynong-north /service-areas/ 301
+/pest-control-tynong/ /service-areas/ 301
+/pest-control-tynong /service-areas/ 301
+/pest-control-upwey/ /service-areas/ 301
+/pest-control-upwey /service-areas/ 301
+/pest-control-vermont-south/ /service-areas/ 301
+/pest-control-vermont-south /service-areas/ 301
+/pest-control-vermont/ /service-areas/ 301
+/pest-control-vermont /service-areas/ 301
+/pest-control-victoria-gardens/ /service-areas/ 301
+/pest-control-victoria-gardens /service-areas/ 301
+/pest-control-victoria-harbour/ /service-areas/ 301
+/pest-control-victoria-harbour /service-areas/ 301
+/pest-control-wantirna/ /service-areas/ 301
+/pest-control-wantirna /service-areas/ 301
+/pest-control-warrandyte-north/ /service-areas/ 301
+/pest-control-warrandyte-north /service-areas/ 301
+/pest-control-warrandyte-south/ /service-areas/ 301
+/pest-control-warrandyte-south /service-areas/ 301
+/pest-control-warrandyte/ /service-areas/ 301
+/pest-control-warrandyte /service-areas/ 301
+/pest-control-warrenwood/ /service-areas/ 301
+/pest-control-warrenwood /service-areas/ 301
+/pest-control-waverly-gardens/ /service-areas/ 301
+/pest-control-waverly-gardens /service-areas/ 301
+/pest-control-west-richmond/ /service-areas/ 301
+/pest-control-west-richmond /service-areas/ 301
+/pest-control-windsor/ /service-areas/ 301
+/pest-control-windsor /service-areas/ 301
+/pest-control-wonga-park/ /service-areas/ 301
+/pest-control-wonga-park /service-areas/ 301
+/pest-control-yarra-bend/ /service-areas/ 301
+/pest-control-yarra-bend /service-areas/ 301
+
+# =====================================================================
+# Section 7 — Dynamic rules (splats)
+# Per CF Pages docs, dynamic rules sit BELOW all static rules.
+# 4 dynamic / 100 budget = 4% used.
+# =====================================================================
+
+/residential/*                    /                                                   301
+/pest-solutions/*                                      /:splat                                 301
+/commercial/*                                /commercial-pest-control/                                 301
+/blogs/*                                                           /pest-solutions/               301
