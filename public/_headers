@@ -18,5 +18,9 @@
   X-DNS-Prefetch-Control: on
   # HSTS — Netlify injected this at the edge automatically; Cloudflare Pages
   # does NOT. Declaring it here keeps the header live across both hosts.
-  # 1 year, include subdomains, preload-list eligible.
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  # 1 year, include subdomains. NO `preload` directive per Zaydan's 2026-09-08
+  # ask: preload signals intent to submit to hstspreload.org; if anyone ever
+  # submits, browsers pin HTTPS-only for a year regardless of DNS state, which
+  # kills our ability to roll back to HTTP if needed. Add `preload` back only
+  # after site is stable and Zap It explicitly opts into the preload list.
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
