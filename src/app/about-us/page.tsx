@@ -52,40 +52,29 @@ export default function AboutUsPage() {
     <>
       <JsonLd data={jsonLd} />
 
+      {/* ===== DESKTOP SHELL: 1280 container. Top block is copy left, trust card right.
+             Middle block is founder photo left, story right. Below lg every section keeps
+             its own full-width mobile layout in the same order as before. ===== */}
+      <div className="bg-[#0d402e] max-lg:flex max-lg:flex-col lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[minmax(0,1fr)_400px] lg:items-start lg:gap-16 lg:px-[52px] lg:pb-16 lg:pt-14">
+        <div className="max-lg:contents lg:min-w-0">
+        <div className="max-lg:order-1 lg:contents">
       {/* ===== 1. HERO — About us title + subtitle ===== */}
-      <section className="bg-[#0d402e] px-5 pb-6 pt-8 sm:px-6 sm:pb-8 sm:pt-10">
-        <div className="mx-auto max-w-3xl">
-          <h1 className="mb-2 text-[26px] font-bold text-[#f8f5f2] sm:text-[30px]">About us</h1>
-          <p className="text-[16px] leading-[1.6] text-[#f8f5f2]/85 sm:text-[17px]">
+      <section className="bg-[#0d402e] px-5 pb-6 pt-8 sm:px-6 sm:pb-8 sm:pt-10 lg:px-0 lg:pb-4 lg:pt-0">
+        <div className="mx-auto max-w-3xl lg:mx-0 lg:max-w-none">
+          <h1 className="mb-2 text-[26px] font-bold text-[#f8f5f2] sm:text-[30px] lg:text-[44px] lg:leading-[1.1]">About us</h1>
+          <p className="text-[16px] leading-[1.6] text-[#f8f5f2]/85 sm:text-[17px] lg:max-w-[62ch] lg:text-[19px]">
             Built on trust, with an uncompromising commitment to customer satisfaction and professional standards.
           </p>
         </div>
       </section>
 
-      {/* ===== 2. GREEN TRUST PILLS — white tick bg, black tick, black text ===== */}
-      <section className="bg-[#0d402e] px-5 pb-8 sm:px-6 sm:pb-10">
-        <div className="mx-auto max-w-3xl">
-          <div className="mx-auto max-w-[300px] rounded-2xl bg-[#1cdc38] px-5 py-5">
-            <div className="space-y-3">
-              {TRUST_PILLS.map((label) => (
-                <div key={label} className="flex items-center gap-3">
-                  <svg className="h-6 w-6 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <circle cx="12" cy="12" r="11" fill="white" />
-                    <path d="M7 12l3 3 7-7" stroke="#131a1c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span className="text-[16px] font-bold text-[#131a1c]">{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
-      </section>
-
+        <div className="max-lg:order-3 lg:contents">
       {/* ===== 3. COMMITTED TO PROTECTING — large bold centered heading ===== */}
       <ScrollReveal direction="up">
-        <section className="bg-[#0d402e] px-5 pb-10 sm:px-6 sm:pb-14">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="mb-6 text-[26px] font-extrabold leading-tight text-[#f8f5f2] sm:text-[30px]">
+        <section className="bg-[#0d402e] px-5 pb-10 sm:px-6 sm:pb-14 lg:px-0 lg:pb-0">
+          <div className="mx-auto max-w-3xl lg:mx-0 lg:max-w-[62ch]">
+            <h2 className="mb-6 text-[26px] font-extrabold leading-tight text-[#f8f5f2] sm:text-[30px] lg:mt-10 lg:text-[32px]">
               Committed to protecting what&apos;s important to you
             </h2>
             <div className="space-y-5 text-[16px] leading-[1.8] text-[#f8f5f2]/85 sm:text-[17px]">
@@ -104,9 +93,37 @@ export default function AboutUsPage() {
         </section>
       </ScrollReveal>
 
+        </div>
+        </div>
+        <div className="max-lg:contents lg:sticky lg:top-8">
+        <div className="max-lg:order-2 lg:contents">
+      {/* ===== 2. GREEN TRUST PILLS — white tick bg, black tick, black text ===== */}
+      <section className="bg-[#0d402e] px-5 pb-8 sm:px-6 sm:pb-10 lg:px-0 lg:pb-0">
+        <div className="mx-auto max-w-3xl lg:mx-0 lg:max-w-none">
+          <div className="mx-auto max-w-[300px] rounded-2xl bg-[#1cdc38] px-5 py-5 lg:mx-0 lg:max-w-none lg:px-8 lg:py-8">
+            <div className="space-y-3">
+              {TRUST_PILLS.map((label) => (
+                <div key={label} className="flex items-center gap-3">
+                  <svg className="h-6 w-6 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <circle cx="12" cy="12" r="11" fill="white" />
+                    <path d="M7 12l3 3 7-7" stroke="#131a1c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="text-[16px] font-bold text-[#131a1c]">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+        </div>
+        </div>
+      </div>
+
+      <div className="bg-[#2B2B2B] lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[520px_minmax(0,1fr)] lg:items-start lg:gap-16 lg:px-[52px] lg:py-16">
       {/* ===== 4. FOUNDER IMAGE — text overlay baked into the image. Desktop = framed card pattern. ===== */}
-      <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
-        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[640px] lg:px-6">
+      <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:bg-[#2B2B2B] lg:py-0">
+        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:sticky lg:top-8 lg:max-w-none lg:px-0">
           <Image
             src="/images/about/founder-adam.png"
             alt="Founder, Adam Balli"
@@ -121,9 +138,9 @@ export default function AboutUsPage() {
 
       {/* ===== 5. OUR STORY — larger, bolder text ===== */}
       <ScrollReveal direction="up">
-        <section className="bg-[#2B2B2B] px-5 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="mb-6 text-[24px] font-bold italic text-[#f8f5f2] sm:text-[28px]">Our story</h2>
+        <section className="bg-[#2B2B2B] px-5 py-10 sm:px-6 sm:py-14 lg:px-0 lg:py-0">
+          <div className="mx-auto max-w-3xl lg:mx-0 lg:max-w-[62ch]">
+            <h2 className="mb-6 text-[24px] font-bold italic text-[#f8f5f2] sm:text-[28px] lg:text-[32px]">Our story</h2>
             <div className="space-y-5 text-[17px] font-medium leading-[1.8] text-[#f8f5f2]/90 sm:text-[18px]">
               <p>
                 Zap It Pest Control started in Melbourne&apos;s northern suburbs and now works across
@@ -151,11 +168,14 @@ export default function AboutUsPage() {
         </section>
       </ScrollReveal>
 
+      </div>
+
       {/* ===== 6. INSURED, LICENSED, ACCREDITED & LEGALLY COMPLIANT ===== */}
       <ScrollReveal direction="up">
-        <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="mb-4 text-[22px] font-semibold leading-tight text-[#131a1c] sm:text-[26px]">
+        <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14 lg:px-[52px] lg:py-16">
+          <div className="mx-auto max-w-3xl lg:grid lg:max-w-[1280px] lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-16">
+            <div>
+            <h2 className="mb-4 text-[22px] font-semibold leading-tight text-[#131a1c] sm:text-[26px] lg:text-[30px]">
               Insured, licensed, accredited and legally compliant
             </h2>
             <p className="mb-4 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
@@ -173,8 +193,9 @@ export default function AboutUsPage() {
               <li className="font-semibold text-[#131a1c]">HACCP Food Safety Certificate</li>
               <li className="font-semibold text-[#131a1c]">VIC Government Wildlife Licence</li>
             </ul>
+            </div>
 
-            <div className="flex flex-col items-center gap-6 border-t border-[#e5e5e5] pt-8">
+            <div className="flex flex-col items-center gap-6 border-t border-[#e5e5e5] pt-8 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
               <div className="flex items-center justify-center gap-8">
                 <figure className="flex flex-col items-center text-center">
                   <Image

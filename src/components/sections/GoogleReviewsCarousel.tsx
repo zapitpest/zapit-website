@@ -136,7 +136,7 @@ function GoogleG({ size = 20 }: { size?: number }) {
 
 function ReviewCard({ r }: { r: Review }) {
   return (
-    <article className="mx-auto w-full max-w-[360px] rounded-2xl bg-[#f3f3f3] p-5 shadow-sm">
+    <article className="mx-auto w-full max-w-[360px] rounded-2xl bg-[#f3f3f3] p-5 shadow-sm lg:max-w-none">
       <div className="mb-3 flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
           <div
@@ -232,8 +232,15 @@ export default function GoogleReviewsCarousel() {
         </div>
       </div>
 
-      {/* Slideshow — one review at a time. Single render, key changes triggers fade-in. */}
-      <div className="mt-6 px-4">
+      {/* Desktop: three cards side by side, per Zapit_desktop_03. Below lg the slideshow runs. */}
+      <div className="mx-auto mt-6 hidden max-w-[1120px] gap-4 px-6 lg:grid lg:grid-cols-3">
+        {REVIEWS.slice(0, 3).map((r) => (
+          <ReviewCard key={r.name} r={r} />
+        ))}
+      </div>
+
+      {/* Slideshow, one review at a time. Single render, key changes triggers fade-in. */}
+      <div className="mt-6 px-4 lg:hidden">
         <div
           key={index}
           className="mx-auto max-w-[360px] animate-[zapit-fade-in_500ms_ease]"
@@ -243,7 +250,7 @@ export default function GoogleReviewsCarousel() {
       </div>
 
       {/* Figma slider line — indicator slides to show current review position */}
-      <div className="mx-auto mt-5 h-[3px] w-[160px] rounded-full bg-[#d6d6d6]" role="presentation">
+      <div className="mx-auto mt-5 h-[3px] w-[160px] rounded-full bg-[#d6d6d6] lg:hidden" role="presentation">
         <div
           aria-hidden
           className="h-[3px] w-[64px] rounded-full bg-[#131a1c]"

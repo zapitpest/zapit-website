@@ -50,46 +50,53 @@ const OPERATING_HOURS = [
 export default function Footer() {
   return (
     <footer className="bg-[#2B2B2B] font-sans text-white">
-      <div className="mx-auto max-w-3xl px-5 py-10 sm:px-6 sm:py-12">
-        {/* Company info */}
-        <h3 className="mb-3 text-[18px] font-bold">Zap It Pest &amp; Termite Control</h3>
-        <div className="mb-6 space-y-0.5 text-[15px] text-white/85">
-          <p>80 Porter Rd, Heidelberg Heights VIC 3081</p>
-          <p>ABN 61 682 004 655</p>
-          <p><a href={SITE_CONFIG.phoneTel} className="hover:text-[#1cdc38]">03 9126 0555</a></p>
-          <p><a href={`mailto:${SITE_CONFIG.emailWork}`} className="text-white/85 underline decoration-white underline-offset-2 hover:text-[#1cdc38]">{SITE_CONFIG.emailWork}</a></p>
+      <div className="mx-auto max-w-3xl px-5 py-10 sm:px-6 sm:py-12 lg:max-w-[1280px] lg:px-[52px] lg:py-12">
+        {/* Four columns on desktop, one stack below lg. The stack was 1013px tall on a 1920 screen. */}
+        <div className="lg:grid lg:grid-cols-[1.3fr_1.4fr_1fr_1fr] lg:gap-10">
+          <div>
+            <h3 className="mb-3 text-[18px] font-bold">Zap It Pest &amp; Termite Control</h3>
+            <div className="mb-6 space-y-0.5 text-[15px] text-white/85 lg:mb-0">
+              <p>80 Porter Rd, Heidelberg Heights VIC 3081</p>
+              <p>ABN 61 682 004 655</p>
+              <p><a href={SITE_CONFIG.phoneTel} className="inline-block py-1 hover:text-[#1cdc38]">03 9126 0555</a></p>
+              <p><a href={`mailto:${SITE_CONFIG.emailWork}`} className="inline-block py-1 text-white/85 underline decoration-white underline-offset-2 hover:text-[#1cdc38]">{SITE_CONFIG.emailWork}</a></p>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="mb-2 text-[16px] font-bold">Our promise</h4>
+            <p className="mb-6 text-[15px] leading-[1.7] text-white/85 lg:mb-0">
+              When you protect your home and property from pests with us, your peace of mind is our priority. We&apos;re fully insured, and we treat your home with the same care as our own, using high quality, long lasting solutions you can rely on.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="mb-2 text-[16px] font-bold">Operating Hours</h4>
+            <ul className="mb-6 space-y-0.5 text-[15px] text-white/85 lg:mb-0">
+              {OPERATING_HOURS.map((h) => (
+                <li key={h} className="flex items-center gap-1">
+                  <span className="mr-1 inline-block h-1 w-1 shrink-0 rounded-full bg-white/50" />
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-2 text-[16px] font-bold">Sitemap</h4>
+            <ul className="mb-8 space-y-1 text-[15px] lg:mb-0">
+              {SITEMAP_LINKS.map((link) => (
+                <li key={link.href} className="flex items-center gap-1">
+                  <span className="mr-1 inline-block h-1 w-1 shrink-0 rounded-full bg-white/50" />
+                  <Link href={link.href} className="inline-block py-2 text-white/85 transition-colors hover:text-[#1cdc38]">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* Our promise */}
-        <h4 className="mb-2 text-[16px] font-bold">Our promise</h4>
-        <p className="mb-6 text-[15px] leading-[1.7] text-white/85">
-          When you protect your home and property from pests with us, your peace of mind is our priority. We&apos;re fully insured, and we treat your home with the same care as our own, using high quality, long lasting solutions you can rely on.
-        </p>
-
-        {/* Operating Hours */}
-        <h4 className="mb-2 text-[16px] font-bold">Operating Hours</h4>
-        <ul className="mb-6 space-y-0.5 text-[15px] text-white/85">
-          {OPERATING_HOURS.map((h) => (
-            <li key={h} className="flex items-center gap-1">
-              <span className="mr-1 inline-block h-1 w-1 shrink-0 rounded-full bg-white/50" />
-              {h}
-            </li>
-          ))}
-        </ul>
-
-        {/* Sitemap */}
-        <h4 className="mb-2 text-[16px] font-bold">Sitemap</h4>
-        <ul className="mb-8 space-y-1 text-[15px]">
-          {SITEMAP_LINKS.map((link) => (
-            <li key={link.href} className="flex items-center gap-1">
-              <span className="mr-1 inline-block h-1 w-1 shrink-0 rounded-full bg-white/50" />
-              <Link href={link.href} className="inline-block py-2 text-white/85 transition-colors hover:text-[#1cdc38]">{link.label}</Link>
-            </li>
-          ))}
-        </ul>
-
         {/* Social icons — centered per client refinement */}
-        <div className="mb-8 flex items-center justify-center gap-6">
+        <div className="mb-8 flex items-center justify-center gap-6 lg:mt-10 lg:justify-start">
           <a href={SITE_CONFIG.social.instagram} target="_blank" rel="noopener noreferrer" className="p-2.5 text-white hover:opacity-80" aria-label="Instagram">
             <SocialIconInstagram className="h-6 w-6" />
           </a>

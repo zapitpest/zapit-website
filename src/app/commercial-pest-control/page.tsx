@@ -40,9 +40,12 @@ export default function CommercialPestControlPage() {
     <>
       <JsonLd data={schemas} />
 
-      {/* ===== 1. HERO IMAGE — mobile full-bleed; desktop = framed card pattern (matches residential) ===== */}
-      <section className="w-full bg-[#2B2B2B] py-2 sm:py-3 lg:py-10">
-        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[680px] lg:px-6">
+      {/* ===== DESKTOP HERO SHELL: two columns in a 1280 container above lg. On a 1920x1080 screen the
+             old stack put a portrait photo on the first screen and cut the H1 in half at the fold. ===== */}
+      <div className="bg-[#2B2B2B] lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[minmax(0,1fr)_600px] lg:items-center lg:gap-12 lg:px-[52px] lg:py-16">
+      {/* ===== 1. HERO IMAGE, mobile full-bleed, desktop right column ===== */}
+      <section className="w-full bg-[#2B2B2B] py-2 sm:py-3 lg:order-2 lg:py-0">
+        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-none lg:px-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/commercial/commercial-kitchen-hero.png"
@@ -56,16 +59,16 @@ export default function CommercialPestControlPage() {
       {/* ===== 2. PROTECTING WHAT MATTERS — visible H1 replaces prior sr-only H1
              per PR #3 pattern (residential): the Figma-approved brand copy becomes
              the visible top-level heading, keyword coverage in title + meta + schema. ===== */}
-      <ScrollReveal direction="up">
-        <section className="bg-[#2B2B2B] px-5 pb-10 pt-8 sm:px-6 sm:pb-14 sm:pt-10">
-          <div className="mx-auto max-w-[600px]">
-            <h1 className="mb-4 font-bold leading-[29px] text-[#f8f5f2]" style={{ fontSize: '24px' }}>
+      <ScrollReveal direction="up" className="lg:order-1 lg:min-w-0">
+        <section className="bg-[#2B2B2B] px-5 pb-10 pt-8 sm:px-6 sm:pb-14 sm:pt-10 lg:px-0 lg:py-0">
+          <div className="mx-auto max-w-[600px] lg:mx-0 lg:max-w-none">
+            <h1 className="mb-4 text-[24px] font-bold leading-[29px] text-[#f8f5f2] lg:text-[44px] lg:leading-[1.1]">
               Protecting what matters<br />to your business
             </h1>
 
             {/* Description per Figma: Graphik Regular 14/20 in a clean flowing block (no inline CTAs).
                 FloatingCTA already provides global Call + Menu, so we don't duplicate them here. */}
-            <div className="space-y-3 text-[#f8f5f2]/90" style={{ fontSize: '14px', lineHeight: '20px', fontWeight: 400 }}>
+            <div className="space-y-3 text-[14px] leading-[20px] text-[#f8f5f2]/90 lg:max-w-[62ch] lg:text-[16px] lg:leading-[1.6]">
               <p>
                 We partner with commercial operators in regulated environments who cannot afford
                 pest risk. Our relationship-led approach delivers ongoing pest management through
@@ -98,8 +101,8 @@ export default function CommercialPestControlPage() {
             </div>
 
             {/* Green checklist card */}
-            <div className="mx-auto mt-8 max-w-[280px] rounded-2xl bg-[#1cdc38] px-5 py-5">
-              <div className="space-y-3">
+            <div className="mx-auto mt-8 max-w-[280px] rounded-2xl bg-[#1cdc38] px-5 py-5 lg:mx-0 lg:max-w-none">
+              <div className="space-y-3 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-3 lg:space-y-0">
                 {['Tailored solutions', 'Targeted', 'Effective', 'Accredited', 'Insured', 'Licensed', 'Online compliance certificates'].map((item) => (
                   <div key={item} className="flex items-center gap-3">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -112,6 +115,7 @@ export default function CommercialPestControlPage() {
           </div>
         </section>
       </ScrollReveal>
+      </div>
 
       {/* ===== 2b. INDUSTRIES WE SERVE — target of the hero's "#industries" button.
            Previously that button pointed at an id that did not exist on the page, and

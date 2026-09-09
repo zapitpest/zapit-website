@@ -157,8 +157,11 @@ export default function Header() {
                 return <SimpleNavLinkDark key={item.href} item={item} />;
               })}
             </ul>
-            <a href={SITE_CONFIG.phoneTel} className="whitespace-nowrap text-[16px] font-semibold text-white hover:text-[#64FF01]">
-              {SITE_CONFIG.phone}
+            <a
+              href={SITE_CONFIG.phoneTel}
+              className="inline-flex h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-[#64FF01] px-5 text-[16px] font-bold text-[#0d402e] transition-colors hover:bg-[#1cdc38]"
+            >
+              <span className="font-normal">Call now on</span> {SITE_CONFIG.phone}
             </a>
           </div>
 

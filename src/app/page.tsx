@@ -127,17 +127,24 @@ export default function HomePage() {
       {/* ===== 1. HERO — real markup, not a baked image. Carries the visible h1. ===== */}
       <HomeHero />
 
+      {/* ===== DESKTOP SHELL, from Figma Zapit_desktop_03: main column 831 + sticky dark rail 449 at a
+          1280 artboard. Below lg both containers dissolve (display: contents) and each block
+          takes an explicit order, so the mobile sequence is exactly what shipped before. ===== */}
+      <div className="mx-auto w-full max-w-[1280px] max-lg:flex max-lg:flex-col lg:grid lg:grid-cols-[minmax(0,831fr)_minmax(0,449fr)] lg:items-stretch">
+        {/* ---------- main column ---------- */}
+        <div className="max-lg:contents lg:min-w-0 lg:bg-[#f8f5f2] lg:pb-10">
+      <div className="max-lg:order-1 lg:contents">
       {/* ===== 2. WE TREAT ALL HOUSEHOLD PESTS — dark green bg, left aligned per Figma ===== */}
       {/* Typography: H 20px Bold / line-height 29px. Body 14px Regular / line-height 18px. */}
       {/* Inline Call now + chat buttons removed — FloatingCTA already provides both globally. */}
       {/* DHHS claim removed per client item 4 (no unverified accreditation language). */}
       <ScrollReveal direction="up">
-        <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10">
+        <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:bg-[#f8f5f2] lg:px-[92px] lg:pb-10 lg:pt-14">
           <div className="mx-auto max-w-[600px]">
-            <h2 className="mb-3 text-[20px] font-bold leading-[29px] text-white">
+            <h2 className="mb-3 text-[20px] font-bold leading-[29px] text-white lg:text-[30px] lg:leading-tight lg:text-[#131a1c]">
               We treat all household pests
             </h2>
-            <p className="mb-6 text-[14px] font-normal leading-[18px] text-[#f8f5f2]/90">
+            <p className="mb-6 text-[14px] font-normal leading-[18px] text-[#f8f5f2]/90 lg:max-w-[700px] lg:text-[16px] lg:leading-[1.6] lg:text-[#414042]">
               When you protect your home and family from pests with us, your peace of mind is assured.
               Our services are eco-friendly, child safe and pet safe. We treat your home with the same
               care as you do, using high-quality, long-lasting solutions you can rely on.
@@ -151,7 +158,7 @@ export default function HomePage() {
                 audit-verifiable, matches the accurate claim set, and keeps the
                 Figma 2-column / 3-badges-per-column visual pattern (green tick
                 on #64FF01 circle, #E5E5E5 label text on the #0d402e background). */}
-            <div className="flex items-start justify-center gap-8 sm:gap-14">
+            <div className="flex items-start justify-center gap-8 sm:gap-14 lg:justify-start">
               <ul className="space-y-3 sm:space-y-4">
                 {(['Child safe', 'Pet safe', 'Eco friendly'] as const).map((label) => (
                   <li key={label} className="flex items-center gap-2.5 sm:gap-3">
@@ -160,7 +167,7 @@ export default function HomePage() {
                         <path d="M2 6.5l2.5 2.5L10 3" />
                       </svg>
                     </span>
-                    <span className="text-[14px] font-semibold text-[#E5E5E5] sm:text-[15px]">{label}</span>
+                    <span className="text-[14px] font-semibold text-[#E5E5E5] sm:text-[15px] lg:text-[#414042]">{label}</span>
                   </li>
                 ))}
               </ul>
@@ -172,7 +179,7 @@ export default function HomePage() {
                         <path d="M2 6.5l2.5 2.5L10 3" />
                       </svg>
                     </span>
-                    <span className="text-[14px] font-semibold text-[#E5E5E5] sm:text-[15px]">{label}</span>
+                    <span className="text-[14px] font-semibold text-[#E5E5E5] sm:text-[15px] lg:text-[#414042]">{label}</span>
                   </li>
                 ))}
               </ul>
@@ -181,18 +188,22 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
+      </div>
+      <div className="max-lg:order-2 lg:contents">
       {/* ===== 3. GOOGLE REVIEWS CAROUSEL — white bg ===== */}
       <ScrollReveal direction="up" delay={100}>
         <GoogleReviewsCarousel />
       </ScrollReveal>
 
+      </div>
+      <div className="max-lg:order-3 lg:contents">
       {/* ===== 4. GO TO PEST PRICE LIST BUTTON — dark green bg per Figma ===== */}
       {/* Typography: Graphik Semibold 16px / line-height 25px / letter-spacing -2%. Arrow removed per refactor brief. */}
       <ScrollReveal direction="fade">
-        <div className="bg-[#0d402e] px-4 py-6 text-center">
+        <div className="bg-[#0d402e] px-4 py-6 text-center lg:bg-[#f8f5f2] lg:px-[92px] lg:pb-14 lg:pt-0 lg:text-left">
           <a
             href="#pest-price-list"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#f8f5f2] px-7 py-2.5 text-[16px] font-semibold leading-[25px] text-[#131a1c] transition-colors hover:bg-[#1cdc38] hover:text-white"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#f8f5f2] px-7 py-2.5 text-[16px] font-semibold leading-[25px] text-[#131a1c] lg:bg-[#2B2B2B] lg:text-white lg:hover:bg-[#0d402e] transition-colors hover:bg-[#1cdc38] hover:text-white"
             style={{ letterSpacing: '-0.32px' }}
           >
             Go to pest solutions and price list
@@ -200,81 +211,15 @@ export default function HomePage() {
         </div>
       </ScrollReveal>
 
-      {/* ===== 5. TERMITE SECTION — bright green card on dark green wrapper (continuous bg) ===== */}
-      <ScrollReveal direction="up">
-      <section className="bg-[#0d402e] px-3 py-3 sm:px-4">
-        <div className="rounded-2xl bg-[#1cdc38] px-4 py-10 sm:px-6 sm:py-12">
-          <div className="mx-auto max-w-3xl">
-            <p className="mb-5 text-center text-[16px] font-medium italic text-[#f8f5f2]">
-              We&apos;re termite specialists
-            </p>
-            <div className="mb-6 flex items-start gap-4">
-              {/* Client-supplied SVG — Figma Termite icon */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/residential/termite-specialist.svg" alt="" aria-hidden className="h-[88px] w-[88px] shrink-0" />
-              <h2 className="text-[22px] font-bold leading-tight text-[#414042] sm:text-[28px] md:text-[32px]">
-                We stop termites dead in their tracks
-              </h2>
-            </div>
-            <h3 className="mb-4 text-[18px] font-bold text-[#414042] sm:text-[20px]">
-              Termite inspection <span className="font-normal text-[#414042]">Price on inspection</span>
-            </h3>
-            <dl className="mb-5 space-y-2 text-[14px] text-[#414042] sm:text-[15px]">
-              <div className="flex gap-2"><dt className="shrink-0 font-bold italic">Duration:</dt><dd className="italic">2 hours</dd></div>
-              <div className="flex gap-2"><dt className="shrink-0 font-bold italic">Property type:</dt><dd className="italic">All residential homes</dd></div>
-              <div className="flex flex-col gap-0.5"><dt className="font-bold italic">Inclusions:</dt><dd className="italic ml-0">Visual and technical inspection of exterior and interior of property, including gardens</dd></div>
-              <div className="flex flex-col gap-0.5"><dt className="font-bold italic">Tools used:</dt><dd className="italic ml-0">Moisture detection, Noise detection, keyhole camera</dd></div>
-              <div className="flex flex-col gap-0.5"><dt className="font-bold italic">Verbal and written report:</dt><dd className="italic ml-0">Findings and recommendations documented.</dd></div>
-            </dl>
-            <p className="mb-3 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
-              We conduct a detailed inspection in and around your home including in roof cavities and under the house.
-              We use the latest technology to detect and diagnose extent of any termite activity.
-              {/* Small bug icon inline at the end of the paragraph per Figma */}
-              {' '}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/residential/termite-activity.svg" alt="" aria-hidden className="inline-block h-[20px] w-auto -translate-y-[1px] align-middle" />
-            </p>
-            <p className="mb-8 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
-              A verbal and written assessment is provided with recommended course of action. The price of inspection
-              is deducted from further treatment or preventative action.
-            </p>
-            <div className="flex items-start gap-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/icons/important.svg" alt="" aria-hidden className="h-[58px] w-[58px] shrink-0" />
-              <div>
-                <p className="mb-1 text-[18px] font-black italic text-white">Important!</p>
-                <p className="text-[14px] font-medium italic leading-[1.5] text-[#131a1c] sm:text-[15px]">
-                  Do not disturb termites if you see or suspect termite activity. They move to other areas if you disturb them!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      </ScrollReveal>
-
-      {/* ===== 6. PRICE CALCULATOR — functional, real PEST_PRICE_LIST data + 10% same-day discount ===== */}
-      <ScrollReveal direction="up" delay={100}>
-        <PriceCalculator />
-      </ScrollReveal>
-
-      {/* ===== 7. SAME DAY SERVICE CTA ===== */}
-      <ScrollReveal direction="fade">
-      <section className="bg-[#0d402e] py-8 sm:py-10 lg:py-8">
-        <a href={SITE_CONFIG.phoneTel} className="mx-auto block max-w-[520px] px-4 lg:max-w-[460px]" aria-label="Same day service available. Call now!">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/icons/group-350.svg" alt="Same day service available. Call now!" className="h-auto w-full" />
-        </a>
-      </section>
-      </ScrollReveal>
-
+      </div>
+      <div className="max-lg:order-7 lg:contents">
       {/* ===== 8. HIGH-RISE APARTMENTS IMAGE (Figma Apartments_02) ===== */}
       {/* Replaced an AI-generated technician-and-dog shot. The old alt described a
           "Jenny, Hawthorn resident" testimonial that was not visible in the image.
           The "We're high rise specialists" label from the design is not yet markup. */}
       <ScrollReveal direction="right">
-        <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
-          <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
+        <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:bg-[#f8f5f2] lg:py-4">
+          <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-none lg:px-0">
             <Image
               src="/images/residential/highrise-apartments.webp"
               alt="A Melbourne high-rise apartment building protected by Zap It pest control"
@@ -287,14 +232,16 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
+      </div>
+      <div className="max-lg:order-8 lg:contents">
       {/* ===== 10. PEST SOLUTIONS AND PRICE LIST — Figma Pest Solutions.svg pattern ===== */}
       {/* White background. Single container, no per-item boxes. Pest icon = client-supplied
           per-pest SVG at 28x28. Detail rows use Graphik Semibold Italic 12px for the green
           field labels/values; description Regular 14px justified. First two items open. */}
       <ScrollReveal direction="up">
-        <section id="pest-price-list" className="bg-white px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[400px]">
-            <h2 className="text-center text-[24px] font-bold leading-[24px] text-[#131a1c]">
+        <section id="pest-price-list" className="bg-white px-4 py-10 sm:px-6 sm:py-14 lg:bg-[#f8f5f2] lg:px-[52px] lg:py-12">
+          <div className="mx-auto max-w-[400px] lg:max-w-none">
+            <h2 className="text-center text-[24px] font-bold leading-[24px] text-[#131a1c] lg:text-[30px] lg:leading-tight">
               Pest solutions and price list
             </h2>
             <div className="mt-5 border-t" style={{ borderColor: 'rgba(130,130,130,0.42)' }} />
@@ -350,56 +297,23 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 11. DARK GREEN BLOCK — TRUST IMAGES + ITALIC PARAGRAPHS ===== */}
-      {/* Brief #10: Section 11a 'Your health and safety...' removed.
-          Brief #11: Italic paragraphs normalised to Regular Italic 20px / line-height 29px / center.
-          Brief #12: Background unified to #0d402e (matches same-day-service block) for visual consistency. */}
-
-      {/* 11c. Pet safety text */}
-      <ScrollReveal direction="fade" delay={100}>
-        <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:py-6">
-          <p className="mx-auto max-w-md text-center text-[20px] font-normal italic leading-[29px] text-[#1cdc38]">
-            We know pets can get into all sorts of mischief which is why we take every measure to keep your much loved pets safe and sound.
-          </p>
-        </section>
-      </ScrollReveal>
-
-      {/* 11d. Townhouse image — text is already in the image */}
-      <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
-        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
-          <Image src="/images/residential/townhouse.webp" alt="We treat your home as if it were ours. Your satisfaction is our highest priority" width={650} height={702} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
-        </div>
-      </section>
-
-      {/* 11e. Coverage text */}
-      <ScrollReveal direction="fade" delay={100}>
-        <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:py-6">
-          <p className="mx-auto max-w-md text-center text-[20px] font-normal italic leading-[29px] text-[#1cdc38]">
-            Whether you live in a one-bedroom flat, high-rise apartment, semi-detached townhouse or large family home, we have you covered.
-          </p>
-        </section>
-      </ScrollReveal>
-
-      {/* 11f. High rise specialist image. Declared dimensions were 648x878 against a
-          1376x768 file, which caused layout shift; corrected to the real size. */}
-      <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
-        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
-          <Image src="/images/residential/highrise-specialist.webp" alt="A Zap It technician on a high-rise pest control visit" width={1376} height={768} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
-        </div>
-      </section>
-
+      </div>
+      <div className="max-lg:order-13 lg:contents">
       {/* 11g. Service area text */}
       <ScrollReveal direction="fade" delay={100}>
-        <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:py-6">
-          <p className="mx-auto max-w-md text-center text-[20px] font-normal italic leading-[29px] text-[#1cdc38]">
+        <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:bg-[#f8f5f2] lg:px-[52px] lg:pb-4 lg:pt-12">
+          <p className="mx-auto max-w-md text-center text-[20px] font-normal italic leading-[29px] text-[#1cdc38] lg:max-w-[470px] lg:text-[18px] lg:text-[#414042]">
+            <span className="mb-3 hidden text-[30px] font-bold not-italic leading-tight text-[#131a1c] lg:block">Service areas</span>
             We service Melbourne&apos;s central, north-west, northern and north-eastern suburbs.
           </p>
         </section>
       </ScrollReveal>
 
+      </div>
+      <div className="max-lg:order-14 lg:contents">
       {/* ===== 12. MELBOURNE MAP ===== */}
-      <section className="bg-[#0d402e] px-0 pb-2 sm:px-4">
-        <div className="relative mx-auto w-full max-w-5xl overflow-hidden sm:rounded-2xl">
+      <section className="bg-[#0d402e] px-0 pb-2 sm:px-4 lg:bg-[#f8f5f2] lg:px-[52px] lg:pb-12">
+        <div className="relative mx-auto w-full max-w-5xl overflow-hidden sm:rounded-2xl lg:max-w-[560px] lg:rounded-[10px]">
           <div className="relative aspect-[4/3] w-full min-h-[240px] bg-[#1a4f38] sm:aspect-[16/9] sm:min-h-[300px]">
             <iframe
               title="Zap It Melbourne service area map"
@@ -422,9 +336,11 @@ export default function HomePage() {
       {/* "We've got Melbourne covered" + FAQ sections removed per refactor brief #7.
           Flow now: Map → Licensed section → Footer. */}
 
+      </div>
+      <div className="max-lg:order-15 lg:contents">
       {/* ===== 13. LICENSES & CERTIFICATIONS ===== */}
       <ScrollReveal direction="up">
-        <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
+        <section className="border-t border-[#E3DFDA] bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14 lg:px-[52px] lg:py-12">
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-4 text-[22px] font-semibold leading-tight text-[#131a1c] sm:text-[26px]">
               Insured, licensed, accredited and legally compliant
@@ -488,6 +404,135 @@ export default function HomePage() {
           </div>
         </section>
       </ScrollReveal>
+
+      </div>
+        </div>
+        {/* ---------- right rail: sticky on desktop ---------- */}
+        <aside className="max-lg:contents lg:min-w-0 lg:self-stretch lg:bg-[#0d402e]">
+          <div className="max-lg:contents lg:sticky lg:top-0">
+      <div className="max-lg:order-5 lg:contents">
+      {/* ===== 6. PRICE CALCULATOR — functional, real PEST_PRICE_LIST data + 10% same-day discount ===== */}
+      <ScrollReveal direction="up" delay={100}>
+        <PriceCalculator />
+      </ScrollReveal>
+
+      </div>
+      <div className="max-lg:order-6 lg:contents">
+      {/* ===== 7. SAME DAY SERVICE CTA ===== */}
+      <ScrollReveal direction="fade">
+      <section className="bg-[#0d402e] py-8 sm:py-10 lg:py-8">
+        <a href={SITE_CONFIG.phoneTel} className="mx-auto block max-w-[520px] px-4 lg:max-w-[460px]" aria-label="Same day service available. Call now!">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/icons/group-350.svg" alt="Same day service available. Call now!" className="h-auto w-full" />
+        </a>
+      </section>
+      </ScrollReveal>
+
+      </div>
+      <div className="max-lg:order-4 lg:contents">
+      {/* ===== 5. TERMITE SECTION — bright green card on dark green wrapper (continuous bg) ===== */}
+      <ScrollReveal direction="up">
+      <section className="bg-[#0d402e] px-3 py-3 sm:px-4">
+        <div className="rounded-2xl bg-[#1cdc38] px-4 py-10 sm:px-6 sm:py-12">
+          <div className="mx-auto max-w-3xl">
+            <p className="mb-5 text-center text-[16px] font-medium italic text-[#f8f5f2]">
+              We&apos;re termite specialists
+            </p>
+            <div className="mb-6 flex items-start gap-4">
+              {/* Client-supplied SVG — Figma Termite icon */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/residential/termite-specialist.svg" alt="" aria-hidden className="h-[88px] w-[88px] shrink-0" />
+              <h2 className="text-[22px] font-bold leading-tight text-[#414042] sm:text-[28px] md:text-[32px]">
+                We stop termites dead in their tracks
+              </h2>
+            </div>
+            <h3 className="mb-4 text-[18px] font-bold text-[#414042] sm:text-[20px]">
+              Termite inspection <span className="font-normal text-[#414042]">Price on inspection</span>
+            </h3>
+            <dl className="mb-5 space-y-2 text-[14px] text-[#414042] sm:text-[15px]">
+              <div className="flex gap-2"><dt className="shrink-0 font-bold italic">Duration:</dt><dd className="italic">2 hours</dd></div>
+              <div className="flex gap-2"><dt className="shrink-0 font-bold italic">Property type:</dt><dd className="italic">All residential homes</dd></div>
+              <div className="flex flex-col gap-0.5"><dt className="font-bold italic">Inclusions:</dt><dd className="italic ml-0">Visual and technical inspection of exterior and interior of property, including gardens</dd></div>
+              <div className="flex flex-col gap-0.5"><dt className="font-bold italic">Tools used:</dt><dd className="italic ml-0">Moisture detection, Noise detection, keyhole camera</dd></div>
+              <div className="flex flex-col gap-0.5"><dt className="font-bold italic">Verbal and written report:</dt><dd className="italic ml-0">Findings and recommendations documented.</dd></div>
+            </dl>
+            <p className="mb-3 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
+              We conduct a detailed inspection in and around your home including in roof cavities and under the house.
+              We use the latest technology to detect and diagnose extent of any termite activity.
+              {/* Small bug icon inline at the end of the paragraph per Figma */}
+              {' '}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/residential/termite-activity.svg" alt="" aria-hidden className="inline-block h-[20px] w-auto -translate-y-[1px] align-middle" />
+            </p>
+            <p className="mb-8 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
+              A verbal and written assessment is provided with recommended course of action. The price of inspection
+              is deducted from further treatment or preventative action.
+            </p>
+            <div className="flex items-start gap-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/icons/important.svg" alt="" aria-hidden className="h-[58px] w-[58px] shrink-0" />
+              <div>
+                <p className="mb-1 text-[18px] font-black italic text-white">Important!</p>
+                <p className="text-[14px] font-medium italic leading-[1.5] text-[#131a1c] sm:text-[15px]">
+                  Do not disturb termites if you see or suspect termite activity. They move to other areas if you disturb them!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      </ScrollReveal>
+
+      </div>
+      <div className="max-lg:order-9 lg:contents">
+      {/* ===== 11. DARK GREEN BLOCK — TRUST IMAGES + ITALIC PARAGRAPHS ===== */}
+      {/* Brief #10: Section 11a 'Your health and safety...' removed.
+          Brief #11: Italic paragraphs normalised to Regular Italic 20px / line-height 29px / center.
+          Brief #12: Background unified to #0d402e (matches same-day-service block) for visual consistency. */}
+
+      {/* 11c. Pet safety text */}
+      <ScrollReveal direction="fade" delay={100}>
+        <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:py-6">
+          <p className="mx-auto max-w-md text-center text-[20px] font-normal italic leading-[29px] text-[#1cdc38]">
+            We know pets can get into all sorts of mischief which is why we take every measure to keep your much loved pets safe and sound.
+          </p>
+        </section>
+      </ScrollReveal>
+
+      </div>
+      <div className="max-lg:order-10 lg:contents">
+      {/* 11d. Townhouse image — text is already in the image */}
+      <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
+        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
+          <Image src="/images/residential/townhouse.webp" alt="We treat your home as if it were ours. Your satisfaction is our highest priority" width={650} height={702} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
+        </div>
+      </section>
+
+      </div>
+      <div className="max-lg:order-11 lg:contents">
+      {/* 11e. Coverage text */}
+      <ScrollReveal direction="fade" delay={100}>
+        <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:py-6">
+          <p className="mx-auto max-w-md text-center text-[20px] font-normal italic leading-[29px] text-[#1cdc38]">
+            Whether you live in a one-bedroom flat, high-rise apartment, semi-detached townhouse or large family home, we have you covered.
+          </p>
+        </section>
+      </ScrollReveal>
+
+      </div>
+      <div className="max-lg:order-12 lg:contents">
+      {/* 11f. High rise specialist image. Declared dimensions were 648x878 against a
+          1376x768 file, which caused layout shift; corrected to the real size. */}
+      <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
+        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
+          <Image src="/images/residential/highrise-specialist.webp" alt="A Zap It technician on a high-rise pest control visit" width={1376} height={768} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
+        </div>
+      </section>
+
+      </div>
+          </div>
+        </aside>
+      </div>
 
     </>
   );
