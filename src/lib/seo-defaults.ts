@@ -16,7 +16,7 @@ export const OG_DEFAULT_IMAGES = [
     url: LOGO_PATH,
     width: 600,
     height: 295,
-    alt: 'Zapit Pest & Termite Control Melbourne',
+    alt: 'Zap It Pest & Termite Control Melbourne',
   },
 ] as const;
 

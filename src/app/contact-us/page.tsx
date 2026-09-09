@@ -8,7 +8,7 @@ import ContactForm from '@/components/sections/ContactForm';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
 const DISPLAY_PHONE = '(03) 9126 0555';
-const BUSINESS_LINE = 'Zapit Pest & Termite Control';
+const BUSINESS_LINE = 'Zap It Pest & Termite Control';
 const ADDRESS_LINE = '80 Porter Rd, Heidelberg Heights , VIC 3081';
 
 const OPERATING_HOURS = [
@@ -26,7 +26,7 @@ export function generateMetadata(): Metadata {
   // with full brand, which pushed close to Google's SERP truncation edge.
   // Prior title was 31 chars — under Google's 40 lower bound. Extended with
   // the Melbourne keyword tail; still comfortably under the 60-char cap.
-  const title = 'Contact Zapit Pest Control Melbourne | Call Today';
+  const title = 'Contact Zap It Pest Control Melbourne | Call Today';
   const description = `Contact ${BUSINESS_LINE}. Call ${DISPLAY_PHONE} or email ${SITE_CONFIG.emailWork}. Same-day service available.`;
   return {
     title: { absolute: title },
@@ -116,7 +116,7 @@ export default function ContactUsPage() {
       <section className="bg-[#2B2B2B] px-5 pb-10 sm:px-6 sm:pb-14">
         <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl shadow-md">
           <iframe
-            title="Zapit Pest Control Melbourne Location"
+            title="Zap It Pest Control Melbourne Location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.5!2d144.99!3d-37.74!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z80+Porter+Rd+Heidelberg+Heights+VIC+3081!5e0!3m2!1sen!2sau!4v1"
             width="100%"
             height="300"

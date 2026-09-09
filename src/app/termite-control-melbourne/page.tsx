@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   // Absolute title kept under ~60 chars (Google search-result truncation
   // threshold). Was previously 118 chars total once the root layout's template
   // appended the site name, causing truncation in SERPs.
-  title: { absolute: 'Termite Control Melbourne | Zapit Pest & Termite Control' },
+  title: { absolute: 'Termite Control Melbourne | Zap It Pest & Termite Control' },
   description:
     'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
   alternates: { canonical: '/termite-control-melbourne' },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   // which used the full brand name (38 chars) and produced a mismatch with
   // the <title> shortName template.
   openGraph: {
-    title: 'Termite Control Melbourne | Zapit Pest & Termite Control',
+    title: 'Termite Control Melbourne | Zap It Pest & Termite Control',
     description:
       'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
     url: '/termite-control-melbourne',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Termite Control Melbourne | Zapit Pest & Termite Control',
+    title: 'Termite Control Melbourne | Zap It Pest & Termite Control',
     description:
       'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
     images: [...TWITTER_DEFAULT_IMAGES],
@@ -82,10 +82,10 @@ const TERMITE_TYPES = [
 
 const TERMITE_FAQS = [
   { question: 'How much does termite control cost in Melbourne?', answer: 'There\'s no fixed control for any pest control solutions like rodent control or ant control, and the same is the case with termites. However, you can get a custom quote to know exactly how much you have to pay and save yourself from paying thousands of dollars in damage repair.' },
-  { question: 'Do termites fly?', answer: 'Yes, termites can fly during their swarming season. Flying termites (also called alates or swarmers) are reproductive termites that leave their colony to start new ones. If you spot flying termites near your home, contact Zapit immediately for an inspection.' },
+  { question: 'Do termites fly?', answer: 'Yes, termites can fly during their swarming season. Flying termites (also called alates or swarmers) are reproductive termites that leave their colony to start new ones. If you spot flying termites near your home, contact Zap It immediately for an inspection.' },
   { question: 'How to get rid of termites?', answer: 'Getting rid of termites requires professional treatment. Our licensed technicians use a combination of liquid barriers, bait systems, and targeted treatments to fully eliminate termite colonies. DIY methods are rarely effective and can cause termites to scatter, worsening the infestation.' },
   { question: 'What do termites eat?', answer: 'Termites primarily eat cellulose-based materials like wood, paper, cardboard, and plant fibres. In homes, they target structural timber, flooring, furniture, and any wooden fixtures. Some species also feed on living trees and shrubs in your garden.' },
-  { question: 'How do I tell if I have termites?', answer: 'Common signs include hollow-sounding timber when tapped, sawdust-like droppings (frass), mud tubes on walls or foundations, blistering paint or bubbling wood surfaces, and discarded wings near windows. If you notice any of these, call Zapit for a same-day inspection.' },
+  { question: 'How do I tell if I have termites?', answer: 'Common signs include hollow-sounding timber when tapped, sawdust-like droppings (frass), mud tubes on walls or foundations, blistering paint or bubbling wood surfaces, and discarded wings near windows. If you notice any of these, call Zap It for a same-day inspection.' },
 ] as const;
 
 const WARNING_SIGNS = [
@@ -270,7 +270,7 @@ export default function TermiteControlMelbournePage() {
       {/* ===== STATS ===== */}
       <section className="bg-[#131a1c] py-14 text-white lg:py-16">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
-          <h2 className="mb-10 text-center text-2xl font-bold md:text-3xl">Why Melbourne Trusts Zapit</h2>
+          <h2 className="mb-10 text-center text-2xl font-bold md:text-3xl">Why Melbourne Trusts Zap It</h2>
           <StatsCounter />
         </div>
       </section>
@@ -306,7 +306,7 @@ export default function TermiteControlMelbournePage() {
               </a>
             </div>
             <div className="overflow-hidden rounded-2xl shadow-lg">
-              <Image src="/images/residential/melbourne-fleet.png" alt="Zapit licensed pest control fleet" width={600} height={450} className="h-auto w-full" />
+              <Image src="/images/residential/melbourne-fleet.png" alt="Zap It licensed pest control fleet" width={600} height={450} className="h-auto w-full" />
             </div>
           </div>
         </div>
@@ -350,7 +350,7 @@ export default function TermiteControlMelbournePage() {
         <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
             <div className="overflow-hidden rounded-2xl">
-              <Image src="/images/residential/highrise-specialist.webp" alt="Zapit high-rise pest specialist on a Melbourne apartment balcony" width={600} height={600} className="h-auto w-full" />
+              <Image src="/images/residential/highrise-specialist.webp" alt="Zap It high-rise pest specialist on a Melbourne apartment balcony" width={600} height={600} className="h-auto w-full" />
             </div>
             <div>
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#64FF01]/15">

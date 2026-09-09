@@ -1,11 +1,11 @@
 export const SITE_CONFIG = {
-  name: 'Zapit Pest & Termite Control Melbourne',
-  shortName: 'Zapit Pest Control',
-  phone: '9126 0555',
+  name: 'Zap It Pest and Termite Control Melbourne',
+  shortName: 'Zap It Pest Control',
+  phone: '03 9126 0555',
   phoneTel: 'tel:0391260555',
   phoneRaw: '0391260555',
   email: 'info@zapitpestmelbourne.com.au',
-  emailWork: 'wo@zapitpestmelbourne.com.au',
+  emailWork: 'sales@zapitpestmelbourne.com.au',
   url: 'https://zapitpestmelbourne.com.au',
   address: {
     street: '80 Porter Rd',
@@ -90,23 +90,23 @@ export const FOOTER_LINKS = [
 export const HOMEPAGE_FAQS = [
   {
     question: 'How much does pest control cost?',
-    answer: 'Pest control in Melbourne typically costs between $150 and $400 depending on the pest type, property size, and infestation severity. General treatments for ants, cockroaches, spiders, or rodents range $150–$475, while bed bug or termite services can go up to $400 for comprehensive inspections and treatments.',
+    answer: 'Cost depends on the pest, the size of the property and how established the problem is. Our residential price calculator shows the price for each treatment, GST included. Termite work is quoted after an inspection, because the scope depends on what we find.',
   },
   {
     question: 'Are pest control Melbourne services better than doing it yourself?',
-    answer: "If you have to deal with one cockroach or a fly, then it is better to do it yourself, but there's always a whole clan behind one. So it is better to hire an expert from Zapit to get your space pest-free.",
+    answer: "If you have to deal with one cockroach or a fly, then it is better to do it yourself, but there's always a whole clan behind one. So it is better to hire an expert from Zap It to get your space pest-free.",
   },
   {
     question: 'Which pest is most damaging to the house?',
     answer: 'Termites can cause significant structural damage because they feed on wood within your building and furniture, often without visible signs until the damage is done. Early detection and professional treatment are the best protection.',
   },
   {
-    question: 'How does Zapit pest & termite control service work?',
+    question: 'How does Zap It pest & termite control service work?',
     answer: 'We start the process by identifying the pest species, finding how it is getting into the space, and treating it with the right solution. It means baiting, spraying, or sealing entry points, all solutions designed to root out the source of the problem.',
   },
   {
     question: 'What areas do pest control Melbourne services cover?',
-    answer: 'Zapit Pest control Melbourne cover both residential and commercial properties, including homes, offices, restaurants, and warehouses, providing treatments for ants, spiders, rodents, termites, mosquitoes, and more.',
+    answer: 'Zap It Pest control Melbourne cover both residential and commercial properties, including homes, offices, restaurants, and warehouses, providing treatments for ants, spiders, rodents, termites, mosquitoes, and more.',
   },
   {
     question: 'How often should I schedule pest control Melbourne services?',
@@ -114,7 +114,7 @@ export const HOMEPAGE_FAQS = [
   },
   {
     question: 'Are pest control Melbourne treatments safe for pets and children?',
-    answer: 'Zapit uses approved products and responsible application methods. Our technicians will advise you on any re-entry guidance and precautions specific to your treatment.',
+    answer: 'Zap It uses approved products and responsible application methods. Our technicians will advise you on any re-entry guidance and precautions specific to your treatment.',
   },
   {
     question: 'How do I know what type of cockroach problem I have?',

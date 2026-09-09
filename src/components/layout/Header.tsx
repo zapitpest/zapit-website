@@ -119,8 +119,8 @@ export default function Header() {
         {/* ----- MOBILE / TABLET LAYOUT (stacked): logo + tagline + tabs ----- */}
         <div className="mx-auto max-w-[1280px] px-5 pt-5 pb-3 sm:px-6 sm:pt-6 sm:pb-4 lg:hidden">
           <div className="flex items-center justify-between">
-            <Link href="/" className="shrink-0" aria-label="Zapit home">
-              <img src={NAV_LOGO} alt="Zapit Pest Control" className="h-[64px] w-auto brightness-0 invert sm:h-[72px]" />
+            <Link href="/" className="shrink-0" aria-label="Zap It home">
+              <img src={NAV_LOGO} alt="Zap It Pest Control" className="h-[64px] w-auto brightness-0 invert sm:h-[72px]" />
             </Link>
             <a
               href={SITE_CONFIG.phoneTel}
@@ -147,8 +147,8 @@ export default function Header() {
              mobile — this is an addition, not a second implementation. ----- */}
         <div className="hidden lg:block">
           <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-6 py-4">
-            <Link href="/" className="shrink-0" aria-label="Zapit home">
-              <img src={NAV_LOGO} alt="Zapit Pest Control" className="h-[64px] w-auto brightness-0 invert xl:h-[72px]" />
+            <Link href="/" className="shrink-0" aria-label="Zap It home">
+              <img src={NAV_LOGO} alt="Zap It Pest Control" className="h-[64px] w-auto brightness-0 invert xl:h-[72px]" />
             </Link>
             <ul className="flex list-none items-center" aria-label="Primary">
               {MAIN_NAV_LINKS.map((item) => {
@@ -182,8 +182,8 @@ export default function Header() {
       <div className={`fixed left-0 top-0 z-[1100] w-full bg-[#0d402e] pb-3 shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-transform duration-200 lg:hidden ${isSticky ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="mx-auto max-w-[1280px] px-4 pt-2.5 sm:px-5">
           <div className="flex items-center justify-between">
-            <Link href="/" className="shrink-0" aria-label="Zapit home">
-              <img src={NAV_LOGO} alt="Zapit Pest Control" className="h-[44px] w-auto brightness-0 invert" />
+            <Link href="/" className="shrink-0" aria-label="Zap It home">
+              <img src={NAV_LOGO} alt="Zap It Pest Control" className="h-[44px] w-auto brightness-0 invert" />
             </Link>
             <div className="flex items-center gap-2.5">
               {/* Brief item 6: burger removed from sticky header — FloatingCTA provides menu+call */}
@@ -202,7 +202,7 @@ export default function Header() {
       {/* ===== DESKTOP STICKY HEADER (dark green) ===== */}
       <div className={`fixed left-0 top-0 z-[1100] hidden w-full bg-[#0d402e] shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-transform duration-150 lg:block ${isSticky ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-2.5">
-          <Link href="/" className="shrink-0"><img src={NAV_LOGO} alt="Zapit Pest Control" className="h-[48px] w-auto brightness-0 invert" /></Link>
+          <Link href="/" className="shrink-0"><img src={NAV_LOGO} alt="Zap It Pest Control" className="h-[48px] w-auto brightness-0 invert" /></Link>
           <ul className="flex list-none items-center">
             {MAIN_NAV_LINKS.map((item) => {
               if (item.label === 'Commercial' && item.childGroups) return <CommercialDropdownDark key={item.href+'-s'} item={item} />;

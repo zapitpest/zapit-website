@@ -48,7 +48,7 @@ export default function HomeHero() {
             <source media="(min-width: 1024px)" srcSet="/images/residential/hero-desktop.webp" />
             <img
               src="/images/residential/hero-cottage.webp"
-              alt="A Melbourne weatherboard home protected by Zapit pest control"
+              alt="A Melbourne weatherboard home protected by Zap It pest control"
               className="mx-auto h-auto w-full max-w-[560px] lg:max-w-none lg:rounded-3xl lg:shadow-2xl"
               loading="eager"
             />

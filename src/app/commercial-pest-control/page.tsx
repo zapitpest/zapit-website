@@ -17,8 +17,8 @@ const BREADCRUMBS: BreadcrumbItem[] = [
 
 export function generateMetadata(): Metadata {
   // Keep SERP + social title identical so both surfaces show the same headline.
-  // Prior split had og:title "... | Zapit" while <title> was "... | Zapit Pest Control".
-  const title = 'Commercial Pest Control Melbourne | Zapit Pest Control';
+  // Prior split had og:title "... | Zap It" while <title> was "... | Zap It Pest Control".
+  const title = 'Commercial Pest Control Melbourne | Zap It Pest Control';
   const description = 'Protect your business with structured, compliant pest management. Restaurants, warehouses, hospitals, schools and more across Melbourne.';
   return {
     title: { absolute: title },
@@ -144,11 +144,11 @@ export default function CommercialPestControlPage() {
       {/* ===== 3. ZAYDAN PHOTO — desktop = framed card; mobile = full-bleed ===== */}
       <section className="w-full bg-[#2B2B2B] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[560px] lg:px-6">
-          <Image src="/images/commercial/zaydan-photo.webp" alt="Oz, Commercial Manager at Zapit" width={1200} height={1800} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 560px, 100vw" />
+          <Image src="/images/commercial/zaydan-photo.webp" alt="Oz, Commercial Manager at Zap It" width={1200} height={1800} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 560px, 100vw" />
         </div>
       </section>
 
-      {/* ===== 4. ZAYDAN BIO — Figma layout: Name Bold + role + Zapit, then bio, full-width CTA ===== */}
+      {/* ===== 4. ZAYDAN BIO — Figma layout: Name Bold + role + Zap It, then bio, full-width CTA ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#2B2B2B] px-5 pb-12 pt-8 sm:px-6 sm:pb-14 sm:pt-10">
           <div className="mx-auto max-w-[600px]">
@@ -159,12 +159,12 @@ export default function CommercialPestControlPage() {
             <div className="mb-5">
               <p className="text-[22px] font-bold leading-[28px] text-[#f8f5f2]">Oz</p>
               <p className="text-[16px] leading-[22px] text-[#f8f5f2]/85">Commercial Manager</p>
-              <p className="text-[16px] leading-[22px] text-[#f8f5f2]/85">Zapit</p>
+              <p className="text-[16px] leading-[22px] text-[#f8f5f2]/85">Zap It</p>
             </div>
             <div className="space-y-4 text-[#f8f5f2]/90" style={{ fontSize: '15px', lineHeight: '22px', fontWeight: 400 }}>
               <p>
-                Hi, I&apos;m Oz, the commercial manager at Zapit. I look after our commercial
-                clients, focusing on consistent customer service and long-term pest risk management.
+                I look after our commercial clients, focusing on consistent service and
+                long term pest risk management.
               </p>
               <p>
                 I have experience across hospitality, warehousing, storage, corporate environments
@@ -193,13 +193,13 @@ export default function CommercialPestControlPage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 5. TESTIMONIAL 1 — I found Zapit (client-supplied image, text baked in) ===== */}
+      {/* ===== 5. TESTIMONIAL 1 — I found Zap It (client-supplied image, text baked in) ===== */}
       <section className="w-full bg-[#2B2B2B] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[640px] lg:px-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/commercial/i-found-zapit.png"
-            alt='I found Zapit to be easy to work with and I trust them to stay on top of any potential issues — Jack, Trade supplier, Reservoir'
+            alt='I found Zap It to be easy to work with and I trust them to stay on top of any potential issues — Jack, Trade supplier, Reservoir'
             width={804}
             height={488}
             className="h-auto w-full lg:rounded-3xl lg:shadow-2xl"
@@ -223,13 +223,13 @@ export default function CommercialPestControlPage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 7. TESTIMONIAL 2 — I trust Zapit (client-supplied image) ===== */}
+      {/* ===== 7. TESTIMONIAL 2 — I trust Zap It (client-supplied image) ===== */}
       <section className="w-full bg-[#2B2B2B] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/commercial/i-trust-zapit.png"
-            alt='I trust Zapit to make sure my cafe is free from pests and fully compliant — Michael, Cafe, Kew'
+            alt='I trust Zap It to make sure my cafe is free from pests and fully compliant — Michael, Cafe, Kew'
             width={498}
             height={327}
             className="h-auto w-full lg:rounded-3xl lg:shadow-2xl"

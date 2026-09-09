@@ -12,31 +12,31 @@ interface Treatment {
   duration: number;
 }
 
+// Prices are GST INCLUSIVE and come from the approved residential price sheet
+// (SOP-103 v0.3, approved 30 Aug 2026). The Square catalogue is ex GST; GST is
+// added on top. Under the Australian Consumer Law single price rule, a price
+// shown to a consumer must be the total payable.
+//
+// Services with no approved price are deliberately absent and must not be added
+// back without an owner's approval: silverfish, standalone pantry moth,
+// spider-only, wasp-only, double-storey possum, and anything termite.
 const TREATMENTS: Treatment[] = [
-  { name: 'Ant treatment', propertyType: 'All', price: 239, duration: 45 },
-  { name: 'Bed Bugs', propertyType: 'All', price: 450, duration: 60 },
-  { name: 'Clothes & Carpet Moth treatment', propertyType: 'All', price: 385, duration: 90 },
-  { name: 'Fleas treatment', propertyType: 'All', price: 385, duration: 45 },
-  { name: 'General Inspection', propertyType: 'All', price: 100, duration: 30 },
-  { name: 'German Cockroach treatment', propertyType: 'All', price: 250, duration: 60 },
-  { name: 'Mice & Rat treatment', propertyType: 'All', price: 200, duration: 40 },
-  { name: 'Mosquitos & Flies treatment', propertyType: 'All', price: 385, duration: 60 },
-  { name: 'Possum treatment', propertyType: 'Single-story', price: 450, duration: 30 },
-  { name: 'Possum treatment', propertyType: 'Double-story', price: 630, duration: 60 },
-  { name: 'Silverfish treatment', propertyType: 'All', price: 299, duration: 40 },
-  { name: 'Specialised Ant Elimination', propertyType: 'All', price: 450, duration: 60 },
-  { name: 'Spider & General Pest treatment', propertyType: 'Single-story', price: 290, duration: 60 },
-  { name: 'Spider & General Pest treatment', propertyType: 'Double-story', price: 335, duration: 60 },
-  { name: 'Termite Inspections', propertyType: 'All', price: 349, duration: 120 },
-  { name: 'Wasp Control', propertyType: 'All', price: 250, duration: 60 },
+  { name: 'Ant treatment', propertyType: 'All', price: 264, duration: 45 },
+  { name: 'Bed bug treatment', propertyType: 'All', price: 495, duration: 60 },
+  { name: 'Clothes and carpet moth treatment', propertyType: 'All', price: 423.5, duration: 90 },
+  { name: 'Flea treatment', propertyType: 'All', price: 423.5, duration: 45 },
+  { name: 'General inspection', propertyType: 'All', price: 154, duration: 30 },
+  { name: 'German cockroach treatment', propertyType: 'All', price: 275, duration: 60 },
+  { name: 'Mice and rat treatment', propertyType: 'All', price: 352, duration: 40 },
+  { name: 'Mosquito and fly treatment', propertyType: 'All', price: 423.5, duration: 60 },
+  { name: 'Possum treatment', propertyType: 'Single-story', price: 495, duration: 30 },
+  { name: 'Specialised ant elimination', propertyType: 'All', price: 495, duration: 60 },
+  { name: 'Spider and general pest treatment', propertyType: 'Single-story', price: 319, duration: 60 },
+  { name: 'Spider and general pest treatment', propertyType: 'Double-story', price: 368.5, duration: 60 },
+  { name: 'Wasp treatment', propertyType: 'All', price: 275, duration: 60 },
 ];
 
 const TREATMENT_NAMES = [...new Set(TREATMENTS.map((t) => t.name))].sort();
-
-// Same-day multi-treatment discount = 10% (per client refactor brief #7).
-function getDiscount(count: number): number {
-  return count >= 2 ? 0.1 : 0;
-}
 
 function fmtPrice(n: number): string {
   return n % 1 === 0 ? `$${n}` : `$${n.toFixed(2)}`;
@@ -47,20 +47,12 @@ interface SelectedItem {
   id: string;
 }
 
-// Default cart per Figma: Ant + Clothes & Carpet Moth + Silverfish pre-selected.
-function buildDefaultCart(): SelectedItem[] {
-  const defaults = ['Ant treatment', 'Clothes & Carpet Moth treatment', 'Silverfish treatment'];
-  return defaults
-    .map((name, i) => {
-      const t = TREATMENTS.find((x) => x.name === name);
-      return t ? { treatment: t, id: `default-${i}` } : null;
-    })
-    .filter((x): x is SelectedItem => x !== null);
-}
-
 export default function PriceCalculator() {
-  const [selectedName, setSelectedName] = useState<string>(''); // empty = "Select treatment"
-  const [cart, setCart] = useState<SelectedItem[]>(buildDefaultCart);
+  const [selectedName, setSelectedName] = useState<string>('');
+  // Starts empty. A visitor should never arrive at a total they did not build.
+  const [cart, setCart] = useState<SelectedItem[]>([]);
+  const [error, setError] = useState<string>('');
+  const [nextId, setNextId] = useState<number>(0);
 
   const propertyOptions = useMemo(() => {
     return TREATMENTS.filter((t) => t.name === selectedName);
@@ -69,7 +61,10 @@ export default function PriceCalculator() {
   const [selectedPropertyType, setSelectedPropertyType] = useState<PropertyType>('All');
 
   const handleAdd = () => {
-    if (!selectedName) return;
+    if (!selectedName) {
+      setError('Choose a treatment first.');
+      return;
+    }
     const match = TREATMENTS.find(
       (t) =>
         t.name === selectedName &&
@@ -77,106 +72,121 @@ export default function PriceCalculator() {
           (propertyOptions.length > 1 ? selectedPropertyType : propertyOptions[0].propertyType),
     );
     if (!match) return;
-    setCart((prev) => [...prev, { treatment: match, id: `${Date.now()}-${Math.random()}` }]);
+    if (cart.some((item) => item.treatment.name === match.name)) {
+      setError(`${match.name} is already on your list.`);
+      return;
+    }
+    setError('');
+    setCart((prev) => [...prev, { treatment: match, id: `item-${nextId}` }]);
+    setNextId((n) => n + 1);
+    setSelectedName('');
   };
 
   const handleRemove = (id: string) => {
+    setError('');
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const discount = getDiscount(cart.length);
-  const subtotal = cart.reduce((sum, item) => sum + item.treatment.price, 0);
-  const discountAmount = Math.round(subtotal * discount);
-  const total = Math.round(subtotal - discountAmount);
+  const total = cart.reduce((sum, item) => sum + item.treatment.price, 0);
 
   return (
-    <section className="bg-[#0d402e] pb-10 pt-16 sm:pb-12 sm:pt-20" aria-label="Residential price calculator">
+    <section
+      className="bg-[#0d402e] pb-10 pt-16 sm:pb-12 sm:pt-20"
+      aria-label="Residential price calculator"
+    >
       <div className="mx-auto max-w-[400px] px-5 sm:px-6">
-        {/* Save 10% pill — compact Figma shape. Main "Save 10%" text in #828282 per client spec;
-            subtitle stays dark. */}
         <div className="relative">
-          <div className="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2">
-            <div className="rounded-full bg-[#1cdc38] px-7 py-2 shadow-md">
-              <p className="text-center text-[24px] font-extrabold leading-none" style={{ color: '#414042' }}>
-                Save 10%
-              </p>
-              <p className="mt-0.5 text-center text-[11px] font-medium leading-tight text-[#131a1c]/85">
-                For same day multiple<br />treatments
-              </p>
-            </div>
-          </div>
-
-          {/* Calculator card */}
-          <div className="rounded-[28px] bg-[#f8f5f2] px-6 pb-7 pt-16 shadow-sm sm:px-8 sm:pt-20">
-            <h2 className="mb-5 text-[24px] font-bold leading-tight text-[#131a1c]">
+          <div className="rounded-[28px] bg-[#f8f5f2] px-6 pb-7 pt-8 shadow-sm sm:px-8 sm:pt-10">
+            <h2 className="mb-2 text-[24px] font-bold leading-tight text-[#131a1c]">
               Residential price calculator
             </h2>
+            <p className="mb-5 text-[14px] leading-snug text-[#414042]">
+              Add the treatments you need to see the total. All prices include GST.
+            </p>
 
-            {/* Treatment type label + dropdown + add button */}
-            <label htmlFor="treatment-select" className="mb-2 block text-[15px] font-bold text-[#131a1c]">
-              Treatment type<span className="text-[#1cdc38]">*</span>
+            <label
+              htmlFor="treatment-select"
+              className="mb-2 block text-[15px] font-bold text-[#131a1c]"
+            >
+              Treatment type
             </label>
-            <div className="mb-5 flex items-center gap-2">
-              <div className="relative flex-1">
-                <select
-                  id="treatment-select"
-                  value={selectedName}
-                  onChange={(e) => {
-                    setSelectedName(e.target.value);
-                    const opts = TREATMENTS.filter((t) => t.name === e.target.value);
-                    if (opts[0]) setSelectedPropertyType(opts[0].propertyType);
-                  }}
-                  className="w-full appearance-none rounded-md border border-[#828282] bg-white px-4 py-3 text-[14px] italic text-[#414042] focus:border-[#1cdc38] focus:outline-none focus:ring-1 focus:ring-[#1cdc38]"
-                >
-                  <option value="" disabled>
-                    Select treatment
+            <div className="mb-2 flex items-stretch gap-2">
+              <select
+                id="treatment-select"
+                value={selectedName}
+                onChange={(e) => {
+                  setError('');
+                  setSelectedName(e.target.value);
+                  const opts = TREATMENTS.filter((t) => t.name === e.target.value);
+                  if (opts[0]) setSelectedPropertyType(opts[0].propertyType);
+                }}
+                className="min-h-[48px] flex-1 appearance-none rounded-md border border-[#828282] bg-white px-4 py-3 text-[14px] text-[#414042] focus:border-[#1cdc38] focus:outline-none focus:ring-2 focus:ring-[#1cdc38]"
+              >
+                <option value="">Select a treatment</option>
+                {TREATMENT_NAMES.map((name) => (
+                  <option key={name} value={name} className="text-[#131a1c]">
+                    {name}
                   </option>
-                  {TREATMENT_NAMES.map((name) => (
-                    <option key={name} value={name} className="not-italic text-[#131a1c]">
-                      {name}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  type="button"
-                  onClick={handleAdd}
-                  aria-label="Add treatment"
-                  className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center text-[34px] font-normal leading-none text-[#131a1c] hover:text-[#1cdc38]"
-                >
-                  +
-                </button>
-              </div>
+                ))}
+              </select>
+              <button
+                type="button"
+                onClick={handleAdd}
+                className="min-h-[48px] shrink-0 rounded-md bg-[#0d402e] px-5 text-[15px] font-bold text-white hover:bg-[#125a41] focus:outline-none focus:ring-2 focus:ring-[#1cdc38]"
+              >
+                Add
+              </button>
             </div>
 
-            {/* Property type dropdown (only when current treatment has multiple variants) */}
+            {error && (
+              <p role="status" className="mb-3 text-[13px] font-medium text-[#b3261e]">
+                {error}
+              </p>
+            )}
+
             {selectedName && propertyOptions.length > 1 && (
-              <div className="mb-5">
-                <label className="mb-2 block text-[14px] font-semibold text-[#131a1c]">Property type</label>
+              <div className="mb-5 mt-3">
+                <label
+                  htmlFor="property-type"
+                  className="mb-2 block text-[14px] font-semibold text-[#131a1c]"
+                >
+                  Property type
+                </label>
                 <select
+                  id="property-type"
                   value={selectedPropertyType}
                   onChange={(e) => setSelectedPropertyType(e.target.value as PropertyType)}
-                  className="w-full appearance-none rounded-md border border-[#828282] bg-white px-4 py-3 text-[14px] text-[#414042] focus:border-[#1cdc38] focus:outline-none focus:ring-1 focus:ring-[#1cdc38]"
+                  className="min-h-[48px] w-full appearance-none rounded-md border border-[#828282] bg-white px-4 py-3 text-[14px] text-[#414042] focus:border-[#1cdc38] focus:outline-none focus:ring-2 focus:ring-[#1cdc38]"
                 >
                   {propertyOptions.map((opt) => (
                     <option key={opt.propertyType} value={opt.propertyType}>
-                      {opt.propertyType}
+                      {opt.propertyType === 'Single-story' ? 'Single storey' : 'Double storey'}
                     </option>
                   ))}
                 </select>
               </div>
             )}
 
-            {/* Selected items list */}
-            {cart.length > 0 && (
-              <ul className="mb-5 space-y-1.5">
+            {cart.length === 0 ? (
+              <p className="mb-5 mt-4 rounded-md border border-dashed border-[#828282]/60 px-4 py-5 text-center text-[14px] text-[#414042]">
+                Nothing added yet. Choose a treatment above to see your total.
+              </p>
+            ) : (
+              <ul className="mb-5 mt-4 space-y-2">
                 {cart.map((item) => (
-                  <li key={item.id} className="flex items-center justify-between gap-3 text-[14px]">
+                  <li
+                    key={item.id}
+                    className="flex items-center justify-between gap-3 border-b border-[#828282]/25 pb-2 text-[14px] last:border-0"
+                  >
                     <span className="text-[#131a1c]">
                       {item.treatment.name}{' '}
                       <strong className="font-bold">{fmtPrice(item.treatment.price)}</strong>
                       {item.treatment.propertyType !== 'All' && (
-                        <span className="ml-1 text-[12px] text-[#414042]/60">
-                          ({item.treatment.propertyType})
+                        <span className="ml-1 text-[12px] text-[#414042]/70">
+                          ({item.treatment.propertyType === 'Single-story'
+                            ? 'single storey'
+                            : 'double storey'}
+                          )
                         </span>
                       )}
                     </span>
@@ -184,46 +194,38 @@ export default function PriceCalculator() {
                       type="button"
                       onClick={() => handleRemove(item.id)}
                       aria-label={`Remove ${item.treatment.name}`}
-                      className="flex h-7 w-7 shrink-0 items-center justify-center text-[22px] font-medium leading-none text-[#131a1c] hover:text-red-500"
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-[22px] font-medium leading-none text-[#414042] hover:bg-[#e5e2dc] hover:text-[#b3261e] focus:outline-none focus:ring-2 focus:ring-[#1cdc38]"
                     >
-                      ×
+                      &times;
                     </button>
                   </li>
                 ))}
               </ul>
             )}
 
-            {/* Total pill — "$831" big, "GST inc." stacked below per Figma */}
-            {cart.length > 0 && (
-              <div className="mb-3 flex flex-col items-center justify-center rounded-full bg-[#e5e2dc] px-8 py-3">
-                <span className="text-[32px] font-extrabold leading-none text-[#131a1c]">
-                  ${total}
-                </span>
-                <span className="mt-1 text-[14px] font-medium leading-none text-[#414042]">GST inc.</span>
-              </div>
-            )}
+            <div
+              aria-live="polite"
+              className="mb-4 flex flex-col items-center justify-center rounded-full bg-[#e5e2dc] px-8 py-3"
+            >
+              <span className="text-[32px] font-extrabold leading-none text-[#131a1c]">
+                {fmtPrice(total)}
+              </span>
+              <span className="mt-1 text-[14px] font-medium leading-none text-[#414042]">
+                Total, GST included
+              </span>
+            </div>
 
-            {/* Savings pill (only shows when discount active) — width matches the total pill above */}
-            {discount > 0 && (
-              <div className="mb-4 w-full rounded-full bg-[#1cdc38] px-6 py-2 text-center">
-                <p className="text-[14px] italic leading-tight text-[#131a1c]">10% saving activated.</p>
-                <p className="text-[14px] font-bold italic leading-tight text-[#131a1c]">
-                  You&apos;ve save ${discountAmount}!
-                </p>
-              </div>
-            )}
+            <p className="mb-5 text-[12px] leading-snug text-[#414042]">
+              This is an estimate for a standard residential property. We confirm the final price
+              before any work starts.
+            </p>
 
-            {/* Call now! italic green */}
             <a
               href={SITE_CONFIG.phoneTel}
-              className="ml-auto block w-fit text-[28px] font-extrabold italic leading-none text-[#1cdc38] hover:underline"
+              className="block w-full rounded-full bg-[#1cdc38] px-6 py-3 text-center text-[16px] font-bold text-[#0d402e] hover:bg-[#17c431] focus:outline-none focus:ring-2 focus:ring-[#0d402e]"
             >
-              Call now!
+              Call {SITE_CONFIG.phone}
             </a>
-
-            <p className="mt-4 text-[11px] text-[#414042]/60">
-              <span className="text-[#1cdc38]">*</span>required fields
-            </p>
           </div>
         </div>
       </div>

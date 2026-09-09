@@ -52,7 +52,7 @@ export default function Footer() {
     <footer className="bg-[#2B2B2B] font-sans text-white">
       <div className="mx-auto max-w-3xl px-5 py-10 sm:px-6 sm:py-12">
         {/* Company info */}
-        <h3 className="mb-3 text-[18px] font-bold">Zapit Pest &amp; Termite Control</h3>
+        <h3 className="mb-3 text-[18px] font-bold">Zap It Pest &amp; Termite Control</h3>
         <div className="mb-6 space-y-0.5 text-[15px] text-white/85">
           <p>80 Porter Rd, Heidelberg Heights , VIC 3081</p>
           <p>ABN 61 682 004 655</p>

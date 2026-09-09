@@ -57,7 +57,7 @@ const PEST_SOLUTION_PAGES: Record<PestSolutionSlug, PestSolutionPage> = {
     title: 'Organic Pest Control',
     metaTitle: 'Organic Pest Control Melbourne',
     metaDescription:
-      'Low-toxic pest control for Melbourne homes: natural options, IPM, and responsible treatments suited to families and sensitive spaces. Call Zapit.',
+      'Low-toxic pest control for Melbourne homes: natural options, IPM, and responsible treatments suited to families and sensitive spaces. Call Zap It.',
     h1: 'Organic & Low-Toxic Pest Control',
     heroDescription:
       'When you want effective results without harsh chemicals, we use careful product choice, integrated pest management, and methods suited to kids, pets, and sensitive environments.',
@@ -236,7 +236,7 @@ export default async function PestSolutionSubPage({ params }: Props) {
               </div>
 
               <div className="mt-10 overflow-hidden rounded-2xl">
-                <Image src="/images/residential/pet-safe.webp" alt="Pet-safe pest treatment by a Zapit technician — protection that keeps children and pets safe" width={700} height={500} className="h-auto w-full" />
+                <Image src="/images/residential/pet-safe.webp" alt="Pet-safe pest treatment by a Zap It technician — protection that keeps children and pets safe" width={700} height={500} className="h-auto w-full" />
               </div>
             </div>
 

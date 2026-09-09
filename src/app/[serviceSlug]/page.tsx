@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         `Pest Control ${data.name} | Same-Day Service | ${SITE_CONFIG.shortName}`,
         `Pest Control ${data.name} | Same-Day | ${SITE_CONFIG.shortName}`,
         `Pest Control ${data.name} | ${SITE_CONFIG.shortName}`,
-      ].find((t) => t.length <= 60) ?? `Pest Control ${data.name} | Zapit`;
+      ].find((t) => t.length <= 60) ?? `Pest Control ${data.name} | Zap It`;
     const description = `Same-day pest control in ${data.name}, Melbourne. Licensed technicians, treatments safe for pets & people. Call ${SITE_CONFIG.phone} to book.`;
     return {
       title: { absolute: title },
@@ -232,7 +232,7 @@ export default async function ServicePage({ params }: Props) {
               </div>
 
               <div className="overflow-hidden rounded-2xl">
-                <Image src="/images/residential/melbourne-fleet.png" alt={`Zapit ${page.title} service`} width={700} height={400} className="h-auto w-full" />
+                <Image src="/images/residential/melbourne-fleet.png" alt={`Zap It ${page.title} service`} width={700} height={400} className="h-auto w-full" />
               </div>
             </div>
 

@@ -17,9 +17,9 @@ const TRUST_PILLS = [
 
 // Prior title "About Us" was 29 chars — under Google's 40-char lower bound and
 // missed the keyword tail. Extended title still fits in ~55 char SERP window.
-const ABOUT_TITLE = 'About Zapit | Melbourne Pest Control Specialists';
+const ABOUT_TITLE = 'About Zap It | Melbourne Pest Control Specialists';
 const ABOUT_DESCRIPTION =
-  'Zapit Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.';
+  'Zap It Pest & Termite Control Melbourne: built on trust, with a commitment to customer satisfaction, professional standards and safe pest protection.';
 
 export const metadata: Metadata = {
   title: { absolute: ABOUT_TITLE },
@@ -126,16 +126,25 @@ export default function AboutUsPage() {
             <h2 className="mb-6 text-[24px] font-bold italic text-[#f8f5f2] sm:text-[28px]">Our story</h2>
             <div className="space-y-5 text-[17px] font-medium leading-[1.8] text-[#f8f5f2]/90 sm:text-[18px]">
               <p>
-                Founded in 2020 by Adam Balli, the business began by servicing Melbourne&apos;s northern suburbs with a strong commitment to customer care and professional service.
+                Zap It Pest Control started in Melbourne&apos;s northern suburbs and now works across
+                the eastern, northern, western and inner suburbs. The approach has not changed.
+                Do the job properly, explain what we found, and stand behind the result.
               </p>
               <p>
-                Within a short period, Adam earned a reputation for delivering effective and long-lasting results, reflected in outstanding Google reviews.
+                Every treatment is carried out by a licensed technician. We use professional grade
+                products that are not sold to the public, and we tell you plainly what we are
+                applying and why.
               </p>
               <p>
-                Building on this success, the business has expanded across Melbourne&apos;s eastern, northern, western, and inner suburbs. Our experienced and dedicated team of licensed professionals continues to deliver the same high level of care the Zapit was founded on.
+                Our residential work covers ants, cockroaches, spiders, rodents, possums, bed bugs,
+                fleas and timber pests. Our commercial programme runs scheduled servicing for food
+                premises, warehousing, education, healthcare and property managers, with the
+                documentation those sites are audited against.
               </p>
               <p>
-                To date, we have supported over 5,000 residential customers and more than 500 commercial clients, consistently delivering reliable and effective pest control solutions.
+                We hold public liability insurance and full pest management licensing in Victoria.
+                Our technicians work to documented procedures, and every job leaves a written record
+                of what was treated and what was used.
               </p>
             </div>
           </div>

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { SITE_CONFIG } from '@/lib/constants';
 
 // Real Google reviews — replace via this array when client supplies the verified list
-// from the Zapit Google Business Profile (per client item #3, no fake/AI testimonials).
+// from the Zap It Google Business Profile (per client item #3, no fake/AI testimonials).
 //
 // TODO_CLIENT: Replace placeholder reviews (marked below) with verified Google reviews.
 type Review = {
@@ -18,7 +18,7 @@ type Review = {
 };
 
 const REVIEWS: Review[] = [
-  // === REAL — verified Google review from the Zapit Business Profile ===
+  // === REAL — verified Google review from the Zap It Business Profile ===
   {
     name: 'Jemi Audi',
     initial: 'J',
@@ -33,7 +33,7 @@ const REVIEWS: Review[] = [
     initial: 'S',
     avatarBg: '#2e5d7c',
     time: '1 month ago',
-    text: 'Booked Zapit for a termite inspection — really thorough, explained everything clearly, and the report came through the same day. Highly recommend.',
+    text: 'Booked Zap It for a termite inspection — really thorough, explained everything clearly, and the report came through the same day. Highly recommend.',
     rating: 5,
     placeholder: true,
   },
@@ -42,7 +42,7 @@ const REVIEWS: Review[] = [
     initial: 'D',
     avatarBg: '#4a7c2e',
     time: '2 months ago',
-    text: 'Had a sudden ant problem in the kitchen. Zapit came out the same day, friendly tech, no fuss. Ants gone within a week. Will use again.',
+    text: 'Had a sudden ant problem in the kitchen. Zap It came out the same day, friendly tech, no fuss. Ants gone within a week. Will use again.',
     rating: 5,
     placeholder: true,
   },
@@ -51,14 +51,14 @@ const REVIEWS: Review[] = [
     initial: 'P',
     avatarBg: '#7c2e5d',
     time: '4 months ago',
-    text: 'Reliable, professional, on time. We use Zapit for our annual pest protection — never an issue. Worth every dollar.',
+    text: 'Reliable, professional, on time. We use Zap It for our annual pest protection — never an issue. Worth every dollar.',
     rating: 5,
     placeholder: true,
   },
 ];
 
 const GOOGLE_REVIEWS_URL =
-  'https://www.google.com/search?q=Zapit+Pest+Control+Melbourne+Reviews';
+  'https://www.google.com/search?q=Zap It+Pest+Control+Melbourne+Reviews';
 
 const ADVANCE_MS = 4000;
 

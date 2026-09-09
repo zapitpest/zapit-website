@@ -42,12 +42,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
     // The full brand name is 38 chars, which pushed every templated title past
-    // Google's ~60 char cut-off. shortName ("Zapit Pest Control") keeps the brand
+    // Google's ~60 char cut-off. shortName ("Zap It Pest Control") keeps the brand
     // visible without eating the differentiator.
     default: `Pest Control Melbourne | ${SITE_CONFIG.shortName}`,
     template: `%s | ${SITE_CONFIG.shortName}`,
   },
-  description: `Pest protection you can trust. Zapit protects Melbourne homes and businesses from pests with licensed, approved solutions. Call ${SITE_CONFIG.phone}.`,
+  description: `Pest protection you can trust. Zap It protects Melbourne homes and businesses from pests with licensed, approved solutions. Call ${SITE_CONFIG.phone}.`,
   // OpenGraph title/description default to the metadata.title/description above.
   // Per-page metadata can override with their own openGraph.title/description
   // to keep social previews consistent with the SERP pair on that page.

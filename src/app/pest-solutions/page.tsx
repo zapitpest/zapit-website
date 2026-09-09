@@ -13,7 +13,7 @@ import StatsCounter from '@/components/sections/StatsCounter';
 // Without these, previews inherit from root layout defaults which used the
 // full brand name and produced a different headline than <title>.
 const PEST_SOLUTIONS_TITLE = `Pest Control Solutions Melbourne | ${SITE_CONFIG.shortName}`;
-const PEST_SOLUTIONS_DESCRIPTION = `Complete pest control solutions for Melbourne homes and businesses. From ants and termites to rodents and possums — Zapit handles it all. Call ${SITE_CONFIG.phone}.`;
+const PEST_SOLUTIONS_DESCRIPTION = `Complete pest control solutions for Melbourne homes and businesses. From ants and termites to rodents and possums — Zap It handles it all. Call ${SITE_CONFIG.phone}.`;
 
 export const metadata: Metadata = {
   title: { absolute: PEST_SOLUTIONS_TITLE },
@@ -121,7 +121,7 @@ export default function PestSolutionsPage() {
             <p className="mt-4 text-[15px] leading-[1.8] text-[#414042] sm:text-[16px]">
               Not sure what pest problem you have? A general pest inspection helps identify the
               issue, check common problem areas around the home, and recommend the right treatment.
-              Zapit will inspect the visible areas, look for signs of pest activity, and advise the
+              Zap It will inspect the visible areas, look for signs of pest activity, and advise the
               most suitable next step.
             </p>
             <div className="mt-5 rounded-xl bg-white px-5 py-4 sm:px-6 sm:py-5">
@@ -207,7 +207,7 @@ export default function PestSolutionsPage() {
       <section className="bg-white py-10 sm:py-14 lg:py-16">
         <div className="mx-auto w-full max-w-[640px] px-5 sm:px-6 lg:max-w-[560px]">
           <div className="overflow-hidden rounded-3xl shadow-xl">
-            <Image src="/images/residential/family-trust.webp" alt="Protection you can trust — Zapit Pest Control Melbourne" width={712} height={1002} className="h-auto w-full" sizes="(min-width: 1024px) 560px, (min-width: 640px) 560px, 100vw" />
+            <Image src="/images/residential/family-trust.webp" alt="Protection you can trust — Zap It Pest Control Melbourne" width={712} height={1002} className="h-auto w-full" sizes="(min-width: 1024px) 560px, (min-width: 640px) 560px, 100vw" />
           </div>
         </div>
       </section>
@@ -225,7 +225,7 @@ export default function PestSolutionsPage() {
         <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div className="overflow-hidden rounded-2xl shadow-lg">
-              <Image src="/images/residential/pet-safe.webp" alt="Pet-safe pest treatment by a Zapit technician — protection that keeps children and pets safe" width={600} height={500} className="h-auto w-full" />
+              <Image src="/images/residential/pet-safe.webp" alt="Pet-safe pest treatment by a Zap It technician — protection that keeps children and pets safe" width={600} height={500} className="h-auto w-full" />
             </div>
             <div>
               <span className="mb-3 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Professional Standards</span>
@@ -281,7 +281,7 @@ export default function PestSolutionsPage() {
         <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
             <div>
-              <span className="mb-3 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Why Zapit</span>
+              <span className="mb-3 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Why Zap It</span>
               <h2 className="mb-6 text-2xl font-bold text-[#131a1c] md:text-3xl">Melbourne&apos;s Trusted Pest Protection</h2>
               <div className="space-y-4">
                 {[
@@ -304,7 +304,7 @@ export default function PestSolutionsPage() {
               </div>
             </div>
             <div className="overflow-hidden rounded-2xl shadow-lg">
-              <Image src="/images/residential/highrise-specialist.webp" alt="Zapit high-rise pest specialist on a Melbourne apartment balcony" width={600} height={700} className="h-auto w-full" />
+              <Image src="/images/residential/highrise-specialist.webp" alt="Zap It high-rise pest specialist on a Melbourne apartment balcony" width={600} height={700} className="h-auto w-full" />
             </div>
           </div>
         </div>

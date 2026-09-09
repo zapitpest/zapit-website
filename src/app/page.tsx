@@ -57,7 +57,7 @@ const PEST_PRICE_LIST: ReadonlyArray<PestPriceItem> = [
   { n: 10, iconSlug: 'mosquitos-flies', name: 'Mosquitos and flies', price: '$385', open: false, duration: '60 minutes', propertyType: 'All residential homes', inclusions: 'Breeding site treatment, residual spray application.', verbalReport: 'Treatment summary and follow-up recommendations provided on completion', detail: 'Targeted mosquito and fly treatment to reduce populations around your home.' },
   { n: 11, iconSlug: 'possum-removal', name: 'Possum removal', price: '$450', open: false, duration: '30–60 minutes', propertyType: 'Single / Double-story homes', inclusions: 'Licensed humane possum removal and entry sealing.', verbalReport: 'Removal summary and entry-point proofing recommendations provided on completion', detail: 'Humane, licensed possum removal from roof voids with entry-point proofing.' },
   { n: 12, iconSlug: 'silverfish', name: 'Silverfish treatment', price: '$299', open: false, duration: '40 minutes', propertyType: 'All residential homes', inclusions: 'Treatment of silverfish harbourage areas.', verbalReport: 'Treatment summary and follow-up recommendations provided on completion', detail: 'Targeted treatment to eliminate silverfish from bookshelves, wardrobes, and bathrooms.' },
-  { n: 13, iconSlug: 'termite-inspections', name: 'Termite inspections', price: '$349', open: false, duration: '2 hours', propertyType: 'All residential homes', inclusions: 'Visual and technical inspection of exterior and interior of property.', verbalReport: 'Findings and recommendations documented', detail: 'A thorough termite inspection using moisture detection, noise detection, and keyhole camera.' },
+  { n: 13, iconSlug: 'termite-inspections', name: 'Termite inspections', price: 'On inspection', open: false, duration: '2 hours', propertyType: 'All residential homes', inclusions: 'Visual and technical inspection of exterior and interior of property.', verbalReport: 'Findings and recommendations documented', detail: 'A thorough termite inspection using moisture detection, noise detection, and keyhole camera.' },
   { n: 14, iconSlug: 'wasp-control', name: 'Wasp control', price: '$250', open: false, duration: '60 minutes', propertyType: 'All residential homes', inclusions: 'Safe nest removal and treatment.', verbalReport: 'Treatment summary and follow-up recommendations provided on completion', detail: 'Professional wasp nest removal and treatment to protect your family.' },
 ];
 
@@ -90,7 +90,7 @@ function PestIcon({ slug, label }: { slug: string; label: string }) {
 //   chars in most social previews, and og:description was 46 chars — under
 //   the 60-160 range Facebook/LinkedIn render).
 const HOMEPAGE_TITLE = `Pest Control Melbourne | ${SITE_CONFIG.shortName}`;
-const HOMEPAGE_DESCRIPTION = `Protect your Melbourne home with Zapit. Child & pet safe, same-day residential pest control. Termite inspections from $349. Call ${SITE_CONFIG.phone}.`;
+const HOMEPAGE_DESCRIPTION = `Protect your Melbourne home with Zap It. Child and pet safe, same day residential pest control by licensed technicians. Call ${SITE_CONFIG.phone}.`;
 
 export const metadata: Metadata = {
   title: { absolute: HOMEPAGE_TITLE },
@@ -217,7 +217,7 @@ export default function HomePage() {
               </h2>
             </div>
             <h3 className="mb-4 text-[18px] font-bold text-[#414042] sm:text-[20px]">
-              Termite inspection <span className="font-normal text-[#414042]">$399</span>
+              Termite inspection <span className="font-normal text-[#414042]">Price on inspection</span>
             </h3>
             <dl className="mb-5 space-y-2 text-[14px] text-[#414042] sm:text-[15px]">
               <div className="flex gap-2"><dt className="shrink-0 font-bold italic">Duration:</dt><dd className="italic">2 hours</dd></div>
@@ -277,7 +277,7 @@ export default function HomePage() {
           <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
             <Image
               src="/images/residential/highrise-apartments.webp"
-              alt="A Melbourne high-rise apartment building protected by Zapit pest control"
+              alt="A Melbourne high-rise apartment building protected by Zap It pest control"
               width={1400}
               height={1225}
               className="h-auto w-full lg:rounded-3xl lg:shadow-2xl"
@@ -406,7 +406,7 @@ export default function HomePage() {
           1376x768 file, which caused layout shift; corrected to the real size. */}
       <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
-          <Image src="/images/residential/highrise-specialist.webp" alt="A Zapit technician on a high-rise pest control visit" width={1376} height={768} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
+          <Image src="/images/residential/highrise-specialist.webp" alt="A Zap It technician on a high-rise pest control visit" width={1376} height={768} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
         </div>
       </section>
 
@@ -424,7 +424,7 @@ export default function HomePage() {
         <div className="relative mx-auto w-full max-w-5xl overflow-hidden sm:rounded-2xl">
           <div className="relative aspect-[4/3] w-full min-h-[240px] bg-[#1a4f38] sm:aspect-[16/9] sm:min-h-[300px]">
             <iframe
-              title="Zapit Melbourne service area map"
+              title="Zap It Melbourne service area map"
               src={MELBOURNE_MAP}
               className="absolute inset-0 h-full w-full border-0"
               loading="lazy"

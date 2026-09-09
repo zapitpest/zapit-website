@@ -81,7 +81,7 @@ const FAQ_ITEMS: FAQ[] = [
   {
     question: 'General information',
     answer:
-      'Zapit Pest & Termite Control is a licensed Melbourne team offering residential and commercial programs with a calm, no-drama approach.',
+      'Zap It Pest & Termite Control is a licensed Melbourne team offering residential and commercial programs with a calm, no-drama approach.',
   },
   {
     question: 'How long after pest control can I go inside?',
@@ -124,9 +124,9 @@ export function generateMetadata(): Metadata {
   // SERP + social title identical (shortName, not full brand — was overflowing 55 chars).
   // OG description matches meta description so social previews carry the same
   // benefit + differentiator + CTA the SERP snippet ranks on.
-  const title = 'Pest Control FAQs Melbourne | Zapit Pest Control';
+  const title = 'Pest Control FAQs Melbourne | Zap It Pest Control';
   const description =
-    'Answers to common pest control questions: safety, same-day service, preparation, costs, and what to expect from your Zapit treatment in Melbourne.';
+    'Answers to common pest control questions: safety, same-day service, preparation, costs, and what to expect from your Zap It treatment in Melbourne.';
   return {
     title: { absolute: title },
     description,

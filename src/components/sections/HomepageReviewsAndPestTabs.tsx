@@ -155,7 +155,7 @@ export function HomepagePestServiceTabs() {
           </div>
         </div>
         <div className="relative aspect-[4/3] w-full min-w-0 max-w-full overflow-hidden rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.15)]">
-          <Image src={TAB_IMAGE} alt="Zapit high-rise pest specialist on a Melbourne apartment balcony" fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
+          <Image src={TAB_IMAGE} alt="Zap It high-rise pest specialist on a Melbourne apartment balcony" fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
         </div>
       </div>
 
@@ -345,7 +345,7 @@ export function HomepageMelbourneCoverage() {
     <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
       <div className="bg-[#252C33] text-white rounded-xl p-6 md:p-8 shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
         <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight">
-          Why Choose Zapit Pest &amp; Termite Control Melbourne Services?
+          Why Choose Zap It Pest &amp; Termite Control Melbourne Services?
         </h3>
         <p className="mt-3 text-sm md:text-base text-white/85 leading-relaxed">
           Licensed, accredited pest control experts serving Melbourne homes and businesses with professional, thorough treatments.
@@ -431,7 +431,7 @@ const PRICING_DATA = [
   { service: 'Silverfish Treatment', type: 'All', price: '$299.99', duration: '40' },
   { service: 'Mosquitos, Flies Treatment', type: 'All', price: '$385', duration: '60' },
   { service: 'Fleas Treatment', type: 'All', price: '$385', duration: '45' },
-  { service: 'Termite Inspections', type: 'All', price: '$399', duration: '120' },
+  { service: 'Termite Inspections', type: 'All', price: 'On inspection', duration: '120' },
   { service: 'Mice & Rat Treatment', type: 'All', price: '$200', duration: '40' },
   { service: 'General Inspection', type: 'All', price: '$100', duration: '30' },
   { service: 'Rodent Removal', type: 'All', price: '$380', duration: '30' },

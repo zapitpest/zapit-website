@@ -374,7 +374,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
         <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
           <div className="mx-auto w-full max-w-[860px] px-3 sm:px-4 lg:px-6">
             <div className="relative aspect-[375/200] w-full sm:aspect-[16/6] lg:aspect-[16/7] lg:overflow-hidden lg:rounded-3xl lg:shadow-2xl">
-              <Image src="/images/residential/melbourne-fleet.png" alt="Zapit fleet ready to serve commercial clients" fill className="object-cover object-center" sizes="(min-width: 1024px) 860px, 100vw" />
+              <Image src="/images/residential/melbourne-fleet.png" alt="Zap It fleet ready to serve commercial clients" fill className="object-cover object-center" sizes="(min-width: 1024px) 860px, 100vw" />
             </div>
           </div>
         </section>
