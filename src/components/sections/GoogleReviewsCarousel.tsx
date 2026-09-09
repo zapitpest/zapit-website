@@ -21,13 +21,72 @@ type Review = {
 };
 
 const REVIEWS: Review[] = [
-  // === REAL — verified Google review from the Zap It Business Profile ===
+  // Verified Google reviews, pulled from the Zap It Business Profile via the Google
+  // Places API on 18 August 2026 and stored in google_review_texts. Author names and
+  // wording are the reviewers' own. Longer reviews are truncated at a sentence break
+  // with an ellipsis; nothing is reworded.
   {
     name: 'Jemi Audi',
     initial: 'J',
     avatarBg: '#7c4a2e',
     time: '3 months ago',
     text: "Amazing job honestly I've never had pest control that can get rid of all type of bugs, insects and or booklice like this…",
+    rating: 5,
+  },
+  {
+    name: 'Aida Ganovic',
+    initial: 'A',
+    avatarBg: '#2e5d7c',
+    time: 'December 2025',
+    text: "I was dealing with ant invasion that was driving me crazy, as well as some spiders, and I didn't know what to do. Zaydan was absolutely amazing. He was thorough in his inspection and treatment, making sure every corner was covered. The results speak for themselves, the ants are completely gone!",
+    rating: 5,
+  },
+  {
+    name: 'Flo Ioannou',
+    initial: 'F',
+    avatarBg: '#4a7c2e',
+    time: 'June 2026',
+    text: 'Adam and Oscar were exceptional from start to finish. They responded promptly and were able to fit me into their schedule the very next day. The report provided was comprehensive and detailed, which I found extremely helpful.',
+    rating: 5,
+  },
+  {
+    name: 'Liang Chen',
+    initial: 'L',
+    avatarBg: '#7c2e5d',
+    time: 'April 2026',
+    text: "Couldn't be happier with the excellent service Zap It provided. They promptly responded my online booking and showed up for the appointment on time. Workers were experienced and polite, quickly located the possum's entry point… and the strategy worked in two days.",
+    rating: 5,
+  },
+  {
+    name: 'Corduroy Robin',
+    initial: 'C',
+    avatarBg: '#2e7c6b',
+    time: 'April 2026',
+    text: 'Great service! I met a wonderful young fellow who sprayed my house for moths. It was quick, informative and pleasant experience. He was great to chat to and was quick as a flash! Also answered any questions I had.',
+    rating: 5,
+  },
+  {
+    name: 'Jess Cook',
+    initial: 'J',
+    avatarBg: '#7c5d2e',
+    time: 'November 2025',
+    text: 'Fantastic and friendly service! With no fuss they took care of the Rat(s) and a cute but noisy Possum living in our ceiling. Highly recommend!!',
+    rating: 5,
+  },
+  {
+    name: 'Hasan Hotic',
+    initial: 'H',
+    avatarBg: '#3d5a80',
+    time: 'November 2025',
+    text: 'The team was professional, punctual, and genuinely cared about solving the problem. They explained everything clearly, worked efficiently, and made sure the job was done thoroughly. What impressed me most was their attention to detail and friendly attitude.',
+    rating: 5,
+  },
+  {
+    name: 'Pro Roof Care',
+    initial: 'P',
+    avatarBg: '#6b4a7c',
+    time: 'March 2026',
+    text: 'They done a beautiful job whatever was moved out the way was put back very clean quick and responsive whatever they use works unbelievably thank you very much.',
     rating: 5,
   },
 ];
