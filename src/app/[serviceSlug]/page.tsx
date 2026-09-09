@@ -272,8 +272,8 @@ export default async function ServicePage({ params }: Props) {
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             {[
-              { step: '1', title: 'Inspect & Identify', desc: `We conduct a thorough inspection of your property, identify the ${page.title.replace(' Melbourne', '').toLowerCase()} species and map out activity hotspots.` },
-              { step: '2', title: 'Treat & Eliminate', desc: 'Using approved treatments, we target the infestation at its source—not just the visible signs.' },
+              { step: '1', title: 'Inspect & Identify', desc: 'We inspect the property, identify the species involved and map out where the activity is.' },
+              { step: '2', title: 'Treat & Eliminate', desc: 'Using approved treatments, we target the infestation at its source, not just the visible signs.' },
               { step: '3', title: 'Protect & Prevent', desc: 'Follow-up inspections and prevention strategies ensure pests don\'t return. We provide clear aftercare guidance.' },
             ].map((item) => (
               <div key={item.step} className="rounded-2xl border border-white/10 bg-white/5 p-6">
@@ -351,7 +351,7 @@ export default async function ServicePage({ params }: Props) {
           </p>
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href={SITE_CONFIG.phoneTel} className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#64FF01] px-8 py-4 text-[16px] font-bold text-[#0d402e] shadow-lg transition-transform hover:scale-105 sm:w-auto">
-              <Phone className="h-5 w-5 shrink-0" />Call Now — {SITE_CONFIG.phone}
+              <Phone className="h-5 w-5 shrink-0" />Call now on {SITE_CONFIG.phone}
             </a>
           </div>
         </div>

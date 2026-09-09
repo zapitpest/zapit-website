@@ -102,7 +102,7 @@ function buildFaqs(suburb: string) {
     },
     {
       question: `What pests are most common in ${suburb}?`,
-      answer: `${suburb} homes typically see ants, spiders and cockroaches year-round, with rodents in cooler months and termite activity in warmer months. A free inspection identifies your specific risks.`,
+      answer: `${suburb} homes typically see ants, spiders and cockroaches year-round, with rodents in cooler months and termite activity in warmer months. A general inspection identifies your specific risks.`,
     },
   ];
 }
@@ -212,7 +212,7 @@ export default function SuburbLandingPage({ suburb, region, slug }: Props) {
               Pest control for every {suburb} property
             </h2>
             <p className="text-zapit-text leading-relaxed">
-              Whether you&apos;re protecting a family home or running a business, our {suburb}
+              Whether you&apos;re protecting a family home or running a business, our {suburb}{' '}
               technicians deliver targeted, approved treatments that solve the problem and
               keep it solved.
             </p>
@@ -251,8 +251,8 @@ export default function SuburbLandingPage({ suburb, region, slug }: Props) {
                 Commercial pest control in {suburb}
               </h3>
               <p className="text-white/80 mb-5 leading-relaxed">
-                food-safety aware programs for cafés, restaurants, warehouses, retail and food
-                handling sites. Audit-ready reporting and recurring service plans.
+                Food safety aware programs for cafés, restaurants, warehouses, retail and food
+                handling sites. Audit ready reporting and recurring service plans.
               </p>
               <span className="inline-flex items-center gap-2 text-zapit-green-light font-semibold group-hover:gap-3 transition-all">
                 Explore commercial
@@ -271,7 +271,7 @@ export default function SuburbLandingPage({ suburb, region, slug }: Props) {
               Who we help in {suburb}
             </h2>
             <p className="text-zapit-text max-w-2xl mx-auto">
-              From new builds to heritage homes, food businesses to industrial sites — we tailor
+              From new builds to heritage homes, food businesses to industrial sites, we tailor
               our approach to every property type in {suburb}.
             </p>
           </div>
@@ -280,12 +280,12 @@ export default function SuburbLandingPage({ suburb, region, slug }: Props) {
               {
                 icon: Home,
                 title: `${suburb} Homeowners`,
-                desc: `Family-safe pest control with free inspections and clear advice on protecting your ${suburb} home year-round.`,
+                desc: `Family safe pest control with clear advice on protecting your ${suburb} home year round.`,
               },
               {
                 icon: Building2,
                 title: `${suburb} Businesses`,
-                desc: `Discreet, after-hours commercial servicing with detailed reports — perfect for cafés, offices and food businesses in ${suburb}.`,
+                desc: `Discreet, after hours commercial servicing with detailed reports, suited to cafés, offices and food businesses in ${suburb}.`,
               },
               {
                 icon: Cog,
@@ -525,7 +525,7 @@ export default function SuburbLandingPage({ suburb, region, slug }: Props) {
               Frequently asked
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-zapit-dark">
-              Pest control {suburb} — your questions
+              Your questions about pest control in {suburb}
             </h2>
           </div>
           <FAQAccordion faqs={faqs} />
@@ -540,7 +540,7 @@ export default function SuburbLandingPage({ suburb, region, slug }: Props) {
           </h2>
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
             Same-day service available across {suburb} and surrounding {region} Melbourne suburbs.
-            Call now or request a quote — our team will be in touch within minutes.
+            Call now or request a quote. Our team will be in touch.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link

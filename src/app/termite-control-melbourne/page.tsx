@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   // appended the site name, causing truncation in SERPs.
   title: { absolute: 'Termite Control Melbourne | Zap It Pest & Termite Control' },
   description:
-    'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
+    'Licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
   alternates: { canonical: '/termite-control-melbourne' },
   // Explicit OG title/description keeps social previews consistent with the
   // SERP pair. Without these, Next.js falls back to the root layout defaults
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Termite Control Melbourne | Zap It Pest & Termite Control',
     description:
-      'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
+      'Licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
     url: '/termite-control-melbourne',
     images: [...OG_DEFAULT_IMAGES],
   },
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Termite Control Melbourne | Zap It Pest & Termite Control',
     description:
-      'Certified, licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
+      'Licensed and insured Melbourne termite specialists. Same-day inspections, liquid and bait treatments. Call 9126 0555.',
     images: [...TWITTER_DEFAULT_IMAGES],
   },
 };
@@ -132,11 +132,11 @@ export default function TermiteControlMelbournePage() {
                 Termite Control Melbourne
               </h1>
               <p className="max-w-xl text-[16px] leading-relaxed text-white/80">
-                Termites are silent property destroyers, eating timber from within. Don&apos;t wait — our certified termite specialists deliver same-day inspections, liquid &amp; bait treatments to protect your property.
+                Termites are silent property destroyers, eating timber from within. Do not wait. Our licensed termite technicians deliver same day inspections, liquid &amp; bait treatments to protect your property.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <a href={SITE_CONFIG.phoneTel} className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#64FF01] px-6 py-3.5 text-[15px] font-bold text-[#0d402e] transition-transform hover:scale-105">
-                  <Phone className="h-4 w-4 shrink-0" />Call Now — {SITE_CONFIG.phone}
+                  <Phone className="h-4 w-4 shrink-0" />Call now on {SITE_CONFIG.phone}
                 </a>
               </div>
             </div>
@@ -200,7 +200,7 @@ export default function TermiteControlMelbournePage() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {[
               { n: '1', title: 'Inspect & Diagnose', body: 'Found termite droppings? Heard the hollowing sound upon tapping the floorboard? Our professional termite pest controllers start by inspecting the infested timber items and measuring infestation levels for effective removal.' },
-              { n: '2', title: 'Treat & Eliminate', body: 'After inspection and identification, we separate infested items and contain them. Our skilled, licensed team applies appropriate termite control solutions — liquid barriers and bait systems — to exterminate all insects.' },
+              { n: '2', title: 'Treat & Eliminate', body: 'After inspection and identification, we separate infested items and contain them. Our licensed team applies the right termite control for the site, either a liquid barrier or a bait system, to eliminate the colony.' },
               { n: '3', title: 'Prevent & Monitor', body: 'For long-term prevention, we seal entry points and eliminate causes like moisture. We share tips to stop future infestations and schedule follow-up visits to ensure your property stays termite-free.' },
             ].map((s) => (
               <div key={s.n} className="rounded-2xl border border-white/10 bg-white/5 p-6">
@@ -289,7 +289,7 @@ export default function TermiteControlMelbournePage() {
                 {[
                   'certified termite control experts',
                   'Updated with Australian termite control standards',
-                  'approved methods — responsible products',
+                  'approved methods and responsible products',
                   'Accredited solutions for homes and businesses',
                   'Full insurance coverage for all services',
                 ].map((item) => (
@@ -370,7 +370,7 @@ export default function TermiteControlMelbournePage() {
                 </a>
               </div>
               <a href={SITE_CONFIG.phoneTel} className="mt-6 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#64FF01] px-8 py-4 text-[16px] font-bold text-[#0d402e] transition-transform hover:scale-105">
-                <Phone className="h-5 w-5 shrink-0" />Call Now — {SITE_CONFIG.phone}
+                <Phone className="h-5 w-5 shrink-0" />Call now on {SITE_CONFIG.phone}
               </a>
             </div>
           </div>

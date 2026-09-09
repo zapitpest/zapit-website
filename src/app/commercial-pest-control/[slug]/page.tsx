@@ -46,7 +46,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     title: 'Warehousing & storage',
     metaTitle: 'Warehouse pest control Melbourne',
     metaDescription: 'Melbourne warehouse & storage pest control. Rodent programs for racking, docks, and high-bay areas. Audit-ready reporting for retail and 3PL.',
-    content: 'Warehouses and storage sites give pests long runs along walls, warm pockets near machinery, and plenty of food from spillage, packaging, and staff break areas. A single problem can lead to chewed product, failed retailer audits, and contamination that spreads before anyone notices. We treat these spaces with logistics in mind: we map high-traffic rodent lines, voids, and loading dock entry points, then set up a program that works with your shifts and your WH&S rules — without slowing pick paths or creating slip hazards.',
+    content: 'Warehouses and storage sites give pests long runs along walls, warm pockets near machinery, and plenty of food from spillage, packaging, and staff break areas. A single problem can lead to chewed product, failed retailer audits, and contamination that spreads before anyone notices. We treat these spaces with logistics in mind: we map high-traffic rodent lines, voids, and loading dock entry points, then set up a program that works with your shifts and your WH&S rules, without slowing pick paths or creating slip hazards.',
     features: ['Rodent programs tailored to racking, docks, and compactor areas', 'Fly and stored-product insect control in dispatch and Q zones', 'Discreet treatments scheduled around your peak dispatch windows', 'Documentation to support WHS, food-industry, and client audits', 'Recommendations to seal voids, doors, and cable penetrations'],
   },
   'restaurants-pest-control': {
@@ -60,11 +60,11 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
   },
   'pest-control-in-supermarkets': {
     h1: 'Pest control for supermarkets in Melbourne',
-    heroDescription: 'From bakery and deli to produce and back dock — treatments that support chain standards.',
+    heroDescription: 'From bakery and deli to produce and back dock, treatments that support chain standards.',
     title: 'Supermarket',
     metaTitle: 'Supermarket pest control Melbourne',
     metaDescription: 'Melbourne supermarket pest control. Fly, rodent, and stored-product programs across bakery, deli, produce, and back dock. Chain-standard reporting.',
-    content: 'Supermarkets juggle public-facing aisles, high-turnover perishables, and constant deliveries — so pests have food, warmth, and hiding places from shelf bases to mezzanines. You need a partner who can plan around peak trading, work without alarming shoppers, and keep clear communication with store management.',
+    content: 'Supermarkets juggle public facing aisles, high turnover perishables and constant deliveries, so pests have food, warmth and hiding places from shelf bases to mezzanines. You need a partner who can plan around peak trading, work without alarming shoppers, and keep clear communication with store management.',
     features: ['Fly management for entries and fresh sections', 'Rodent programs that respect cold chain layout', 'Service timing aligned to store hours', 'Structured documentation for group compliance', 'Site-specific risk review after seasonal changes'],
   },
   'function-venues': {
@@ -72,8 +72,8 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     heroDescription: 'Weddings, conferences, and live events need immaculate venues.',
     title: 'Function venue',
     metaTitle: 'Function venue pest control Melbourne',
-    metaDescription: 'Melbourne function centre & event venue pest control. Flexible timing around bump-in, kitchens, and bars — discreet service for high-end events.',
-    content: 'Event venues see irregular peaks, late finishes, and multiple catering setups. That mix attracts flies, cockroaches, and rodents to kitchens, sculleries, and waste areas — right when you\'re hosting milestone moments for clients. We structure programs around your calendar.',
+    metaDescription: 'Melbourne function centre & event venue pest control. Flexible timing around bump-in, kitchens, and bars. Discreet service for high-end events.',
+    content: 'Event venues see irregular peaks, late finishes, and multiple catering setups. That mix attracts flies, cockroaches, and rodents to kitchens, sculleries and waste areas, right when you\'re hosting milestone moments for clients. We structure programs around your calendar.',
     features: ['Flexible timing around bump-in and bump-out', 'Kitchen, bar, and scullery programs', 'Discreet service conduct for high-end events', 'Flying insect and rodent control', 'Simple written summaries after visits'],
   },
   'brewhouses-and-distilleries': {
@@ -82,7 +82,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     title: 'Brewhouse & distillery',
     metaTitle: 'Brewery pest control Melbourne',
     metaDescription: 'Melbourne brewery & distillery pest control. Stored-product insect and rodent programs for grain, fermentation, packaging, and taproom areas.',
-    content: 'Brewing and distilling bring together grain, moisture, and warmth — ideal for stored-product insects and rodent interest around silos, mills, and packaging lines. We work with your production flow, identifying ingress and recommending monitoring.',
+    content: 'Brewing and distilling bring together grain, moisture and warmth, ideal conditions for stored product insects and rodent interest around silos, mills, and packaging lines. We work with your production flow, identifying ingress and recommending monitoring.',
     features: ['Stored-product insect and rodent control', 'Drain and loading bay inspection', 'Taproom and cellar door support', 'Coordination with cleaning routines', 'Scalable from pilot plant to high-volume'],
   },
   'recreational-facilities-pest-control': {
@@ -91,7 +91,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     title: 'Recreational facility',
     metaTitle: 'Recreation pest control Melbourne',
     metaDescription: 'Melbourne pest control for gyms, sports clubs, and recreation facilities. Ant, cockroach, and spider programs for canteens and changerooms.',
-    content: 'Gyms, stadiums, and community facilities combine food service, moisture, and large roof spaces — perfect for ants, cockroaches, and spiders. We target harbourage, lighting, and waste flows to keep your facility safe.',
+    content: 'Gyms, stadiums, and community facilities combine food service, moisture and large roof spaces, which suit ants, cockroaches and spiders. We target harbourage, lighting, and waste flows to keep your facility safe.',
     features: ['Ant, cockroach, and spider control', 'Member-sensitive timing', 'Canteen and changeroom focus', 'Exterior and lighting advice', 'Support for community and private operators'],
   },
   'government-buildings': {
@@ -145,7 +145,7 @@ const COMMERCIAL_INDUSTRY_PAGES: Record<CommercialIndustrySlug, CommercialIndust
     title: 'Agriculture & packhouse',
     metaTitle: 'Agriculture pest control Melbourne',
     metaDescription: 'Melbourne-region agriculture & packhouse pest control. Rodent and stored-product insect programs for intake tables, cool rooms, and packhouse floor.',
-    content: 'Agricultural sites deal with open doors, seasonality, and fast-moving product — ideal for rodents and stored-product insects. We focus on intake tables, voids, insulation, and waste.',
+    content: 'Agricultural sites deal with open doors, seasonality and fast moving product, ideal conditions for rodents and stored product insects. We focus on intake tables, voids, insulation, and waste.',
     features: ['Rodent and insect programs', 'Cool room and high-care areas', 'Seasonal reviews before peak harvest', 'WHS-aware site behaviour', 'Practical proofing advice'],
   },
   'educational-facilities': {
@@ -316,7 +316,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
         <section className="bg-[#1cdc38] px-4 py-10 sm:px-6 sm:py-14">
           <div className="mx-auto max-w-xl">
             <h2 className="mb-2 text-center text-[22px] font-bold text-[#131a1c] sm:text-[26px]">
-              How we protect your {pageName.toLowerCase()} facility
+              How we protect your {pageName.toLowerCase().endsWith('facility') ? pageName.toLowerCase() : `${pageName.toLowerCase()} facility`}
             </h2>
             <p className="mx-auto mb-8 max-w-sm text-center text-[13px] text-[#131a1c]/70">
               A clear, structured process from first call to ongoing protection.

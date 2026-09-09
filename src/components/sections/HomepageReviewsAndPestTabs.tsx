@@ -46,7 +46,7 @@ const PEST_TABS = [
     label: 'Flea & Tick Prevention',
     title: 'Flea and Tick Solutions',
     copy:
-      "Fleas and ticks pose a serious threat to the health of your family. Protect your home from the inside out with our targeted flea and tick treatments. Don't let pests take hold — call us today to arrange a treatment.",
+      "Fleas and ticks pose a serious threat to the health of your family. Protect your home from the inside out with our targeted flea and tick treatments. Do not let pests take hold. Call us today to arrange a treatment.",
     href: '/flea-control-melbourne',
   },
   {
@@ -54,7 +54,7 @@ const PEST_TABS = [
     label: 'Flying Insects Control',
     title: 'Flying Insect Controls',
     copy:
-      'Flying insects like flies and mosquitoes are more than just a nuisance — they can carry bacteria between surfaces and affect your family\'s wellbeing. Our effective fly and mosquito control solutions help you enjoy your home and outdoor spaces in comfort and peace of mind.',
+      'Flying insects like flies and mosquitoes are more than a nuisance. They can carry bacteria between surfaces and affect your family\'s wellbeing. Our effective fly and mosquito control solutions help you enjoy your home and outdoor spaces in comfort and peace of mind.',
     href: '/fly-control-melbourne',
   },
 ] as const;
@@ -309,7 +309,7 @@ const MELBOURNE_REGIONS: {
     label: 'Melbourne East',
     heading: 'Melbourne East',
     description:
-      'In Melbourne East, places like Richmond and Glen Waverley have everything from heritage homes to modern builds—and each one needs pest control that fits just right.',
+      'In Melbourne East, places like Richmond and Glen Waverley have everything from heritage homes to modern builds, and each one needs pest control that fits just right.',
     features: [
       'Diverse Properties',
       'Family Homes',
@@ -423,25 +423,21 @@ export function HomepageMelbourneCoverage() {
 }
 
 const PRICING_DATA = [
-  { service: 'Clothes & Carpet Moth Treatment', type: 'All', price: '$385', duration: '90' },
-  { service: 'German Cockroach Treatment', type: 'All', price: '$249.99', duration: '60' },
-  { service: 'Bed Bugs', type: 'All', price: '$450', duration: '60' },
-  { service: 'Ant Treatment', type: 'All', price: '$239', duration: '45' },
-  { service: 'Specialised Ant Elimination', type: 'All', price: '$450', duration: '60' },
-  { service: 'Silverfish Treatment', type: 'All', price: '$299.99', duration: '40' },
-  { service: 'Mosquitos, Flies Treatment', type: 'All', price: '$385', duration: '60' },
-  { service: 'Fleas Treatment', type: 'All', price: '$385', duration: '45' },
+  { service: 'Ant Treatment', type: 'All', price: '$264', duration: '45' },
+  { service: 'Specialised Ant Elimination', type: 'All', price: '$495', duration: '60' },
+  { service: 'Bed Bugs', type: 'All', price: '$495', duration: '60' },
+  { service: 'Clothes & Carpet Moth Treatment', type: 'All', price: '$423.50', duration: '90' },
+  { service: 'Fleas Treatment', type: 'All', price: '$423.50', duration: '45' },
+  { service: 'General Inspection', type: 'All', price: '$154', duration: '30' },
+  { service: 'German Cockroach Treatment', type: 'All', price: '$275', duration: '60' },
+  { service: 'Mice & Rat Treatment', type: 'All', price: '$352', duration: '40' },
+  { service: 'Dead Rodent Removal', type: 'All', price: '$418', duration: '30' },
+  { service: 'Mosquitos, Flies Treatment', type: 'All', price: '$423.50', duration: '60' },
+  { service: 'Possum Treatment', type: 'Single-story', price: '$495', duration: '30' },
+  { service: 'Spider & General Pest Treatment', type: 'Single-story', price: '$319', duration: '60' },
+  { service: '', type: 'Double-story', price: '$368.50', duration: '60' },
   { service: 'Termite Inspections', type: 'All', price: 'On inspection', duration: '120' },
-  { service: 'Mice & Rat Treatment', type: 'All', price: '$200', duration: '40' },
-  { service: 'General Inspection', type: 'All', price: '$100', duration: '30' },
-  { service: 'Rodent Removal', type: 'All', price: '$380', duration: '30' },
-  { service: 'Initial Business Setup', type: 'All', price: '$129', duration: '60' },
-  { service: 'Wasp Control', type: 'All', price: '$250', duration: '60' },
-  { service: 'Possum Treatment', type: 'Single-story', price: '$450', duration: '30' },
-  { service: '', type: 'Double-story', price: '$630', duration: '60' },
-  { service: 'Spider & General Pest Treatment', type: 'Single-story', price: '$290', duration: '60' },
-  { service: '', type: 'Double-story', price: '$335', duration: '60' },
-  { service: '', type: 'Other', price: '$275', duration: '60' },
+  { service: 'Wasp Control', type: 'All', price: '$275', duration: '60' },
 ] as const;
 
 export function HomepagePricing() {

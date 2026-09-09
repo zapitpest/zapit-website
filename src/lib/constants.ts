@@ -43,13 +43,13 @@ export const SITE_CONFIG = {
   // fallback is the prior build's container ID — must be confirmed (or replaced
   // with the new Zap-It-owned container) before launch.
   gtmId: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PFGV87RB',
-  operatingHours: 'Mon–Fri 8am–5pm, Sat 8am–12pm',
+  operatingHours: 'Monday to Friday 8am to 5pm, Saturday 8am to 12pm',
   stats: {
     residentialCustomers: '550+',
     commercialClients: '70+',
     yearsExperience: '5+',
     responseTime: 'Same Day',
-    availability: 'Mon–Fri 8am–5pm',
+    availability: 'Monday to Friday, 8am to 5pm',
   },
 } as const;
 
@@ -110,7 +110,7 @@ export const HOMEPAGE_FAQS = [
   },
   {
     question: 'How often should I schedule pest control Melbourne services?',
-    answer: 'For most homes, pest control Melbourne services are recommended every 3–6 months, but severe infestations may require more frequent visits to ensure a pest-free environment.',
+    answer: 'For most homes, pest control Melbourne services are recommended every 3 to 6 months, but severe infestations may require more frequent visits to ensure a pest-free environment.',
   },
   {
     question: 'Are pest control Melbourne treatments safe for pets and children?',
@@ -118,6 +118,6 @@ export const HOMEPAGE_FAQS = [
   },
   {
     question: 'How do I know what type of cockroach problem I have?',
-    answer: 'If they are large, dark cockroaches and you only see one or two occasionally, they may be outdoor cockroaches coming inside — these are often covered under a general pest treatment. If they are small to medium light-brown cockroaches, especially in the kitchen, laundry, bathroom, microwave, cupboards, or around food, they may require a specific German cockroach treatment, which is different from a general spray.',
+    answer: 'If they are large, dark cockroaches and you only see one or two occasionally, they may be outdoor cockroaches coming inside. These are often covered under a general pest treatment. If they are small to medium light-brown cockroaches, especially in the kitchen, laundry, bathroom, microwave, cupboards, or around food, they may require a specific German cockroach treatment, which is different from a general spray.',
   },
 ] as const;

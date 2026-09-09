@@ -46,7 +46,7 @@ export default function CommercialPestControlPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/commercial/commercial-kitchen-hero.png"
-            alt="Commercial kitchen pest control — protecting Melbourne businesses"
+            alt="Commercial kitchen pest control protecting Melbourne businesses"
             className="h-auto w-full lg:rounded-3xl lg:shadow-2xl"
             loading="eager"
           />
@@ -74,7 +74,7 @@ export default function CommercialPestControlPage() {
               </p>
               <p>
                 Our strength is discipline. Clear plans, consistent communication and a clean,
-                professional process make us reliable and easy to work with across complex sites —
+                professional process make us reliable and easy to work with across complex sites,
                 including{' '}
                 <Link
                   href="/commercial-pest-control/restaurants-pest-control"
@@ -199,7 +199,7 @@ export default function CommercialPestControlPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/commercial/i-found-zapit.png"
-            alt='I found Zap It to be easy to work with and I trust them to stay on top of any potential issues — Jack, Trade supplier, Reservoir'
+            alt='I found Zap It to be easy to work with and I trust them to stay on top of any potential issues. Jack, Trade supplier, Reservoir'
             width={804}
             height={488}
             className="h-auto w-full lg:rounded-3xl lg:shadow-2xl"
@@ -229,7 +229,7 @@ export default function CommercialPestControlPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/commercial/i-trust-zapit.png"
-            alt='I trust Zap It to make sure my cafe is free from pests and fully compliant — Michael, Cafe, Kew'
+            alt='I trust Zap It to make sure my cafe is free from pests and fully compliant. Michael, Cafe, Kew'
             width={498}
             height={327}
             className="h-auto w-full lg:rounded-3xl lg:shadow-2xl"
@@ -259,7 +259,7 @@ export default function CommercialPestControlPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/commercial/keeping-the-office-pest.png"
-            alt='Keeping the office pest free is something I don&apos;t want to think twice about — Helen, Architect, Collingwood'
+            alt='Keeping the office pest free is something I don&apos;t want to think twice about. Helen, Architect, Collingwood'
             width={631}
             height={422}
             className="h-auto w-full lg:rounded-3xl lg:shadow-2xl"

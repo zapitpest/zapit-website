@@ -82,7 +82,7 @@ export default function FloatingCTA() {
     <>
       {/* Floating bar — client-supplied callnow.svg used as the visual; two transparent
           click overlays split the interaction (pill → tel:, circle → menu). */}
-      <div className="fixed bottom-6 left-1/2 z-[1100] -translate-x-1/2">
+      <div className="pointer-events-none fixed bottom-6 left-1/2 z-[1100] -translate-x-1/2 lg:hidden">
         <div className="relative" style={{ width: 'min(270px, 86vw)', aspectRatio: '287 / 86' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -95,7 +95,7 @@ export default function FloatingCTA() {
           <a
             href={SITE_CONFIG.phoneTel}
             aria-label={`Call now ${SITE_CONFIG.phone}`}
-            className="absolute rounded-full transition-transform hover:scale-[1.03]"
+            className="pointer-events-auto absolute rounded-full transition-transform hover:scale-[1.03]"
             style={{
               left: `${(20 / 287) * 100}%`,
               top: `${(21 / 86) * 100}%`,
@@ -110,7 +110,7 @@ export default function FloatingCTA() {
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
             aria-controls="floating-menu-dialog"
-            className="absolute rounded-full transition-transform hover:scale-[1.05] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#64FF01]"
+            className="pointer-events-auto absolute rounded-full transition-transform hover:scale-[1.05] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#64FF01]"
             style={{
               left: `${(221 / 287) * 100}%`,
               top: `${(20 / 86) * 100}%`,
@@ -124,7 +124,7 @@ export default function FloatingCTA() {
       {/* Full-screen menu overlay — matches client-supplied menu.svg design */}
       {menuOpen && (
         <>
-          <div className="fixed inset-0 z-[1050] bg-black/40 backdrop-blur-sm" onClick={close} aria-hidden />
+          <div className="fixed inset-0 z-[1050] bg-black/40 backdrop-blur-sm lg:hidden" onClick={close} aria-hidden />
           {/* Menu overlay — Figma menu.svg spec: 354×420, rx=20, bg #F8F5F2, Graphik Semibold
               20px / 40lh, color #414042, chevrons + X in #828282 stroke-width 3, 50px row height.
               role/aria-modal + focus trap wired in the parent effect (WCAG 2.4.3, 2.1.2). */}

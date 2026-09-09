@@ -17,7 +17,7 @@ export const SERVICE_PAGES = {
     metaDescription:
       'Professional ant control in Melbourne. Targeted treatments for trails, nests and entry points. Licensed technicians using approved methods.',
     content:
-      'Ants may be small, but Melbourne homes and businesses often face large-scale infestations once a scent trail is established. We identify the species, locate nesting areas, and apply targeted treatments that break the colony cycle—not just the workers you see on your benchtop. Whether you are dealing with black house ants, coastal brown ants, or persistent pavement ants, our team maps activity and uses integrated pest management to deliver lasting relief.',
+      'Ants may be small, but Melbourne homes and businesses often face large-scale infestations once a scent trail is established. We identify the species, locate nesting areas, and apply targeted treatments that break the colony cycle, not just the workers you see on your benchtop. Whether you are dealing with black house ants, coastal brown ants, or persistent pavement ants, our team maps activity and uses integrated pest management to deliver lasting relief.',
     features: [
       'Species identification and nest targeting',
       'Perimeter and garden barrier treatments',
@@ -86,7 +86,7 @@ export const SERVICE_PAGES = {
       'Cockroach control for Melbourne homes and businesses. German cockroach treatments and general pest treatment for larger outdoor cockroaches.',
     // Client item 7 — Option A: one Cockroaches page with two clear sub-sections.
     content:
-      'Cockroaches in Melbourne fall into two broad groups, and each one is treated differently. Identifying which type you have is the first step to getting rid of them properly.\n\n**German cockroaches**\nSmall to medium light-brown cockroaches, most often seen around kitchens, bathrooms, laundries, cupboards, food areas or appliances. They breed quickly and hide in warm, humid voids. German cockroaches usually need a specific German cockroach treatment — gel baits, crack-and-crevice work and follow-up visits — because a general spray on its own is rarely enough.\n\n**Larger outdoor cockroaches**\nLarge, dark or black cockroaches usually seen occasionally rather than in numbers. They often come in from outside, roof voids, walls or garden areas. These are typically handled as part of a general pest treatment that targets entry points and harbourage, rather than the intensive program required for German cockroaches.\n\nNot sure which one you have? Call us and describe what you are seeing — we will let you know whether you need a German cockroach treatment or whether a general pest treatment will do the job.',
+      'Cockroaches in Melbourne fall into two broad groups, and each one is treated differently. Identifying which type you have is the first step to getting rid of them properly.\n\n**German cockroaches**\nSmall to medium light-brown cockroaches, most often seen around kitchens, bathrooms, laundries, cupboards, food areas or appliances. They breed quickly and hide in warm, humid voids. German cockroaches usually need a specific German cockroach treatment, meaning gel baits, crack and crevice work and follow up visits, because a general spray on its own is rarely enough.\n\n**Larger outdoor cockroaches**\nLarge, dark or black cockroaches usually seen occasionally rather than in numbers. They often come in from outside, roof voids, walls or garden areas. These are typically handled as part of a general pest treatment that targets entry points and harbourage, rather than the intensive program required for German cockroaches.\n\nNot sure which one you have? Call us and describe what you are seeing. We will let you know whether you need a German cockroach treatment or whether a general pest treatment will do the job.',
     features: [
       'German cockroach specialist treatment',
       'General pest treatment for outdoor cockroach activity',
@@ -101,9 +101,9 @@ export const SERVICE_PAGES = {
     h1: 'Flea Control Melbourne',
     metaTitle: 'Flea Control Melbourne',
     metaDescription:
-      'Flea control for homes with dogs and cats. Treatments that address larvae in carpets, pet bedding, and cracks—aligned with your vet’s parasite plan.',
+      'Flea control for homes with dogs and cats. Treatments that address larvae in carpets, pet bedding, and cracks, aligned with your vet’s parasite plan.',
     content:
-      'Adult fleas on your pet are only part of the problem; eggs and larvae develop in carpet, rugs, and cracks. We time treatments with on-animal care from your vet when needed, and focus on the environment so the cycle breaks. End-of-lease and moving-house flea issues are also common—call us before the next warm spell makes numbers explode.',
+      'Adult fleas on your pet are only part of the problem; eggs and larvae develop in carpet, rugs, and cracks. We time treatments with on-animal care from your vet when needed, and focus on the environment so the cycle breaks. End of lease and moving house flea issues are also common. Call us before the next warm spell makes numbers explode.',
     features: [
       'Indoor and targeted outdoor larval control',
       'Carpet, rug, and pet-area focus',
@@ -137,7 +137,7 @@ export const SERVICE_PAGES = {
     metaDescription:
       'Mosquito reduction for backyards, villas, and outdoor venues. Breeding source treatment and barrier strategies for comfortable outdoor living in Melbourne.',
     content:
-      'Mosquitoes need still water to breed—from saucers, blocked gutters, and ponded areas to hidden pockets in hard rubbish piles. We treat or remove larval sources where appropriate and advise on personal protection and screening. Events and high-use outdoor spaces may need a seasonal program rather than a one-off visit.',
+      'Mosquitoes need still water to breed, from saucers, blocked gutters, and ponded areas to hidden pockets in hard rubbish piles. We treat or remove larval sources where appropriate and advise on personal protection and screening. Events and high-use outdoor spaces may need a seasonal program rather than a one-off visit.',
     features: [
       'Larval source inspection: gutters, plants, and vessels',
       'Shrubbery and rest-area treatments where required',
@@ -154,7 +154,7 @@ export const SERVICE_PAGES = {
     metaDescription:
       'Licensed possum management for Melbourne roof voids. Legal relocation pathways, one-way doors, and proofing to stop the noise from returning every night.',
     content:
-      'Possums are protected native wildlife, so control must be humane and legally compliant. We assess roof entry points, install one-way devices where appropriate, and seal access after exit. The scratching you hear at night is often a single opportunist—get the access closed before wire damage, insulation mess, and odour get worse.',
+      'Possums are protected native wildlife, so control must be humane and legally compliant. We assess roof entry points, install one-way devices where appropriate, and seal access after exit. The scratching you hear at night is often a single opportunist. Get the access closed before wire damage, insulation mess and odour get worse.',
     features: [
       'Roof and eave access mapping',
       'Compliant one-way and trapping pathways',
@@ -171,7 +171,7 @@ export const SERVICE_PAGES = {
     metaDescription:
       'Rat and mouse control for Melbourne properties. Baiting, trapping, and entry sealing with clear safety steps for children, pets, and food areas.',
     content:
-      'Rodents spread disease, damage wiring, and open food packaging overnight. We start with a thorough inspection to follow rub marks, droppings, and access routes, then combine mechanical control, secured baiting where allowed, and proofing. Urban terraces, food businesses, and warehouses all need a tailored program—not a single throw of unlabelled product.',
+      'Rodents spread disease, damage wiring, and open food packaging overnight. We start with a thorough inspection to follow rub marks, droppings, and access routes, then combine mechanical control, secured baiting where allowed, and proofing. Urban terraces, food businesses, and warehouses all need a tailored program, not a single throw of unlabelled product.',
     features: [
       'Rodent run mapping and access sealing',
       'Secured, tamper-resistant baiting programs',
@@ -256,7 +256,7 @@ export const SERVICE_PAGES = {
     metaDescription:
       'Wasp nest removal and treatment for paper wasps and other species. Protective equipment, safe access, and aftercare to reduce re-nesting in Melbourne.',
     content:
-      'Disturbed wasp nests can lead to multiple stings in seconds, especially in eaves, sheds, and playground equipment. We access nests with appropriate PPE, treat or remove as the situation allows, and advise on repainting, sealing, and early-season checks next year. Do not throw water or knock a nest down—escalation risk is high without equipment.',
+      'Disturbed wasp nests can lead to multiple stings in seconds, especially in eaves, sheds, and playground equipment. We access nests with appropriate PPE, treat or remove as the situation allows, and advise on repainting, sealing, and early-season checks next year. Do not throw water or knock a nest down. The risk of escalation is high without equipment.',
     features: [
       'Ground, aerial, and void nest access plans',
       'Full PPE and ladder safety for residential sites',

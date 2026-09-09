@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SITE_CONFIG, NAV_LINKS, type NavLink } from '@/lib/constants';
 
-const MAIN_NAV_LINKS = NAV_LINKS.filter((item) => item.label !== 'Contact Us');
+const MAIN_NAV_LINKS = NAV_LINKS;
 const NAV_LOGO = '/images/zapit-logo.svg';
 function NavItemIcon(_: { label: string }) { return null; }
 
@@ -92,8 +92,8 @@ export default function Header() {
   const sentinelRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const isCommercial = pathname.startsWith('/commercial');
-  // Home now serves as the residential page (brief item 5: no separate /residential)
-  const isResidential = pathname === '/';
+  // Everything that is not commercial is residential work: suburb pages, service pages, about, contact.
+  const isResidential = !isCommercial;
 
   useEffect(() => {
     if (!sentinelRef.current) return;
@@ -107,7 +107,7 @@ export default function Header() {
     const py = size === 'lg' ? 'py-2.5' : 'py-2';
     const text = size === 'lg' ? 'text-[14px]' : 'text-[12px]';
     return `flex-1 rounded-2xl ${py} text-center ${text} font-semibold transition-colors ${
-      active ? 'bg-[#f8f5f2] text-[#0d402e] shadow-sm' : 'border border-[#f8f5f2]/35 text-[#f8f5f2]/45'
+      active ? 'bg-[#f8f5f2] text-[#0d402e] shadow-sm' : 'border border-[#f8f5f2]/60 text-[#f8f5f2] hover:bg-white/10'
     }`;
   };
 
@@ -127,7 +127,7 @@ export default function Header() {
               className="-my-2 inline-flex items-center whitespace-nowrap py-2 font-semibold tracking-normal text-white hover:text-[#64FF01]"
               style={{ fontSize: '16px', lineHeight: '28px', fontWeight: 600 }}
             >
-              9126 0555
+              {SITE_CONFIG.phone}
             </a>
           </div>
           {/* Figma spec: Graphik Light 300, 15px / 28lh */}

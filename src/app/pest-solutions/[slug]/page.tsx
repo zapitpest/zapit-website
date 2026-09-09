@@ -236,7 +236,7 @@ export default async function PestSolutionSubPage({ params }: Props) {
               </div>
 
               <div className="mt-10 overflow-hidden rounded-2xl">
-                <Image src="/images/residential/pet-safe.webp" alt="Pet-safe pest treatment by a Zap It technician — protection that keeps children and pets safe" width={700} height={500} className="h-auto w-full" />
+                <Image src="/images/residential/pet-safe.webp" alt="Pet-safe pest treatment by a Zap It technician. Protection that keeps children and pets safe" width={700} height={500} className="h-auto w-full" />
               </div>
             </div>
 
@@ -336,7 +336,7 @@ export default async function PestSolutionSubPage({ params }: Props) {
           </p>
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href={SITE_CONFIG.phoneTel} className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#64FF01] px-8 py-4 text-[16px] font-bold text-[#0d402e] shadow-lg transition-transform hover:scale-105 sm:w-auto">
-              <Phone className="h-5 w-5 shrink-0" />Call Now — {SITE_CONFIG.phone}
+              <Phone className="h-5 w-5 shrink-0" />Call now on {SITE_CONFIG.phone}
             </a>
           </div>
         </div>

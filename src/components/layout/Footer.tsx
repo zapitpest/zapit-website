@@ -38,12 +38,12 @@ const SITEMAP_LINKS = [
 ] as const;
 
 const OPERATING_HOURS = [
-  'Monday, 8am – 5pm',
-  'Tuesday, 8am – 5pm',
-  'Wednesday, 8am – 5pm',
-  'Thursday, 8am – 5pm',
-  'Friday, 8am – 5pm',
-  'Saturday, 8am – 12pm',
+  'Monday, 8am to 5pm',
+  'Tuesday, 8am to 5pm',
+  'Wednesday, 8am to 5pm',
+  'Thursday, 8am to 5pm',
+  'Friday, 8am to 5pm',
+  'Saturday, 8am to 12pm',
   'Sunday, Closed',
 ] as const;
 
@@ -54,7 +54,7 @@ export default function Footer() {
         {/* Company info */}
         <h3 className="mb-3 text-[18px] font-bold">Zap It Pest &amp; Termite Control</h3>
         <div className="mb-6 space-y-0.5 text-[15px] text-white/85">
-          <p>80 Porter Rd, Heidelberg Heights , VIC 3081</p>
+          <p>80 Porter Rd, Heidelberg Heights VIC 3081</p>
           <p>ABN 61 682 004 655</p>
           <p><a href={SITE_CONFIG.phoneTel} className="hover:text-[#1cdc38]">03 9126 0555</a></p>
           <p><a href={`mailto:${SITE_CONFIG.emailWork}`} className="text-white/85 underline decoration-white underline-offset-2 hover:text-[#1cdc38]">{SITE_CONFIG.emailWork}</a></p>
@@ -63,7 +63,7 @@ export default function Footer() {
         {/* Our promise */}
         <h4 className="mb-2 text-[16px] font-bold">Our promise</h4>
         <p className="mb-6 text-[15px] leading-[1.7] text-white/85">
-          When you protect your home and property from pests with us, your peace of mind is our priority. We&apos;re fully insured, and we treat your home with the same care as our own — using high-quality, long-lasting solutions you can rely on.
+          When you protect your home and property from pests with us, your peace of mind is our priority. We&apos;re fully insured, and we treat your home with the same care as our own, using high quality, long lasting solutions you can rely on.
         </p>
 
         {/* Operating Hours */}
@@ -83,20 +83,20 @@ export default function Footer() {
           {SITEMAP_LINKS.map((link) => (
             <li key={link.href} className="flex items-center gap-1">
               <span className="mr-1 inline-block h-1 w-1 shrink-0 rounded-full bg-white/50" />
-              <Link href={link.href} className="text-white/85 transition-colors hover:text-[#1cdc38]">{link.label}</Link>
+              <Link href={link.href} className="inline-block py-2 text-white/85 transition-colors hover:text-[#1cdc38]">{link.label}</Link>
             </li>
           ))}
         </ul>
 
         {/* Social icons — centered per client refinement */}
         <div className="mb-8 flex items-center justify-center gap-6">
-          <a href={SITE_CONFIG.social.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="Instagram">
+          <a href={SITE_CONFIG.social.instagram} target="_blank" rel="noopener noreferrer" className="p-2.5 text-white hover:opacity-80" aria-label="Instagram">
             <SocialIconInstagram className="h-6 w-6" />
           </a>
-          <a href={SITE_CONFIG.social.tiktok} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="TikTok">
+          <a href={SITE_CONFIG.social.tiktok} target="_blank" rel="noopener noreferrer" className="p-2.5 text-white hover:opacity-80" aria-label="TikTok">
             <SocialIconTiktok className="h-6 w-6" />
           </a>
-          <a href={SITE_CONFIG.social.facebook} target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="Facebook">
+          <a href={SITE_CONFIG.social.facebook} target="_blank" rel="noopener noreferrer" className="p-2.5 text-white hover:opacity-80" aria-label="Facebook">
             <SocialIconFacebook className="h-6 w-6" />
           </a>
         </div>

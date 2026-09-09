@@ -7,17 +7,17 @@ import { generateBreadcrumbSchema, generateLocalBusinessSchema } from '@/lib/sch
 import ContactForm from '@/components/sections/ContactForm';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
-const DISPLAY_PHONE = '(03) 9126 0555';
+const DISPLAY_PHONE = SITE_CONFIG.phone;
 const BUSINESS_LINE = 'Zap It Pest & Termite Control';
 const ADDRESS_LINE = '80 Porter Rd, Heidelberg Heights , VIC 3081';
 
 const OPERATING_HOURS = [
-  'Monday, 8am – 5pm',
-  'Tuesday, 8am – 5pm',
-  'Wednesday, 8am – 5pm',
-  'Thursday, 8am – 5pm',
-  'Friday, 8am – 5pm',
-  'Saturday, 8am – 12pm',
+  'Monday, 8am to 5pm',
+  'Tuesday, 8am to 5pm',
+  'Wednesday, 8am to 5pm',
+  'Thursday, 8am to 5pm',
+  'Friday, 8am to 5pm',
+  'Saturday, 8am to 12pm',
   'Sunday, Closed',
 ] as const;
 

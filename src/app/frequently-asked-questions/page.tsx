@@ -101,7 +101,7 @@ const FAQ_ITEMS: FAQ[] = [
   {
     question: 'Do you offer pest control for commercial properties?',
     answer:
-      'Yes — shops, offices, food businesses, warehouses, and other commercial sites can access tailored programs and documentation that match your hours and compliance needs.',
+      'Yes. Shops, offices, food businesses, warehouses, and other commercial sites can access tailored programs and documentation that match your hours and compliance needs.',
   },
   {
     question: 'How long does pest control last?',

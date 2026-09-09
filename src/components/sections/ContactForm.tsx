@@ -128,7 +128,7 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
           placeholder="First name"
           value={form.name}
           onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-          className="w-full rounded-lg border border-[#c8c8c8] bg-white px-4 py-3 text-sm text-[#414042] placeholder-[#aaa] outline-none transition focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
+          className="w-full rounded-lg border border-[#c8c8c8] bg-white px-4 py-3 text-base text-[#414042] placeholder-[#aaa] outline-none transition focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
         />
       </div>
 
@@ -144,7 +144,7 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
           placeholder="your@email.com"
           value={form.email}
           onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-          className="w-full rounded-lg border border-[#c8c8c8] bg-white px-4 py-3 text-sm text-[#414042] placeholder-[#aaa] outline-none transition focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
+          className="w-full rounded-lg border border-[#c8c8c8] bg-white px-4 py-3 text-base text-[#414042] placeholder-[#aaa] outline-none transition focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
         />
       </div>
 
@@ -159,7 +159,7 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
           required
           value={form.phone}
           onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-          className="w-full rounded-lg border border-[#c8c8c8] bg-white px-4 py-3 text-sm text-[#414042] placeholder-[#aaa] outline-none transition focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
+          className="w-full rounded-lg border border-[#c8c8c8] bg-white px-4 py-3 text-base text-[#414042] placeholder-[#aaa] outline-none transition focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
         />
       </div>
 
@@ -173,7 +173,7 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
           rows={4}
           value={form.message}
           onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-          className="w-full resize-none rounded-lg border border-[#c8c8c8] bg-white px-4 py-3 text-sm text-[#414042] placeholder-[#aaa] outline-none transition focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
+          className="w-full resize-none rounded-lg border border-[#c8c8c8] bg-white px-4 py-3 text-base text-[#414042] placeholder-[#aaa] outline-none transition focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
         />
       </div>
 

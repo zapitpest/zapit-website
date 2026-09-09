@@ -13,7 +13,7 @@ import StatsCounter from '@/components/sections/StatsCounter';
 // Without these, previews inherit from root layout defaults which used the
 // full brand name and produced a different headline than <title>.
 const PEST_SOLUTIONS_TITLE = `Pest Control Solutions Melbourne | ${SITE_CONFIG.shortName}`;
-const PEST_SOLUTIONS_DESCRIPTION = `Complete pest control solutions for Melbourne homes and businesses. From ants and termites to rodents and possums — Zap It handles it all. Call ${SITE_CONFIG.phone}.`;
+const PEST_SOLUTIONS_DESCRIPTION = `Complete pest control solutions for Melbourne homes and businesses. Ants, termites, rodents and possums. Zap It handles it all. Call ${SITE_CONFIG.phone}.`;
 
 export const metadata: Metadata = {
   title: { absolute: PEST_SOLUTIONS_TITLE },
@@ -66,7 +66,7 @@ export default function PestSolutionsPage() {
   const localBusiness = generateLocalBusinessSchema('Melbourne');
   const serviceSchema = generateServiceSchema(
     'Pest Control Solutions Melbourne',
-    'Complete pest control solutions for Melbourne homes and businesses — ants, termites, cockroaches, rodents, spiders, bed bugs, wasps, possums, and more. Licensed technicians, approved treatments.',
+    'Complete pest control solutions for Melbourne homes and businesses. Ants, termites, cockroaches, rodents, spiders, bed bugs, wasps, possums, and more. Licensed technicians, approved treatments.',
   );
 
   return (
@@ -89,11 +89,11 @@ export default function PestSolutionsPage() {
             Complete Pest Control Solutions for Melbourne
           </h1>
           <p className="mb-8 max-w-2xl text-lg text-white/80 md:text-xl">
-            From common household pests to commercial infestations — our licensed, approved technicians deliver targeted treatments that protect your property.
+            From common household pests to commercial infestations, our licensed technicians deliver targeted treatments that protect your property.
           </p>
           <div className="flex flex-wrap gap-3">
             <a href={SITE_CONFIG.phoneTel} className="inline-flex items-center gap-2 rounded-full bg-[#64FF01] px-6 py-3 text-[15px] font-bold text-[#0d402e] transition-transform hover:scale-105">
-              <Phone className="h-4 w-4" />Call Now — {SITE_CONFIG.phone}
+              <Phone className="h-4 w-4" />Call now on {SITE_CONFIG.phone}
             </a>
           </div>
         </div>
@@ -135,7 +135,7 @@ export default function PestSolutionsPage() {
               href={SITE_CONFIG.phoneTel}
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#3fa535] px-6 py-3 text-[14px] font-bold text-white transition-transform hover:scale-105"
             >
-              Book a general pest inspection — {SITE_CONFIG.phone}
+              Book a general pest inspection on {SITE_CONFIG.phone}
             </a>
           </div>
         </div>
@@ -189,7 +189,7 @@ export default function PestSolutionsPage() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { step: '01', title: 'Inspect', desc: 'Thorough property inspection to identify pest species, entry points, and severity of infestation.' },
-              { step: '02', title: 'Plan', desc: 'Custom treatment plan tailored to your property type, family, and pest pressure—no generic spray-and-go.' },
+              { step: '02', title: 'Plan', desc: 'Custom treatment plan tailored to your property type, family, and pest pressure. No generic spray and go.' },
               { step: '03', title: 'Treat', desc: 'Licensed technicians apply approved treatments using the latest technology and targeted methods.' },
               { step: '04', title: 'Protect', desc: 'Follow-up inspections and prevention advice to keep pests from returning season after season.' },
             ].map((item) => (
@@ -207,7 +207,7 @@ export default function PestSolutionsPage() {
       <section className="bg-white py-10 sm:py-14 lg:py-16">
         <div className="mx-auto w-full max-w-[640px] px-5 sm:px-6 lg:max-w-[560px]">
           <div className="overflow-hidden rounded-3xl shadow-xl">
-            <Image src="/images/residential/family-trust.webp" alt="Protection you can trust — Zap It Pest Control Melbourne" width={712} height={1002} className="h-auto w-full" sizes="(min-width: 1024px) 560px, (min-width: 640px) 560px, 100vw" />
+            <Image src="/images/residential/family-trust.webp" alt="Protection you can trust. Zap It Pest Control Melbourne" width={712} height={1002} className="h-auto w-full" sizes="(min-width: 1024px) 560px, (min-width: 640px) 560px, 100vw" />
           </div>
         </div>
       </section>
@@ -225,13 +225,13 @@ export default function PestSolutionsPage() {
         <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div className="overflow-hidden rounded-2xl shadow-lg">
-              <Image src="/images/residential/pet-safe.webp" alt="Pet-safe pest treatment by a Zap It technician — protection that keeps children and pets safe" width={600} height={500} className="h-auto w-full" />
+              <Image src="/images/residential/pet-safe.webp" alt="Pet-safe pest treatment by a Zap It technician. Protection that keeps children and pets safe" width={600} height={500} className="h-auto w-full" />
             </div>
             <div>
               <span className="mb-3 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Professional Standards</span>
               <h2 className="mb-4 text-2xl font-bold text-[#131a1c] md:text-3xl">Licensed &amp; Responsible Treatments</h2>
               <p className="mb-6 text-[15px] leading-relaxed text-[#636363]">
-                Your family&apos;s safety is our top priority. Our licensed technicians use approved products and responsible application methods — without compromising on effectiveness.
+                Your family&apos;s safety is our top priority. Our licensed technicians use approved products and responsible application methods, without compromising on effectiveness.
               </p>
               <div className="space-y-3">
                 {['Low-toxic, targeted treatments', 'licensed technicians', 'No unnecessary chemical residue', 'IPM-based approach', 'Clear re-entry guidance provided'].map((item) => (
@@ -287,7 +287,7 @@ export default function PestSolutionsPage() {
                 {[
                   { title: 'Licensed & Insured', desc: 'Fully licensed, compliant technicians with comprehensive insurance coverage.' },
                   { title: 'Responsible Methods', desc: 'approved treatments using integrated pest management and low-toxic options.' },
-                  { title: 'Same-Day Response', desc: 'Emergency pest situations handled the same day — fast response across all Melbourne suburbs.' },
+                  { title: 'Same-Day Response', desc: 'Emergency pest situations handled the same day, with fast response across all Melbourne suburbs.' },
                   { title: 'Transparent Pricing', desc: 'Upfront quotes with no hidden fees. Know exactly what you\'re paying before we start.' },
                   { title: 'Follow-Up Guarantee', desc: 'Comprehensive follow-up inspections and prevention plans for lasting protection.' },
                 ].map((item) => (
@@ -319,7 +319,7 @@ export default function PestSolutionsPage() {
           </p>
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href={SITE_CONFIG.phoneTel} className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#64FF01] px-8 py-4 text-[16px] font-bold text-[#0d402e] transition-transform hover:scale-105 sm:w-auto">
-              <Phone className="h-5 w-5 shrink-0" />Call Now — {SITE_CONFIG.phone}
+              <Phone className="h-5 w-5 shrink-0" />Call now on {SITE_CONFIG.phone}
             </a>
           </div>
         </div>

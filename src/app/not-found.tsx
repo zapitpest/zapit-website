@@ -28,7 +28,7 @@ export default function NotFound() {
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-[15px] text-white/80 sm:text-base">
           The URL you followed didn&apos;t match a page on our site. Here&apos;s the fastest way
-          to get back on track — call our team, jump to the homepage, or find your suburb.
+          to get back on track. Call our team, jump to the homepage, or find your suburb.
         </p>
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -37,7 +37,7 @@ export default function NotFound() {
             className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#64FF01] px-6 py-3.5 text-[15px] font-bold text-[#0d402e] transition-transform hover:scale-105 sm:w-auto"
           >
             <Phone className="h-4 w-4" aria-hidden />
-            Call now — {SITE_CONFIG.phone}
+            Call now on {SITE_CONFIG.phone}
           </a>
           <Link
             href="/"
