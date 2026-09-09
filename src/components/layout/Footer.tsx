@@ -106,9 +106,6 @@ export default function Footer() {
           <p className="text-[14px] text-white">
             &copy; {SITE_CONFIG.name}
           </p>
-          <p className="text-[14px] text-white">
-            Managed by Delivix
-          </p>
           <Link href="/privacy-policy" className="mt-1 inline-block text-[14px] text-white underline transition-colors hover:text-[#1cdc38]">
             Privacy Policies
           </Link>

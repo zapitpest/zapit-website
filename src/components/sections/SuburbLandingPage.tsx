@@ -230,8 +230,9 @@ export default function SuburbLandingPage({ suburb, region, slug }: Props) {
                 Residential pest control in {suburb}
               </h3>
               <p className="text-zapit-text mb-5 leading-relaxed">
-                Family-safe treatments for ants, spiders, rodents, cockroaches and termites. Free
-                inspection, transparent pricing, and a service warranty on every job.
+                Family safe treatments for ants, spiders, rodents, cockroaches and termites.
+                Licensed technicians, prices confirmed before we start, and a written report on
+                every job.
               </p>
               <span className="inline-flex items-center gap-2 text-zapit-green font-semibold group-hover:gap-3 transition-all">
                 Explore residential
@@ -354,20 +355,20 @@ export default function SuburbLandingPage({ suburb, region, slug }: Props) {
               </h2>
               <p className="text-zapit-text leading-relaxed mb-4">
                 {suburb} is part of Melbourne&apos;s {region} region and faces seasonal pest
-                pressures — from summer ant trails and spider activity through to cooler-month
+                pressures. Summer brings ant trails and spider activity, and the cooler months bring
                 rodent intrusions. Our technicians live and work across {region} Melbourne, so
                 they know the local pest patterns and the property styles unique to {suburb}.
               </p>
               <p className="text-zapit-text leading-relaxed mb-6">
-                Every treatment is backed by a service warranty. If a pest issue returns inside
-                the warranty window, we return at no extra charge.
+                We tell you before the job what the treatment covers and what it does not. If a
+                treatment carries a return period, that is stated in writing when you book.
               </p>
               <ul className="space-y-3">
                 {[
                   'Licensed pest control technicians',
                   'Family and pet-safe application methods',
                   'Detailed written reports on every job',
-                  'Service warranty included as standard',
+                  'Written report on every treatment',
                   `Same-day service for most ${suburb} addresses`,
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">

@@ -328,7 +328,9 @@ export default async function PestSolutionSubPage({ params }: Props) {
       {/* ===== CTA ===== */}
       <section className="bg-[#0d402e] py-14 text-white lg:py-16">
         <div className="mx-auto max-w-[800px] px-5 text-center sm:px-6">
-          <h2 className="mb-4 text-2xl font-bold md:text-3xl">Need {page.title} in Melbourne?</h2>
+          <h2 className="mb-4 text-2xl font-bold md:text-3xl">
+            Need {page.title.includes('Melbourne') ? page.title : `${page.title} in Melbourne`}?
+          </h2>
           <p className="mb-8 text-[15px] text-white/80">
             Call {SITE_CONFIG.phone} for urgent advice or to arrange a visit. {SITE_CONFIG.operatingHours}.
           </p>

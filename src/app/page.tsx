@@ -287,20 +287,6 @@ export default function HomePage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 9. THE MORE YOU PROTECT / SAVE 10% — client-supplied SVG asset ===== */}
-      <ScrollReveal direction="up">
-        <section className="bg-white px-4 py-6 sm:px-5 sm:py-8">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/residential/save-10-card.svg"
-            alt="The more you protect, the more you save. Save 10% on the total cost of the job when you purchase two or more treatments that we service on the same day."
-            width={354}
-            height={185}
-            className="mx-auto block h-auto w-full max-w-[354px]"
-          />
-        </section>
-      </ScrollReveal>
-
       {/* ===== 10. PEST SOLUTIONS AND PRICE LIST — Figma Pest Solutions.svg pattern ===== */}
       {/* White background. Single container, no per-item boxes. Pest icon = client-supplied
           per-pest SVG at 28x28. Detail rows use Graphik Semibold Italic 12px for the green
@@ -373,7 +359,7 @@ export default function HomePage() {
           Mobile = full-bleed Figma; desktop = framed card with proper breathing room. */}
       <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
-          <Image src="/images/residential/family-trust.webp" alt="Protection you can trust — We have serviced over 20,000 homes in Melbourne" width={712} height={1002} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
+          <Image src="/images/residential/family-trust.webp" alt="A Zap It technician treating a Melbourne family home" width={712} height={1002} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
         </div>
       </section>
 

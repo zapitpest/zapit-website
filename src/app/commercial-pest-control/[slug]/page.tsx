@@ -354,7 +354,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
             <h2 className="mb-6 text-center text-[20px] font-bold text-white sm:text-[24px]">Why choose {SITE_CONFIG.shortName}?</h2>
             <div className="grid grid-cols-2 gap-4 text-center sm:grid-cols-4">
               {([
-                { val: '500+', label: 'Businesses Protected' },
+                { val: '70+', label: 'Commercial Sites Serviced' },
                 { val: '5+ yr', label: 'Client Partnerships' },
                 { val: 'Same Day', label: 'Service Available' },
                 { val: '100%', label: 'Compliance Reporting' },

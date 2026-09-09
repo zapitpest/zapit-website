@@ -66,22 +66,22 @@ const TERMITE_TYPES = [
   },
   {
     id: 'formosan',
-    label: 'Formosan Termite Elimination',
-    heading: 'Formosan Termite Elimination',
-    copy: 'These are the most destructive types of termites that can chew through the concrete cracks in the walls and set up colonies inside the walls of your restaurant, warehouse, function venues, etc. Formosan termites multiply speedily and won\'t stop until they\'ve consumed every piece of wood in your neighbourhood. Book our termite control services now before they cause irreversible damage.',
+    label: 'Coptotermes Treatment',
+    heading: 'Coptotermes Treatment',
+    copy: 'Coptotermes is the genus responsible for most termite damage in Melbourne, and Coptotermes frenchii is the one we find most often. Colonies are large, they travel through cracks in slabs and brickwork, and they will work inside a wall for a long time before anything shows on the surface. This is the species most likely to cause structural damage to a Melbourne home.',
     img: `${WP}/termite-dampwood-closeup.webp`,
   },
   {
     id: 'conehead',
-    label: 'Conehead Termite Elimination',
-    heading: 'Conehead Termite Elimination',
-    copy: 'They are known as conehead termites because they build cone-shaped nests and spread faster than all types of termites. Conehead termites are most aggressive and known for their flights from one place to another and abilities to set up new colonies very quickly. They attack not only a single wooden item but also every timber-made thing available at your place.',
+    label: 'Schedorhinotermes Treatment',
+    heading: 'Schedorhinotermes Treatment',
+    copy: 'Schedorhinotermes intermedius turns up regularly in Melbourne gardens and in timbers in contact with the ground. It is identified by having two soldier sizes in the one colony. It is more cautious than Coptotermes and slower to move once disturbed, so the treatment approach is different and getting the identification right matters.',
     img: `${WP}/termite-dampwood-closeup.webp`,
   },
 ] as const;
 
 const TERMITE_FAQS = [
-  { question: 'How much does termite control cost in Melbourne?', answer: 'There\'s no fixed control for any pest control solutions like rodent control or ant control, and the same is the case with termites. However, you can get a custom quote to know exactly how much you have to pay and save yourself from paying thousands of dollars in damage repair.' },
+  { question: 'How much does termite control cost in Melbourne?', answer: 'Termite work is quoted after an inspection. The price depends on the size of the building, the construction type, how far the termites have got and which treatment suits the site. We give you the figure in writing before any work starts.' },
   { question: 'Do termites fly?', answer: 'Yes, termites can fly during their swarming season. Flying termites (also called alates or swarmers) are reproductive termites that leave their colony to start new ones. If you spot flying termites near your home, contact Zap It immediately for an inspection.' },
   { question: 'How to get rid of termites?', answer: 'Getting rid of termites requires professional treatment. Our licensed technicians use a combination of liquid barriers, bait systems, and targeted treatments to fully eliminate termite colonies. DIY methods are rarely effective and can cause termites to scatter, worsening the infestation.' },
   { question: 'What do termites eat?', answer: 'Termites primarily eat cellulose-based materials like wood, paper, cardboard, and plant fibres. In homes, they target structural timber, flooring, furniture, and any wooden fixtures. Some species also feed on living trees and shrubs in your garden.' },
@@ -169,7 +169,7 @@ export default function TermiteControlMelbournePage() {
               </span>
               <h2 className="mb-4 text-2xl font-bold text-[#131a1c] md:text-3xl">Common Signs of Termite Infestation</h2>
               <p className="mb-6 text-[15px] leading-relaxed text-[#636363]">
-                Termites are smaller in size and usually hard to spot even when they are eating up your favourite sofa from inside. Look for these warning signs:
+                Termites work from the inside out and are rarely seen. By the time damage is visible the colony has usually been active for months. Look for these warning signs:
               </p>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {WARNING_SIGNS.map((sign) => (
@@ -283,7 +283,7 @@ export default function TermiteControlMelbournePage() {
               <span className="mb-3 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Credentials</span>
               <h2 className="mb-4 text-2xl font-bold text-[#131a1c] md:text-3xl">Certified, Licensed &amp; Insured</h2>
               <p className="mb-6 text-[15px] leading-relaxed text-[#636363]">
-                Our team is certified by the Victorian state pest control authority and fully insured for residential and commercial termite control across Melbourne.
+                Our technicians hold Victorian pest control licences and we carry public liability insurance for residential and commercial termite work across Melbourne.
               </p>
               <div className="space-y-3">
                 {[

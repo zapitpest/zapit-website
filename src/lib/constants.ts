@@ -45,8 +45,8 @@ export const SITE_CONFIG = {
   gtmId: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-PFGV87RB',
   operatingHours: 'Mon–Fri 8am–5pm, Sat 8am–12pm',
   stats: {
-    residentialCustomers: '5000+',
-    commercialClients: '500+',
+    residentialCustomers: '550+',
+    commercialClients: '70+',
     yearsExperience: '5+',
     responseTime: 'Same Day',
     availability: 'Mon–Fri 8am–5pm',
