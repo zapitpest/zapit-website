@@ -996,3 +996,43 @@
 /pest-solutions/*                                      /:splat                                 301
 /commercial/*                                /commercial-pest-control/                                 301
 /blogs/*                                                           /pest-solutions/               301
+
+# ---------------------------------------------------------------------------
+# 2026-09-10: 16 legacy URLs recovered from the Wayback index that the old
+# sitemaps did not list. Every target verified live. Both slash forms.
+# ---------------------------------------------------------------------------
+/pest-control-melbourne/                /pest-solutions/              301
+/pest-control-melbourne                 /pest-solutions/              301
+/pest-control-services/                 /pest-solutions/              301
+/pest-control-services                  /pest-solutions/              301
+/pest-control-commerical-services/      /commercial-pest-control/     301
+/pest-control-commerical-services       /commercial-pest-control/     301
+/pest-control-armadale/                 /service-areas/               301
+/pest-control-armadale                  /service-areas/               301
+/pest-control-bulleen/                  /service-areas/               301
+/pest-control-bulleen                   /service-areas/               301
+/pest-control-fairfield/                /service-areas/               301
+/pest-control-fairfield                 /service-areas/               301
+/pest-control-northcote/                /service-areas/               301
+/pest-control-northcote                 /service-areas/               301
+/pest-control-templestowe-lower/        /service-areas/               301
+/pest-control-templestowe-lower         /service-areas/               301
+/pest-control-thornbury/                /service-areas/               301
+/pest-control-thornbury                 /service-areas/               301
+/melbourne-south-east-suburbs/          /service-areas/               301
+/melbourne-south-east-suburbs           /service-areas/               301
+/thank-you/                             /                             301
+/thank-you                              /                             301
+/booking-conformation/                  /                             301
+/booking-conformation                   /                             301
+/home-contact-form/                     /contact-us/                  301
+/home-contact-form                      /contact-us/                  301
+/test-and-tag/                          /                             301
+/test-and-tag                           /                             301
+/home-2-2/                              /                             301
+/home-2-2                               /                             301
+
+# 2026-09-10: the analytics debug route was removed from the build, but the
+# edge still holds a cached copy of it. Redirects are evaluated before assets,
+# so this rule retires it immediately rather than waiting a week for expiry.
+/debug/*                                /                             301

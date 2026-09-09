@@ -422,62 +422,6 @@ export function HomepageMelbourneCoverage() {
   );
 }
 
-const PRICING_DATA = [
-  { service: 'Localised Ant Treatment', type: 'All', price: '$299', duration: '45' },
-  { service: 'Specialised Ant Elimination', type: 'All', price: '$495', duration: '60' },
-  { service: 'Bed Bugs', type: 'All', price: '$495', duration: '60' },
-  { service: 'Clothes & Carpet Moth Treatment', type: 'All', price: '$423.50', duration: '90' },
-  { service: 'Fleas Treatment', type: 'All', price: '$423.50', duration: '45' },
-  { service: 'General Inspection', type: 'All', price: '$154', duration: '30' },
-  { service: 'German Cockroach Treatment', type: 'All', price: '$275', duration: '60' },
-  { service: 'Mice & Rat Treatment', type: 'All', price: '$352', duration: '40' },
-  { service: 'Mice & Rat Follow Up Visit', type: 'All', price: '$220', duration: '30' },
-  { service: 'Dead Rodent Removal', type: 'All', price: '$418', duration: '30' },
-  { service: 'Mosquitos, Flies Treatment', type: 'All', price: '$423.50', duration: '60' },
-  { service: 'Possum Treatment', type: 'Single-story', price: '$495', duration: '30' },
-  { service: 'Spider & General Pest Treatment', type: 'Single-story', price: '$330', duration: '60' },
-  { service: '', type: 'Double-story', price: '$385', duration: '60' },
-  { service: 'Termite Inspections', type: 'All', price: 'On inspection', duration: '120' },
-  { service: 'Wasp Control', type: 'All', price: '$330', duration: '60' },
-] as const;
-
-export function HomepagePricing() {
-  return (
-    <div className="w-full max-w-[1200px] mx-auto">
-      <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-[#3fa535] text-white">
-              <th className="px-4 py-3 text-sm font-semibold">Service Name</th>
-              <th className="px-4 py-3 text-sm font-semibold text-center">Property Type</th>
-              <th className="px-4 py-3 text-sm font-semibold text-center">Price (AUD) without GST</th>
-              <th className="px-4 py-3 text-sm font-semibold text-center">Duration (Minutes)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {PRICING_DATA.map((row, i) => (
-              <tr
-                key={`${row.service || 'sub'}-${row.type}-${i}`}
-                className={`border-b border-gray-100 ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-[#3fa535]/5 transition-colors`}
-              >
-                <td className="px-4 py-3 text-sm text-[#252c33] font-medium">{row.service}</td>
-                <td className="px-4 py-3 text-sm text-[#636363] text-center">{row.type}</td>
-                <td className="px-4 py-3 text-sm text-[#252c33] font-semibold text-center">{row.price}</td>
-                <td className="px-4 py-3 text-sm text-[#636363] text-center">{row.duration}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-[#252c33]">
-        <p><strong>Note:</strong> Prices shown are base rates (before discounts &amp; GST).</p>
-        <p><strong>Discounts:</strong> 2 services → 22.5% off | 3+ services → 27.5% off</p>
-        <p><strong>GST:</strong> Add 10% when selecting &quot;Inc GST&quot;.</p>
-      </div>
-    </div>
-  );
-}
-
 export function HomepagePestCards() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [isTouch, setIsTouch] = useState(false);
