@@ -33,6 +33,7 @@ const TREATMENTS: Treatment[] = [
   { name: 'Possum treatment', propertyType: 'Single-story', price: 495, duration: 30 },
   { name: 'Specialised ant elimination', propertyType: 'All', price: 495, duration: 60 },
   { name: 'Spider and general pest treatment', propertyType: 'Single-story', price: 330, duration: 60 },
+  { name: 'Termite inspection', propertyType: 'All', price: 440, duration: 120 },
   { name: 'Spider and general pest treatment', propertyType: 'Double-story', price: 385, duration: 60 },
   { name: 'Wasp treatment', propertyType: 'All', price: 330, duration: 60 },
 ];

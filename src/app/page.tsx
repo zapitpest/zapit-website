@@ -57,7 +57,7 @@ const PEST_PRICE_LIST: ReadonlyArray<PestPriceItem> = [
   { n: 9, iconSlug: 'mice-rat-removal', name: 'Mice & rat removal', price: '$418', open: false, duration: '30 to 45 minutes', propertyType: 'All residential homes', inclusions: 'Physical removal of rodents and dead rodent clearance.', verbalReport: 'Removal summary and prevention recommendations provided on completion', detail: 'Safe removal and disposal of mice and rats from your property.' },
   { n: 10, iconSlug: 'mosquitos-flies', name: 'Mosquitos and flies', price: '$423.50', open: false, duration: '60 minutes', propertyType: 'All residential homes', inclusions: 'Breeding site treatment, residual spray application.', verbalReport: 'Treatment summary and follow-up recommendations provided on completion', detail: 'Targeted mosquito and fly treatment to reduce populations around your home.' },
   { n: 11, iconSlug: 'possum-removal', name: 'Possum removal', price: '$495', open: false, duration: '30 to 60 minutes', propertyType: 'Single storey homes', inclusions: 'Licensed humane possum removal and entry sealing.', verbalReport: 'Removal summary and entry-point proofing recommendations provided on completion', detail: 'Humane, licensed possum removal from roof voids with entry-point proofing.' },
-  { n: 13, iconSlug: 'termite-inspections', name: 'Termite inspections', price: 'On inspection', open: false, duration: '2 hours', propertyType: 'All residential homes', inclusions: 'Visual and technical inspection of exterior and interior of property.', verbalReport: 'Findings and recommendations documented', detail: 'A thorough termite inspection using moisture detection, noise detection, and keyhole camera.' },
+  { n: 13, iconSlug: 'termite-inspections', name: 'Termite inspections', price: '$440', open: false, duration: '2 hours', propertyType: 'All residential homes', inclusions: 'Visual and technical inspection of exterior and interior of property.', verbalReport: 'Findings and recommendations documented', detail: 'A thorough termite inspection using moisture detection, noise detection, and keyhole camera.' },
   { n: 14, iconSlug: 'wasp-control', name: 'Wasp control', price: '$330', open: false, duration: '60 minutes', propertyType: 'All residential homes', inclusions: 'Safe nest removal and treatment.', verbalReport: 'Treatment summary and follow-up recommendations provided on completion', detail: 'Professional wasp nest removal and treatment to protect your family.' },
 ];
 
@@ -447,7 +447,7 @@ export default function HomePage() {
               </h2>
             </div>
             <h3 className="mb-4 text-[18px] font-bold text-[#414042] sm:text-[20px]">
-              Termite inspection <span className="font-normal text-[#414042]">Price on inspection</span>
+              Termite inspection <span className="font-normal text-[#414042]">$440</span>
             </h3>
             <dl className="mb-5 space-y-2 text-[14px] text-[#414042] sm:text-[15px]">
               <div className="flex gap-2"><dt className="shrink-0 font-bold italic">Duration:</dt><dd className="italic">2 hours</dd></div>
@@ -465,8 +465,8 @@ export default function HomePage() {
               <img src="/images/residential/termite-activity.svg" alt="" aria-hidden className="inline-block h-[20px] w-auto -translate-y-[1px] align-middle" />
             </p>
             <p className="mb-8 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
-              A verbal and written assessment is provided with recommended course of action. The price of inspection
-              is deducted from further treatment or preventative action.
+              A verbal and written assessment is provided with recommended course of action. The $440 inspection fee
+              is deducted from further treatment or preventative action booked as a result.
             </p>
             <div className="flex items-start gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
