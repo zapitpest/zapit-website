@@ -8,6 +8,79 @@
 
 ---
 
+## 🚀 POST-CUTOVER STATE — 9–10 September 2026 (READ FIRST)
+
+**DNS cutover LIVE.** `zapitpestmelbourne.com.au` now served from Cloudflare Pages (was GoDaddy Managed WordPress). Zero downtime.
+
+### Cutover facts (all verified via dig + curl on 9 Sep 2026)
+
+| Item | State |
+|---|---|
+| .au registry delegation | ✅ destiny.ns.cloudflare.com + moura.ns.cloudflare.com |
+| Apex A record | ✅ CF Pages IPs (104.21.5.117, 172.67.133.96) + IPv6 auto-added |
+| SSL cert | ✅ Google Trust Services WE1 · valid 9 Sep → 8 Dec 2026 · CF auto-renews |
+| TLS support | ✅ TLS 1.2/1.3 only (1.0/1.1 blocked) |
+| SPF | ✅ `v=spf1 include:_spf.google.com ~all` (direct include, GoDaddy indirection removed) |
+| DMARC | ✅ `v=DMARC1; p=none; rua=mailto:dmarc-reports@zapitpestmelbourne.com.au` — see open item below |
+| DKIM | ⏳ Not yet published — Zaydan to enable in Workspace admin |
+| Meta Pixel domain-verification meta-tag | ⏳ Awaiting verification code from Zaydan |
+| HSTS | ✅ `max-age=31536000; includeSubDomains` (no `preload` per Zaydan 8 Sep audit) |
+| All security headers | ✅ X-Frame DENY, X-Content-Type-Options nosniff, Referrer-Policy strict, Permissions-Policy locked, X-DNS-Prefetch-Control on |
+| Site health | ✅ 114/114 sitemap URLs 200 · 50/50 randomly-sampled legacy redirects fire correctly · TTFB < 300 ms |
+
+### ⚠️ ROLLBACK PATH CORRECTION (Zaydan flag, 9 Sep)
+
+**`160.153.0.191` is NOT the WordPress fallback anymore** — GoDaddy has converted it to a forward proxy that routes back to the CF-served site. Reverting the CF apex A record to `160.153.0.191` would take the site OFFLINE, not restore WordPress. The real rollback path if we ever need one is:
+
+1. Re-enable Netlify build (still on the Apex `zapitpest's team`)
+2. Revert nameservers at GoDaddy back to ns17 + ns18.domaincontrol.com
+3. Wait for DNS cache to expire (5–30 min)
+
+Historical A-record rollback plan documented in `docs/DNS_CUTOVER_RUNBOOK.md` needs updating to reflect this.
+
+### 🚨 4 URGENT ITEMS — Zaydan pre-cutover audit reply (9 Sep 7:06 PM)
+
+| # | Item | Status | Owner |
+|---|---|---|---|
+| 1 | **Prices ex-GST but calculator labels "GST inc"** — 16 services need × 1.10, Australian Consumer Law issue | ⏳ Pending | Zaydan's Claude (per his 8:16 PM prompt) |
+| 2 | **Remove 10% same-day discount** entirely (banner + SVG asset + `PriceCalculator.tsx` logic + `HomepageReviewsAndPestTabs.tsx` text — no owner can approve discounts) | ⏳ Pending | Zaydan's Claude (paired with #1) |
+| 3 | **16 old URLs still 404** on production — Wayback-Machine sweep found paths our earlier redirect inventory missed, including `/pest-control-melbourne/` (old service hub) and `/thank-you/` (conversion page). Ready-to-paste redirect block sent by Zaydan | ⏳ Awaiting attachment | Apex — pending Zaydan's attached redirect block |
+| 4 | **/service-areas/ links zero suburb pages** — 269 legacy redirects (262 old suburb URLs) land there but page has no outbound links to any of the 75 live suburb pages. 75-link block prepared by Zaydan | ⏳ Awaiting attachment | Apex — pending Zaydan's attached 75-link block |
+
+### 🟡 3 LATER ITEMS — same audit, no-rush section
+
+| # | Item | Status | Owner |
+|---|---|---|---|
+| 5 | ContactForm.tsx fired Formspree with `void` (no await) — showed thank-you regardless of delivery outcome, silent lead loss | ✅ FIXED — commit `82b6309` on 9 Sep (pushed to main, CF Pages auto-deployed). Adds await + `error` state + phone-fallback UI + retryable `setSubmitting(false)` on failure | Apex ✅ |
+| 6 | Formspree endpoint `xgaewwob` — confirm it's on a Zap It account (not Apex) so client data flows into their own inbox | 🟡 Sharjeel to verify via formspree.io login | Apex |
+| 7 | DMARC `rua` target `dmarc-reports@zapitpestmelbourne.com.au` — Zaydan believes mailbox doesn't exist; reports would bounce. Don't tighten past `p=none` until DKIM + rua mailbox both sorted | ⏳ Awaiting Zaydan confirmation on which mailbox to use | Zaydan (mailbox confirmation) → Apex (update CF DNS `_dmarc` record) |
+
+### 📦 Content archive — CLOSED
+
+Zaydan pulled the old WordPress site from the Internet Archive (413 pages including 66 blog posts + 17 of 19 termite posts). WordPress database export from GoDaddy Managed WP is nice-to-have but not blocking anything and nobody plans to restore WordPress from it. Managed WP hosting auto-renews 10 Sep (card ending 0277 confirmed on file).
+
+### 🤝 Coordination — Zaydan's Claude running in parallel (from 9 Sep 8:16 PM)
+
+Zaydan gave his own Claude session a prompt to make changes in parallel, with explicit "don't overlap with Sharjeel" instruction. His Claude will email Sharjeel a coordination update. Split proposed by Sharjeel in 9 Sep coordination reply:
+
+- **Apex takes:** ContactForm (done), /service-areas/ 75-link rebuild, 16 legacy 404 redirects, DMARC rua update, MVP_STATUS refresh, Formspree ownership check
+- **Zaydan's Claude takes:** all 16 prices × 1.10 GST fix + 10% discount removal (tightly coupled, cleaner if one Claude does both)
+
+Any commits Apex pushes carry clear messages so Zaydan's Claude sees the file has been claimed and skips it.
+
+### 🔵 Scheduled follow-ups
+
+- 10 Sep: verify GoDaddy Managed WP hosting auto-renewed successfully
+- 11 Sep: 72-hour post-cutover monitoring window closes
+- Post-monitoring: Netlify decommission on `zapitpest's team` (was fallback during cutover)
+- ~1 year: follow up with Adam to correct WHOIS registrant ABN from old B P Pty Ltd (55068847674) → Engage Solutions (61682004655), avoid recurrence of the .au eligibility hold
+
+### 🟢 19 termite blog posts — SEO decay flagged (content debt for later)
+
+19 termite blog posts currently redirect to `/termite-control-melbourne/`, which doesn't answer the specific queries they ranked for. Search traffic on those queries will decay over the next couple of months. Content rebuild is post-MVP work; source text now recovered via Zaydan's Wayback pull.
+
+---
+
 ## 📊 Overall Completion Snapshot (as of 2026-08-19 — HONEST AUDIT)
 
 | Metric | Value |
