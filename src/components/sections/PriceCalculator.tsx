@@ -21,19 +21,20 @@ interface Treatment {
 // back without an owner's approval: silverfish, standalone pantry moth,
 // spider-only, wasp-only, double-storey possum, and anything termite.
 const TREATMENTS: Treatment[] = [
-  { name: 'Ant treatment', propertyType: 'All', price: 264, duration: 45 },
+  { name: 'Localised ant treatment', propertyType: 'All', price: 299, duration: 45 },
   { name: 'Bed bug treatment', propertyType: 'All', price: 495, duration: 60 },
   { name: 'Clothes and carpet moth treatment', propertyType: 'All', price: 423.5, duration: 90 },
   { name: 'Flea treatment', propertyType: 'All', price: 423.5, duration: 45 },
   { name: 'General inspection', propertyType: 'All', price: 154, duration: 30 },
   { name: 'German cockroach treatment', propertyType: 'All', price: 275, duration: 60 },
   { name: 'Mice and rat treatment', propertyType: 'All', price: 352, duration: 40 },
+  { name: 'Mice and rat follow up visit', propertyType: 'All', price: 220, duration: 30 },
   { name: 'Mosquito and fly treatment', propertyType: 'All', price: 423.5, duration: 60 },
   { name: 'Possum treatment', propertyType: 'Single-story', price: 495, duration: 30 },
   { name: 'Specialised ant elimination', propertyType: 'All', price: 495, duration: 60 },
-  { name: 'Spider and general pest treatment', propertyType: 'Single-story', price: 319, duration: 60 },
-  { name: 'Spider and general pest treatment', propertyType: 'Double-story', price: 368.5, duration: 60 },
-  { name: 'Wasp treatment', propertyType: 'All', price: 275, duration: 60 },
+  { name: 'Spider and general pest treatment', propertyType: 'Single-story', price: 330, duration: 60 },
+  { name: 'Spider and general pest treatment', propertyType: 'Double-story', price: 385, duration: 60 },
+  { name: 'Wasp treatment', propertyType: 'All', price: 330, duration: 60 },
 ];
 
 const TREATMENT_NAMES = [...new Set(TREATMENTS.map((t) => t.name))].sort();

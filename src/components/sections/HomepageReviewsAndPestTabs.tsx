@@ -423,7 +423,7 @@ export function HomepageMelbourneCoverage() {
 }
 
 const PRICING_DATA = [
-  { service: 'Ant Treatment', type: 'All', price: '$264', duration: '45' },
+  { service: 'Localised Ant Treatment', type: 'All', price: '$299', duration: '45' },
   { service: 'Specialised Ant Elimination', type: 'All', price: '$495', duration: '60' },
   { service: 'Bed Bugs', type: 'All', price: '$495', duration: '60' },
   { service: 'Clothes & Carpet Moth Treatment', type: 'All', price: '$423.50', duration: '90' },
@@ -431,13 +431,14 @@ const PRICING_DATA = [
   { service: 'General Inspection', type: 'All', price: '$154', duration: '30' },
   { service: 'German Cockroach Treatment', type: 'All', price: '$275', duration: '60' },
   { service: 'Mice & Rat Treatment', type: 'All', price: '$352', duration: '40' },
+  { service: 'Mice & Rat Follow Up Visit', type: 'All', price: '$220', duration: '30' },
   { service: 'Dead Rodent Removal', type: 'All', price: '$418', duration: '30' },
   { service: 'Mosquitos, Flies Treatment', type: 'All', price: '$423.50', duration: '60' },
   { service: 'Possum Treatment', type: 'Single-story', price: '$495', duration: '30' },
-  { service: 'Spider & General Pest Treatment', type: 'Single-story', price: '$319', duration: '60' },
-  { service: '', type: 'Double-story', price: '$368.50', duration: '60' },
+  { service: 'Spider & General Pest Treatment', type: 'Single-story', price: '$330', duration: '60' },
+  { service: '', type: 'Double-story', price: '$385', duration: '60' },
   { service: 'Termite Inspections', type: 'All', price: 'On inspection', duration: '120' },
-  { service: 'Wasp Control', type: 'All', price: '$275', duration: '60' },
+  { service: 'Wasp Control', type: 'All', price: '$330', duration: '60' },
 ] as const;
 
 export function HomepagePricing() {
