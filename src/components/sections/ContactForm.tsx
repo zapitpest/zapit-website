@@ -12,9 +12,10 @@ interface Props {
 export default function ContactForm({ displayPhone, phoneTel }: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Guard against double-click / rapid Enter presses. Every downstream call
     // (GA4 event, WhatConverts, Formspree) is idempotent per-submit, so we
@@ -30,6 +31,7 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
       return;
     }
     setSubmitting(true);
+    setError(null);
 
     trackFormSubmit({
       formType: 'contact',
@@ -51,22 +53,42 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
     });
 
     // Formspree delivers the actual lead payload (name + message) to
-    // info@zapitpestmelbourne.com.au. Fire-and-forget so a delivery
-    // failure never blocks the thank-you UI.
-    void submitLeadToFormspree({
-      form_name: 'Contact Form',
-      name: cleanName || undefined,
-      email: cleanEmail || undefined,
-      phone: cleanPhone || undefined,
-      message: form.message.trim() || undefined,
-      form_type: 'contact',
-      // service_line added for Formspree inbox filtering parity with
-      // CommercialInquiryForm — both forms are answered from one inbox.
-      service_line: 'residential',
-      source_page: typeof window !== 'undefined' ? window.location.href : undefined,
-    });
+    // info@zapitpestmelbourne.com.au. Awaited so a delivery failure
+    // surfaces to the user instead of a silent thank-you on a dropped
+    // lead. Per Zaydan pre-cutover audit 2026-09-09.
+    try {
+      const delivered = await submitLeadToFormspree({
+        form_name: 'Contact Form',
+        name: cleanName || undefined,
+        email: cleanEmail || undefined,
+        phone: cleanPhone || undefined,
+        message: form.message.trim() || undefined,
+        form_type: 'contact',
+        // service_line added for Formspree inbox filtering parity with
+        // CommercialInquiryForm — both forms are answered from one inbox.
+        service_line: 'residential',
+        source_page: typeof window !== 'undefined' ? window.location.href : undefined,
+      });
 
-    setSubmitted(true);
+      if (delivered) {
+        setSubmitted(true);
+      } else {
+        // Formspree returned non-2xx or missing endpoint config. Surface a
+        // fallback so the visitor knows to call, and reset submitting so
+        // they can retry.
+        setError(
+          "We couldn't deliver your enquiry just now. Please try again in a moment, or call us directly on the number below.",
+        );
+        setSubmitting(false);
+      }
+    } catch {
+      // Network error, offline, etc. Same fallback — never leave the user
+      // thinking their lead was delivered when it wasn't.
+      setError(
+        "We couldn't reach our booking system. Please try again in a moment, or call us directly on the number below.",
+      );
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -154,6 +176,25 @@ export default function ContactForm({ displayPhone, phoneTel }: Props) {
           className="w-full resize-none rounded-lg border border-[#c8c8c8] bg-white px-4 py-3 text-sm text-[#414042] placeholder-[#aaa] outline-none transition focus:border-[#1cdc38] focus:ring-1 focus:ring-[#1cdc38]"
         />
       </div>
+
+      {/* Delivery-failure fallback — only rendered when Formspree POST rejects.
+          Keeps the visitor on the form so they can retry, and surfaces the
+          phone number as the guaranteed fallback path. */}
+      {error && (
+        <div
+          role="alert"
+          className="mb-4 rounded-lg border border-[#e5b8b8] bg-[#fff4f4] px-4 py-3 text-sm text-[#8a1c1c]"
+        >
+          <p className="mb-2 font-medium">{error}</p>
+          <a
+            href={phoneTel}
+            className="inline-flex items-center gap-2 font-bold text-[#131a1c] underline underline-offset-2 hover:text-[#0d402e]"
+          >
+            <Phone className="h-3.5 w-3.5" aria-hidden />
+            {displayPhone}
+          </a>
+        </div>
+      )}
 
       {/* Submit */}
       <button
