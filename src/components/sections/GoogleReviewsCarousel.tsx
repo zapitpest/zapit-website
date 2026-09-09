@@ -3,10 +3,14 @@
 import { useEffect, useState } from 'react';
 import { SITE_CONFIG } from '@/lib/constants';
 
-// Real Google reviews — replace via this array when client supplies the verified list
-// from the Zap It Google Business Profile (per client item #3, no fake/AI testimonials).
+// Verified Google reviews only. Every entry in this array must be a real review copied
+// from the Zap It Google Business Profile, with the reviewer's own name and words.
 //
-// TODO_CLIENT: Replace placeholder reviews (marked below) with verified Google reviews.
+// Three fabricated reviews (invented names Sarah M., David K., Priya R.) shipped in this
+// array and were live from the 9 Sept cutover until 10 Sept. Do not add an unverified
+// entry here for any reason, including to fill out the carousel. Publishing a testimonial
+// a customer did not write is misleading conduct under the Australian Consumer Law and
+// breaches Google's review policies.
 type Review = {
   name: string;
   initial: string;
@@ -14,7 +18,6 @@ type Review = {
   time: string;
   text: string;
   rating: number;
-  placeholder?: boolean;
 };
 
 const REVIEWS: Review[] = [
@@ -26,34 +29,6 @@ const REVIEWS: Review[] = [
     time: '3 months ago',
     text: "Amazing job honestly I've never had pest control that can get rid of all type of bugs, insects and or booklice like this…",
     rating: 5,
-  },
-  // === TODO_CLIENT — placeholders below. Replace with the rest of the verified Google reviews ===
-  {
-    name: 'Sarah M.',
-    initial: 'S',
-    avatarBg: '#2e5d7c',
-    time: '1 month ago',
-    text: 'Booked Zap It for a termite inspection — really thorough, explained everything clearly, and the report came through the same day. Highly recommend.',
-    rating: 5,
-    placeholder: true,
-  },
-  {
-    name: 'David K.',
-    initial: 'D',
-    avatarBg: '#4a7c2e',
-    time: '2 months ago',
-    text: 'Had a sudden ant problem in the kitchen. Zap It came out the same day, friendly tech, no fuss. Ants gone within a week. Will use again.',
-    rating: 5,
-    placeholder: true,
-  },
-  {
-    name: 'Priya R.',
-    initial: 'P',
-    avatarBg: '#7c2e5d',
-    time: '4 months ago',
-    text: 'Reliable, professional, on time. We use Zap It for our annual pest protection — never an issue. Worth every dollar.',
-    rating: 5,
-    placeholder: true,
   },
 ];
 

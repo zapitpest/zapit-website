@@ -355,14 +355,6 @@ export default function HomePage() {
           Brief #11: Italic paragraphs normalised to Regular Italic 20px / line-height 29px / center.
           Brief #12: Background unified to #0d402e (matches same-day-service block) for visual consistency. */}
 
-      {/* 11b. Family trust image — text is already in the image.
-          Mobile = full-bleed Figma; desktop = framed card with proper breathing room. */}
-      <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:py-12">
-        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[520px] lg:px-6">
-          <Image src="/images/residential/family-trust.webp" alt="A Zap It technician treating a Melbourne family home" width={712} height={1002} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 520px, 100vw" />
-        </div>
-      </section>
-
       {/* 11c. Pet safety text */}
       <ScrollReveal direction="fade" delay={100}>
         <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:py-6">

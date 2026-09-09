@@ -203,15 +203,6 @@ export default function PestSolutionsPage() {
         </div>
       </section>
 
-      {/* ===== TRUST IMAGE — capped width so the mobile-baked green overlay reads cleanly on desktop ===== */}
-      <section className="bg-white py-10 sm:py-14 lg:py-16">
-        <div className="mx-auto w-full max-w-[640px] px-5 sm:px-6 lg:max-w-[560px]">
-          <div className="overflow-hidden rounded-3xl shadow-xl">
-            <Image src="/images/residential/family-trust.webp" alt="Protection you can trust. Zap It Pest Control Melbourne" width={712} height={1002} className="h-auto w-full" sizes="(min-width: 1024px) 560px, (min-width: 640px) 560px, 100vw" />
-          </div>
-        </div>
-      </section>
-
       {/* ===== STATS ===== */}
       <section className="bg-[#131a1c] py-14 text-white lg:py-16">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
