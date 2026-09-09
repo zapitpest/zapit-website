@@ -39,6 +39,10 @@ const graphik = localFont({
 });
 
 export const metadata: Metadata = {
+  // Google Search Console. Both tokens were on the old WordPress site (recovered from the
+  // archived pages); the property was verified through the Site Kit plugin, which died with
+  // WordPress. Without these, the next re-check un-verifies the property and its data.
+  verification: { google: ['OOkGCgT9XkKw5dosyEwvKGDWbkZz7vX2uS7NH5aLi5E', '2fP3c07OK1bhjDTlxaUVpxwIa6FuNUXFbMYLnieaqgQ'] },
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
     // The full brand name is 38 chars, which pushed every templated title past
