@@ -1036,3 +1036,8 @@
 # edge still holds a cached copy of it. Redirects are evaluated before assets,
 # so this rule retires it immediately rather than waiting a week for expiry.
 /debug/*                                /                             301
+
+# The old About photo is deleted from the build but the edge still serves a
+# cached copy, and that copy carries the previous uniform logo and a
+# "Founder, Adam Balli" caption. Point it at the replacement.
+/images/about/founder-adam.png          /images/about/technician-treatment.webp   301
