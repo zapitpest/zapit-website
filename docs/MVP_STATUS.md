@@ -8,7 +8,72 @@
 
 ---
 
-## 🚀 POST-CUTOVER STATE — 9–10 September 2026 (READ FIRST)
+## 🏁 10 September 2026 — MVP EFFECTIVELY COMPLETE (READ FIRST)
+
+**Site is live and correct.** Every audit item from Zaydan's 9-10 September pre-cutover and post-cutover review is verified live on production `zapitpestmelbourne.com.au`.
+
+### Snapshot verified 10 Sep 2026, 2:00 PM Melbourne (against production, not preview)
+
+| Category | Verification |
+|---|---|
+| Sitemap URLs 200 | ✅ **114 / 114** — zero failures |
+| Pricing GST-inclusive across all 3 price tables | ✅ 10/10 match approved sheet |
+| 10% same-day discount removed | ✅ Zero occurrences |
+| Brand "Zap It" (was "Zapit") | ✅ 50 correct / 0 wrong on homepage |
+| Delivix agency credit removed | ✅ Not present |
+| Termite species corrected (Coptotermes / Schedorhinotermes) | ✅ Live |
+| Fabricated reviews removed, 8 verified Google reviews live | ✅ |
+| /service-areas/ links all 75 suburb pages | ✅ 75 href verified |
+| 15 legacy WordPress redirects fire (Wayback sweep) | ✅ All 301 |
+| /debug/analytics/ removed | ✅ 301 → / |
+| Search Console verification tokens (both) | ✅ Meta tags present |
+| Desktop layout above 1024px (Zapit_desktop_03) | ✅ Live |
+| ContactForm await + error path | ✅ Live (commit 82b6309) |
+| SPF + DMARC live and correct | ✅ SPF via _spf.google.com, DMARC rua → info@ |
+| SSL cert valid | ✅ Sep 9 → Dec 8, auto-renews |
+| All 7 security headers present | ✅ HSTS/XFO/XCTO/RP/PP/DNS-PC |
+| WHOIS ACTIVE, no holds | ✅ |
+| All 4 historical Netlify hostnames dead | ✅ Retired site deleted 10 Sep |
+
+### 3 items still with client (unblocking):
+
+1. **DKIM record** — awaiting Google Workspace admin enable + `google._domainkey` selector value (Zaydan / Adam)
+2. **Meta Pixel domain-verification meta-tag** — awaiting Business Manager → Brand Safety → Domains → verification `content` value (Zaydan / Adam)
+3. **`family-trust.webp` replacement image** — clean artwork without "20,000 homes" baked in (Adam)
+
+### 4 items in Apex handover close-out (in progress):
+
+1. GA4 8-tag / 1-event audit (fire missing 7 or delete dead tags)
+2. WhatConverts account owner + plan tier confirmation
+3. Assets audit — confirm BigQuery, Search Console, Meta Business, Clarity all on Zap It logins
+4. Credential rotation — GitHub, WhatConverts, Supabase at handover
+
+### Commits chain since 9 September pre-cutover audit
+
+Apex (2):
+- `82b6309` fix(forms): await Formspree delivery + surface error state on ContactForm
+- `22cab9b` docs(status): add post-cutover state + Zaydan 9-Sep audit findings to MVP_STATUS
+
+Zap It (13, Sep 9-10 overnight):
+- `0108746` GST-inclusive prices, remove discount, correct brand and contact details
+- `1358c45` remove agency credit, unsupportable claims, false warranty and overseas termite content
+- `28cde1f` third price table, template bugs, floating bar, header, dashes, tap targets
+- `4e6b575` apply Zaydan's 10 Sept pricing, rename standard ant, add rodent follow up
+- `fb125b5` remove three fabricated customer reviews and the unsupportable 20,000 homes claim
+- `1248d5d` replace the carousel with eight verified Google reviews
+- `1dee206` remove the analytics debug route from the production build
+- `c4b4a4` implement the Figma desktop layout above 1024px
+- `f9d54e6` restore the Google Search Console verification tokens
+- `313dd1e` link the 75 suburb pages from service-areas, add 16 missing redirects, remove dead pricing table
+- `804b0d8` publish the approved termite inspection price, $440 inc GST
+- `6eaf40c` replace the About photo, drop the founder attribution, new uniform logo
+- `ff39738` retire the cached old About photo
+
+Head of `main` = `ff39738`. All merged, all live on Cloudflare Pages production.
+
+---
+
+## 🚀 POST-CUTOVER STATE — 9 September 2026 (historical)
 
 **DNS cutover LIVE.** `zapitpestmelbourne.com.au` now served from Cloudflare Pages (was GoDaddy Managed WordPress). Zero downtime.
 

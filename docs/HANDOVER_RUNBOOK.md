@@ -8,6 +8,77 @@
 
 ---
 
+## 🚀 September 10 2026 — Post-Cutover Status (READ FIRST)
+
+**The site is fully migrated and live.** Everything below has been verified against production `zapitpestmelbourne.com.au`, not a preview.
+
+### Hosting + DNS
+- **Site is on Cloudflare Pages** (project `zapit-website`, custom domain `zapitpestmelbourne.com.au` + `www.zapitpestmelbourne.com.au`).
+- **Nameservers on Cloudflare** (`destiny.ns.cloudflare.com` + `moura.ns.cloudflare.com`). GoDaddy is the registrar only; DNS is fully managed in Cloudflare.
+- **SSL cert:** Google Trust Services WE1 → GTS Root R4, ECDSA P-256, TLS 1.2/1.3 only. Auto-renews via CF.
+- **All 114 sitemap URLs return 200.** Zero broken links.
+- **15 legacy WordPress redirects verified live** including `/pest-control-melbourne/`, `/thank-you/`, and 6 old suburb 404s.
+- **`/service-areas/` now links all 75 suburb pages.**
+
+### Email authentication
+- **SPF:** `v=spf1 include:_spf.google.com ~all` — live and correct
+- **DMARC:** `v=DMARC1; p=none; rua=mailto:info@zapitpestmelbourne.com.au` — live, held at p=none until DKIM publishes
+- **DKIM:** ⏳ NOT YET PUBLISHED — needs enabling in Google Workspace admin. Once enabled, the `google._domainkey` TXT record needs to be added to Cloudflare DNS. Do not tighten DMARC past p=none until DKIM is live.
+
+### Security headers (all live on production)
+- HSTS: `max-age=31536000; includeSubDomains` (no preload — deliberate, per pre-cutover audit)
+- X-Frame-Options: DENY
+- X-Content-Type-Options: nosniff
+- Referrer-Policy: strict-origin-when-cross-origin
+- Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+### Content corrections shipped (Sep 9-10 overnight batch)
+- **All 10 prices are GST-inclusive** and match the approved residential sheet (SOP-103 v0.3): $154, $220, $275, $299, $330, $352, $418, $423.50, $440, $495
+- **Termite inspection price $440 inc GST** — closed a conflict where four different figures existed on record
+- **10% same-day discount removed everywhere** — banner, calculator logic, SVG asset, alt text
+- **Brand corrected:** "Zapit" → "Zap It" across all visible copy (60+ instances)
+- **Phone number now carries area code** — 03 9126 0555
+- **Email corrected:** wo@ → sales@zapitpestmelbourne.com.au
+- **Three fabricated customer reviews removed** (Sarah M., David K., Priya R. — invented at build time). Replaced with eight verified reviews pulled from the Google Business Profile via Places API.
+- **False claims removed:** "5000+ residential / 500+ commercial" (actual: 550+/70+), "over 20,000 homes" alt text, "free inspection" (actually a paid $154 service), blanket "service warranty" claims
+- **Termite species corrected:** Formosan Termite and Conehead Termite removed (both are US/overseas species not present in Australia). Replaced with Coptotermes and Schedorhinotermes (the two Australian genera responsible for most Melbourne termite damage). Fake "Victorian pest control authority" removed.
+- **Template bugs fixed on 75 suburb pages:** "our Frankstontechnicians" (missing space), "identify the spider control species" (14 pages), "Need Spider Control Melbourne in Melbourne?" (heading duplication), "hospital & health facility facility"
+- **Desktop layout above 1024px** (Zapit_desktop_03 from Figma) — 1280 shell, 831px main column, 449px sticky dark rail with calculator, 560px lime hero, three reviews across, four footer columns, two-column About and Commercial heroes. Mobile untouched.
+- **Delivix agency credit removed** from every footer (was on 115 pages)
+- **HomepagePricing dead code deleted** (had ex-GST header + false 22.5%/27.5% discount copy)
+- **/debug/analytics/ removed** from production build (was firing test events into real GA4 container)
+- **Search Console verification tokens restored** as meta tags on every page
+
+### Netlify — fully decommissioned
+Four historical hostnames all return 404 (verified):
+- `zapitpest.netlify.app`
+- `zapitpestmelbourne.netlify.app`
+- `zapit-retired-precutover-2026-09.netlify.app`
+- `zapittt.netlify.app`
+
+No pre-cutover content publicly accessible anywhere. Netlify is no longer used for anything.
+
+### Formspree
+Endpoint `f/xgaewwob` confirmed on the Zap It Formspree account (login `info@zapitpestmelbourne.com.au`, form named "Zap It Contact Forms"). Ownership already correct — no transfer needed.
+
+### Contact form
+Awaits Formspree delivery + renders error state with a phone-call fallback link if delivery fails (commit `82b6309`). No more silent lost leads.
+
+### Still awaiting client-side action (3 items)
+
+1. **DKIM enable in Google Workspace admin** — needed to unlock DMARC tightening beyond p=none. Adam / Zaydan action.
+2. **Meta Pixel domain-verification meta-tag** — Business Manager → Brand Safety → Domains → add `zapitpestmelbourne.com.au` → share the meta-tag `content` value with Apex. Needed for full Meta Ads conversion tracking under iOS 14+ ATT. Adam / Zaydan action.
+3. **`family-trust.webp` replacement image** — the current image has "over 20,000 homes" baked into the artwork. Both instances are removed until a clean version arrives. Adam action.
+
+### Still active from Apex side (handover close-out)
+
+- GA4 audit — 8 conversion tags configured, only 1 event (`form_submit_contact`) currently fires. Auditing to either wire the missing 7 or delete dead tags so reporting is honest.
+- WhatConverts account ownership + plan tier confirmation
+- Full audit of any remaining accounts on Apex logins (BigQuery, Search Console, Meta Business, Clarity)
+- Credential rotation coordination (GitHub, WhatConverts, Supabase — all rotated at handover)
+
+---
+
 ## Section 1 — Who owns what
 
 Everything below sits under your Zap It Google account (`info@zapitpestmelbourne.com.au`). Apex has editor-level access to help during the handover period, but you're the owner of everything from day one.
