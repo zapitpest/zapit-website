@@ -53,7 +53,7 @@ export default function AboutUsPage() {
       <JsonLd data={jsonLd} />
 
       {/* ===== DESKTOP SHELL: 1280 container. Top block is copy left, trust card right.
-             Middle block is founder photo left, story right. Below lg every section keeps
+             Middle block is the technician photo left, story right. Below lg every section keeps
              its own full-width mobile layout in the same order as before. ===== */}
       <div className="bg-[#0d402e] max-lg:flex max-lg:flex-col lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[minmax(0,1fr)_400px] lg:items-start lg:gap-16 lg:px-[52px] lg:pb-16 lg:pt-14">
         <div className="max-lg:contents lg:min-w-0">
@@ -121,14 +121,16 @@ export default function AboutUsPage() {
       </div>
 
       <div className="bg-[#2B2B2B] lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[520px_minmax(0,1fr)] lg:items-start lg:gap-16 lg:px-[52px] lg:py-16">
-      {/* ===== 4. FOUNDER IMAGE — text overlay baked into the image. Desktop = framed card pattern. ===== */}
+      {/* ===== 4. TECHNICIAN PHOTO. No founder attribution: naming one person as the business
+             reads as a sole trader. The old file had "Founder, Adam Balli" painted into the
+             pixels and the previous uniform logo on the polo; both are gone from the new file. ===== */}
       <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:bg-[#2B2B2B] lg:py-0">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:sticky lg:top-8 lg:max-w-none lg:px-0">
           <Image
-            src="/images/about/founder-adam.png"
-            alt="Founder, Adam Balli"
-            width={1200}
-            height={900}
+            src="/images/about/technician-treatment.webp"
+            alt="A licensed Zap It technician treating a Melbourne kitchen"
+            width={1560}
+            height={2090}
             className="h-auto w-full lg:rounded-3xl lg:shadow-2xl"
             priority
             sizes="(min-width: 1024px) 640px, 100vw"
