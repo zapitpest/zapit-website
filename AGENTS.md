@@ -15,7 +15,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **Styling:** Tailwind CSS v4 + brand tokens in `src/lib/constants.ts`
 - **Icons:** `lucide-react`
 - **Analytics:** custom module `src/lib/analytics/` — helpers: `trackFormSubmit`, `trackClickPhone`, `trackClickEmail`, `trackBookIntent`, `submitLeadToWhatConverts`
-- **Deployment:** Netlify (`npm run build` → publish `out/`)
+- **Deployment:** Cloudflare Pages (`npm run build` → publish `out/`). Netlify config kept as a fallback but production traffic serves from CF Pages since the 9 Sep 2026 DNS cutover.
 - **Package manager:** npm
 - **Static export** means no runtime server code. No API routes, no server actions in production. Client-side fetch to third parties (WhatConverts) is the pattern.
 
@@ -27,7 +27,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - `src/components/ui/` — small primitives
 - `src/lib/analytics/` — dataLayer helpers, types, service-line detection, WhatConverts helper
 - `src/lib/constants.ts` — SITE_CONFIG, brand tokens, external URLs
-- `public/_redirects` — Netlify 301 redirect rules (58 live, curl-verified)
+- `public/_redirects` — 301 redirect rules, portable format read by both Cloudflare Pages and Netlify. Post-cutover count: ~350+ live, curl-verified.
 - `sql/` — BigQuery warehouse SQL (numbered execution order)
 - `docs/` — architectural + operational docs
 - `netlify.toml` — build config + security headers

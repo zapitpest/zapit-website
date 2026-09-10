@@ -6,10 +6,10 @@ Website + analytics platform for [Zap It Pest & Termite Control Melbourne](https
 
 ## What this repo is
 
-- **Marketing website** — Next.js 16 (App Router) static site with SEO-focused pages, service pages, dynamic suburb landing pages, contact form, and 58 curl-verified 301 redirects preserving old-WordPress SEO equity.
+- **Marketing website** — Next.js 16 (App Router) static site with SEO-focused pages, service pages, dynamic suburb landing pages, contact form, and ~350+ curl-verified 301 redirects preserving old-WordPress SEO equity across the full Wayback-indexed catalogue.
 - **Analytics tracking** — GTM V3 container (14 tags) firing events into GA4, Meta Pixel (with Advanced Matching via SHA-256 hashed PII), Microsoft Clarity, and WhatConverts. Every email and phone number is SHA-256 hashed in the browser before anything leaves the visitor's device.
 - **Data warehouse** — GA4 → BigQuery daily export into `zapit-business-intelligence` (region `australia-southeast1`), with 3 staging views + 5 CEO reporting views live, and 8 reserved dataset shells for future sources (WhatConverts, Zoom, GoHighLevel, Meta Ads, Google Ads, Clarity, AI-layer, Operational).
-- **Reporting** — Looker Studio dashboard. Page 1 (CEO Dashboard) is built and live. Pages 2-6 (Acquisition, Behaviour, Conversion Detail, Segments, Search Console) are planned for build after Adam's sign-off.
+- **Reporting** — Looker Studio dashboard. Page 1 (CEO Dashboard) built and live. Pages 2-3 (Marketing Performance, Behaviour) built and structure-approved 12 Aug 2026 with numbers-review scheduled 2 weeks post-cutover. Pages 4-6 (Conversion Detail, Segments, Search Console) built. Full dashboard now feeds from post-cutover production traffic.
 
 ---
 
@@ -21,7 +21,7 @@ Website + analytics platform for [Zap It Pest & Termite Control Melbourne](https
 - **UI primitives:** `@base-ui/react`, `shadcn/ui` (only where needed)
 - **Icons:** `lucide-react`
 - **Analytics:** custom module in `src/lib/analytics/` with dataLayer helpers
-- **Deployment:** currently on a temporary Apex Netlify account. Permanent host is **Cloudflare Pages** (confirmed by Adam 1 Aug 2026). Migration prep is complete — see `docs/CLOUDFLARE_PAGES_MIGRATION.md` and `docs/DNS_CUTOVER_RUNBOOK.md`. Both `public/_headers` and `public/_redirects` are portable across both platforms without changes.
+- **Deployment:** **Cloudflare Pages** on the Zap It Cloudflare account (`Zapitpestcontroluser@gmail.com`), project `zapit-website`, custom domains `zapitpestmelbourne.com.au` + `www.zapitpestmelbourne.com.au`. DNS cutover completed 9 September 2026 (see `docs/HANDOVER_RUNBOOK.md` post-cutover section). Netlify configuration retained as a fallback and for local-dev parity — `public/_headers` and `public/_redirects` are portable across both platforms.
 - **Data warehouse:** Google BigQuery (project `zapit-business-intelligence`, region `australia-southeast1`)
 - **Package manager:** npm
 
@@ -82,9 +82,9 @@ npm run lint
 npm run build
 ```
 
-**Deployment:** every push to `main` triggers a Netlify auto-deploy in ~30 seconds. Build config lives in `netlify.toml`.
+**Deployment:** every push to `main` triggers a Cloudflare Pages auto-deploy in ~2 minutes. Build config for CF Pages is set in the Pages project UI (build command `npm run build`, output directory `out/`). `netlify.toml` is retained for the fallback Netlify deploy target.
 
-**Rollback:** Netlify dashboard → Deploys tab → find a previous good deploy → "Publish deploy". Instant rollback.
+**Rollback:** Cloudflare Pages dashboard → project `zapit-website` → Deployments tab → find a previous good deployment → "Rollback to this deployment". ~2 minutes to revert. If the whole platform needs to change, `docs/HANDOVER_RUNBOOK.md` documents the full rollback path (revert nameservers at GoDaddy + Netlify re-enable).
 
 ---
 
@@ -111,7 +111,7 @@ zapit-website/
 │     ├─ constants.ts            # SITE_CONFIG, brand tokens, external URLs
 │     └─ …
 ├─ public/
-│  ├─ _redirects                 # Netlify 301 redirect rules (58 curl-verified)
+│  ├─ _redirects                 # 301 redirect rules (portable to CF Pages + Netlify, ~350+ curl-verified)
 │  └─ images/…
 ├─ sql/                           # BigQuery warehouse SQL (numbered execution order)
 ├─ scripts/
@@ -195,7 +195,7 @@ npm run build
 npm run dev
 # → open http://localhost:3000 → click through affected pages
 
-# 5. After Netlify deploys (30-60 sec after push to main)
+# 5. After Cloudflare Pages deploys (~2 min after push to main)
 # → curl the affected URL
 curl -I https://zapitpestmelbourne.netlify.app/<path>
 # → open in incognito, check DevTools Network for GTM/GA4/Pixel/Clarity/WhatConverts requests
