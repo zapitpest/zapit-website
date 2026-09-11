@@ -203,6 +203,15 @@ export default function PestSolutionsPage() {
         </div>
       </section>
 
+      {/* ===== TRUST IMAGE ===== */}
+      <section className="bg-white py-10 sm:py-14 lg:py-16">
+        <div className="mx-auto w-full max-w-[640px] px-5 sm:px-6 lg:max-w-[860px]">
+          <div className="overflow-hidden rounded-3xl shadow-xl">
+            <Image src="/images/residential/family-trust.webp" alt="A Zap It technician checking a skirting board in a Melbourne family home, with the family dog watching" width={1264} height={848} className="h-auto w-full" sizes="(min-width: 1024px) 860px, 100vw" />
+          </div>
+        </div>
+      </section>
+
       {/* ===== STATS ===== */}
       <section className="bg-[#131a1c] py-14 text-white lg:py-16">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-6">

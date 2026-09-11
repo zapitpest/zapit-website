@@ -490,6 +490,14 @@ export default function HomePage() {
           Brief #11: Italic paragraphs normalised to Regular Italic 20px / line-height 29px / center.
           Brief #12: Background unified to #0d402e (matches same-day-service block) for visual consistency. */}
 
+      {/* 11b. Technician and dog. The file carries no baked-in text; a stale comment and the
+          old alt text claimed it did, which is why it was briefly removed on 10 Sept. */}
+      <section className="w-full bg-[#0d402e] py-4 sm:py-6 lg:bg-[#f8f5f2] lg:py-4">
+        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-none lg:px-0">
+          <Image src="/images/residential/family-trust.webp" alt="A Zap It technician checking a skirting board in a Melbourne family home, with the family dog watching" width={1264} height={848} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 831px, 100vw" />
+        </div>
+      </section>
+
       {/* 11c. Pet safety text */}
       <ScrollReveal direction="fade" delay={100}>
         <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:py-6">
