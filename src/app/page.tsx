@@ -337,75 +337,6 @@ export default function HomePage() {
           Flow now: Map → Licensed section → Footer. */}
 
       </div>
-      <div className="max-lg:order-15 lg:contents">
-      {/* ===== 13. LICENSES & CERTIFICATIONS ===== */}
-      <ScrollReveal direction="up">
-        <section className="border-t border-[#E3DFDA] bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14 lg:px-[52px] lg:py-12">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="mb-4 text-[22px] font-semibold leading-tight text-[#131a1c] sm:text-[26px]">
-              Insured, licensed, accredited and legally compliant
-            </h2>
-            <p className="mb-4 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
-              Your health and safety is at the heart of everything we do. Your trust in us is backed
-              by our industry memberships, accreditations, licences and professional insurance.
-            </p>
-            <p className="mb-6 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
-              We&apos;re committed to providing the safest and best possible pest control solutions.
-              We maintain our professional currency by staying at the forefront of advances in
-              technology, regulatory compliance and industry standards.
-            </p>
-
-            <ul className="mb-8 list-disc space-y-3 pl-5 text-[15px] text-[#414042] sm:text-[16px]">
-              <li className="font-semibold text-[#131a1c]">The Australian Environmental Pest Managers Association</li>
-              <li className="font-semibold text-[#131a1c]">HACCP Food Safety Certificate</li>
-              <li className="font-semibold text-[#131a1c]">VIC Government Wildlife Licence</li>
-            </ul>
-
-            <div className="flex flex-col items-center gap-6 border-t border-[#e5e5e5] pt-8">
-              <div className="flex items-center justify-center gap-8">
-                <figure className="flex flex-col items-center text-center">
-                  <Image
-                    src="/images/commercial/cert-wildlife.png"
-                    alt="Wildlife Licensed"
-                    width={120}
-                    height={100}
-                    className="h-20 w-auto object-contain sm:h-24"
-                  />
-                  <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
-                    Wildlife Licenced
-                  </figcaption>
-                </figure>
-                <figure className="flex flex-col items-center text-center">
-                  <Image
-                    src="/images/commercial/cert-haccp.png"
-                    alt="HACCP Food Safety Certification"
-                    width={120}
-                    height={100}
-                    className="h-20 w-auto object-contain sm:h-24"
-                  />
-                  <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
-                    HACCP Food Safety<br />Certification
-                  </figcaption>
-                </figure>
-              </div>
-              <figure className="flex flex-col items-center text-center">
-                <Image
-                  src="/images/commercial/cert-aepma.png"
-                  alt="Australian Environmental Pest Managers Association"
-                  width={160}
-                  height={80}
-                  className="h-16 w-auto object-contain sm:h-20"
-                />
-                <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
-                  Australian Environmental<br />Pest Managers Association
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
-      </ScrollReveal>
-
-      </div>
         </div>
         {/* ---------- right rail: sticky on desktop ---------- */}
         <aside className="max-lg:contents lg:min-w-0 lg:self-stretch lg:bg-[#0d402e]">
@@ -542,6 +473,82 @@ export default function HomePage() {
         </aside>
       </div>
       </div>
+
+      {/* ===== 13. LICENSES AND CERTIFICATIONS — Residential_01 ends the two-column
+           shell at y=4005 and runs this as a full-width band (x=-3, width 1287) with the
+           certification marks at x=206 and the copy at x=430. The build had it as the last
+           block of the 831 main column instead, so the 449 rail beside it ran on as empty
+           dark green for the height of the whole section. It is the last block on mobile
+           either way, so the phone order does not change. ===== */}
+      {/* ===== 13. LICENSES & CERTIFICATIONS ===== */}
+      <ScrollReveal direction="up">
+        <section className="w-full border-t border-[#E3DFDA] bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14 lg:px-[52px] lg:py-14">
+          <div className="mx-auto max-w-3xl lg:grid lg:max-w-[955px] lg:grid-cols-[189px_minmax(0,1fr)] lg:items-start lg:gap-[35px]">
+          <div className="max-lg:contents lg:order-2 lg:min-w-0">
+            <h2 className="mb-4 text-[22px] font-semibold leading-tight text-[#131a1c] sm:text-[26px]">
+              Insured, licensed, accredited and legally compliant
+            </h2>
+            <p className="mb-4 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
+              Your health and safety is at the heart of everything we do. Your trust in us is backed
+              by our industry memberships, accreditations, licences and professional insurance.
+            </p>
+            <p className="mb-6 text-[15px] leading-[1.7] text-[#414042] sm:text-[16px]">
+              We&apos;re committed to providing the safest and best possible pest control solutions.
+              We maintain our professional currency by staying at the forefront of advances in
+              technology, regulatory compliance and industry standards.
+            </p>
+
+            <ul className="mb-8 list-disc space-y-3 pl-5 text-[15px] text-[#414042] sm:text-[16px] lg:mb-0">
+              <li className="font-semibold text-[#131a1c]">The Australian Environmental Pest Managers Association</li>
+              <li className="font-semibold text-[#131a1c]">HACCP Food Safety Certificate</li>
+              <li className="font-semibold text-[#131a1c]">VIC Government Wildlife Licence</li>
+            </ul>
+
+          </div>
+            <div className="flex flex-col items-center gap-6 border-t border-[#e5e5e5] pt-8 lg:order-1 lg:gap-8 lg:border-t-0 lg:pt-1">
+              <div className="flex items-center justify-center gap-8 lg:flex-col lg:gap-8">
+                <figure className="flex flex-col items-center text-center">
+                  <Image
+                    src="/images/commercial/cert-wildlife.png"
+                    alt="Wildlife Licensed"
+                    width={120}
+                    height={100}
+                    className="h-20 w-auto object-contain sm:h-24"
+                  />
+                  <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
+                    Wildlife Licenced
+                  </figcaption>
+                </figure>
+                <figure className="flex flex-col items-center text-center">
+                  <Image
+                    src="/images/commercial/cert-haccp.png"
+                    alt="HACCP Food Safety Certification"
+                    width={120}
+                    height={100}
+                    className="h-20 w-auto object-contain sm:h-24"
+                  />
+                  <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
+                    HACCP Food Safety<br />Certification
+                  </figcaption>
+                </figure>
+              </div>
+              <figure className="flex flex-col items-center text-center">
+                <Image
+                  src="/images/commercial/cert-aepma.png"
+                  alt="Australian Environmental Pest Managers Association"
+                  width={160}
+                  height={80}
+                  className="h-16 w-auto object-contain sm:h-20"
+                />
+                <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
+                  Australian Environmental<br />Pest Managers Association
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
 
     </>
   );
