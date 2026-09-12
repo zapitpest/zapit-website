@@ -85,7 +85,7 @@ export default function ContactUsPage() {
           {/* Column 2 — promise and hours. The design pairs these; the build had hours
               hanging off the address block and no promise on this page at all. Copy is
               the same wording already approved in the footer. */}
-          <div className="mt-10 max-w-[400px] text-[#f8f5f2] lg:mt-[68px] lg:max-w-none">
+          <div className="hidden max-w-[400px] text-[#f8f5f2] lg:mt-[68px] lg:block lg:max-w-none">
             <h2 className="text-[20px] font-bold">Our promise</h2>
             <p className="mt-3 text-[16px] leading-[1.7] text-[#f8f5f2]/85">
               When you protect your home and property from pests with us, your peace of mind is
@@ -104,7 +104,8 @@ export default function ContactUsPage() {
           <div className="mt-10 lg:mt-[68px]">
             <ScrollReveal direction="up">
               <h2 className="text-center text-[22px] font-bold text-[#f8f5f2] sm:text-[24px] lg:text-left lg:text-[20px]">
-                Enquiry form
+                <span className="lg:hidden">Residential enquiry form</span>
+                <span className="max-lg:hidden">Enquiry form</span>
               </h2>
               <div className="mx-auto mt-4 max-w-lg rounded-2xl border border-[#e5e5e5] bg-white p-5 shadow-sm sm:p-6 lg:mx-0 lg:max-w-none">
                 <ContactForm displayPhone={DISPLAY_PHONE} phoneTel={SITE_CONFIG.phoneTel} />
