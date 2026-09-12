@@ -96,9 +96,9 @@ export default function PriceCalculator() {
       className="bg-[#0d402e] pb-10 pt-16 sm:pb-12 sm:pt-20"
       aria-label="Residential price calculator"
     >
-      <div className="mx-auto max-w-[400px] px-5 sm:px-6">
+      <div className="mx-auto max-w-[400px] px-5 sm:px-6 lg:max-w-none lg:px-7">
         <div className="relative">
-          <div className="rounded-[28px] bg-[#f8f5f2] px-6 pb-7 pt-8 shadow-sm sm:px-8 sm:pt-10">
+          <div className="rounded-[28px] bg-[#f8f5f2] px-6 pb-7 pt-8 shadow-sm sm:px-8 sm:pt-10 lg:px-7 lg:pb-8">
             <h2 className="mb-2 text-[24px] font-bold leading-tight text-[#131a1c]">
               Residential price calculator
             </h2>
@@ -112,7 +112,8 @@ export default function PriceCalculator() {
             >
               Treatment type
             </label>
-            <div className="mb-2 flex items-stretch gap-2">
+            <div className="mb-2">
+              <div className="relative">
               <select
                 id="treatment-select"
                 value={selectedName}
@@ -122,7 +123,7 @@ export default function PriceCalculator() {
                   const opts = TREATMENTS.filter((t) => t.name === e.target.value);
                   if (opts[0]) setSelectedPropertyType(opts[0].propertyType);
                 }}
-                className="min-h-[48px] flex-1 appearance-none rounded-md border border-[#828282] bg-white px-4 py-3 text-[14px] text-[#414042] focus:border-[#1cdc38] focus:outline-none focus:ring-2 focus:ring-[#1cdc38]"
+                className="min-h-[48px] w-full min-w-0 appearance-none rounded-lg border border-[#c9c4bd] bg-white px-4 py-3 pr-11 text-[15px] text-[#414042] focus:border-[#0d402e] focus:outline-none focus:ring-2 focus:ring-[#1cdc38]"
               >
                 <option value="">Select a treatment</option>
                 {TREATMENT_NAMES.map((name) => (
@@ -131,12 +132,21 @@ export default function PriceCalculator() {
                   </option>
                 ))}
               </select>
+              <span
+                aria-hidden
+                className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#414042]"
+              >
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden>
+                  <path d="M1 1.5 6 6.5l5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              </div>
               <button
                 type="button"
                 onClick={handleAdd}
-                className="min-h-[48px] shrink-0 rounded-md bg-[#0d402e] px-5 text-[15px] font-bold text-white hover:bg-[#125a41] focus:outline-none focus:ring-2 focus:ring-[#1cdc38]"
+                className="mt-2 min-h-[48px] w-full rounded-lg bg-[#0d402e] px-5 text-[15px] font-bold text-white transition-colors hover:bg-[#125a41] focus:outline-none focus:ring-2 focus:ring-[#1cdc38]"
               >
-                Add
+                Add treatment
               </button>
             </div>
 
@@ -158,7 +168,7 @@ export default function PriceCalculator() {
                   id="property-type"
                   value={selectedPropertyType}
                   onChange={(e) => setSelectedPropertyType(e.target.value as PropertyType)}
-                  className="min-h-[48px] w-full appearance-none rounded-md border border-[#828282] bg-white px-4 py-3 text-[14px] text-[#414042] focus:border-[#1cdc38] focus:outline-none focus:ring-2 focus:ring-[#1cdc38]"
+                  className="min-h-[48px] w-full min-w-0 appearance-none rounded-lg border border-[#c9c4bd] bg-white px-4 py-3 pr-11 text-[15px] text-[#414042] focus:border-[#0d402e] focus:outline-none focus:ring-2 focus:ring-[#1cdc38]"
                 >
                   {propertyOptions.map((opt) => (
                     <option key={opt.propertyType} value={opt.propertyType}>
