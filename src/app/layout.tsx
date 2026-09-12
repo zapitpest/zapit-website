@@ -104,7 +104,12 @@ export default function RootLayout({
         <AnalyticsDebugOverlay />
         <JsonLd data={[generateWebSiteSchema(), generateOrganizationSchema(), generateLocalBusinessSchema()]} />
         <Header />
-        <main id="main-content" className="flex-1 pb-[calc(120px+env(safe-area-inset-bottom))] lg:pb-0">{children}</main>
+        {/* The floating Call now bar needs clearance so it never covers content.
+            That clearance used to live here, on <main>, which put it between the
+            last section and the footer — and since the body is white, it rendered
+            as a white band across the bottom of every mobile page. It now sits on
+            the footer, where the dark background absorbs it. */}
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <FloatingCTA />
       </body>
