@@ -42,7 +42,8 @@ export default function CommercialPestControlPage() {
 
       {/* ===== DESKTOP HERO SHELL: two columns in a 1280 container above lg. On a 1920x1080 screen the
              old stack put a portrait photo on the first screen and cut the H1 in half at the fold. ===== */}
-      <div className="bg-[#2B2B2B] lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[minmax(0,1fr)_600px] lg:items-center lg:gap-12 lg:px-[52px] lg:py-16">
+      <div className="w-full bg-[#2B2B2B]">
+      <div className="lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[minmax(0,1fr)_600px] lg:items-center lg:gap-12 lg:px-[52px] lg:py-16">
       {/* ===== 1. HERO IMAGE, mobile full-bleed, desktop right column ===== */}
       <section className="w-full bg-[#2B2B2B] py-2 sm:py-3 lg:order-2 lg:py-0">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-none lg:px-0">
@@ -115,6 +116,7 @@ export default function CommercialPestControlPage() {
           </div>
         </section>
       </ScrollReveal>
+      </div>
       </div>
 
       {/* ===== 2b. INDUSTRIES WE SERVE — target of the hero's "#industries" button.
@@ -241,18 +243,16 @@ export default function CommercialPestControlPage() {
         </div>
       </section>
 
-      {/* ===== 8. 24/7 SAME DAY SERVICE ===== */}
+      {/* ===== 8. SAME DAY SERVICE ===== */}
       <ScrollReveal direction="fade">
         <section className="bg-[#2B2B2B] px-5 py-10 sm:px-6 sm:py-12">
           <div className="mx-auto flex max-w-md flex-col items-center text-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/icons/group-350.svg" alt="" aria-hidden className="mb-4 h-[120px] w-auto sm:h-[140px]" />
-            <p
-              className="italic text-[#1cdc38]"
-              style={{ fontSize: '24px', lineHeight: '1.35', fontWeight: 400 }}
-            >
-              24/7 same day service<br />available. Call now!
-            </p>
+            {/* The artwork already carries the words "Same day service available. Call now!"
+                as outlined paths, so the paragraph that used to sit under it printed the same
+                sentence twice. Alt text carries the message instead, matching how the home and
+                contact pages use this asset. */}
+            <img src="/images/icons/group-350.svg" alt="Same day service available. Call now!" className="h-auto w-full max-w-[420px]" />
           </div>
         </section>
       </ScrollReveal>
