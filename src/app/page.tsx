@@ -130,6 +130,12 @@ export default function HomePage() {
       {/* ===== DESKTOP SHELL, from Figma Zapit_desktop_03: main column 831 + sticky dark rail 449 at a
           1280 artboard. Below lg both containers dissolve (display: contents) and each block
           takes an explicit order, so the mobile sequence is exactly what shipped before. ===== */}
+      {/* The 831/449 shell is capped at 1280, but the column colours were painted inside it,
+          so above 1280 the body's white showed through as bare strips down both sides of the
+          page. This wrapper carries the same two colours full-bleed: cream out to the left,
+          rail green out to the right. The hard stop sits at 50% of the viewport, which is
+          always well inside the centred 1280 shell, so only the gutters ever see it. */}
+      <div className="lg:bg-[linear-gradient(to_right,#f8f5f2_50%,#0d402e_50%)]">
       <div className="mx-auto w-full max-w-[1280px] max-lg:flex max-lg:flex-col lg:grid lg:grid-cols-[minmax(0,831fr)_minmax(0,449fr)] lg:items-stretch">
         {/* ---------- main column ---------- */}
         <div className="max-lg:contents lg:min-w-0 lg:bg-[#f8f5f2] lg:pb-10">
@@ -540,6 +546,7 @@ export default function HomePage() {
       </div>
           </div>
         </aside>
+      </div>
       </div>
 
     </>
