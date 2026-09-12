@@ -10,6 +10,27 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import { ALL_INDUSTRIES } from './[slug]/page';
 import type { BreadcrumbItem } from '@/types';
 
+// Commercial_01 nodes 25257:345-348. Owner-approved copy, transcribed from the design
+// rather than written here, because it describes how a commercial account is actually run.
+const STRATEGY_STEPS = [
+  {
+    title: 'Assessment and risk analysis',
+    body: 'Conduct a detailed inspection of the built environment, assessing risk and identifying past or present pest activity.',
+  },
+  {
+    title: 'Develop tailored pest protection plan',
+    body: 'Develop a pest protection plan tailored to suit your specific requirements and risk mitigation.',
+  },
+  {
+    title: 'Implement pest protection plan',
+    body: 'Implement the pest protection plan as per proposal.',
+  },
+  {
+    title: 'Monitoring and reporting',
+    body: 'Conduct scheduled monitoring and reporting.',
+  },
+];
+
 const BREADCRUMBS: BreadcrumbItem[] = [
   { name: 'Home', href: '/' },
   { name: 'Commercial Pest Control', href: '/commercial-pest-control' },
@@ -42,7 +63,8 @@ export default function CommercialPestControlPage() {
 
       {/* ===== DESKTOP HERO SHELL: two columns in a 1280 container above lg. On a 1920x1080 screen the
              old stack put a portrait photo on the first screen and cut the H1 in half at the fold. ===== */}
-      <div className="bg-[#2B2B2B] lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[minmax(0,1fr)_600px] lg:items-center lg:gap-12 lg:px-[52px] lg:py-16">
+      <div className="w-full bg-[#2B2B2B]">
+      <div className="lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[minmax(0,1fr)_600px] lg:items-center lg:gap-12 lg:px-[52px] lg:py-16">
       {/* ===== 1. HERO IMAGE, mobile full-bleed, desktop right column ===== */}
       <section className="w-full bg-[#2B2B2B] py-2 sm:py-3 lg:order-2 lg:py-0">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-none lg:px-0">
@@ -116,26 +138,55 @@ export default function CommercialPestControlPage() {
         </section>
       </ScrollReveal>
       </div>
+      </div>
+
+      {/* ===== 2a. OUR PEST CONTROL STRATEGY — Commercial_01 y=1039. Four columns of
+             230px separated by vertical rules. This section is in the approved design and
+             was never built, so the page never explained what the programme actually is. ===== */}
+      <ScrollReveal direction="up">
+        <section className="bg-[#f8f5f2] px-5 py-12 sm:px-6 sm:py-14 lg:py-16">
+          <div className="mx-auto max-w-[600px] lg:max-w-[1176px]">
+            <h2 className="mb-8 text-center text-[22px] font-bold leading-tight text-[#131a1c] sm:text-[26px] lg:mb-12 lg:text-[32px]">
+              Our pest control strategy to protect your business
+            </h2>
+            <ol className="grid gap-8 lg:grid-cols-4 lg:gap-x-[76px] lg:gap-y-0">
+              {STRATEGY_STEPS.map((step, i) => (
+                <li
+                  key={step.title}
+                  className={`lg:pl-8 ${i > 0 ? 'lg:border-l lg:border-[#131a1c]/15' : ''}`}
+                >
+                  <h3 className="mb-2 text-[17px] font-bold leading-snug text-[#131a1c] sm:text-[18px]">
+                    {step.title}
+                  </h3>
+                  <p className="text-[15px] leading-[1.6] text-[#131a1c]/75 sm:text-[16px]">
+                    {step.body}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      </ScrollReveal>
 
       {/* ===== 2b. INDUSTRIES WE SERVE — target of the hero's "#industries" button.
            Previously that button pointed at an id that did not exist on the page, and
            12 of the 14 industry pages had no link from the hub at all. ===== */}
       <ScrollReveal direction="up">
         <section id="industries" className="scroll-mt-24 bg-[#f8f5f2] px-5 py-12 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-xl">
-            <h2 className="mb-2 text-center text-[22px] font-bold text-[#131a1c] sm:text-[26px]">
+          <div className="mx-auto max-w-xl lg:max-w-[1116px]">
+            <h2 className="mb-2 text-center text-[22px] font-bold text-[#131a1c] sm:text-[26px] lg:text-[32px]">
               Industries we serve
             </h2>
             <p className="mb-7 text-center text-[15px] leading-[1.6] text-[#131a1c]/75">
               Every site has its own compliance load and its own pest pressure. Pick yours to see
               how we run the program.
             </p>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 lg:gap-3">
               {ALL_INDUSTRIES.map((ind) => (
                 <Link
                   key={ind.slug}
                   href={ind.href}
-                  className="rounded-xl border border-[#e5e5e5] bg-white px-4 py-3.5 text-center text-[13px] font-semibold text-[#131a1c] transition-all hover:border-[#3fa535] hover:shadow-md sm:text-[14px]"
+                  className="flex items-center justify-center rounded-xl border border-[#e5e5e5] bg-white px-4 py-3.5 text-center text-[13px] font-semibold text-[#131a1c] transition-all hover:border-[#3fa535] hover:shadow-md sm:text-[14px] lg:min-h-[92px] lg:px-6 lg:text-[16px]"
                 >
                   {ind.label}
                 </Link>
@@ -145,17 +196,20 @@ export default function CommercialPestControlPage() {
         </section>
       </ScrollReveal>
 
-      {/* ===== 3. ZAYDAN PHOTO — desktop = framed card; mobile = full-bleed ===== */}
-      <section className="w-full bg-[#2B2B2B] py-4 sm:py-6 lg:py-12">
-        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-[560px] lg:px-6">
+      {/* ===== 3+4. OWNER INTRO — Commercial_01 y=1399 puts the portrait (337 wide) beside
+             the bio (711 wide). The build stacked them in a 600px column, which is the mobile
+             arrangement left running on desktop. Mobile order is unchanged. ===== */}
+      <div className="w-full bg-[#2B2B2B] lg:mx-auto lg:grid lg:max-w-[1176px] lg:grid-cols-[337px_minmax(0,1fr)] lg:items-center lg:gap-[60px] lg:px-[52px] lg:py-16">
+      <section className="w-full bg-[#2B2B2B] py-4 sm:py-6 lg:py-0">
+        <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-none lg:px-0">
           <Image src="/images/commercial/zaydan-photo.webp" alt="Oz, Commercial Manager at Zap It" width={1200} height={1800} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 560px, 100vw" />
         </div>
       </section>
 
       {/* ===== 4. ZAYDAN BIO — Figma layout: Name Bold + role + Zap It, then bio, full-width CTA ===== */}
       <ScrollReveal direction="up">
-        <section className="bg-[#2B2B2B] px-5 pb-12 pt-8 sm:px-6 sm:pb-14 sm:pt-10">
-          <div className="mx-auto max-w-[600px]">
+        <section className="bg-[#2B2B2B] px-5 pb-12 pt-8 sm:px-6 sm:pb-14 sm:pt-10 lg:px-0 lg:py-0">
+          <div className="mx-auto max-w-[600px] lg:mx-0 lg:max-w-none">
             {/* Name and role are real markup now. The previous portrait had them baked
                 into the pixels (and shipped the placeholder "Zaydan Surname" to
                 production). Surname deliberately omitted until the spelling is
@@ -189,13 +243,14 @@ export default function CommercialPestControlPage() {
             {/* Full-width Go to case study button per Figma */}
             <a
               href="#case-study"
-              className="mt-10 flex w-full items-center justify-center rounded-full bg-white px-8 py-4 text-[16px] font-bold text-[#131a1c] transition-opacity hover:opacity-90"
+              className="mt-10 flex w-full items-center justify-center rounded-full bg-white px-8 py-4 text-[16px] font-bold text-[#131a1c] transition-opacity hover:opacity-90 lg:w-auto lg:self-start lg:px-12"
             >
               Go to case study
             </a>
           </div>
         </section>
       </ScrollReveal>
+      </div>
 
       {/* ===== 5. TESTIMONIAL 1 — I found Zap It (client-supplied image, text baked in) ===== */}
       <section className="w-full bg-[#2B2B2B] py-4 sm:py-6 lg:py-12">
@@ -241,18 +296,16 @@ export default function CommercialPestControlPage() {
         </div>
       </section>
 
-      {/* ===== 8. 24/7 SAME DAY SERVICE ===== */}
+      {/* ===== 8. SAME DAY SERVICE ===== */}
       <ScrollReveal direction="fade">
         <section className="bg-[#2B2B2B] px-5 py-10 sm:px-6 sm:py-12">
           <div className="mx-auto flex max-w-md flex-col items-center text-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/icons/group-350.svg" alt="" aria-hidden className="mb-4 h-[120px] w-auto sm:h-[140px]" />
-            <p
-              className="italic text-[#1cdc38]"
-              style={{ fontSize: '24px', lineHeight: '1.35', fontWeight: 400 }}
-            >
-              24/7 same day service<br />available. Call now!
-            </p>
+            {/* The artwork already carries the words "Same day service available. Call now!"
+                as outlined paths, so the paragraph that used to sit under it printed the same
+                sentence twice. Alt text carries the message instead, matching how the home and
+                contact pages use this asset. */}
+            <img src="/images/icons/group-350.svg" alt="Same day service available. Call now!" className="h-auto w-full max-w-[420px]" />
           </div>
         </section>
       </ScrollReveal>
@@ -273,9 +326,9 @@ export default function CommercialPestControlPage() {
 
       {/* ===== 10. CASE STUDY — Helen, Architect practice ===== */}
       <ScrollReveal direction="up">
-        <section id="case-study" className="bg-[#2B2B2B] px-5 py-12 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-[600px] text-[#f8f5f2]">
-            <h2 className="mb-5 text-[28px] font-bold leading-tight sm:text-[32px]">Case study</h2>
+        <section id="case-study" className="bg-[#2B2B2B] px-5 py-12 sm:px-6 sm:py-14 lg:py-16">
+          <div className="mx-auto max-w-[600px] text-[#f8f5f2] lg:max-w-[840px]">
+            <h2 className="mb-5 text-[28px] font-bold leading-tight sm:text-[32px] lg:mb-8 lg:text-[36px]">Case study</h2>
 
             <p className="mb-5 text-[15px] leading-[1.7] sm:text-[16px]">
               <strong className="font-bold">Client:</strong> Helen, Architect practice
@@ -320,8 +373,9 @@ export default function CommercialPestControlPage() {
 
       {/* ===== 11. INSURED, LICENSED, ACCREDITED ===== */}
       <ScrollReveal direction="up">
-        <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-3xl">
+        <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14 lg:py-16">
+          <div className="mx-auto max-w-3xl lg:grid lg:max-w-[1176px] lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-16">
+          <div className="lg:min-w-0">
             <h2 className="mb-4 text-[22px] font-semibold leading-tight text-[#131a1c] sm:text-[26px]">
               Insured, licensed, accredited and legally compliant
             </h2>
@@ -335,13 +389,14 @@ export default function CommercialPestControlPage() {
               technology, regulatory compliance and industry standards.
             </p>
 
-            <ul className="mb-8 list-disc space-y-3 pl-5 text-[15px] text-[#414042] sm:text-[16px]">
+            <ul className="mb-8 list-disc space-y-3 pl-5 text-[15px] text-[#414042] sm:text-[16px] lg:mb-0">
               <li className="font-semibold text-[#131a1c]">The Australian Environmental Pest Managers Association</li>
               <li className="font-semibold text-[#131a1c]">HACCP Food Safety Certificate</li>
               <li className="font-semibold text-[#131a1c]">VIC Government Wildlife Licence</li>
             </ul>
 
-            <div className="flex flex-col items-center gap-6 border-t border-[#e5e5e5] pt-8">
+          </div>
+            <div className="flex flex-col items-center gap-6 border-t border-[#e5e5e5] pt-8 lg:border-t-0 lg:pt-0">
               <div className="flex items-center justify-center gap-8">
                 <figure className="flex flex-col items-center text-center">
                   <Image
