@@ -48,6 +48,14 @@ export type Suburb = {
   anchor: AnchorId;
   status: SuburbStatus;
   hasPage: boolean;
+  /**
+   * Called out by name on the map image, and in the band beneath it. These are
+   * the suburbs someone recognises, so they place themselves straight away.
+   * Confirmed by Zaydan 12 Sep 2026 (decision D6). This flag and the HIGHLIGHTS
+   * list in scripts/seo/render_service_area_map.py must be kept in step — the
+   * map is a rendered image and cannot read this file.
+   */
+  highlight?: true;
 };
 
 export const SUBURBS: readonly Suburb[] = [
@@ -55,8 +63,8 @@ export const SUBURBS: readonly Suburb[] = [
   { name: 'Armadale', slug: 'pest-control-armadale', anchor: 'city', status: 'core', hasPage: false },
   { name: 'Ascot Vale', slug: 'pest-control-ascot-vale', anchor: 'city', status: 'core', hasPage: false },
   { name: 'Carlton', slug: 'pest-control-carlton', anchor: 'city', status: 'core', hasPage: true  },
-  { name: 'Carlton North', slug: 'pest-control-carlton-north', anchor: 'city', status: 'core', hasPage: false },
-  { name: 'Clifton Hill', slug: 'pest-control-clifton-hill', anchor: 'city', status: 'core', hasPage: false },
+  { name: 'Carlton North', slug: 'pest-control-carlton-north', anchor: 'city', status: 'core', hasPage: false , highlight: true },
+  { name: 'Clifton Hill', slug: 'pest-control-clifton-hill', anchor: 'city', status: 'core', hasPage: false , highlight: true },
   { name: 'Collingwood', slug: 'pest-control-collingwood', anchor: 'city', status: 'core', hasPage: true  },
   { name: 'Docklands', slug: 'pest-control-docklands', anchor: 'city', status: 'core', hasPage: true  },
   { name: 'East Melbourne', slug: 'pest-control-east-melbourne', anchor: 'city', status: 'core', hasPage: true  },
@@ -65,12 +73,12 @@ export const SUBURBS: readonly Suburb[] = [
   { name: 'Footscray', slug: 'pest-control-footscray', anchor: 'city', status: 'core', hasPage: true  },
   { name: 'Hawthorn', slug: 'pest-control-hawthorn', anchor: 'city', status: 'core', hasPage: true  },
   { name: 'Kensington', slug: 'pest-control-kensington', anchor: 'city', status: 'core', hasPage: true  },
-  { name: 'Kew', slug: 'pest-control-kew', anchor: 'city', status: 'core', hasPage: true  },
+  { name: 'Kew', slug: 'pest-control-kew', anchor: 'city', status: 'core', hasPage: true  , highlight: true },
   { name: 'Newport', slug: 'pest-control-newport', anchor: 'city', status: 'core', hasPage: true  },
   { name: 'North Melbourne', slug: 'pest-control-north-melbourne', anchor: 'city', status: 'core', hasPage: true  },
   { name: 'Parkville', slug: 'pest-control-parkville', anchor: 'city', status: 'core', hasPage: true  },
   { name: 'Prahran', slug: 'pest-control-prahran', anchor: 'city', status: 'core', hasPage: true  },
-  { name: 'Richmond', slug: 'pest-control-richmond', anchor: 'city', status: 'core', hasPage: true  },
+  { name: 'Richmond', slug: 'pest-control-richmond', anchor: 'city', status: 'core', hasPage: true  , highlight: true },
   { name: 'Seddon', slug: 'pest-control-seddon', anchor: 'city', status: 'core', hasPage: true  },
   { name: 'South Yarra', slug: 'pest-control-south-yarra', anchor: 'city', status: 'core', hasPage: true  },
   { name: 'Southbank', slug: 'pest-control-southbank', anchor: 'city', status: 'core', hasPage: true  },
@@ -80,56 +88,56 @@ export const SUBURBS: readonly Suburb[] = [
   { name: 'Williamstown', slug: 'pest-control-williamstown', anchor: 'city', status: 'core', hasPage: true  },
   { name: 'Windsor', slug: 'pest-control-windsor', anchor: 'city', status: 'core', hasPage: false },
   { name: 'Yarraville', slug: 'pest-control-yarraville', anchor: 'city', status: 'core', hasPage: true  },
-  { name: 'Brunswick', slug: 'pest-control-brunswick', anchor: 'coburg', status: 'core', hasPage: true  },
+  { name: 'Brunswick', slug: 'pest-control-brunswick', anchor: 'coburg', status: 'core', hasPage: true  , highlight: true },
   { name: 'Brunswick East', slug: 'pest-control-brunswick-east', anchor: 'coburg', status: 'core', hasPage: false },
   { name: 'Brunswick West', slug: 'pest-control-brunswick-west', anchor: 'coburg', status: 'core', hasPage: true  },
   { name: 'Coburg', slug: 'coburg', anchor: 'coburg', status: 'core', hasPage: true  },
   { name: 'Coburg North', slug: 'pest-control-coburg-north', anchor: 'coburg', status: 'core', hasPage: false },
-  { name: 'Essendon', slug: 'pest-control-essendon', anchor: 'coburg', status: 'core', hasPage: false },
+  { name: 'Essendon', slug: 'pest-control-essendon', anchor: 'coburg', status: 'core', hasPage: false , highlight: true },
   { name: 'Fawkner', slug: 'pest-control-fawkner', anchor: 'coburg', status: 'core', hasPage: true  },
   { name: 'Glenroy', slug: 'pest-control-glenroy', anchor: 'coburg', status: 'core', hasPage: true  },
   { name: 'Hadfield', slug: 'pest-control-hadfield', anchor: 'coburg', status: 'core', hasPage: false },
-  { name: 'Moonee Ponds', slug: 'pest-control-moonee-ponds', anchor: 'coburg', status: 'core', hasPage: false },
+  { name: 'Moonee Ponds', slug: 'pest-control-moonee-ponds', anchor: 'coburg', status: 'core', hasPage: false , highlight: true },
   { name: 'Niddrie', slug: 'pest-control-niddrie', anchor: 'coburg', status: 'core', hasPage: false },
-  { name: 'Northcote', slug: 'pest-control-northcote', anchor: 'coburg', status: 'core', hasPage: false },
+  { name: 'Northcote', slug: 'pest-control-northcote', anchor: 'coburg', status: 'core', hasPage: false , highlight: true },
   { name: 'Oak Park', slug: 'pest-control-oak-park', anchor: 'coburg', status: 'core', hasPage: false },
-  { name: 'Pascoe Vale', slug: 'pest-control-pascoe-vale', anchor: 'coburg', status: 'core', hasPage: true  },
+  { name: 'Pascoe Vale', slug: 'pest-control-pascoe-vale', anchor: 'coburg', status: 'core', hasPage: true  , highlight: true },
   { name: 'Pascoe Vale South', slug: 'pest-control-pascoe-vale-south', anchor: 'coburg', status: 'core', hasPage: false },
-  { name: 'Thornbury', slug: 'pest-control-thornbury', anchor: 'coburg', status: 'core', hasPage: false },
+  { name: 'Thornbury', slug: 'pest-control-thornbury', anchor: 'coburg', status: 'core', hasPage: false , highlight: true },
   { name: 'Alphington', slug: 'pest-control-alphington', anchor: 'heidelberg', status: 'core', hasPage: false },
   { name: 'Balwyn', slug: 'pest-control-balwyn', anchor: 'heidelberg', status: 'core', hasPage: true  },
-  { name: 'Balwyn North', slug: 'pest-control-balwyn-north', anchor: 'heidelberg', status: 'core', hasPage: false },
+  { name: 'Balwyn North', slug: 'pest-control-balwyn-north', anchor: 'heidelberg', status: 'core', hasPage: false , highlight: true },
   { name: 'Bellfield', slug: 'pest-control-bellfield', anchor: 'heidelberg', status: 'core', hasPage: false },
   { name: 'Briar Hill', slug: 'pest-control-briar-hill', anchor: 'heidelberg', status: 'core', hasPage: false },
   { name: 'Bulleen', slug: 'pest-control-bulleen', anchor: 'heidelberg', status: 'core', hasPage: false },
-  { name: 'Bundoora', slug: 'pest-control-bundoora', anchor: 'heidelberg', status: 'core', hasPage: true  },
-  { name: 'Doncaster', slug: 'pest-control-doncaster', anchor: 'heidelberg', status: 'core', hasPage: true  },
-  { name: 'Eaglemont', slug: 'pest-control-eaglemont', anchor: 'heidelberg', status: 'core', hasPage: false },
+  { name: 'Bundoora', slug: 'pest-control-bundoora', anchor: 'heidelberg', status: 'core', hasPage: true  , highlight: true },
+  { name: 'Doncaster', slug: 'pest-control-doncaster', anchor: 'heidelberg', status: 'core', hasPage: true  , highlight: true },
+  { name: 'Eaglemont', slug: 'pest-control-eaglemont', anchor: 'heidelberg', status: 'core', hasPage: false , highlight: true },
   { name: 'Fairfield', slug: 'pest-control-fairfield', anchor: 'heidelberg', status: 'core', hasPage: false },
-  { name: 'Greensborough', slug: 'pest-control-greensborough', anchor: 'heidelberg', status: 'core', hasPage: false },
+  { name: 'Greensborough', slug: 'pest-control-greensborough', anchor: 'heidelberg', status: 'core', hasPage: false , highlight: true },
   { name: 'Heidelberg', slug: 'pest-control-heidelberg', anchor: 'heidelberg', status: 'core', hasPage: false },
   { name: 'Heidelberg Heights', slug: 'pest-control-heidelberg-heights', anchor: 'heidelberg', status: 'core', hasPage: false },
   { name: 'Heidelberg West', slug: 'pest-control-heidelberg-west', anchor: 'heidelberg', status: 'core', hasPage: false },
-  { name: 'Ivanhoe', slug: 'pest-control-ivanhoe', anchor: 'heidelberg', status: 'core', hasPage: false },
+  { name: 'Ivanhoe', slug: 'pest-control-ivanhoe', anchor: 'heidelberg', status: 'core', hasPage: false , highlight: true },
   { name: 'Ivanhoe East', slug: 'pest-control-ivanhoe-east', anchor: 'heidelberg', status: 'core', hasPage: false },
   { name: 'Kew East', slug: 'pest-control-kew-east', anchor: 'heidelberg', status: 'core', hasPage: false },
   { name: 'Lower Plenty', slug: 'pest-control-lower-plenty', anchor: 'heidelberg', status: 'core', hasPage: false },
-  { name: 'Macleod', slug: 'pest-control-macleod', anchor: 'heidelberg', status: 'core', hasPage: false },
+  { name: 'Macleod', slug: 'pest-control-macleod', anchor: 'heidelberg', status: 'core', hasPage: false , highlight: true },
   { name: 'Montmorency', slug: 'pest-control-montmorency', anchor: 'heidelberg', status: 'core', hasPage: false },
-  { name: 'Rosanna', slug: 'pest-control-rosanna', anchor: 'heidelberg', status: 'core', hasPage: false },
-  { name: 'Templestowe', slug: 'pest-control-templestowe', anchor: 'heidelberg', status: 'core', hasPage: true  },
+  { name: 'Rosanna', slug: 'pest-control-rosanna', anchor: 'heidelberg', status: 'core', hasPage: false , highlight: true },
+  { name: 'Templestowe', slug: 'pest-control-templestowe', anchor: 'heidelberg', status: 'core', hasPage: true  , highlight: true },
   { name: 'Templestowe Lower', slug: 'pest-control-templestowe-lower', anchor: 'heidelberg', status: 'core', hasPage: false },
-  { name: 'Viewbank', slug: 'pest-control-viewbank', anchor: 'heidelberg', status: 'core', hasPage: false },
+  { name: 'Viewbank', slug: 'pest-control-viewbank', anchor: 'heidelberg', status: 'core', hasPage: false , highlight: true },
   { name: 'Watsonia', slug: 'pest-control-watsonia', anchor: 'heidelberg', status: 'core', hasPage: false },
   { name: 'Watsonia North', slug: 'pest-control-watsonia-north', anchor: 'heidelberg', status: 'core', hasPage: false },
   { name: 'Yallambie', slug: 'pest-control-yallambie', anchor: 'heidelberg', status: 'core', hasPage: false },
   { name: 'Campbellfield', slug: 'pest-control-campbellfield', anchor: 'reservoir', status: 'core', hasPage: true  },
-  { name: 'Epping', slug: 'pest-control-epping', anchor: 'reservoir', status: 'core', hasPage: true  },
+  { name: 'Epping', slug: 'pest-control-epping', anchor: 'reservoir', status: 'core', hasPage: true  , highlight: true },
   { name: 'Kingsbury', slug: 'pest-control-kingsbury', anchor: 'reservoir', status: 'core', hasPage: false },
   { name: 'Lalor', slug: 'pest-control-lalor', anchor: 'reservoir', status: 'core', hasPage: false },
-  { name: 'Preston', slug: 'pest-control-preston', anchor: 'reservoir', status: 'core', hasPage: true  },
+  { name: 'Preston', slug: 'pest-control-preston', anchor: 'reservoir', status: 'core', hasPage: true  , highlight: true },
   { name: 'Reservoir', slug: 'reservoir', anchor: 'reservoir', status: 'core', hasPage: true  },
-  { name: 'Thomastown', slug: 'pest-control-thomastown', anchor: 'reservoir', status: 'core', hasPage: true  },
+  { name: 'Thomastown', slug: 'pest-control-thomastown', anchor: 'reservoir', status: 'core', hasPage: true  , highlight: true },
 
   // --- Awaiting decision D1. Nothing below renders while status is 'edge'. ---
   { name: 'Eltham North', slug: 'pest-control-eltham-north', anchor: 'heidelberg', status: 'edge', hasPage: false },
@@ -180,6 +188,11 @@ export const PAGE_BACKLOG: readonly string[] = [
 
 export const CORE_SUBURBS = SUBURBS.filter((s) => s.status === 'core');
 export const SUBURBS_WITH_PAGES = SUBURBS.filter((s) => s.status === 'core' && s.hasPage);
+
+/** The named suburbs on the map, grouped the way the map groups them. */
+export function highlightsByAnchor(id: AnchorId): Suburb[] {
+  return CORE_SUBURBS.filter((s) => s.anchor === id && s.highlight);
+}
 
 export function suburbsByAnchor(id: AnchorId): Suburb[] {
   return CORE_SUBURBS.filter((s) => s.anchor === id);
