@@ -11,10 +11,10 @@ import type { BreadcrumbItem } from '@/types';
 import HomeHero from '@/components/sections/HomeHero';
 import GoogleReviewsCarousel from '@/components/sections/GoogleReviewsCarousel';
 import PriceCalculator from '@/components/sections/PriceCalculator';
+import { ServiceAreaMap } from '@/components/sections/ServiceAreaMap';
+import { AREA_SUMMARY } from '@/lib/service-area';
 
 const WP = '/images/wp-assets';
-const MELBOURNE_MAP =
-  'https://www.google.com/maps?q=' + encodeURIComponent('Melbourne, Victoria, Australia') + '&z=10&output=embed';
 
 // Pest icons supplied by client live at /images/pest-icons/<slug>.svg (28x28 per spec).
 type PestPriceItem = {
@@ -310,32 +310,26 @@ export default function HomePage() {
         <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:bg-[#f8f5f2] lg:px-[52px] lg:pb-4 lg:pt-12">
           <p className="mx-auto max-w-md text-center text-[20px] font-normal italic leading-[29px] text-[#1cdc38] lg:max-w-[470px] lg:text-[18px] lg:text-[#414042]">
             <span className="mb-3 hidden text-[30px] font-bold not-italic leading-tight text-[#131a1c] lg:block">Service areas</span>
-            We service Melbourne&apos;s central, north-west, northern and north-eastern suburbs.
+            {AREA_SUMMARY}
           </p>
         </section>
       </ScrollReveal>
 
       </div>
       <div className="max-lg:order-14 lg:contents">
-      {/* ===== 12. MELBOURNE MAP ===== */}
-      <section className="bg-[#0d402e] px-0 pb-2 sm:px-4 lg:bg-[#f8f5f2] lg:px-[52px] lg:pb-12">
-        <div className="relative mx-auto w-full max-w-5xl overflow-hidden sm:rounded-2xl lg:max-w-[560px] lg:rounded-[10px]">
-          <div className="relative aspect-[4/3] w-full min-h-[240px] bg-[#1a4f38] sm:aspect-[16/9] sm:min-h-[300px]">
-            <iframe
-              title="Zap It Melbourne service area map"
-              src={MELBOURNE_MAP}
-              className="absolute inset-0 h-full w-full border-0"
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            <div className="pointer-events-none absolute inset-0 flex items-center justify-center" aria-hidden>
-              <div className="h-[min(72%,18rem)] w-[min(72%,18rem)] rounded-full border-[5px] border-[#1cdc38] shadow-[0_0_0_2px_rgba(28,220,56,0.3)] sm:h-[min(65%,20rem)] sm:w-[min(65%,20rem)]" />
-              <div className="absolute right-[14%] top-[18%] flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md">
-                <CheckCircle2 className="h-7 w-7 text-[#1cdc38]" strokeWidth={2.25} />
-              </div>
-            </div>
-          </div>
+      {/* ===== 12. MELBOURNE MAP =====
+           Was a live Google iframe with a CSS circle floating over it — the circle
+           was sized to its container, not to any distance, and stayed put when the
+           map was dragged. Now the same fixed image /service-areas/ uses, so both
+           pages claim the same area and neither can be panned away from it.
+           The suburb band is off here: this sits in a dark band on mobile and the
+           copy above already states the area. ===== */}
+      <section className="bg-[#0d402e] px-5 pb-4 sm:px-4 lg:bg-[#f8f5f2] lg:px-[52px] lg:pb-12">
+        <div className="mx-auto w-full max-w-5xl lg:max-w-[560px]">
+          <ServiceAreaMap
+            showNearby={false}
+            className="[&>figcaption]:text-[#cfe8d6] lg:[&>figcaption]:text-[#414042]"
+          />
         </div>
       </section>
 
