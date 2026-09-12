@@ -1,3 +1,19 @@
+// WHICH SUBURB PAGES EXIST. Not where the business works.
+//
+// `src/lib/service-area.ts` is the source of truth for the service area — what
+// /service-areas/ claims and what the map draws. This file only still decides
+// which /pest-control-* pages get generated.
+//
+// The two disagree on purpose, for now. 38 of the suburbs below are outside the
+// service area and 17 have never had a single job, but deleting a page that
+// might still earn calls is unrecoverable, and there is no Search Console data
+// in the warehouse yet to tell us which is which. That is decision D3 in
+// plans/2026-09-12-service-area-and-suburb-pages.md.
+//
+// Until D3 closes, those pages stay live but are no longer linked from
+// /service-areas/, so nothing 404s and nothing new is promoted. When D3 closes,
+// delete the rows here AND add a 301 to public/_redirects in the same commit.
+
 export type ServiceAreaRegion = {
   id: string;
   name: string;
