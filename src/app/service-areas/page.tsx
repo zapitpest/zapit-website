@@ -45,24 +45,58 @@ export default function ServiceAreasPage() {
       <JsonLd data={[generateLocalBusinessSchema('Melbourne'), generateBreadcrumbSchema(breadcrumbItems)]} />
 
       <div className="font-sans text-[#414042]">
-        {/* Header */}
-        <section className="bg-[#f8f5f2] px-4 pb-4 pt-6 sm:px-6 sm:pt-8 lg:pt-12">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-[26px] font-bold leading-tight text-[#414042] sm:text-[30px] lg:text-[36px]">Service areas</h1>
-            <p className="mx-auto mt-4 max-w-2xl text-[18px] italic leading-snug text-[#414042] sm:text-[22px]">
-              {AREA_SUMMARY}
-            </p>
-          </div>
-        </section>
+        {/* ===== HEADER, MAP AND ABOUT — both Figma frames put the About us copy beside the
+             map at desktop (left column 549 for the map, right column 373 for the copy) and
+             directly under it on mobile. The build had it stranded below the suburb list,
+             so desktop showed a 768px map alone with the page half empty. ===== */}
+        <div className="w-full bg-[#f8f5f2]">
+        <div className="px-4 pb-10 pt-6 sm:px-6 sm:pt-8 lg:mx-auto lg:grid lg:max-w-[1036px] lg:grid-cols-[549px_373px] lg:gap-x-[114px] lg:pb-14 lg:pt-12">
 
-        {/* Fixed, non-interactive map. See ServiceAreaMap for why this is not a Google embed. */}
-        <section className="bg-[#f8f5f2] px-4 pb-10 sm:px-6 sm:pb-14">
-          <div className="mx-auto w-full max-w-3xl">
-            <ServiceAreaMap />
+          {/* Left column — heading, summary, map. Content is centred inside this column,
+              which is how the design sets it. */}
+          <div className="lg:min-w-0">
+            <div className="mx-auto max-w-3xl text-center lg:max-w-none">
+              <h1 className="text-[26px] font-bold leading-tight text-[#414042] sm:text-[30px] lg:text-[36px]">Service areas</h1>
+              <p className="mx-auto mt-4 max-w-2xl text-[18px] italic leading-snug text-[#414042] sm:text-[22px] lg:text-[20px]">
+                {AREA_SUMMARY}
+              </p>
+            </div>
+            {/* Fixed, non-interactive map. See ServiceAreaMap for why this is not a Google embed. */}
+            <div className="mx-auto mt-6 w-full max-w-3xl lg:mt-8 lg:max-w-none">
+              <ServiceAreaMap />
+            </div>
           </div>
-        </section>
 
-        {/* About / Committed */}
+          {/* Right column — About us */}
+          <div className="mx-auto mt-10 max-w-3xl lg:mx-0 lg:mt-0 lg:max-w-none">
+                <h2 className="text-[20px] font-bold leading-snug text-[#414042] sm:text-[24px]">About us</h2>
+                <p className="mt-3 text-[15px] leading-[1.65] text-[#414042] sm:text-[16px]">
+                  Built on trust, with an uncompromising commitment to customer satisfaction and professional standards.
+                </p>
+    
+                <h3 className="mt-8 text-[20px] font-bold leading-snug text-[#414042] sm:text-[24px]">
+                  Committed to protecting what&apos;s important to you
+                </h3>
+                <div className="mt-4 space-y-4 text-[15px] leading-[1.65] text-[#414042] sm:text-[16px]">
+                  <p>
+                    Your health and safety are at the heart of everything we do, supported by industry-leading pest protection
+                    technology and customer care.
+                  </p>
+                  <p>
+                    We understand the different risks all types of pests pose to people, pets and property. Whether you live in a flat with a much-loved
+                    pet, have a family of five, or run a business, we tailor the best pest protection solution to suit your needs.
+                  </p>
+                  <p>
+                    We treat your home and business with the same care as our own. Our service extends beyond the initial treatment by providing you
+                    practical guidance to help prevent future infestations.
+                  </p>
+                  <p>We&apos;re here for you now and into the future.</p>
+                </div>
+          </div>
+
+        </div>
+        </div>
+
 
         {/* ===== SUBURBS WE SERVICE =====
              Rendered from src/lib/service-area.ts, which is the only place a suburb is
@@ -125,33 +159,6 @@ export default function ServiceAreasPage() {
           </div>
         </section>
 
-        <section className="bg-[#f8f5f2] px-4 py-6 sm:px-6 sm:py-10">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="text-[20px] font-bold leading-snug text-[#414042] sm:text-[24px]">About us</h2>
-            <p className="mt-3 text-[15px] leading-[1.65] text-[#414042] sm:text-[16px]">
-              Built on trust, with an uncompromising commitment to customer satisfaction and professional standards.
-            </p>
-
-            <h3 className="mt-8 text-[20px] font-bold leading-snug text-[#414042] sm:text-[24px]">
-              Committed to protecting what&apos;s important to you
-            </h3>
-            <div className="mt-4 space-y-4 text-[15px] leading-[1.65] text-[#414042] sm:text-[16px]">
-              <p>
-                Your health and safety are at the heart of everything we do, supported by industry-leading pest protection
-                technology and customer care.
-              </p>
-              <p>
-                We understand the different risks all types of pests pose to people, pets and property. Whether you live in a flat with a much-loved
-                pet, have a family of five, or run a business, we tailor the best pest protection solution to suit your needs.
-              </p>
-              <p>
-                We treat your home and business with the same care as our own. Our service extends beyond the initial treatment by providing you
-                practical guidance to help prevent future infestations.
-              </p>
-              <p>We&apos;re here for you now and into the future.</p>
-            </div>
-          </div>
-        </section>
 
         {/* Same day CTA */}
         <section className="bg-[#2B2B2B] px-4 py-10 text-center sm:px-6 sm:py-12" aria-label="Same day service">

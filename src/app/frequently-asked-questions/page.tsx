@@ -150,8 +150,10 @@ export default function FrequentlyAskedQuestionsPage() {
       <JsonLd data={schemas} />
 
       <div className="w-full bg-[#f8f5f2] font-sans">
-        <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8 md:py-10">
-          <h1 className="text-[22px] font-bold leading-tight text-[#414042] sm:text-[26px]">Frequently asked questions</h1>
+        {/* The FAQs frame sets the column at 805 wide, left-aligned against the 52px page
+            inset, not centred. Heading steps up at desktop to match the other page titles. */}
+        <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8 md:py-10 lg:mx-0 lg:max-w-[857px] lg:px-[52px] lg:py-14">
+          <h1 className="text-[22px] font-bold leading-tight text-[#414042] sm:text-[26px] lg:text-[36px]">Frequently asked questions</h1>
           <div className="mt-6 border-t border-[#d9d9d9] md:mt-8">
             <FaqPageAccordion faqs={FAQ_ITEMS} defaultOpenIndex={0} />
           </div>

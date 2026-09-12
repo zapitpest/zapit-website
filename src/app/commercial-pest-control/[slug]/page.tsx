@@ -293,10 +293,11 @@ export default async function CommercialIndustryPage({ params }: Props) {
 
       {/* ===== CONTENT ===== */}
       <ScrollReveal direction="up">
-        <section className="bg-white px-5 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-xl">
-            <p className="mb-8 text-[15px] leading-[1.8] text-[#414042] sm:text-[16px]">{page.content}</p>
-            <h2 className="mb-5 text-[20px] font-bold text-[#131a1c] sm:text-[22px]">What we deliver</h2>
+        <section className="bg-white px-5 py-10 sm:px-6 sm:py-14 lg:py-16">
+          <div className="mx-auto max-w-xl lg:grid lg:max-w-[1176px] lg:grid-cols-2 lg:items-start lg:gap-16">
+            <p className="mb-8 text-[15px] leading-[1.8] text-[#414042] sm:text-[16px] lg:mb-0 lg:text-[17px]">{page.content}</p>
+            <div className="lg:min-w-0">
+            <h2 className="mb-5 text-[20px] font-bold text-[#131a1c] sm:text-[22px] lg:text-[26px]">What we deliver</h2>
             <ul className="space-y-3">
               {page.features.map((f) => (
                 <li key={f} className="flex items-start gap-3">
@@ -307,23 +308,24 @@ export default async function CommercialIndustryPage({ params }: Props) {
                 </li>
               ))}
             </ul>
+            </div>
           </div>
         </section>
       </ScrollReveal>
 
       {/* ===== OUR PROCESS — green theme ===== */}
       <ScrollReveal direction="up">
-        <section className="bg-[#1cdc38] px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-xl">
+        <section className="bg-[#1cdc38] px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
+          <div className="mx-auto max-w-xl lg:max-w-[1176px]">
             <h2 className="mb-2 text-center text-[22px] font-bold text-[#131a1c] sm:text-[26px]">
               How we protect your {pageName.toLowerCase().endsWith('facility') ? pageName.toLowerCase() : `${pageName.toLowerCase()} facility`}
             </h2>
-            <p className="mx-auto mb-8 max-w-sm text-center text-[13px] text-[#131a1c]/70">
+            <p className="mx-auto mb-8 max-w-sm text-center text-[13px] text-[#131a1c]/70 lg:mb-10 lg:max-w-none lg:text-[15px]">
               A clear, structured process from first call to ongoing protection.
             </p>
-            <div className="space-y-3">
+            <div className="space-y-3 lg:grid lg:grid-cols-4 lg:gap-5 lg:space-y-0">
               {PROCESS_STEPS.map((step) => (
-                <div key={step.n} className="flex items-start gap-4 rounded-2xl bg-white/95 px-5 py-4 shadow-sm">
+                <div key={step.n} className="flex items-start gap-4 rounded-2xl bg-white/95 px-5 py-4 shadow-sm lg:flex-col lg:gap-3 lg:px-6 lg:py-6">
                   <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#0d402e] text-[13px] font-bold text-[#1cdc38]">{step.n}</span>
                   <div>
                     <h3 className="text-[15px] font-bold text-[#131a1c]">{step.title}</h3>
@@ -349,10 +351,10 @@ export default async function CommercialIndustryPage({ params }: Props) {
 
       {/* ===== STATS ===== */}
       <ScrollReveal direction="fade">
-        <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10">
-          <div className="mx-auto max-w-xl">
-            <h2 className="mb-6 text-center text-[20px] font-bold text-white sm:text-[24px]">Why choose {SITE_CONFIG.shortName}?</h2>
-            <div className="grid grid-cols-2 gap-4 text-center sm:grid-cols-4">
+        <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:py-14">
+          <div className="mx-auto max-w-xl lg:max-w-[1176px]">
+            <h2 className="mb-6 text-center text-[20px] font-bold text-white sm:text-[24px] lg:mb-10 lg:text-[28px]">Why choose {SITE_CONFIG.shortName}?</h2>
+            <div className="grid grid-cols-2 gap-4 text-center sm:grid-cols-4 lg:gap-10">
               {([
                 { val: '70+', label: 'Commercial Sites Serviced' },
                 { val: '5+ yr', label: 'Client Partnerships' },
@@ -402,15 +404,15 @@ export default async function CommercialIndustryPage({ params }: Props) {
 
       {/* ===== OTHER INDUSTRIES ===== */}
       <ScrollReveal direction="up" delay={100}>
-        <section className="bg-[#f8f5f2] px-4 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-xl">
-            <h2 className="mb-6 text-center text-[20px] font-bold text-[#131a1c] sm:text-[22px]">Other industries we serve</h2>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <section className="bg-[#f8f5f2] px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
+          <div className="mx-auto max-w-xl lg:max-w-[1116px]">
+            <h2 className="mb-6 text-center text-[20px] font-bold text-[#131a1c] sm:text-[22px] lg:mb-10 lg:text-[28px]">Other industries we serve</h2>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
               {otherIndustries.map((ind) => (
                 <Link
                   key={ind.slug}
                   href={ind.href}
-                  className="rounded-xl border border-[#e5e5e5] bg-white px-4 py-3.5 text-center text-[13px] font-semibold text-[#131a1c] transition-all hover:border-[#3fa535] hover:shadow-md sm:text-[14px]"
+                  className="flex items-center justify-center rounded-xl border border-[#e5e5e5] bg-white px-4 py-3.5 text-center text-[13px] font-semibold text-[#131a1c] transition-all hover:border-[#3fa535] hover:shadow-md sm:text-[14px] lg:min-h-[92px] lg:px-6 lg:text-[16px]"
                 >
                   {titleCase(ind.label)}
                 </Link>
