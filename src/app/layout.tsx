@@ -104,7 +104,7 @@ export default function RootLayout({
         <AnalyticsDebugOverlay />
         <JsonLd data={[generateWebSiteSchema(), generateOrganizationSchema(), generateLocalBusinessSchema()]} />
         <Header />
-        <main id="main-content" className="flex-1 pb-[calc(120px+env(safe-area-inset-bottom))] lg:pb-0">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <FloatingCTA />
       </body>

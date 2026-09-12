@@ -50,7 +50,7 @@ const OPERATING_HOURS = [
 export default function Footer() {
   return (
     <footer className="bg-[#2B2B2B] font-sans text-white">
-      <div className="mx-auto max-w-3xl px-5 py-10 sm:px-6 sm:py-12 lg:max-w-[1280px] lg:px-[52px] lg:py-12">
+      <div className="mx-auto max-w-3xl px-5 pt-10 pb-[calc(120px+env(safe-area-inset-bottom))] sm:px-6 sm:pt-12 lg:max-w-[1280px] lg:px-[52px] lg:py-12">
         {/* Four columns on desktop, one stack below lg. The stack was 1013px tall on a 1920 screen. */}
         <div className="lg:grid lg:grid-cols-[1.3fr_1.4fr_1fr_1fr] lg:gap-10">
           <div>
