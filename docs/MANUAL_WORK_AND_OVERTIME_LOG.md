@@ -174,3 +174,14 @@ A: No. Every scope decision is traceable to a written Adam message or engagement
 - Include the "Where documented" field so cross-references stay tight.
 - Update the "Running totals" table at the bottom every time a row is added.
 - If any category ticks over an alert threshold — buffer >80% used (>4h), overtime in-scope >20% on any item, out-of-scope work approved — flag proactively in the next Friday status.
+
+### 2026-09-08 to 2026-09-13 — Absorbed goodwill: post-cutover close-out + handover pack
+| Field | Value |
+|---|---|
+| Category | Absorbed goodwill (over-cap) |
+| Item | Full post-cutover close-out plus 14 Sep handover pack. Includes: pre-cutover SPF/HSTS fixes and PR #12; DNS cutover night coordination + verification + ContactForm await/error-path fix (commit `82b6309`) + MVP_STATUS post-cutover update (`22cab9b`); HANDOVER_RUNBOOK + README + AGENTS.md refresh (`c2ec69e` + `f902960`); DMARC rua correction to `info@`; Netlify sweep and retired-site deletion; GTM cleanup (4 dead form_submit triggers + 4 tags + `tag.meta.pixel_lead` trimmed, container republished); WhatConverts verification; assets ownership audit (BigQuery + Search Console + Meta Business + Clarity + Formspree — 11/12 on Zap It logins); 20-category end-to-end audit; Looker Studio share to `info@` + SEO page typo fix + 3 legacy GTM container JSON exports for Zaydan; authored `HANDOVER_SIGN_OFF_CHECKLIST.md`, `30_DAY_SUPPORT_WINDOW.md`, `PORTAL_HOURS_FINAL.md` and MVP_STATUS + HANDOVER_RUNBOOK refresh |
+| Real effort | ~15 h |
+| Portal hours | 0 (absorbed, over the 45-hr engagement cap) |
+| Decision | Absorb — the engagement letter cap was 45 hrs and portal hit that cleanly at Entry 21 (1 Sep 2026). Landing a clean cutover + a proper sign-off pack was the right thing to do for the handover, so this work sits over-cap on Apex's side rather than triggering a change-order conversation |
+| Why | Consistent with the honest-under-billing pattern used across the whole engagement (see prior ledger rows). Zaydan explicitly asked for a clean "final hours vs 45-hr cap" answer for the 14 Sep handover call — reporting 45 / 45 with the extras absorbed is the cleanest story and preserves trust for any future retainer conversation |
+| Where documented | `docs/PORTAL_HOURS_FINAL.md` section 3, `docs/HANDOVER_SIGN_OFF_CHECKLIST.md`, `docs/MVP_STATUS.md` 13 Sep section |

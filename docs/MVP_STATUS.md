@@ -8,7 +8,46 @@
 
 ---
 
-## 🏁 10 September 2026 — MVP EFFECTIVELY COMPLETE (READ FIRST)
+## 🤝 13 September 2026 — Handover Pack Ready For 14 Sep Sign-Off Call (READ FIRST)
+
+**Call:** Monday 14 Sep 2026, 10:00 AM Pakistan / 3:00 PM Melbourne.
+**Portal hours logged:** 45 / 45 (at cap — see [`PORTAL_HOURS_FINAL.md`](PORTAL_HOURS_FINAL.md)).
+**Line-by-line delivery list for sign-off:** [`HANDOVER_SIGN_OFF_CHECKLIST.md`](HANDOVER_SIGN_OFF_CHECKLIST.md).
+**Post-handover support scope:** [`30_DAY_SUPPORT_WINDOW.md`](30_DAY_SUPPORT_WINDOW.md).
+**Handover runbook (day-to-day operational reference for Zap It):** [`HANDOVER_RUNBOOK.md`](HANDOVER_RUNBOOK.md).
+**Absorbed-goodwill ledger:** [`MANUAL_WORK_AND_OVERTIME_LOG.md`](MANUAL_WORK_AND_OVERTIME_LOG.md).
+
+### 5 items outstanding as of call (all quick turnarounds our side)
+
+1. **DKIM** — Zaydan generates in Google Workspace admin (live on the call), we add TXT to Cloudflare DNS (2 min)
+2. **Meta Pixel domain-verification meta-tag** — Adam adds domain in Business Manager and shares content value, we add to `src/app/layout.tsx` and push (2 min)
+3. **Microsoft Clarity ownership confirmation** — Zaydan confirms which login owns Project `xl7ljoavrz`
+4. **3 legacy GTM containers** (`GTM-W85HKKNT`, `GTM-T2GN7VH8`, `GTM-WBZC2BHL`) — Zaydan reviews the JSON exports we sent and decides delete/keep
+5. **Credential rotation window** — GitHub, WhatConverts, Supabase — 30-min coordinated session
+
+### Looker Studio dashboard
+
+- URL: `https://datastudio.google.com/u/0/reporting/a1f7390a-2551-405c-93f0-288853567ac7`
+- 6 pages: Executive Summary · Marketing Performance · Conversion Detail · Service Lines · Needs Attention · SEO Performance
+- `info@zapitpestmelbourne.com.au` added as Editor (full access minus delete-report / change-owner)
+- **Ownership transfer catch:** Google Workspace blocks cross-domain owner transfer. Adam opens the URL logged in as `info@`, uses File → Make a copy — the copy is owned by `info@`. Same BigQuery data sources connect through. Apex-owned original deleted after handover.
+
+### Site + infrastructure state as of 13 Sep
+
+- 115 / 115 sitemap URLs return 200
+- TTFB under 100 ms across sampled pages
+- All 10 GST-inclusive prices live and matching Square to the cent
+- 28 / 28 homepage images return 200
+- 30 / 30 sampled legacy redirects fire correctly
+- All 6 security headers present (HSTS/XFO/XCTO/RP/PP/DNS-PC)
+- SPF + DMARC live and correct (DMARC to `info@`, `p=none` held until DKIM lands)
+- SSL cert valid Sep 9 → Dec 8, auto-renewed by CF
+- WHOIS ACTIVE, no holds
+- All 4 pre-cutover Netlify hostnames dead (404)
+
+---
+
+## 🏁 10 September 2026 — MVP EFFECTIVELY COMPLETE (historical)
 
 **Site is live and correct.** Every audit item from Zaydan's 9-10 September pre-cutover and post-cutover review is verified live on production `zapitpestmelbourne.com.au`.
 

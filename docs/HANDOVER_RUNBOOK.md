@@ -8,7 +8,36 @@
 
 ---
 
-## 🚀 September 10 2026 — Post-Cutover Status (READ FIRST)
+## 🤝 13 September 2026 — Sign-Off Pack (READ FIRST)
+
+**Handover call:** Monday 14 September 2026, 10:00 AM Pakistan / 3:00 PM Melbourne.
+
+Read these three documents in this order before the call:
+
+1. **[`HANDOVER_SIGN_OFF_CHECKLIST.md`](HANDOVER_SIGN_OFF_CHECKLIST.md)** — line-by-line list of everything delivered against the engagement letter. Every item marked ✅ / 🟢 / ⏳ / ⚠️ so we sign off row by row, not from memory.
+2. **[`30_DAY_SUPPORT_WINDOW.md`](30_DAY_SUPPORT_WINDOW.md)** — exact scope of what Apex covers for 30 days after handover, what's out of scope, response SLA, escalation path.
+3. **[`PORTAL_HOURS_FINAL.md`](PORTAL_HOURS_FINAL.md)** — final portal accounting. 45 / 45 hours logged, at cap. Post-cutover close-out (~15 h) absorbed over-cap.
+
+### Looker Studio dashboard
+
+- **URL:** `https://datastudio.google.com/u/0/reporting/a1f7390a-2551-405c-93f0-288853567ac7`
+- **6 pages:** Executive Summary · Marketing Performance · Conversion Detail · Service Lines · Needs Attention · SEO Performance
+- **Access:** `info@zapitpestmelbourne.com.au` added as Editor
+- **Ownership transfer:** Google Workspace blocks cross-domain owner transfer (Apex domain → Zap It domain). Cleanest fix on the call: Adam opens the URL logged in as `info@`, File → Make a copy — the copy is owned by `info@`, same BigQuery data sources. Apex deletes the original after handover.
+
+### 5 outstanding items for the call
+
+| # | Item | What we do when it lands |
+|---|---|---|
+| 1 | DKIM record generated in Google Workspace admin | Add `google._domainkey` TXT to Cloudflare DNS (2 min) |
+| 2 | Meta Pixel domain-verification `content` value | Add `<meta name="facebook-domain-verification">` to `src/app/layout.tsx` and push (2 min) |
+| 3 | Microsoft Clarity ownership confirmation | Add Sharjeel view-only for the support window if desired |
+| 4 | Decision on 3 legacy GTM containers | Delete on the call if agreed |
+| 5 | Credential rotation window | 30-min coordinated session, GitHub first |
+
+---
+
+## 🚀 September 10 2026 — Post-Cutover Status (historical)
 
 **The site is fully migrated and live.** Everything below has been verified against production `zapitpestmelbourne.com.au`, not a preview.
 
