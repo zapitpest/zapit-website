@@ -342,7 +342,7 @@ export default function HomePage() {
         <aside className="max-lg:contents lg:min-w-0 lg:self-stretch lg:bg-[#0d402e]">
           <div className="max-lg:contents lg:sticky lg:top-0">
       <div className="max-lg:order-5 lg:contents">
-      {/* ===== 6. PRICE CALCULATOR — functional, real PEST_PRICE_LIST data + 10% same-day discount ===== */}
+      {/* ===== 6. PRICE CALCULATOR — functional, real PEST_PRICE_LIST data + 10% multi-service discount ===== */}
       <ScrollReveal direction="up" delay={100}>
         <PriceCalculator />
       </ScrollReveal>
