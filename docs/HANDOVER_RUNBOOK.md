@@ -32,7 +32,7 @@ Read these three documents in this order before the call:
 | 1 | DKIM record generated in Google Workspace admin | Add `google._domainkey` TXT to Cloudflare DNS (2 min) |
 | 2 | Meta Pixel domain-verification `content` value | Add `<meta name="facebook-domain-verification">` to `src/app/layout.tsx` and push (2 min) |
 | 3 | Microsoft Clarity ownership confirmation | Add Sharjeel view-only for the support window if desired |
-| 4 | Decision on 3 legacy GTM containers | Delete on the call if agreed |
+| 4 | Decision on 3 legacy GTM containers | **HOLD on delete** — `W85HKKNT` (June 2024) + `WBZC2BHL` (Feb 2025) carry live Google Ads conversion tags (IDs `11416284378`, `16873849542`); `T2GN7VH8` is empty. Migrate conversions to `GTM-PFGV87RB` first, verify through one summer campaign, then pause, then delete. |
 | 5 | Credential rotation window | 30-min coordinated session, GitHub first |
 
 ---

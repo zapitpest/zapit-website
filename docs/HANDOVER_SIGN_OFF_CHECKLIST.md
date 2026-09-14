@@ -86,7 +86,7 @@
 | 47 | `docs/30_DAY_SUPPORT_WINDOW.md` — scope + SLA | ✅ This checklist |
 | 48 | `docs/HANDOVER_SIGN_OFF_CHECKLIST.md` — this document | ✅ |
 | 49 | Credential rotation plan (GitHub, WhatConverts, Supabase) — coordination window | ⏳ To agree on call |
-| 50 | 3 legacy GTM containers (GTM-W85HKKNT, GTM-T2GN7VH8, GTM-WBZC2BHL) — JSON exports sent to Zaydan for review | ⏳ To decide delete/keep on call |
+| 50 | 3 legacy GTM containers — corrected after Zaydan review 13-14 Sep: `GTM-W85HKKNT` (June 2024) and `GTM-WBZC2BHL` (February 2025) carry live Google Ads conversion tags (IDs `11416284378`, `16873849542`); `GTM-T2GN7VH8` is an empty shell (0 tags, 0 triggers, only 14 built-in variables). JSON exports for all three sent to Zaydan (T2GN7VH8 sent 14 Sep 2026). | ⏳ HOLD on delete — Google Ads conversion tags must be recreated 1-for-1 in live container `GTM-PFGV87RB` and verified through one summer campaign cycle before legacy containers can be paused, then deleted. Migration plan agreed on 15 Sep call. |
 
 ---
 
