@@ -55,7 +55,7 @@
 
 | Category | Verification |
 |---|---|
-| Sitemap URLs 200 | ✅ **114 / 114** — zero failures |
+| Sitemap URLs 200 | ✅ **115 / 115** — zero failures |
 | Pricing GST-inclusive across all 3 price tables | ✅ 10/10 match approved sheet |
 | 10% same-day discount removed | ✅ Zero occurrences |
 | Brand "Zap It" (was "Zapit") | ✅ 50 correct / 0 wrong on homepage |
@@ -130,7 +130,7 @@ Head of `main` = `ff39738`. All merged, all live on Cloudflare Pages production.
 | Meta Pixel domain-verification meta-tag | ⏳ Awaiting verification code from Zaydan |
 | HSTS | ✅ `max-age=31536000; includeSubDomains` (no `preload` per Zaydan 8 Sep audit) |
 | All security headers | ✅ X-Frame DENY, X-Content-Type-Options nosniff, Referrer-Policy strict, Permissions-Policy locked, X-DNS-Prefetch-Control on |
-| Site health | ✅ 114/114 sitemap URLs 200 · 50/50 randomly-sampled legacy redirects fire correctly · TTFB < 300 ms |
+| Site health | ✅ 115/115 sitemap URLs 200 · 50/50 randomly-sampled legacy redirects fire correctly · TTFB < 300 ms |
 
 ### ⚠️ ROLLBACK PATH CORRECTION (Zaydan flag, 9 Sep)
 

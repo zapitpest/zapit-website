@@ -45,7 +45,7 @@ Read these three documents in this order before the call:
 - **Site is on Cloudflare Pages** (project `zapit-website`, custom domain `zapitpestmelbourne.com.au` + `www.zapitpestmelbourne.com.au`).
 - **Nameservers on Cloudflare** (`destiny.ns.cloudflare.com` + `moura.ns.cloudflare.com`). GoDaddy is the registrar only; DNS is fully managed in Cloudflare.
 - **SSL cert:** Google Trust Services WE1 → GTS Root R4, ECDSA P-256, TLS 1.2/1.3 only. Auto-renews via CF.
-- **All 114 sitemap URLs return 200.** Zero broken links.
+- **All 115 sitemap URLs return 200.** Zero broken links.
 - **15 legacy WordPress redirects verified live** including `/pest-control-melbourne/`, `/thank-you/`, and 6 old suburb 404s.
 - **`/service-areas/` now links all 75 suburb pages.**
 
