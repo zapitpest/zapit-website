@@ -41,7 +41,11 @@ function RatingStar() {
 export default function HomeHero() {
   return (
     <section className="w-full bg-zapit-green-dark">
-      <div className="mx-auto w-full max-w-[1200px] lg:grid lg:max-w-[1280px] lg:grid-cols-[560px_minmax(0,1fr)] lg:items-stretch lg:gap-0 lg:px-0 lg:py-0">
+      {/* Full bleed on desktop. The split sits at 50vw - 80px, which is exactly where the old
+          centred 1280 shell put it (640 - 80 = 560 from the shell's left edge), and the panel's
+          left padding grows with the gutter, so the headline and the photo seam do not move:
+          the green panel just runs out to the left edge and the photo out to the right. */}
+      <div className="mx-auto w-full max-w-[1200px] lg:grid lg:max-w-none lg:grid-cols-[minmax(560px,calc(50vw-80px))_minmax(0,1fr)] lg:items-stretch lg:gap-0 lg:px-0 lg:py-0">
         {/* Photo — first on mobile, right-hand column on desktop */}
         <div className="order-1 px-3 pt-2 sm:px-4 sm:pt-3 lg:relative lg:order-2 lg:h-full lg:min-h-[379px] lg:overflow-hidden lg:p-0">
           <picture>
@@ -56,7 +60,7 @@ export default function HomeHero() {
         </div>
 
         {/* Panel — below the photo on mobile, left-hand column on desktop */}
-        <div className="order-2 px-5 pb-9 pt-7 sm:px-6 lg:order-1 lg:bg-[#64FF01] lg:px-[56px] lg:pb-[34px] lg:pl-[63px] lg:pt-[46px]">
+        <div className="order-2 px-5 pb-9 pt-7 sm:px-6 lg:order-1 lg:bg-[#64FF01] lg:px-[56px] lg:pb-[34px] lg:pl-[max(63px,calc(50vw-577px))] lg:pt-[46px]">
           <h1 className="max-w-[479px] text-[26px] font-normal leading-[1.22] text-[#f8f5f2] sm:text-[28px] lg:text-[33px] lg:leading-[1.24] lg:text-[#414042]">
             Protecting your family and home from pest damage and harm
           </h1>
