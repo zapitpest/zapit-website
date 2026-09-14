@@ -54,7 +54,7 @@ export default function ContactUsPage() {
              the desktop page was the phone page with empty space either side. Mobile keeps
              the same stack, in the same order. ===== */}
       <div className="w-full bg-[#2B2B2B]">
-        <div className="mx-auto max-w-[1280px] px-5 pb-8 pt-8 sm:px-6 sm:pt-10 lg:grid lg:grid-cols-[375px_349px_minmax(0,1fr)] lg:items-start lg:gap-x-12 lg:px-[52px] lg:py-14">
+        <div className="mx-auto max-w-(--shell) px-5 pb-8 pt-8 sm:px-6 sm:pt-10 lg:grid lg:grid-cols-[minmax(0,1.07fr)_minmax(0,1fr)_minmax(0,1.01fr)] lg:items-start lg:gap-x-12 lg:px-[52px] lg:py-14">
 
           {/* Column 1 — who and where */}
           <div>
@@ -128,7 +128,7 @@ export default function ContactUsPage() {
 
       {/* ===== 5. MAP ===== */}
       <section className="bg-[#2B2B2B] px-5 pb-10 sm:px-6 sm:pb-14">
-        <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl shadow-md lg:max-w-[1176px]">
+        <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl shadow-md lg:max-w-[calc(var(--shell)-104px)]">
           <iframe
             title="Zap It Pest Control Melbourne Location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.5!2d144.99!3d-37.74!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z80+Porter+Rd+Heidelberg+Heights+VIC+3081!5e0!3m2!1sen!2sau!4v1"

@@ -117,7 +117,7 @@ export default function Header() {
       <div className="relative z-20 bg-[#0d402e]">
 
         {/* ----- MOBILE / TABLET LAYOUT (stacked): logo + tagline + tabs ----- */}
-        <div className="mx-auto max-w-[1280px] px-5 pt-5 pb-3 sm:px-6 sm:pt-6 sm:pb-4 lg:hidden">
+        <div className="mx-auto max-w-(--shell) px-5 pt-5 pb-3 sm:px-6 sm:pt-6 sm:pb-4 lg:hidden">
           <div className="flex items-center justify-between">
             <Link href="/" className="shrink-0" aria-label="Zap It home">
               <img src={NAV_LOGO} alt="Zap It Pest Control" className="h-[64px] w-auto brightness-0 invert sm:h-[72px]" />
@@ -146,7 +146,7 @@ export default function Header() {
              directly under the header on both pages. Same tabCls + active state as
              mobile — this is an addition, not a second implementation. ----- */}
         <div className="hidden lg:block">
-          <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-6 py-4">
+          <div className="mx-auto flex max-w-(--shell) items-center justify-between gap-6 px-6 py-4">
             <Link href="/" className="shrink-0" aria-label="Zap It home">
               <img src={NAV_LOGO} alt="Zap It Pest Control" className="h-[64px] w-auto brightness-0 invert xl:h-[72px]" />
             </Link>
@@ -165,7 +165,7 @@ export default function Header() {
             </a>
           </div>
 
-          <div className="mx-auto flex max-w-[1280px] items-center gap-8 px-6 pb-4">
+          <div className="mx-auto flex max-w-(--shell) items-center gap-8 px-6 pb-4">
             <p className="text-white/85" style={{ fontSize: '15px', lineHeight: '28px', fontWeight: 300 }}>
               {SITE_CONFIG.tagline}
             </p>
@@ -183,7 +183,7 @@ export default function Header() {
 
       {/* ===== MOBILE STICKY HEADER (dark green) ===== */}
       <div className={`fixed left-0 top-0 z-[1100] w-full bg-[#0d402e] pb-3 shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-transform duration-200 lg:hidden ${isSticky ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="mx-auto max-w-[1280px] px-4 pt-2.5 sm:px-5">
+        <div className="mx-auto max-w-(--shell) px-4 pt-2.5 sm:px-5">
           <div className="flex items-center justify-between">
             <Link href="/" className="shrink-0" aria-label="Zap It home">
               <img src={NAV_LOGO} alt="Zap It Pest Control" className="h-[44px] w-auto brightness-0 invert" />
@@ -204,7 +204,7 @@ export default function Header() {
 
       {/* ===== DESKTOP STICKY HEADER (dark green) ===== */}
       <div className={`fixed left-0 top-0 z-[1100] hidden w-full bg-[#0d402e] shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-transform duration-150 lg:block ${isSticky ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-2.5">
+        <div className="mx-auto flex max-w-(--shell) items-center justify-between px-5 py-2.5">
           <Link href="/" className="shrink-0"><img src={NAV_LOGO} alt="Zap It Pest Control" className="h-[48px] w-auto brightness-0 invert" /></Link>
           <ul className="flex list-none items-center">
             {MAIN_NAV_LINKS.map((item) => {

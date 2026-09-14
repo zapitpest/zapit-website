@@ -136,7 +136,7 @@ export default async function ServicePage({ params }: Props) {
           <Image src="/images/residential/hero-house.png" alt="" fill className="object-cover object-center opacity-15" sizes="100vw" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0d402e] via-[#0d402e]/90 to-[#0d402e]/70" />
-        <div className="relative mx-auto max-w-[1200px] px-5 pb-14 pt-10 sm:px-6 sm:pb-16 sm:pt-12 lg:pb-20">
+        <div className="relative mx-auto max-w-[calc(var(--shell)-80px)] px-5 pb-14 pt-10 sm:px-6 sm:pb-16 sm:pt-12 lg:pb-20">
           <nav className="mb-6 text-sm text-gray-300" aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-2">
               {breadcrumbItems.map((item, i) => (
@@ -200,7 +200,7 @@ export default async function ServicePage({ params }: Props) {
 
       {/* ===== TRUST BAR ===== */}
       <section className="border-b border-[#e5e5e5] bg-[#f8f5f2] py-3.5">
-        <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-5 text-[13px] font-semibold text-[#0d402e]">
+        <div className="mx-auto flex max-w-[calc(var(--shell)-80px)] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-5 text-[13px] font-semibold text-[#0d402e]">
           {['Accredited', 'Fully Insured', 'Licensed', 'Family Friendly', 'Same-Day'].map((t) => (
             <span key={t} className="flex items-center gap-1.5">
               <CheckCircle2 className="h-3.5 w-3.5 text-[#3fa535]" strokeWidth={2.5} />{t}
@@ -211,7 +211,7 @@ export default async function ServicePage({ params }: Props) {
 
       {/* ===== CONTENT + FEATURES ===== */}
       <section className="bg-white py-14 md:py-18 lg:py-20">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-5 lg:gap-14">
             {/* Main content */}
             <div className="lg:col-span-3">
@@ -265,7 +265,7 @@ export default async function ServicePage({ params }: Props) {
 
       {/* ===== PROCESS STEPS ===== */}
       <section className="bg-[#0d402e] py-14 text-white lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="mb-10 text-center">
             <span className="mb-2 inline-block rounded-full bg-[#64FF01]/15 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#64FF01]">Our Process</span>
             <h2 className="text-2xl font-bold md:text-3xl">How We Handle {page.title.replace(' Melbourne', '')}</h2>
@@ -288,7 +288,7 @@ export default async function ServicePage({ params }: Props) {
 
       {/* ===== STATS ===== */}
       <section className="bg-[#131a1c] py-14 text-white lg:py-16">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <h2 className="mb-10 text-center text-2xl font-bold md:text-3xl">Why Choose {SITE_CONFIG.shortName}?</h2>
           <p className="mx-auto -mt-6 mb-10 max-w-2xl text-center text-[15px] text-gray-300">
             Melbourne&apos;s licensed pest team with fast response, transparent communication, and treatments built around your property.
@@ -306,7 +306,7 @@ export default async function ServicePage({ params }: Props) {
 
       {/* ===== RELATED SERVICES ===== */}
       <section className="bg-[#f8f5f2] py-14 lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="mb-10 text-center">
             <h2 className="text-2xl font-bold text-[#131a1c] md:text-3xl">Other Pest Solutions</h2>
             <p className="mt-2 text-[15px] text-[#636363]">We handle a wide range of pests across Melbourne</p>

@@ -61,6 +61,15 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* Content width for the whole site. The Figma artboards are 1280 wide and every page is built
+   to that, but a fixed 1280 cap left 300 to 400px of empty page either side on a wide monitor.
+   Up to 1440px nothing changes. Above that the content grows with the screen and keeps an 80px
+   margin each side (1440 -> 1280, 1920 -> 1760, 2056 -> 1896), topping out at 2000 so an
+   ultrawide does not stretch it into a strip. The two rules meet exactly at 1440, so there is
+   no jump. Grids built in fr or % scale with it; long-form text keeps its own ch-based measure. */
+:root { --shell: 1280px; }
+@media (min-width: 1440px) { :root { --shell: min(calc(100vw - 160px), 2000px); } }
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

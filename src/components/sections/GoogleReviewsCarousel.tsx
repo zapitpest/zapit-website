@@ -233,7 +233,7 @@ export default function GoogleReviewsCarousel() {
       </div>
 
       {/* Desktop: three cards side by side, per Zapit_desktop_03. Below lg the slideshow runs. */}
-      <div className="mx-auto mt-6 hidden max-w-[1120px] gap-4 px-6 lg:grid lg:grid-cols-3">
+      <div className="mx-auto mt-6 hidden max-w-[1120px] gap-4 px-6 lg:grid lg:grid-cols-3 2xl:max-w-none 2xl:px-[92px]">
         {REVIEWS.slice(0, 3).map((r) => (
           <ReviewCard key={r.name} r={r} />
         ))}

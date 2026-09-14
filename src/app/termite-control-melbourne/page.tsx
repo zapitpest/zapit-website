@@ -113,7 +113,7 @@ export default function TermiteControlMelbournePage() {
           <Image src="/images/residential/hero-house.png" alt="" fill priority className="object-cover object-center opacity-15" sizes="100vw" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0d402e] via-[#0d402e]/90 to-[#0d402e]/70" />
-        <div className="relative mx-auto max-w-[1200px] px-5 pb-14 pt-10 sm:px-6 sm:pb-16 sm:pt-12 lg:pb-20">
+        <div className="relative mx-auto max-w-[calc(var(--shell)-80px)] px-5 pb-14 pt-10 sm:px-6 sm:pb-16 sm:pt-12 lg:pb-20">
           <nav className="mb-6 flex items-center gap-2 text-sm text-white/60">
             <Link href="/" className="transition-colors hover:text-white">Home</Link>
             <ChevronRight className="h-3 w-3" />
@@ -150,7 +150,7 @@ export default function TermiteControlMelbournePage() {
 
       {/* ===== TRUST BAR ===== */}
       <section className="border-b border-[#e5e5e5] bg-[#f8f5f2] py-3.5">
-        <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-5 text-[13px] font-semibold text-[#0d402e]">
+        <div className="mx-auto flex max-w-[calc(var(--shell)-80px)] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-5 text-[13px] font-semibold text-[#0d402e]">
           {['Licensed', 'Same-Day Inspections', 'Liquid & Bait Treatments', 'Fully Insured', 'Accredited'].map((t) => (
             <span key={t} className="flex items-center gap-1.5">
               <CheckCircle2 className="h-3.5 w-3.5 text-[#3fa535]" strokeWidth={2.5} />{t}
@@ -161,7 +161,7 @@ export default function TermiteControlMelbournePage() {
 
       {/* ===== WARNING SIGNS ===== */}
       <section className="bg-white py-14 lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
               <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-red-600">
@@ -192,7 +192,7 @@ export default function TermiteControlMelbournePage() {
 
       {/* ===== 3-STEP PROCESS ===== */}
       <section className="bg-[#0d402e] py-14 text-white lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="mb-10 text-center">
             <span className="mb-2 inline-block rounded-full bg-[#64FF01]/15 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#64FF01]">Our Process</span>
             <h2 className="text-2xl font-bold md:text-3xl lg:text-4xl">Our 3-Step Termite Rescue Strategy</h2>
@@ -215,7 +215,7 @@ export default function TermiteControlMelbournePage() {
 
       {/* ===== TREATMENT METHODS ===== */}
       <section className="bg-white py-14 lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div className="overflow-hidden rounded-2xl shadow-lg order-2 lg:order-1">
               <Image src={`${WP}/termite-treatment-green.webp`} alt="Professional termite treatment" width={600} height={450} className="h-auto w-full" />
@@ -243,7 +243,7 @@ export default function TermiteControlMelbournePage() {
 
       {/* ===== TERMITE TYPES TABS ===== */}
       <section className="bg-[#f8f5f2] py-14 lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="mb-10 text-center">
             <span className="mb-2 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Types of Termites</span>
             <h2 className="text-2xl font-bold text-[#131a1c] md:text-3xl lg:text-4xl">We Cover All Types of Termites</h2>
@@ -259,7 +259,7 @@ export default function TermiteControlMelbournePage() {
           <Image src={`${WP}/termite-wood-damage.webp`} alt="Termite wood damage" fill className="object-cover object-center" sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0d402e]/80 via-transparent to-transparent" />
           <div className="absolute inset-x-0 bottom-0 px-5 pb-6 sm:pb-8">
-            <div className="mx-auto max-w-[1200px]">
+            <div className="mx-auto max-w-[calc(var(--shell)-80px)]">
               <h2 className="text-2xl font-bold text-white md:text-3xl">Don&apos;t Let Termites Destroy Your Property</h2>
               <p className="mt-2 max-w-xl text-[15px] text-white/80">Early detection saves thousands in repair costs. Call us today for a professional assessment.</p>
             </div>
@@ -269,7 +269,7 @@ export default function TermiteControlMelbournePage() {
 
       {/* ===== STATS ===== */}
       <section className="bg-[#131a1c] py-14 text-white lg:py-16">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <h2 className="mb-10 text-center text-2xl font-bold md:text-3xl">Why Melbourne Trusts Zap It</h2>
           <StatsCounter />
         </div>
@@ -277,7 +277,7 @@ export default function TermiteControlMelbournePage() {
 
       {/* ===== CERTIFIED & LICENSED ===== */}
       <section className="bg-white py-14 lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
               <span className="mb-3 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Credentials</span>
@@ -314,7 +314,7 @@ export default function TermiteControlMelbournePage() {
 
       {/* ===== REVIEWS ===== */}
       <section className="bg-[#f8f5f2] py-14 lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="mb-8 text-center">
             <span className="mb-2 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Reviews</span>
             <h2 className="text-2xl font-bold text-[#131a1c] md:text-3xl">What Our Customers Say</h2>
@@ -325,7 +325,7 @@ export default function TermiteControlMelbournePage() {
 
       {/* ===== MELBOURNE COVERAGE ===== */}
       <section className="bg-white py-14 lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="mb-8 text-center">
             <span className="mb-2 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Coverage</span>
             <h2 className="text-2xl font-bold text-[#131a1c] md:text-3xl">Across Melbourne Termite Control</h2>
@@ -336,7 +336,7 @@ export default function TermiteControlMelbournePage() {
 
       {/* ===== FAQS ===== */}
       <section className="bg-[#f8f5f2] py-14 lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="mb-8 text-center">
             <span className="mb-2 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">FAQs</span>
             <h2 className="text-2xl font-bold text-[#131a1c] md:text-3xl">Frequently Asked Questions</h2>
@@ -347,7 +347,7 @@ export default function TermiteControlMelbournePage() {
 
       {/* ===== GUARANTEE CTA ===== */}
       <section className="bg-[#0d402e] py-14 text-white lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
             <div className="overflow-hidden rounded-2xl">
               <Image src="/images/residential/highrise-specialist.webp" alt="Zap It high-rise pest specialist on a Melbourne apartment balcony" width={600} height={600} className="h-auto w-full" />

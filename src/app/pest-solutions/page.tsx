@@ -79,7 +79,7 @@ export default function PestSolutionsPage() {
           <Image src="/images/residential/hero-house.png" alt="" fill className="object-cover object-center opacity-20" sizes="100vw" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0d402e]/95 via-[#0d402e]/80 to-[#0d402e]/60" />
-        <div className="relative mx-auto max-w-[1200px] px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
+        <div className="relative mx-auto max-w-[calc(var(--shell)-80px)] px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
           <nav className="mb-6 flex items-center gap-2 text-sm text-white/60">
             <Link href="/" className="transition-colors hover:text-white">Home</Link>
             <ChevronRight className="h-3 w-3" />
@@ -101,7 +101,7 @@ export default function PestSolutionsPage() {
 
       {/* ===== TRUST BADGES ===== */}
       <section className="border-b border-[#e5e5e5] bg-[#f8f5f2] py-4">
-        <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-8 gap-y-2 px-5 text-[13px] font-semibold text-[#0d402e] sm:text-[14px]">
+        <div className="mx-auto flex max-w-[calc(var(--shell)-80px)] flex-wrap items-center justify-center gap-x-8 gap-y-2 px-5 text-[13px] font-semibold text-[#0d402e] sm:text-[14px]">
           {['Licensed', 'Family Friendly', 'Same-Day Service', 'Accredited', 'Fully Insured'].map((t) => (
             <span key={t} className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-[#3fa535]" strokeWidth={2.5} />{t}
@@ -143,7 +143,7 @@ export default function PestSolutionsPage() {
 
       {/* ===== PEST GRID ===== */}
       <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="mb-12 text-center">
             <span className="mb-2 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Our Services</span>
             <h2 className="text-2xl font-bold text-[#131a1c] md:text-3xl lg:text-4xl">Choose Your Pest</h2>
@@ -181,7 +181,7 @@ export default function PestSolutionsPage() {
 
       {/* ===== PROCESS STEPS ===== */}
       <section className="bg-[#0d402e] py-16 text-white lg:py-20">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="mb-12 text-center">
             <span className="mb-2 inline-block rounded-full bg-[#64FF01]/15 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#64FF01]">How It Works</span>
             <h2 className="text-2xl font-bold md:text-3xl lg:text-4xl">Our 4-Step Treatment Process</h2>
@@ -214,7 +214,7 @@ export default function PestSolutionsPage() {
 
       {/* ===== STATS ===== */}
       <section className="bg-[#131a1c] py-14 text-white lg:py-16">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <h2 className="mb-10 text-center text-2xl font-bold md:text-3xl">Trusted Across Melbourne</h2>
           <StatsCounter />
         </div>
@@ -222,7 +222,7 @@ export default function PestSolutionsPage() {
 
       {/* ===== COMMON PESTS IN MELBOURNE ===== */}
       <section className="bg-white py-14 lg:py-18">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div className="overflow-hidden rounded-2xl shadow-lg">
               <Image src="/images/residential/pet-safe.webp" alt="Pet-safe pest treatment by a Zap It technician. Protection that keeps children and pets safe" width={600} height={500} className="h-auto w-full" />
@@ -248,7 +248,7 @@ export default function PestSolutionsPage() {
 
       {/* ===== SPECIALISED SERVICES ===== */}
       <section className="bg-[#f8f5f2] py-16 lg:py-20">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="mb-12 text-center">
             <span className="mb-2 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Specialised Programs</span>
             <h2 className="text-2xl font-bold text-[#131a1c] md:text-3xl lg:text-4xl">Targeted Solutions for Every Need</h2>
@@ -278,7 +278,7 @@ export default function PestSolutionsPage() {
 
       {/* ===== WHY CHOOSE ZAP IT ===== */}
       <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-6">
+        <div className="mx-auto max-w-[calc(var(--shell)-80px)] px-5 sm:px-6">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
             <div>
               <span className="mb-3 inline-block rounded-full bg-[#0d402e]/10 px-4 py-1 text-[12px] font-bold uppercase tracking-wider text-[#0d402e]">Why Zap It</span>

@@ -294,8 +294,8 @@ export default async function CommercialIndustryPage({ params }: Props) {
       {/* ===== CONTENT ===== */}
       <ScrollReveal direction="up">
         <section className="bg-white px-5 py-10 sm:px-6 sm:py-14 lg:py-16">
-          <div className="mx-auto max-w-xl lg:grid lg:max-w-[1176px] lg:grid-cols-2 lg:items-start lg:gap-16">
-            <p className="mb-8 text-[15px] leading-[1.8] text-[#414042] sm:text-[16px] lg:mb-0 lg:text-[17px]">{page.content}</p>
+          <div className="mx-auto max-w-xl lg:grid lg:max-w-[calc(var(--shell)-104px)] lg:grid-cols-2 lg:items-start lg:gap-16">
+            <p className="mb-8 text-[15px] leading-[1.8] text-[#414042] sm:text-[16px] lg:mb-0 lg:max-w-[62ch] lg:text-[17px]">{page.content}</p>
             <div className="lg:min-w-0">
             <h2 className="mb-5 text-[20px] font-bold text-[#131a1c] sm:text-[22px] lg:text-[26px]">What we deliver</h2>
             <ul className="space-y-3">
@@ -316,7 +316,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
       {/* ===== OUR PROCESS — green theme ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#1cdc38] px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
-          <div className="mx-auto max-w-xl lg:max-w-[1176px]">
+          <div className="mx-auto max-w-xl lg:max-w-[calc(var(--shell)-104px)]">
             <h2 className="mb-2 text-center text-[22px] font-bold text-[#131a1c] sm:text-[26px]">
               How we protect your {pageName.toLowerCase().endsWith('facility') ? pageName.toLowerCase() : `${pageName.toLowerCase()} facility`}
             </h2>
@@ -352,7 +352,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
       {/* ===== STATS ===== */}
       <ScrollReveal direction="fade">
         <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:py-14">
-          <div className="mx-auto max-w-xl lg:max-w-[1176px]">
+          <div className="mx-auto max-w-xl lg:max-w-[calc(var(--shell)-104px)]">
             <h2 className="mb-6 text-center text-[20px] font-bold text-white sm:text-[24px] lg:mb-10 lg:text-[28px]">Why choose {SITE_CONFIG.shortName}?</h2>
             <div className="grid grid-cols-2 gap-4 text-center sm:grid-cols-4 lg:gap-10">
               {([
@@ -405,7 +405,7 @@ export default async function CommercialIndustryPage({ params }: Props) {
       {/* ===== OTHER INDUSTRIES ===== */}
       <ScrollReveal direction="up" delay={100}>
         <section className="bg-[#f8f5f2] px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
-          <div className="mx-auto max-w-xl lg:max-w-[1116px]">
+          <div className="mx-auto max-w-xl lg:max-w-[calc(var(--shell)-164px)]">
             <h2 className="mb-6 text-center text-[20px] font-bold text-[#131a1c] sm:text-[22px] lg:mb-10 lg:text-[28px]">Other industries we serve</h2>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
               {otherIndustries.map((ind) => (
