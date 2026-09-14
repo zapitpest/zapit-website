@@ -84,7 +84,7 @@ function PestSolutionsMegaDark({ item }: { item: NavLink }) {
 }
 
 function SimpleNavLinkDark({ item }: { item: NavLink }) {
-  return <li><Link href={item.href} className="flex items-center gap-2 px-3 py-[14px] text-[14px] font-medium text-white/80 transition-colors hover:text-[#64FF01]">{item.label}</Link></li>;
+  return <li><Link href={item.href} className="flex items-center gap-2 whitespace-nowrap px-2 py-[14px] xl:px-3 text-[14px] font-medium text-white/80 transition-colors hover:text-[#64FF01]">{item.label}</Link></li>;
 }
 
 export default function Header() {
@@ -107,7 +107,7 @@ export default function Header() {
     const py = size === 'lg' ? 'py-2.5' : 'py-2';
     const text = size === 'lg' ? 'text-[14px]' : 'text-[12px]';
     return `flex-1 rounded-2xl ${py} text-center ${text} font-semibold transition-colors ${
-      active ? 'bg-[#f8f5f2] text-[#0d402e] shadow-sm' : 'border border-[#f8f5f2]/60 text-[#f8f5f2] hover:bg-white/10'
+      active ? 'bg-[#64FF01] text-[#0d402e] shadow-sm' : 'border border-[#f8f5f2]/60 text-[#f8f5f2] hover:bg-white/10'
     }`;
   };
 
@@ -213,8 +213,15 @@ export default function Header() {
               return <SimpleNavLinkDark key={item.href+'-s'} item={item} />;
             })}
           </ul>
-          {/* Sticky header keeps phone link only — FloatingCTA provides the global Call Now. */}
-          <a href={SITE_CONFIG.phoneTel} className="text-[14px] font-semibold text-white/80 hover:text-white">{SITE_CONFIG.phone}</a>
+          {/* Tabs stay on screen after scrolling so the visitor always sees which side of the site they are on. */}
+          <div className="flex shrink-0 items-center gap-3 xl:gap-5">
+            <div className="flex w-[190px] gap-2 xl:w-[220px]">
+              <Link href="/" aria-current={isResidential ? 'page' : undefined} className={tabCls(isResidential, 'sm')}>Residential</Link>
+              <Link href="/commercial-pest-control" aria-current={isCommercial ? 'page' : undefined} className={tabCls(isCommercial, 'sm')}>Commercial</Link>
+            </div>
+            {/* Sticky header keeps phone link only — FloatingCTA provides the global Call Now. */}
+            <a href={SITE_CONFIG.phoneTel} className="whitespace-nowrap text-[14px] font-semibold text-white/80 hover:text-white">{SITE_CONFIG.phone}</a>
+          </div>
         </div>
       </div>
     </header>
