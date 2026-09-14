@@ -247,6 +247,18 @@ export default function PriceCalculator() {
               </span>
             </div>
 
+            {discount > 0 && (
+              <p className="mb-4 rounded-md bg-[#0d402e] px-4 py-2 text-center text-[16px] font-bold text-white">
+                You save {fmtPrice(discount)} with 10% off for multiple services
+              </p>
+            )}
+
+            {cart.length === 1 && (
+              <p className="mb-4 text-center text-[14px] font-medium text-[#0d402e]">
+                Add a second service and get 10% off your total.
+              </p>
+            )}
+
             <p className="mb-5 text-[12px] leading-snug text-[#414042]">
               This is an estimate for a standard residential property. We confirm the final price
               before any work starts.
