@@ -40,6 +40,9 @@ const TREATMENTS: Treatment[] = [
 
 const TREATMENT_NAMES = [...new Set(TREATMENTS.map((t) => t.name))].sort();
 
+const MULTI_SERVICE_MIN = 2;
+const MULTI_SERVICE_RATE = 0.1;
+
 function fmtPrice(n: number): string {
   return n % 1 === 0 ? `$${n}` : `$${n.toFixed(2)}`;
 }
@@ -89,7 +92,11 @@ export default function PriceCalculator() {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const total = cart.reduce((sum, item) => sum + item.treatment.price, 0);
+  const subtotal = cart.reduce((sum, item) => sum + item.treatment.price, 0);
+  // Two or more services on one booking take 10% off the whole total.
+  const discount =
+    cart.length >= MULTI_SERVICE_MIN ? Math.round(subtotal * MULTI_SERVICE_RATE * 100) / 100 : 0;
+  const total = subtotal - discount;
 
   return (
     <section
@@ -215,6 +222,19 @@ export default function PriceCalculator() {
               </ul>
             )}
 
+            {discount > 0 && (
+              <dl className="mb-3 space-y-1 text-[14px] text-[#414042]">
+                <div className="flex justify-between">
+                  <dt>Subtotal</dt>
+                  <dd>{fmtPrice(subtotal)}</dd>
+                </div>
+                <div className="flex justify-between font-bold text-[#0d402e]">
+                  <dt>10% multi-service discount</dt>
+                  <dd>&minus;{fmtPrice(discount)}</dd>
+                </div>
+              </dl>
+            )}
+
             <div
               aria-live="polite"
               className="mb-4 flex flex-col items-center justify-center rounded-full bg-[#e5e2dc] px-8 py-3"
@@ -226,6 +246,18 @@ export default function PriceCalculator() {
                 Total, GST included
               </span>
             </div>
+
+            {discount > 0 && (
+              <p className="mb-4 rounded-md bg-[#0d402e] px-4 py-2 text-center text-[16px] font-bold text-white">
+                You save {fmtPrice(discount)} with 10% off for multiple services
+              </p>
+            )}
+
+            {cart.length === 1 && (
+              <p className="mb-4 text-center text-[14px] font-medium text-[#0d402e]">
+                Add a second service and get 10% off your total.
+              </p>
+            )}
 
             <p className="mb-5 text-[12px] leading-snug text-[#414042]">
               This is an estimate for a standard residential property. We confirm the final price
