@@ -83,8 +83,20 @@ function PestSolutionsMegaDark({ item }: { item: NavLink }) {
   );
 }
 
-function SimpleNavLinkDark({ item }: { item: NavLink }) {
-  return <li><Link href={item.href} className="flex items-center gap-2 whitespace-nowrap px-2 py-[14px] xl:px-3 text-[14px] font-medium text-white/80 transition-colors hover:text-[#64FF01]">{item.label}</Link></li>;
+function SimpleNavLinkDark({ item, active }: { item: NavLink; active: boolean }) {
+  return (
+    <li>
+      <Link
+        href={item.href}
+        aria-current={active ? 'page' : undefined}
+        className={`flex items-center gap-2 whitespace-nowrap px-2 py-[14px] xl:px-3 text-[14px] transition-colors hover:text-[#64FF01] ${
+          active ? 'font-semibold text-[#64FF01] underline decoration-2 underline-offset-8' : 'font-medium text-white/80'
+        }`}
+      >
+        {item.label}
+      </Link>
+    </li>
+  );
 }
 
 export default function Header() {
@@ -94,6 +106,14 @@ export default function Header() {
   const isCommercial = pathname.startsWith('/commercial');
   // Everything that is not commercial is residential work: suburb pages, service pages, about, contact.
   const isResidential = !isCommercial;
+
+  // Which menu link is the page you are on. Residential is the home page and any residential
+  // page that has no menu link of its own (suburb and service pages), matching the tabs.
+  const navActive = (href: string) => {
+    if (href === '/commercial-pest-control') return isCommercial;
+    if (href === '/') return isResidential && !NAV_LINKS.some((l) => l.href !== '/' && pathname.startsWith(l.href));
+    return pathname.startsWith(href);
+  };
 
   useEffect(() => {
     if (!sentinelRef.current) return;
@@ -154,7 +174,7 @@ export default function Header() {
               {MAIN_NAV_LINKS.map((item) => {
                 if (item.label === 'Commercial' && item.childGroups) return <CommercialDropdownDark key={item.href} item={item} />;
                 if (item.label === 'Pest Solutions' && item.children) return <PestSolutionsMegaDark key={item.href} item={item} />;
-                return <SimpleNavLinkDark key={item.href} item={item} />;
+                return <SimpleNavLinkDark key={item.href} item={item} active={navActive(item.href)} />;
               })}
             </ul>
             <a
@@ -210,7 +230,7 @@ export default function Header() {
             {MAIN_NAV_LINKS.map((item) => {
               if (item.label === 'Commercial' && item.childGroups) return <CommercialDropdownDark key={item.href+'-s'} item={item} />;
               if (item.label === 'Pest Solutions' && item.children) return <PestSolutionsMegaDark key={item.href+'-s'} item={item} />;
-              return <SimpleNavLinkDark key={item.href+'-s'} item={item} />;
+              return <SimpleNavLinkDark key={item.href+'-s'} item={item} active={navActive(item.href)} />;
             })}
           </ul>
           {/* Tabs stay on screen after scrolling so the visitor always sees which side of the site they are on. */}
