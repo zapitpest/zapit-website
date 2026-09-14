@@ -50,7 +50,7 @@ export default function ServiceAreasPage() {
              directly under it on mobile. The build had it stranded below the suburb list,
              so desktop showed a 768px map alone with the page half empty. ===== */}
         <div className="w-full bg-[#f8f5f2]">
-        <div className="px-4 pb-10 pt-6 sm:px-6 sm:pt-8 lg:mx-auto lg:grid lg:max-w-[1036px] lg:grid-cols-[549px_373px] lg:gap-x-[114px] lg:pb-14 lg:pt-12">
+        <div className="px-4 pb-10 pt-6 sm:px-6 sm:pt-8 lg:mx-auto lg:grid lg:max-w-[calc(var(--shell)-244px)] lg:grid-cols-[minmax(0,1.47fr)_minmax(0,1fr)] lg:gap-x-[114px] lg:pb-14 lg:pt-12">
 
           {/* Left column — heading, summary, map. Content is centred inside this column,
               which is how the design sets it. */}
@@ -112,7 +112,7 @@ export default function ServiceAreasPage() {
 
              This page is also the target of 269 legacy redirects, so it must never 404. ===== */}
         <section className="bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-[52px]">
-          <div className="mx-auto max-w-3xl lg:max-w-[1280px]">
+          <div className="mx-auto max-w-3xl lg:max-w-(--shell)">
             <h2 className="text-[22px] font-bold leading-snug text-[#414042] sm:text-[26px] lg:text-[30px]">
               Suburbs we service
             </h2>

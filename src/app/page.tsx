@@ -136,7 +136,7 @@ export default function HomePage() {
           rail green out to the right. The hard stop sits at 50% of the viewport, which is
           always well inside the centred 1280 shell, so only the gutters ever see it. */}
       <div className="lg:bg-[linear-gradient(to_right,#f8f5f2_50%,#0d402e_50%)]">
-      <div className="mx-auto w-full max-w-[1280px] max-lg:flex max-lg:flex-col lg:grid lg:grid-cols-[minmax(0,831fr)_minmax(0,449fr)] lg:items-stretch">
+      <div className="mx-auto w-full max-w-(--shell) max-lg:flex max-lg:flex-col lg:grid lg:grid-cols-[minmax(0,831fr)_minmax(0,449fr)] lg:items-stretch">
         {/* ---------- main column ---------- */}
         <div className="max-lg:contents lg:min-w-0 lg:bg-[#f8f5f2] lg:pb-10">
       <div className="max-lg:order-1 lg:contents">
@@ -146,7 +146,7 @@ export default function HomePage() {
       {/* DHHS claim removed per client item 4 (no unverified accreditation language). */}
       <ScrollReveal direction="up">
         <section className="bg-[#0d402e] px-5 py-8 sm:px-6 sm:py-10 lg:bg-[#f8f5f2] lg:px-[92px] lg:pb-10 lg:pt-14">
-          <div className="mx-auto max-w-[600px]">
+          <div className="mx-auto max-w-[600px] lg:mx-0 lg:max-w-[700px]">
             <h2 className="mb-3 text-[20px] font-bold leading-[29px] text-white lg:text-[30px] lg:leading-tight lg:text-[#131a1c]">
               We treat all household pests
             </h2>
@@ -483,8 +483,8 @@ export default function HomePage() {
       {/* ===== 13. LICENSES & CERTIFICATIONS ===== */}
       <ScrollReveal direction="up">
         <section className="w-full border-t border-[#E3DFDA] bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14 lg:px-[52px] lg:py-14">
-          <div className="mx-auto max-w-3xl lg:grid lg:max-w-[955px] lg:grid-cols-[189px_minmax(0,1fr)] lg:items-start lg:gap-[35px]">
-          <div className="max-lg:contents lg:order-2 lg:min-w-0">
+          <div className="mx-auto max-w-3xl lg:grid lg:max-w-[calc(var(--shell)-104px)] lg:grid-cols-[1.3fr_1.4fr_1fr_1fr] lg:items-start lg:gap-10">
+          <div className="max-lg:contents lg:order-2 lg:col-span-3 lg:min-w-0">
             <h2 className="mb-4 text-[22px] font-semibold leading-tight text-[#131a1c] sm:text-[26px]">
               Insured, licensed, accredited and legally compliant
             </h2>
@@ -505,40 +505,40 @@ export default function HomePage() {
             </ul>
 
           </div>
-            <div className="flex flex-col items-center gap-6 border-t border-[#e5e5e5] pt-8 lg:order-1 lg:gap-8 lg:border-t-0 lg:pt-1">
-              <div className="flex items-center justify-center gap-8 lg:flex-col lg:gap-8">
-                <figure className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center gap-6 border-t border-[#e5e5e5] pt-8 lg:order-1 lg:items-start lg:gap-7 lg:border-t-0 lg:pt-1">
+              <div className="flex items-center justify-center gap-8 lg:flex-col lg:items-start lg:gap-7">
+                <figure className="flex flex-col items-center text-center lg:items-start lg:text-left">
                   <Image
                     src="/images/commercial/cert-wildlife.png"
                     alt="Wildlife Licensed"
                     width={120}
                     height={100}
-                    className="h-20 w-auto object-contain sm:h-24"
+                    className="h-20 w-auto object-contain sm:h-24 lg:h-16"
                   />
                   <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
                     Wildlife Licenced
                   </figcaption>
                 </figure>
-                <figure className="flex flex-col items-center text-center">
+                <figure className="flex flex-col items-center text-center lg:items-start lg:text-left">
                   <Image
                     src="/images/commercial/cert-haccp.png"
                     alt="HACCP Food Safety Certification"
                     width={120}
                     height={100}
-                    className="h-20 w-auto object-contain sm:h-24"
+                    className="h-20 w-auto object-contain sm:h-24 lg:h-16"
                   />
                   <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
                     HACCP Food Safety<br />Certification
                   </figcaption>
                 </figure>
               </div>
-              <figure className="flex flex-col items-center text-center">
+              <figure className="flex flex-col items-center text-center lg:items-start lg:text-left">
                 <Image
                   src="/images/commercial/cert-aepma.png"
                   alt="Australian Environmental Pest Managers Association"
                   width={160}
                   height={80}
-                  className="h-16 w-auto object-contain sm:h-20"
+                  className="h-16 w-auto object-contain sm:h-20 lg:h-16"
                 />
                 <figcaption className="mt-2 text-[14px] font-semibold text-[#414042]">
                   Australian Environmental<br />Pest Managers Association

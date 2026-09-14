@@ -79,7 +79,7 @@ export function HomepageReviews() {
   }, []);
 
   return (
-    <div className="w-full max-w-[1200px] mx-auto">
+    <div className="w-full max-w-[calc(var(--shell)-80px)] mx-auto">
       {/* Section header */}
       <div className="mb-6 flex flex-col items-center gap-1 sm:items-start">
         <p className="text-[12px] font-bold uppercase tracking-wider text-[#3fa535]">WHAT CUSTOMERS SAY</p>
@@ -146,7 +146,7 @@ export function HomepagePestServiceTabs() {
   const tab = PEST_TABS[active];
 
   return (
-    <div className="max-w-[1200px] mx-auto bg-[#f9fafb] rounded-xl overflow-hidden">
+    <div className="max-w-[calc(var(--shell)-80px)] mx-auto bg-[#f9fafb] rounded-xl overflow-hidden">
       <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2 lg:gap-8 items-start p-4 sm:p-6 md:p-8">
         <div className="flex flex-col">
           <h3 className="mb-2 text-[17px] font-bold text-[#131a1c] md:text-[20px] leading-[1.2]">{tab.title}</h3>
@@ -342,7 +342,7 @@ export function HomepageMelbourneCoverage() {
   const stats = SITE_CONFIG.stats;
 
   return (
-    <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
+    <div className="max-w-[calc(var(--shell)-80px)] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
       <div className="bg-[#252C33] text-white rounded-xl p-6 md:p-8 shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
         <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight">
           Why Choose Zap It Pest &amp; Termite Control Melbourne Services?
@@ -497,7 +497,7 @@ export function HomepagePestCards() {
   };
 
   return (
-    <div className="pest-cards max-w-[1200px] mx-auto px-0 sm:px-0">
+    <div className="pest-cards max-w-[calc(var(--shell)-80px)] mx-auto px-0 sm:px-0">
       <h2 className="our-services-heading">Who Can Benefit From Our Pest Control Melbourne Services?</h2>
       {cards.map((c, idx) => (
         <div

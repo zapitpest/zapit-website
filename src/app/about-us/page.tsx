@@ -56,7 +56,7 @@ export default function AboutUsPage() {
              Middle block is the technician photo left, story right. Below lg every section keeps
              its own full-width mobile layout in the same order as before. ===== */}
       <div className="w-full bg-[#0d402e]">
-      <div className="max-lg:flex max-lg:flex-col lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[minmax(0,1fr)_400px] lg:items-start lg:gap-16 lg:px-[52px] lg:pb-16 lg:pt-14">
+      <div className="max-lg:flex max-lg:flex-col lg:mx-auto lg:grid lg:max-w-(--shell) lg:grid-cols-[minmax(0,1fr)_34%] lg:items-start lg:gap-16 lg:px-[52px] lg:pb-16 lg:pt-14">
         <div className="max-lg:contents lg:min-w-0">
         <div className="max-lg:order-1 lg:contents">
       {/* ===== 1. HERO — About us title + subtitle ===== */}
@@ -123,7 +123,7 @@ export default function AboutUsPage() {
       </div>
 
       <div className="w-full bg-[#2B2B2B]">
-      <div className="lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[520px_minmax(0,1fr)] lg:items-start lg:gap-16 lg:px-[52px] lg:py-16">
+      <div className="lg:mx-auto lg:grid lg:max-w-(--shell) lg:grid-cols-[44%_minmax(0,1fr)] lg:items-start lg:gap-16 lg:px-[52px] lg:py-16">
       {/* ===== 4. TECHNICIAN PHOTO. No founder attribution: naming one person as the business
              reads as a sole trader. The old file had "Founder, Adam Balli" painted into the
              pixels and the previous uniform logo on the polo; both are gone from the new file. ===== */}
@@ -179,7 +179,7 @@ export default function AboutUsPage() {
       {/* ===== 6. INSURED, LICENSED, ACCREDITED & LEGALLY COMPLIANT ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14 lg:px-[52px] lg:py-16">
-          <div className="mx-auto max-w-3xl lg:grid lg:max-w-[1280px] lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-16">
+          <div className="mx-auto max-w-3xl lg:grid lg:max-w-[calc(var(--shell)-104px)] lg:grid-cols-[minmax(0,1fr)_36%] lg:gap-16">
             <div>
             <h2 className="mb-4 text-[22px] font-semibold leading-tight text-[#131a1c] sm:text-[26px] lg:text-[30px]">
               Insured, licensed, accredited and legally compliant

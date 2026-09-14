@@ -64,7 +64,7 @@ export default function CommercialPestControlPage() {
       {/* ===== DESKTOP HERO SHELL: two columns in a 1280 container above lg. On a 1920x1080 screen the
              old stack put a portrait photo on the first screen and cut the H1 in half at the fold. ===== */}
       <div className="w-full bg-[#2B2B2B]">
-      <div className="lg:mx-auto lg:grid lg:max-w-[1280px] lg:grid-cols-[minmax(0,1fr)_600px] lg:items-center lg:gap-12 lg:px-[52px] lg:py-16">
+      <div className="lg:mx-auto lg:grid lg:max-w-(--shell) lg:grid-cols-[minmax(0,1fr)_51%] lg:items-center lg:gap-12 lg:px-[52px] lg:py-16">
       {/* ===== 1. HERO IMAGE, mobile full-bleed, desktop right column ===== */}
       <section className="w-full bg-[#2B2B2B] py-2 sm:py-3 lg:order-2 lg:py-0">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-none lg:px-0">
@@ -145,7 +145,7 @@ export default function CommercialPestControlPage() {
              was never built, so the page never explained what the programme actually is. ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#f8f5f2] px-5 py-12 sm:px-6 sm:py-14 lg:py-16">
-          <div className="mx-auto max-w-[600px] lg:max-w-[1176px]">
+          <div className="mx-auto max-w-[600px] lg:max-w-[calc(var(--shell)-104px)]">
             <h2 className="mb-8 text-center text-[22px] font-bold leading-tight text-[#131a1c] sm:text-[26px] lg:mb-12 lg:text-[32px]">
               Our pest control strategy to protect your business
             </h2>
@@ -173,7 +173,7 @@ export default function CommercialPestControlPage() {
            12 of the 14 industry pages had no link from the hub at all. ===== */}
       <ScrollReveal direction="up">
         <section id="industries" className="scroll-mt-24 bg-[#f8f5f2] px-5 py-12 sm:px-6 sm:py-14">
-          <div className="mx-auto max-w-xl lg:max-w-[1116px]">
+          <div className="mx-auto max-w-xl lg:max-w-[calc(var(--shell)-164px)]">
             <h2 className="mb-2 text-center text-[22px] font-bold text-[#131a1c] sm:text-[26px] lg:text-[32px]">
               Industries we serve
             </h2>
@@ -199,7 +199,7 @@ export default function CommercialPestControlPage() {
       {/* ===== 3+4. OWNER INTRO — Commercial_01 y=1399 puts the portrait (337 wide) beside
              the bio (711 wide). The build stacked them in a 600px column, which is the mobile
              arrangement left running on desktop. Mobile order is unchanged. ===== */}
-      <div className="w-full bg-[#2B2B2B] lg:mx-auto lg:grid lg:max-w-[1176px] lg:grid-cols-[337px_minmax(0,1fr)] lg:items-center lg:gap-[60px] lg:px-[52px] lg:py-16">
+      <div className="w-full bg-[#2B2B2B] lg:mx-auto lg:grid lg:max-w-[calc(var(--shell)-104px)] lg:grid-cols-[31.4%_minmax(0,1fr)] lg:items-center lg:gap-[60px] lg:px-[52px] lg:py-16">
       <section className="w-full bg-[#2B2B2B] py-4 sm:py-6 lg:py-0">
         <div className="mx-auto w-full max-w-[640px] px-3 sm:px-4 lg:max-w-none lg:px-0">
           <Image src="/images/commercial/zaydan-photo.webp" alt="Oz, Commercial Manager at Zap It" width={1200} height={1800} className="h-auto w-full lg:rounded-3xl lg:shadow-2xl" sizes="(min-width: 1024px) 560px, 100vw" />
@@ -209,7 +209,7 @@ export default function CommercialPestControlPage() {
       {/* ===== 4. ZAYDAN BIO — Figma layout: Name Bold + role + Zap It, then bio, full-width CTA ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#2B2B2B] px-5 pb-12 pt-8 sm:px-6 sm:pb-14 sm:pt-10 lg:px-0 lg:py-0">
-          <div className="mx-auto max-w-[600px] lg:mx-0 lg:max-w-none">
+          <div className="mx-auto max-w-[600px] lg:mx-0 lg:max-w-[68ch]">
             {/* Name and role are real markup now. The previous portrait had them baked
                 into the pixels (and shipped the placeholder "Zaydan Surname" to
                 production). Surname deliberately omitted until the spelling is
@@ -374,7 +374,7 @@ export default function CommercialPestControlPage() {
       {/* ===== 11. INSURED, LICENSED, ACCREDITED ===== */}
       <ScrollReveal direction="up">
         <section className="bg-[#f8f5f2] px-5 py-10 sm:px-6 sm:py-14 lg:py-16">
-          <div className="mx-auto max-w-3xl lg:grid lg:max-w-[1176px] lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-16">
+          <div className="mx-auto max-w-3xl lg:grid lg:max-w-[calc(var(--shell)-104px)] lg:grid-cols-[minmax(0,1fr)_31%] lg:items-start lg:gap-16">
           <div className="lg:min-w-0">
             <h2 className="mb-4 text-[22px] font-semibold leading-tight text-[#131a1c] sm:text-[26px]">
               Insured, licensed, accredited and legally compliant
