@@ -283,11 +283,14 @@ If Zaydan wants Apex access dropped for the 30-day support window, this is the h
 ### 7 · 30-day support access-drop plan (Section 6)
 > "Zaydan, here's what I'm proposing for the access drop. During the 30-day support window, I stay at Data Viewer + Job User on the project so I can still investigate issues but can't edit anything. On Day 31, full removal — but flagging: it needs two cleanup passes, not one. Because I have dataset-level Data Owner on a few active datasets in addition to the project-level Editor role, and removing at project level alone leaves the dataset grants orphaned. Two-pass cleanup, ~5 min of clicks. Recommend you or Adam execute so it's on your side, and I can screen-share during to guide."
 
-### 8 · Open loop: mystery TXT record
+### 8 · Bonus: Cloudflare account is client-owned too (parallel to BQ)
+> "While we're on the ownership pattern — verified today that Cloudflare is on the exact same footing as BigQuery. The CF account holding `zapitpestmelbourne.com.au` and the `zapit-website` Pages project is `Zapitpestcontroluser` (Account ID `0cd1d2b0d67f371d282224d00b1b68ac`), which is your account, not mine. I have member access; the account itself lives on your side and holds 8 related Pages projects (zapit-service, zapit-commercial, zapit-training, and a few others). Same access-drop pattern: on Day 31, remove `sharjeel@meetapex.ai` from the CF account members list. One click from your side."
+
+### 9 · Open loop: mystery TXT record
 > "One quick DNS thing — noticed a TXT record `e33sr731i0db6fee1nml3ko1kl` published at the apex. Doesn't match any standard verification pattern (not Google, Meta, our SPF, or DMARC). Might be leftover from the previous developer, or an active service token. Do you recognise it? Happy to leave it, clean up, or investigate — your call."
 
-### 9 · Sign-off summary
-> "So to sum up: analytics stack is on Zap It's accounts from day one, warehouse is clean and free-tier, billing is yours and unspent, dashboard is live with real data, and the access-drop plan is agreed. Any final asks before we close?"
+### 10 · Sign-off summary
+> "So to sum up: analytics stack, hosting, DNS, and billing are all on Zap It's accounts from day one. Warehouse is clean and free-tier. Dashboard is live with real customer data (505 sessions, 15 leads since cutover). Everything is documented in the repo. Access-drop plan is a client-side execution on Day 31, no dependencies on Apex. Any final asks before we close?"
 
 ---
 

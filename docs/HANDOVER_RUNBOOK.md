@@ -43,6 +43,7 @@ Read these three documents in this order before the call:
 
 ### Hosting + DNS
 - **Site is on Cloudflare Pages** (project `zapit-website`, custom domain `zapitpestmelbourne.com.au` + `www.zapitpestmelbourne.com.au`).
+- **Cloudflare account is client-owned** (`Zapitpestcontroluser`, Account ID `0cd1d2b0d67f371d282224d00b1b68ac`) — verified 15 Sep 2026. Apex has member access via `sharjeel@meetapex.ai` but the account itself is on the client side, holding 8 related Pages projects (`zapit-website`, `zapit-service`, `zapit-commercial`, `zapit-training`, `zapit-inbox`, `zapit-ops-hub`, `zapit-links`, plus one unrelated). Free plan. 9.37k unique visitors served in the current period. Access-drop on Day 31 is a client-side member removal.
 - **Nameservers on Cloudflare** (`destiny.ns.cloudflare.com` + `moura.ns.cloudflare.com`). GoDaddy is the registrar only; DNS is fully managed in Cloudflare.
 - **SSL cert:** Google Trust Services WE1 → GTS Root R4, ECDSA P-256, TLS 1.2/1.3 only. Auto-renews via CF.
 - **All 115 sitemap URLs return 200.** Zero broken links.
