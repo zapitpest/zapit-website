@@ -7,42 +7,56 @@ Fill this in tomorrow morning (14 Sep evening PKT) before the call. Screenshots 
 
 ---
 
-## 1 · Cloud Project Ownership
+## 1 · Cloud Project Ownership — VERIFIED 15 Sep 2026
 
-**Project ID:** `zapit-business-intelligence`  
-**Project Number:** _(fill in — Cloud Console top-right)_  
-**Organization / no-org:** _(fill in — likely "No organization")_
+**Project ID:** `zapit-business-intelligence`
+**Project Number:** `1074611396691`
+**Organization:** No organization (personal Google account setup)
 
-### Project-level IAM (from IAM & Admin → IAM)
+### Project-level IAM (from IAM & Admin → IAM) — 4 principals only
 
 | Principal | Role(s) | Type | Notes |
 |-----------|---------|------|-------|
-| _(fill in — Owner)_ | Owner | User | Original creator |
-| `sharjeel@meetapex.ai` | _(fill in — Editor / BigQuery Admin)_ | User | Apex implementation access |
-| `info@zapitpestmelbourne.com.au` | _(fill in)_ | User | Client-side owner login |
-| _(others)_ | | | |
+| `info@zapitpestmelbourne.com.au` | Owner | User (Zap It) | Client-side owner — Zap It retains outright ownership ✅ |
+| `sharjeel@meetapex.ai` | Editor | User (Apex, Sharjeel Saleem) | Apex implementation access — Editor only, NOT Owner. Reduces to Data Viewer on Day 30 per Section 6 |
+| `firebase-measurement@system.gserviceaccount.com` | BigQuery User + Logs Writer | System Service Account (Google-managed) | Auto-created by Google for GA4 → BigQuery daily export. Cannot be modified or deleted; entirely managed by Google. |
+| `search-console-data-export@system.gserviceaccount.com` | BigQuery Data Editor + BigQuery Job User | System Service Account (Google-managed) | Auto-created by Google for Search Console → BigQuery bulk export. Cannot be modified or deleted; entirely managed by Google. |
 
-**Screenshot:** `docs/call-prep/screenshots/gcp-iam-project.png`
+**Screenshot:** `docs/call-prep/screenshots/gcp-iam-project.png` (captured 15 Sep 2026)
+
+**Findings:**
+- ✅ Zero leftover human accounts from previous developers
+- ✅ Zero custom service accounts (no dead pipelines to worry about)
+- ✅ Ownership hierarchy is clean: Owner (client) → Editor (Apex) → Google system SAs for exports only
+- 🟡 "Excess permissions" security insights (Owner 13505/13605, Editor 11832/12010) are Google's least-privilege recommendation — cosmetic, not a vulnerability. Small team using Owner/Editor is normal Google Cloud pattern.
 
 ---
 
-## 2 · Billing Account
+## 2 · Billing Account — 🚨 NEEDS INVESTIGATION (15 Sep 2026)
 
-**Billing Account ID:** _(fill in — Billing → Account management)_  
-**Billing Account Name:** _(fill in)_  
-**Payment method:** _(fill in — card ending in XXXX, no need to expose full)_
+**Billing Account Name:** `My Billing Account` (Google's default auto-generated name — never renamed)
+**Billing Account ID:** _(pending — see below)_
+**Payment method / cardholder:** _(pending — see below)_
+
+### 🚨 Open question raised 15 Sep
+
+The billing account is named `My Billing Account` — Google's default when a billing account is created and never renamed. This means one of two things:
+
+- **Scenario A:** Zap It created the billing account back in the day and never bothered to rename it. Card belongs to Zap It. Nothing to worry about.
+- **Scenario B:** This is Sharjeel's personal Google billing account left over from when we set up BigQuery in June 2026. If true, Apex has been silently paying for Zap It's BigQuery costs since then — an invisible absorbed cost that MUST be disclosed to Zaydan before sign-off, and transferred to Zap It's own billing account before Day 30.
+
+**Verification needed:** Click "Go to linked billing account" → check "Payments profile" or "Account management" to see cardholder name + admin.
 
 ### Billing IAM
 
 | Principal | Role | Notes |
 |-----------|------|-------|
-| _(fill in — Billing Account Admin)_ | Billing Account Administrator | Primary billing owner |
-| _(others)_ | | |
+| _(pending)_ | Billing Account Administrator | See investigation above |
 
-**Current month spend:** $_(fill in)_ AUD  
-**Monthly average (last 3 months):** $_(fill in)_ AUD  
-**Budget alert threshold:** _(fill in — likely $100/month based on prior config)_  
-**Alert recipients:** _(fill in emails)_
+**Current month spend:** _(pending)_ AUD
+**Monthly average (last 3 months):** _(pending)_ AUD
+**Budget alert threshold:** _(pending)_
+**Alert recipients:** _(pending)_
 
 **Screenshot:** `docs/call-prep/screenshots/gcp-billing.png` + `docs/call-prep/screenshots/gcp-budget.png`
 
