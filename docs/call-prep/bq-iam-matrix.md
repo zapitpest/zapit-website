@@ -32,31 +32,52 @@ Fill this in tomorrow morning (14 Sep evening PKT) before the call. Screenshots 
 
 ---
 
-## 2 · Billing Account — 🚨 NEEDS INVESTIGATION (15 Sep 2026)
+## 2 · Billing Account — VERIFIED 15 Sep 2026 · ✅ CLEAN
 
-**Billing Account Name:** `My Billing Account` (Google's default auto-generated name — never renamed)
-**Billing Account ID:** _(pending — see below)_
-**Payment method / cardholder:** _(pending — see below)_
+**Billing Account Name:** `My Billing Account` (Google's default auto-generated name — never renamed by owner)
+**Billing Account ID:** `017638-61BBE3-AD11C5`
+**Currency:** AUD (Australian Dollars) — confirms Australian-registered account
+**Ownership:** Client-side (NOT Apex) ✅
+**Sharjeel's role on billing:** Billing Account User (linker access only — cannot see other members, cannot manage)
 
-### 🚨 Open question raised 15 Sep
+### 💰 Current Spend — Zero
 
-The billing account is named `My Billing Account` — Google's default when a billing account is created and never renamed. This means one of two things:
+| Period | Amount |
+|--------|--------|
+| 1-14 September 2026 | **A$0.00** |
+| 18-31 August 2026 | **A$0.00** |
+| Full month projection (Sept 2026) | Not enough historical data to project (has been $0) |
 
-- **Scenario A:** Zap It created the billing account back in the day and never bothered to rename it. Card belongs to Zap It. Nothing to worry about.
-- **Scenario B:** This is Sharjeel's personal Google billing account left over from when we set up BigQuery in June 2026. If true, Apex has been silently paying for Zap It's BigQuery costs since then — an invisible absorbed cost that MUST be disclosed to Zaydan before sign-off, and transferred to Zap It's own billing account before Day 30.
+**BigQuery costs sit entirely within Google Cloud's free tier** (10 GB storage + 1 TB queries/month). Zero absorbed cost.
 
-**Verification needed:** Click "Go to linked billing account" → check "Payments profile" or "Account management" to see cardholder name + admin.
+### ✅ Ownership evidence
 
-### Billing IAM
+When `sharjeel@meetapex.ai` opens Billing → Account Management for the linked billing account, Google Cloud returns:
+
+> "For billing account 'My Billing Account', you have limited access to view billing data for the project listed below."
+> "You do not have permission to view the permissions of the selected resource."
+
+**This proves Sharjeel is NOT a Billing Account Administrator.** The account was created and is owned by a Zap It principal (almost certainly `info@zapitpestmelbourne.com.au` — the same Owner listed in Section 1 project IAM). Sharjeel was later added with the minimum "Billing Account User" role — just enough to attach the `zapit-business-intelligence` project to the account during Stage B setup on 29 June 2026 — but nothing more.
+
+### Billing IAM (from Sharjeel's view)
 
 | Principal | Role | Notes |
 |-----------|------|-------|
-| _(pending)_ | Billing Account Administrator | See investigation above |
+| `sharjeel@meetapex.ai` | Billing Account User | Linker access — can attach projects, cannot view other members, cannot manage. Client-controlled, ready to revoke on Day 30. |
+| _(other members not visible to Sharjeel)_ | Presumed Billing Account Administrator | Almost certainly `info@zapitpestmelbourne.com.au` — the Section 1 Owner. Zaydan/Adam to confirm on call. |
 
-**Current month spend:** _(pending)_ AUD
-**Monthly average (last 3 months):** _(pending)_ AUD
-**Budget alert threshold:** _(pending)_
-**Alert recipients:** _(pending)_
+**Current month spend:** A$0.00 (free tier, nothing charged)
+**Monthly average (last 3 months):** A$0.00 (free tier)
+**Budget alert threshold:** unknown (Sharjeel has no access to Budgets & alerts)
+**Alert recipients:** unknown (Sharjeel has no access)
+
+### Sign-off implication — clean
+
+- ✅ Apex has never owned or paid for the billing account
+- ✅ Zero absorbed cost, zero invoice retroactively
+- ✅ Client already owns billing — no migration needed
+- ✅ Access-drop on Day 30 is a one-click removal of `sharjeel@meetapex.ai` from the billing account members list, executed by Zaydan/Adam from their end
+- 🟡 Nice-to-have: on the call, Zaydan or Adam can rename "My Billing Account" to "Zap It Pest Control" for future clarity, and share a screenshot of Members + Budgets so we have the full picture recorded (2 min task)
 
 **Screenshot:** `docs/call-prep/screenshots/gcp-billing.png` + `docs/call-prep/screenshots/gcp-budget.png`
 
