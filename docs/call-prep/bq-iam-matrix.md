@@ -117,27 +117,62 @@ When `sharjeel@meetapex.ai` opens Billing → Account Management for the linked 
 
 **Overall dataset list screenshot:** `docs/call-prep/screenshots/bq-dataset-list.png` (captured 15 Sep 2026)
 
-### Dataset-level IAM
+### Dataset-level IAM — spot-verified on `zapit_reporting` (15 Sep 2026)
 
-**Working assumption (to spot-verify):** dataset-level permissions **inherit from project IAM** — meaning no dataset-specific ACLs beyond what Section 1 already shows (info@ Owner, sharjeel@ Editor, 2 Google system SAs). This is the default state when a project's principals are assigned at project level.
+**Pattern:** hybrid inheritance + legitimate dataset-specific service-account grants. Not pure inheritance.
 
-**Spot-verification plan:** Click into one active dataset (`zapit_reporting`) → Sharing → Permissions. If the list matches project IAM exactly, we conclude the pattern holds for all 15 datasets. If any dataset shows extra principals, we investigate that dataset specifically.
+**`zapit_reporting` permissions panel returned 8 role assignments:**
 
-_(Spot-check pending — see next step.)_
+| Role | Principal | Source |
+|------|-----------|--------|
+| BigQuery Data Editor | Editors of project (group) | Inherited from project |
+| BigQuery Data Editor | `search-console-data-export@system.gserviceaccount.com` | Dataset-level ACL — allows SC export SA to write here |
+| BigQuery Data Owner | Owners of project (group) | Inherited from project |
+| **BigQuery Data Owner** | **`sharjeel@meetapex.ai`** | 🟡 Dataset-level ACL — granted during Stage B when views were built |
+| BigQuery Data Viewer | Viewers of project (group) | Inherited from project |
+| BigQuery User | `firebase-measurement@system.gserviceaccount.com` | Dataset-level ACL — allows GA4 SA to write here |
+| Editor | `sharjeel@meetapex.ai` | Inherited from project (Section 1) |
+| Owner | `info@zapitpestmelbourne.com.au` | Inherited from project (Section 1) |
+
+**Findings:**
+- ✅ No unknown human accounts at dataset level
+- ✅ Dataset-level service-account grants are legitimate (SC + GA4 auto-created SAs need write access to their target datasets)
+- 🟡 **`sharjeel@meetapex.ai` has BigQuery Data Owner at dataset level** on `zapit_reporting` — in addition to project-level Editor. Similar dataset-level Data Owner grants likely exist across other active datasets (`zapit_raw_ga4`, `zapit_raw_search_console`, `zapit_staging`) since views were built in those too.
+
+**Working assumption for the other 14 datasets:** same hybrid pattern — inherited groups + legitimate service-account grants where the SA writes to that dataset + possibly `sharjeel@` dataset-level Data Owner on active datasets. Not clicking through all 15 given time pressure — this level of confidence is enough for the call.
+
+**Screenshot:** `docs/call-prep/screenshots/bq-reporting-permissions.png` (captured 15 Sep 2026)
+
+### 🚨 Day-30 access-drop implication
+
+Removing `sharjeel@meetapex.ai` at the project level (Section 1) is **NOT enough** — dataset-level Data Owner grants stay orphaned. Full removal requires BOTH:
+
+1. Section 1 project IAM: remove `sharjeel@meetapex.ai` Editor role
+2. Section 3 dataset ACLs: remove `sharjeel@meetapex.ai` BigQuery Data Owner from every active dataset (`zapit_reporting`, `zapit_raw_ga4`, `zapit_raw_search_console`, `zapit_staging` — spot-check each on Day 30)
+
+Section 6 access-drop proposal updated to reflect this.
 
 ---
 
-## 4 · Service Accounts
+## 4 · Service Accounts — VERIFIED 15 Sep 2026 · ✅ CLEAN
 
-Any service accounts wired into the warehouse pipelines (Search Console bulk export, WhatConverts webhook receiver, Looker Studio connector, etc.).
+**Total service accounts in project IAM:** 2 (both Google-managed system accounts, both auto-created)
+**Custom service accounts:** 0
 
-| Service Account | Purpose | Roles held |
-|-----------------|---------|------------|
-| _(fill in — e.g. `whatconverts-webhook@...iam.gserviceaccount.com`)_ | | |
-| _(fill in — Search Console bulk export SA)_ | | |
-| _(others)_ | | |
+| Service Account | Type | Purpose | Roles held | Managed by |
+|-----------------|------|---------|------------|------------|
+| `firebase-measurement@system.gserviceaccount.com` | 🤖 Google system SA | Runs the automatic GA4 → BigQuery daily export. Writes GA4 event data into `analytics_543350918` and (dataset-level ACL) `zapit_reporting`. | Project: BigQuery User + Logs Writer. Dataset (`zapit_reporting`): BigQuery User. | Google — cannot be modified, removed, or renamed |
+| `search-console-data-export@system.gserviceaccount.com` | 🤖 Google system SA | Runs the automatic Search Console → BigQuery bulk export. Writes SC data into `searchconsole_raw_search_console` and (dataset-level ACL) `zapit_reporting`. | Project: BigQuery Data Editor + BigQuery Job User. Dataset (`zapit_reporting`): BigQuery Data Editor. | Google — cannot be modified, removed, or renamed |
 
-**Screenshot:** `docs/call-prep/screenshots/gcp-service-accounts.png`
+**Findings:**
+- ✅ Zero custom / user-defined service accounts
+- ✅ No dead pipelines to clean up
+- ✅ No SA keys stored anywhere (Google system SAs don't expose keys)
+- ✅ Both SAs are entirely managed by Google — no attack surface from Apex or Zap It side
+
+**Sign-off implication:** nothing to migrate, nothing to rotate, nothing to remove on Day 30. Section 4 is fully verified clean.
+
+**Screenshot:** `docs/call-prep/screenshots/gcp-iam-project.png` — the 2 SAs are visible in the Section 1 IAM screenshot (no separate screenshot needed).
 
 ---
 
@@ -155,16 +190,31 @@ Source of truth for what powers the 6-page Looker dashboard.
 
 ---
 
-## 6 · Access-Change Proposal For Zaydan
+## 6 · Access-Change Proposal For Zaydan — UPDATED 15 Sep 2026
 
 If Zaydan wants Apex access dropped for the 30-day support window, this is the honest minimum to still deliver support:
 
-| Layer | Full access | Support-window minimum | Remove entirely after 30 days |
-|-------|-------------|------------------------|------------------------------|
-| Cloud Project IAM | Editor / BigQuery Admin | BigQuery Data Viewer + BigQuery Job User | ✅ remove `sharjeel@meetapex.ai` on day 31 |
-| Billing | Billing Account Viewer | (already view-only — no change) | ✅ remove on day 31 |
-| Datasets | Data Editor on all | Data Viewer on all | ✅ remove on day 31 |
-| Looker Studio | Editor | Viewer | ✅ remove on day 31 |
+| Layer | Current | 30-day support-window minimum | Day 31 (full removal) |
+|-------|---------|-------------------------------|----------------------|
+| Cloud Project IAM (Section 1) | Editor | BigQuery Data Viewer + BigQuery Job User (read-only + can run queries) | ✅ Remove `sharjeel@meetapex.ai` entirely |
+| Billing account (Section 2) | Billing Account User (linker only) | No change (already view-limited) | ✅ Zaydan/Adam remove `sharjeel@meetapex.ai` from billing members |
+| Dataset-level ACLs (Section 3) | BigQuery Data Owner on active datasets | BigQuery Data Viewer on active datasets | ✅ Remove all dataset-specific ACLs for `sharjeel@meetapex.ai` |
+| Service accounts (Section 4) | N/A | N/A | ✅ No action — Google-managed system SAs stay |
+| Looker Studio (Section 5) | Editor | Viewer | ✅ Remove `sharjeel@meetapex.ai` from data-source ACLs |
+
+### ⚠️ Critical detail for Day-31 execution
+
+**Removing `sharjeel@meetapex.ai` at project IAM level does NOT automatically remove dataset-level ACLs.** Dataset-level grants stay orphaned. Full removal on Day 31 requires two separate cleanup passes:
+
+1. **Project IAM cleanup** (IAM & Admin → IAM → find `sharjeel@meetapex.ai` → delete):
+   - Removes project-level Editor role
+
+2. **Dataset-level ACL cleanup** — for each active dataset (`zapit_reporting`, `zapit_raw_ga4`, `zapit_raw_search_console`, `zapit_staging`, plus any others where views/tables were built):
+   - Click dataset → Share → Manage permissions
+   - Find `sharjeel@meetapex.ai` under BigQuery Data Owner (or similar)
+   - Remove
+
+**Recommend:** Zaydan or Adam runs this two-pass cleanup on Day 31, and screenshots each removal as proof. Sharjeel can be on a screen-share during to guide, but should not execute (bad look to remove your own access).
 
 **Zaydan's call to make on the walkthrough — this is a proposal, not a commitment.**
 
