@@ -83,33 +83,47 @@ When `sharjeel@meetapex.ai` opens Billing → Account Management for the linked 
 
 ---
 
-## 3 · BigQuery Dataset Matrix
+## 3 · BigQuery Dataset Matrix — VERIFIED 15 Sep 2026
 
-Walk through each dataset in `bq://zapit-business-intelligence.*` and record who has what.
+**Actual count: 15 datasets** (earlier estimate 12 was off — corrected here).
+**All datasets:** `BigQuery` type, `Default` storage, `australia-southeast1` region.
 
-**How to check per dataset:**
-1. Open BigQuery Console → dataset → Sharing → Permissions
-2. Note principals + roles
-3. Screenshot each one to `docs/call-prep/screenshots/bq-<dataset>.png`
+### Complete inventory (15 datasets)
 
-| # | Dataset | Purpose | Location | Principals (role) |
-|---|---------|---------|----------|-------------------|
-| 1 | `zapit_analytics_ga4` | GA4 export mirror | `australia-southeast1` | _(fill in)_ |
-| 2 | `zapit_search_console` | SC bulk export | `australia-southeast1` | _(fill in)_ |
-| 3 | `zapit_leads` | WhatConverts + form leads | `australia-southeast1` | _(fill in)_ |
-| 4 | `zapit_marketing` | Ad platform data (future) | `australia-southeast1` | _(fill in)_ |
-| 5 | `zapit_ops` | Operational aggregates | `australia-southeast1` | _(fill in)_ |
-| 6 | `zapit_web` | Web analytics aggregates | `australia-southeast1` | _(fill in)_ |
-| 7 | `zapit_reserved_ai` | Reserved for Hermes / OpenClaw layer | `australia-southeast1` | _(fill in)_ |
-| 8 | `zapit_business_metrics` | Executive-level KPIs | `australia-southeast1` | _(fill in)_ |
-| 9 | _(fill in)_ | | | |
-| 10 | _(fill in)_ | | | |
-| 11 | _(fill in)_ | | | |
-| 12 | _(fill in)_ | | | |
+| # | Dataset | Type | Purpose | Notes |
+|---|---------|------|---------|-------|
+| 1 | `analytics_543350918` | 🤖 Auto-created | GA4 → BQ daily export mirror | Numeric ID `543350918` is the GA4 property ID. Created + written to by Google system SA `firebase-measurement@system.gserviceaccount.com`. Not manually managed. |
+| 2 | `searchconsole_raw_search_console` | 🤖 Auto-created | Search Console → BQ bulk export | Created + written to by Google system SA `search-console-data-export@system.gserviceaccount.com`. Not manually managed. |
+| 3 | `zapit_raw_ga4` | Manual raw layer | Custom raw-GA4 transforms | For queries that need raw GA4 events outside of Google's auto-export. |
+| 4 | `zapit_raw_search_console` | Manual raw layer | Custom raw-SC transforms | For queries that need raw SC data outside Google's bulk export. |
+| 5 | `zapit_reporting` | ⭐ Reporting layer | Views that Looker Studio reads from | The dashboard's data plane. Contains `v_channel_summary`, `v_events_with_channel`, `v_leads_by_channel`, `v_channel_conversion_detail`, `v_anomalies`, `channel_group` function, etc. |
+| 6 | `zapit_reserved_ai` | 🔮 Reserved (empty) | For Hermes / OpenClaw AI recommendations layer | Per Adam's OpenClaw vision — see `docs/ADAM_15_SOURCES_ALIGNMENT.md`. Empty until activated. |
+| 7 | `zapit_reserved_clarity` | 🔮 Reserved (empty) | For Microsoft Clarity session data | Empty until Clarity → BQ pipeline built. |
+| 8 | `zapit_reserved_crm` | 🔮 Reserved (partly filled) | For CRM data | Contains `contacts`, `ai_recommendations`, `ai_learning` table stubs (from prior test data). |
+| 9 | `zapit_reserved_ghl` | 🔮 Reserved (empty) | For GoHighLevel CRM ingest | Empty — deferred to future block per engagement letter. |
+| 10 | `zapit_reserved_google_ads` | 🔮 Reserved (empty) | For Google Ads spend + conversion data | Empty until Google Ads → BQ transfer configured. |
+| 11 | `zapit_reserved_meta_ads` | 🔮 Reserved (empty) | For Meta Ads spend + conversion data | Empty until Meta Ads → BQ pipeline built. |
+| 12 | `zapit_reserved_operational` | 🔮 Reserved (empty) | For operational data | Empty. |
+| 13 | `zapit_reserved_whatconverts` | 🔮 Reserved (empty) | For WhatConverts call/form leads | Empty — WhatConverts → BQ webhook pipeline is post-MVP work (see engagement letter). |
+| 14 | `zapit_reserved_zoom` | 🔮 Reserved (empty) | For Zoom Phone recordings + transcripts | Empty — deferred to future block. |
+| 15 | `zapit_staging` | Staging | Transform / staging layer | Intermediate tables between raw and reporting. |
 
-> **Note:** Dataset list per project state is 12. Confirm exact names from BQ Console left-nav.
+**Structure notes:**
+- 2 datasets auto-created by Google (`analytics_*` + `searchconsole_*`) — cannot rename or restructure
+- 4 active data-carrying datasets (`zapit_raw_ga4`, `zapit_raw_search_console`, `zapit_staging`, `zapit_reporting`) — this is the MVP data pipeline
+- 9 `zapit_reserved_*` empty placeholders — Adam's OpenClaw vision, ready to receive data when each source is activated
+- All 15 in `australia-southeast1` for data residency
+- Zero external tables — everything is BigQuery-native
 
-**Overall dataset screenshot:** `docs/call-prep/screenshots/bq-dataset-list.png`
+**Overall dataset list screenshot:** `docs/call-prep/screenshots/bq-dataset-list.png` (captured 15 Sep 2026)
+
+### Dataset-level IAM
+
+**Working assumption (to spot-verify):** dataset-level permissions **inherit from project IAM** — meaning no dataset-specific ACLs beyond what Section 1 already shows (info@ Owner, sharjeel@ Editor, 2 Google system SAs). This is the default state when a project's principals are assigned at project level.
+
+**Spot-verification plan:** Click into one active dataset (`zapit_reporting`) → Sharing → Permissions. If the list matches project IAM exactly, we conclude the pattern holds for all 15 datasets. If any dataset shows extra principals, we investigate that dataset specifically.
+
+_(Spot-check pending — see next step.)_
 
 ---
 
