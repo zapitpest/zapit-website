@@ -65,7 +65,7 @@ Read these three documents in this order before the call:
 ### Content corrections shipped (Sep 9-10 overnight batch)
 - **All 10 prices are GST-inclusive** and match the approved residential sheet (SOP-103 v0.3): $154, $220, $275, $299, $330, $352, $418, $423.50, $440, $495
 - **Termite inspection price $440 inc GST** — closed a conflict where four different figures existed on record
-- **10% same-day discount removed everywhere** — banner, calculator logic, SVG asset, alt text
+- **Old fake 10% same-day discount removed everywhere** — banner, calculator logic, SVG asset, alt text. **Separate new legitimate 10% multi-service discount added late Aug 2026 in the price calculator** — applies automatically to bookings of 2+ services, saving shown to customer inline. This is a real Zap It policy, distinct from the removed fake one.
 - **Brand corrected:** "Zapit" → "Zap It" across all visible copy (60+ instances)
 - **Phone number now carries area code** — 03 9126 0555
 - **Email corrected:** wo@ → sales@zapitpestmelbourne.com.au

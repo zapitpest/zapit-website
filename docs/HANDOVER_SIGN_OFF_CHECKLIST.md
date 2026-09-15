@@ -33,7 +33,7 @@
 | # | Item | State |
 |---|---|---|
 | 10 | GST-inclusive pricing across all 3 price tables (Consumer Law fix) | ✅ Live |
-| 11 | 10% same-day discount removed everywhere (banner + calculator + SVG + text) | ✅ Live |
+| 11 | Old fake 10% same-day discount removed everywhere (banner + calculator + SVG + text). **Separate new legitimate 10% multi-service discount added late Aug 2026** in the price calculator (`MULTI_SERVICE_RATE = 0.1`, applies to bookings of 2+ services, saving shown to customer inline — commits `36478a6`, `fee57a3`, `6d4f4d4`) — this is a real Zap It policy, not a fake claim. | ✅ Live |
 | 12 | Brand: "Zapit" → "Zap It" corrected (60+ instances) | ✅ Live |
 | 13 | Email address: `wo@` → `sales@` corrected | ✅ Live |
 | 14 | Phone number now carries area code (03 9126 0555) | ✅ Live |
