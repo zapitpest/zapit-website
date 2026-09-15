@@ -176,17 +176,55 @@ Section 6 access-drop proposal updated to reflect this.
 
 ---
 
-## 5 · Looker Studio Connections
+## 5 · Looker Studio Connections — VERIFIED 15 Sep 2026 · ✅ CLEAN
 
-Source of truth for what powers the 6-page Looker dashboard.
+**Dashboard:** `Zap It — Marketing & Conversion Dashboard`
+**URL:** `https://datastudio.google.com/u/0/reporting/a1f7390a-2551-405c-93f0-288853567ac7`
+**Pages:** 6 (Executive Summary + 5 breakdown pages)
+**Total data sources:** 11
+**Connector type:** All BigQuery (100%)
+**Data source type:** All Embedded (owned by the report — copy-safe on File → Make a Copy)
+**Status:** All 11 "Working" (live data flowing)
 
-| Data source name | Type | Underlying BQ dataset/view | Owner | Editors |
-|------------------|------|----------------------------|-------|---------|
-| _(fill in — main GA4 source)_ | BigQuery | | | |
-| _(fill in — leads source)_ | BigQuery | | | |
-| _(others)_ | | | | |
+### 11 data sources
 
-**Dashboard URL:** `datastudio.google.com/u/0/reporting/a1f7390a-2551-405c-93f0-288853567ac7`
+| # | Name | Charts using it | Alias | Notes |
+|---|------|-----------------|-------|-------|
+| 1 | Channel Summary | 1 | ds39 | Backed by `zapit_reporting.v_channel_summary` |
+| 2 | Service Line Daily | 2 | ds17 | Backed by `zapit_reporting.v_service_line_daily` |
+| 3 | Leads By Channel | 1 | ds38 | Backed by `zapit_reporting.v_leads_by_channel` |
+| 4 | Events | 0 (unused) | ds0 | Reserved for future event-level charts |
+| 5 | Anomalies | 2 | ds15 | Backed by `zapit_reporting.v_anomalies` — feeds anomaly detection cards |
+| 6 | Channel Daily | 2 | ds21 | Backed by `zapit_reporting.v_channel_daily` |
+| 7 | **Leads** | **12 (highest use)** | ds2 | Primary leads view — feeds executive summary + service-line breakdown |
+| 8 | **Sessions** | **7** | ds1 | Primary sessions view — feeds traffic charts on multiple pages |
+| 9 | Attention Flags | 2 | ds13 | Feeds "Needs Attention" table on executive summary |
+| 10 | Channel Conversion Detail | 0 (unused) | ds22 | Reserved for future funnel analysis |
+| 11 | Sessions With Channel | 2 | ds23 | Backed by `zapit_reporting.v_sessions_with_channel` |
+
+### Live-data proof captured (Page 1 — Executive Summary)
+
+Dashboard is actively serving real post-cutover customer data:
+- Sessions: **505**
+- Visitors: **422**
+- Confirmed Leads: **15**
+- Conversion Rate: **3%**
+- Anomaly detection: sessions z-score of **9.44** detected (real traffic spike flagged)
+- Attention flags firing: `conversion_rate_collapse`, `service_line_silent`, `source_stopped` (×2)
+- Top lead sources: `direct/(none)` = 7 leads, `google/organic` = 2 leads
+
+**Screenshot:** `docs/call-prep/screenshots/looker-data-sources.png` (captured 15 Sep 2026)
+
+### Why "Embedded" makes the handover clean
+
+All 11 data sources are Embedded (owned by the report), not Reusable (owned by user account). When Adam performs **File → Make a copy** on the call:
+
+1. Adam gets his own copy of the report under his account
+2. All 11 embedded data sources are cloned with the report
+3. Adam owns the cloned data sources — they no longer touch Sharjeel's account
+4. The original report and data sources can be deleted from Sharjeel's account on Day 31 without breaking Adam's copy
+
+**Zero cross-account dependency after the copy. Cleanest possible handover pattern.**
 
 ---
 
@@ -220,14 +258,36 @@ If Zaydan wants Apex access dropped for the 30-day support window, this is the h
 
 ---
 
-## 7 · Talking Points For The Walkthrough
+## 7 · Talking Points For The Walkthrough — REFRESHED 15 Sep 2026
 
-1. **Ownership is clean** — every dataset sits under `info@zapitpestmelbourne.com.au` as owner; `sharjeel@meetapex.ai` is Editor for implementation, not Owner.
-2. **Billing is on Zap It** — Apex is not the payer.
-3. **No shared credentials** — every principal is a named user account, no `service@` shared logins.
-4. **Region locked to `australia-southeast1`** — data residency stays in-country.
-5. **Reserved OpenClaw dataset** — `zapit_reserved_ai` sits empty, ready for the Hermes / recommendations layer when Adam wants to activate it. Zero cost until data lands.
-6. **30-day support access drop plan** — walk through Section 6 above, get Zaydan to sign-off on the target end-state.
+**Order of things to say on the screen-share (~15 min):**
+
+### 1 · Ownership is clean (Section 1)
+> "Project has 4 principals total. `info@zapitpestmelbourne.com.au` is Owner — Zap It retains outright ownership. I'm Editor for implementation, not Owner. Plus 2 Google-managed system service accounts that auto-run the GA4 and Search Console exports. Zero leftover human accounts from previous developers, zero custom service accounts to worry about."
+
+### 2 · Billing is client-owned + zero spend (Section 2)
+> "Billing account is called `My Billing Account` — that's Google's default name, never renamed. When I open Account Management I get 'limited access to view billing data' which proves I'm not a Billing Administrator, just a Billing Account User with linker rights. This is your billing account, not mine. And current spend is A$0.00 — everything sits inside Google's free tier (10 GB storage + 1 TB queries per month). Zero absorbed cost from Apex."
+
+### 3 · Data warehouse structure (Section 3)
+> "15 datasets total, all in australia-southeast1 for data residency. 2 auto-created by Google, 4 active data-carrying (raw_ga4, raw_search_console, staging, reporting), and 9 empty `reserved_*` placeholders for Adam's OpenClaw vision — ready to receive data when each source is activated (GHL, Google Ads, Meta Ads, Zoom, Clarity, WhatConverts). Zero cost until data lands in them."
+
+### 4 · Service accounts are Google-only (Section 4)
+> "Zero custom service accounts. The only 2 SAs in the project are Google's own system accounts running the GA4 + Search Console exports. No SA keys stored anywhere, no attack surface from either side."
+
+### 5 · Looker Studio (Section 5)
+> "6-page dashboard, 11 embedded BigQuery data sources, all Working, all pulling live post-cutover data. Right now the executive summary is showing 505 sessions, 422 visitors, 15 confirmed leads, 3% conversion rate — that's real data. Anomaly detection is firing (sessions z-score of 9.44 was auto-flagged). Attention flags are working. It's not a demo — it's live."
+
+### 6 · The Adam handover (Section 5, live action on call)
+> "Adam, easiest way to get this into your own account cleanly: File → Make a copy right now. All 11 data sources are Embedded — they'll clone with the report. You end up with your own owned copy, no dependency on my account. Takes 30 seconds."
+
+### 7 · 30-day support access-drop plan (Section 6)
+> "Zaydan, here's what I'm proposing for the access drop. During the 30-day support window, I stay at Data Viewer + Job User on the project so I can still investigate issues but can't edit anything. On Day 31, full removal — but flagging: it needs two cleanup passes, not one. Because I have dataset-level Data Owner on a few active datasets in addition to the project-level Editor role, and removing at project level alone leaves the dataset grants orphaned. Two-pass cleanup, ~5 min of clicks. Recommend you or Adam execute so it's on your side, and I can screen-share during to guide."
+
+### 8 · Open loop: mystery TXT record
+> "One quick DNS thing — noticed a TXT record `e33sr731i0db6fee1nml3ko1kl` published at the apex. Doesn't match any standard verification pattern (not Google, Meta, our SPF, or DMARC). Might be leftover from the previous developer, or an active service token. Do you recognise it? Happy to leave it, clean up, or investigate — your call."
+
+### 9 · Sign-off summary
+> "So to sum up: analytics stack is on Zap It's accounts from day one, warehouse is clean and free-tier, billing is yours and unspent, dashboard is live with real data, and the access-drop plan is agreed. Any final asks before we close?"
 
 ---
 
