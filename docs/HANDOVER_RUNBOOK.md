@@ -8,6 +8,34 @@
 
 ---
 
+## 🛠️ 27 September 2026 — Post-Handover Fixes (READ FIRST)
+
+Two production changes shipped 27 Sep in response to Zaydan's 26 Sep review. The next person taking this over needs to know both live in infrastructure the codebase can't reveal on its own.
+
+### 27.1 www → apex 301 redirect (Cloudflare Bulk Redirects)
+- **Account:** `Zapitpestcontroluser` (info@zapitpestmelbourne.com.au)
+- **Location:** account-level → Bulk Redirects
+- **List name:** `zapitwwwtoapex`
+- **Rule:** `https://www.zapitpestmelbourne.com.au/` → `https://zapitpestmelbourne.com.au/` · 301 · preserve query + path
+- **Verify:** `curl -sI https://www.zapitpestmelbourne.com.au/` should return HTTP/2 301 with `location:` header at apex
+- **Why:** analytics were splitting sessions across www + non-www. This consolidates.
+
+### 27.2 GTM v6 — pages.dev preview exclusion (`GTM-PFGV87RB`)
+- **Custom-JS variable:** `var.env.is_production_hostname` — returns `true` only when `document.location.hostname` is `zapitpestmelbourne.com.au` or `www.zapitpestmelbourne.com.au`
+- **Custom Event trigger:** `trg.env.non_production_hostname` — fires when `var.env.is_production_hostname` equals `false`, event name regex `.*`
+- **Applied as:** an **Exception** on all 10 tags in the container
+- **Result:** any `*.zapit-website-6q7.pages.dev` preview URL fires zero production tags. Confirmed via Tag Assistant Preview Mode.
+- **Why:** Zaydan spotted an internal QA session from a pages.dev preview landing in Clarity as real user data. Every future tag added to this container must inherit this exception — set it before publishing.
+
+### 27.3 Supporting docs to read (repo)
+- `docs/WWW_REDIRECT_AND_PAGES_DEV_EXCLUSION.md` — step-by-step for both fixes
+- `docs/ADS_MIGRATION_PLAN.md` — event-by-event blueprint for rebuilding Google Ads conversion tags in PFGV87RB (blocked on Ads account access — 27 Sep asked from Zaydan)
+- `docs/CREDENTIALS_REGISTER.md` — every account and ID the analytics stack depends on
+- `docs/HOURS_LEDGER_RECONCILIATION_2026-09-27.md` — hours picture with Adam's 19 June 2026 top-up authorisation as the anchor
+- `sql/013_seo_reporting_views.sql` — the 3 SEO reporting views feeding Looker Page 6
+
+---
+
 ## 🤝 13 September 2026 — Sign-Off Pack (READ FIRST)
 
 **Handover call:** Monday 14 September 2026, 10:00 AM Pakistan / 3:00 PM Melbourne.
