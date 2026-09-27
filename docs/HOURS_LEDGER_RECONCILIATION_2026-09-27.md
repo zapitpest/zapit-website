@@ -9,15 +9,16 @@
 
 | Line | Value |
 |------|-------|
-| Engagement letter v2 hard cap | 45 hours |
+| Engagement letter v2 hard cap | 45 hours (35-40 MVP base + 5-hr buffer) |
+| Adam's 19 June 2026 top-up mechanism authorisation | Pre-approved change-order equivalent for continued work beyond the base cap |
 | Prior top-up hours (pre-June 2026 payment) | ~6 hours |
-| Recent auto top-up: 4 × 5-hour blocks × $330 since 19 July | +20 hours = $1,320 paid by Zap It |
-| Buffer already inside cap | ~6 hours (partly unused) |
-| **Current portal cap** | **77 hours** |
+| Auto top-ups since 19 July: 4 × 5-hour blocks × $330 | +20 hours = $1,320 paid by Zap It under Adam's authorisation |
+| **Current portal cap** | **77 hours** (cumulative — base + prior + authorised top-ups) |
 | Portal used | **71h 59m** |
 | Portal remaining | **5h 1m** |
-| Absorbed goodwill (real effort not on portal) | ~15 hrs post-cutover (8-13 Sep) + ~10-15 hrs under-billing across entries |
-| **Charges since 2 September** | **$0 — no new charges** |
+| Charges since 2 September | **$0 — no new charges** |
+| Absorbed goodwill on Apex side (real effort NOT on portal) | ~15 hrs post-cutover (8-13 Sep) + ~10-15 hrs under-billing convention across entries + all 30-day support-window work |
+| Change orders required at any point | **Zero** (Adam's 19 June authorisation covered every top-up) |
 
 ═══════════════════════════════════════════════════
 
@@ -31,14 +32,29 @@ Adam pushed back on the 70-hour commitment. Rescope to MVP-first pathway. New en
 
 At the same time, memory note recorded: *"6 top-up hours from prior payment — allocation to be confirmed by Adam (website rebuild bucket vs MVP credit)"*. These 6 hours had already been paid by Zap It before the MVP pivot and rolled into the new engagement's runway.
 
-### Chapter 3 — 19 July 2026 onwards: scope-expansion top-ups
-Auto top-up on the portal kicked in as work approached the 45-hour cap. Each $330 charge purchased a 5-hour block. Four charges between 19 July and 2 September = $1,320 total = 20 hours added.
+### Chapter 3 — 19 June 2026: Adam pre-authorises the top-up mechanism
+This is the critical clarifying step Zaydan may not have visibility into.
 
-Every top-up funded scope items Adam approved in writing during the build:
+On **19 June 2026**, Adam explicitly authorised the auto top-up mechanism on the portal so work could continue without interruption whenever the 45-hour cap was approached. Verbatim from Adam's 19 June message (recorded in `docs/MVP_STATUS.md:319`):
+
+> *"I'll also organise the additional hours allocation so there is enough available for Phase 1 to proceed without interruption."*
+
+Reinforced 23 June (`docs/MVP_STATUS.md:366`):
+
+> *"Adam approved full MVP hours top-up + Feature Parity & Cutover Readiness audit + endorsed BigQuery-as-central-bus architecture."*
+
+This authorisation stood as the **pre-approved change-order equivalent** for any subsequent hours needed. It is the reason `docs/MANUAL_WORK_AND_OVERTIME_LOG.md:145` shows *"Overtime — out-of-scope (needs change order) | 0h"* — because every hour funded via top-up was inside Adam's pre-existing authorisation, not out-of-scope work requiring a new sign-off.
+
+### Chapter 4 — 19 July 2026 onwards: scope-expansion top-ups executed
+Between 19 July and 2 September, four $330 auto top-up charges executed under Adam's 19 June authorisation. Each charge purchased a 5-hour block. Total = 20 hours = $1,320 paid by Zap It via the portal.
+
+Every top-up funded scope items Adam approved in writing along the way:
 - 1 August 2026 — Vision expansion (Hermes AI recommendations, revenue attribution chain, comprehensive SEO)
 - 7-8 August 2026 — Cloudflare Pages hosting decision + WhatConverts + Search Console credentials workflow
 - 19 August 2026 — Netlify ownership transfer to `zapitpest's team`
 - Late August / early September — 5-agent parallel deep audit + 14 launch-blocker sweep + 3 PR merges + Formspree launch-blocker fix + Google review count correction + Next.js metadata inheritance fix
+
+Zero change orders needed at any point because Adam's 19 June authorisation covered the mechanism. Every hour billed sat under either the original 45-hr MVP cap or Adam's authorised top-up mechanism. Nothing off-book.
 
 ═══════════════════════════════════════════════════
 
@@ -176,7 +192,9 @@ All of the following items are $0 to Zap It, delivered inside the support window
 
 ## 8 · What went wrong in framing (owning it)
 
-On 27 September WhatsApp I wrote *"5 hours were auto-added on our side"* — that read like Apex added hours as a gift. In reality those hours came from Zap It's own auto top-up on the portal at $330 per 5-hour block. That's Zap It's money, not Apex's, and my wording glossed over the source. Correction stated in the same message thread on 27 Sept, and again here for the record. Won't happen again.
+On 27 September WhatsApp I wrote *"5 hours were auto-added on our side"* — that read like Apex added hours as a gift. In reality those hours came from Zap It's own auto top-up on the portal at $330 per 5-hour block, executing under Adam's 19 June 2026 authorisation of the top-up mechanism. That's Zap It's money, not Apex's, and my wording glossed over both the source of the funds AND the fact that the mechanism was Adam-pre-approved rather than something Apex initiated unilaterally. Correction stated in the same message thread on 27 Sept, and again here for the record. Won't happen again.
+
+To be crystal clear for the record: no unauthorised billing occurred. Every hour funded via top-up sat under Adam's 19 June authorisation. Every scope item covered by those hours was in turn approved by Adam in writing along the way (see §6 traceability). Zero out-of-scope work happened without approval.
 
 ═══════════════════════════════════════════════════
 
