@@ -24,11 +24,21 @@ export default function ClickTracker() {
       const ariaLabel = anchor.getAttribute('aria-label')?.toLowerCase() ?? '';
       // WhatConverts number-swap can rewrite the tel: href to a routing
       // number, or in some configurations remove the tel: prefix entirely.
-      // Match on either the current href or the aria-label the app sets on
-      // every phone anchor ("Call now …"), so the swap can't blackhole us.
-      const isPhoneLink = href.startsWith('tel:') || ariaLabel.startsWith('call now');
+      // Three-layer detection so the swap can't blackhole us:
+      //   1. current href starts with tel: (survives WhatConverts number swap)
+      //   2. aria-label starts with "call now" (present on all main CTA anchors)
+      //   3. anchor text contains an Australian phone number (matches every
+      //      remaining phone anchor without needing per-component changes)
+      const anchorText = anchor.textContent ?? '';
+      const auPhonePattern = /\b0[2-9](?:\s?\d){8}\b|\b1(?:300|800)\s?\d{3}\s?\d{3}\b/;
+      const isPhoneLink =
+        href.startsWith('tel:') ||
+        ariaLabel.startsWith('call now') ||
+        auPhonePattern.test(anchorText);
       if (isPhoneLink) {
-        const phoneNumber = href.startsWith('tel:') ? href.slice(4) : href;
+        const phoneNumber = href.startsWith('tel:')
+          ? href.slice(4)
+          : (anchorText.match(auPhonePattern)?.[0] ?? href);
         trackClickPhone(phoneNumber);
       } else if (href.startsWith('mailto:')) {
         const address = href.slice(7).split('?')[0];
