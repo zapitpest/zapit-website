@@ -8,6 +8,10 @@ import { trackClickPhone, trackClickEmail, trackBookIntent } from '@/lib/analyti
 // or Square booking anchor is activated. Cross-cutting approach keeps
 // individual anchor components clean — adding a new phone/booking link
 // anywhere in the app gets tracked automatically.
+//
+// Capture phase so tracking runs before any downstream handler (e.g. the
+// WhatConverts number-swap script) can call stopPropagation on the anchor
+// and prevent the click from ever reaching the document in bubbling phase.
 
 export default function ClickTracker() {
   useEffect(() => {
@@ -16,10 +20,16 @@ export default function ClickTracker() {
       if (!(target instanceof Element)) return;
       const anchor = target.closest('a');
       if (!anchor) return;
-      const href = anchor.getAttribute('href');
-      if (!href) return;
-      if (href.startsWith('tel:')) {
-        trackClickPhone(href.slice(4));
+      const href = anchor.getAttribute('href') ?? '';
+      const ariaLabel = anchor.getAttribute('aria-label')?.toLowerCase() ?? '';
+      // WhatConverts number-swap can rewrite the tel: href to a routing
+      // number, or in some configurations remove the tel: prefix entirely.
+      // Match on either the current href or the aria-label the app sets on
+      // every phone anchor ("Call now …"), so the swap can't blackhole us.
+      const isPhoneLink = href.startsWith('tel:') || ariaLabel.startsWith('call now');
+      if (isPhoneLink) {
+        const phoneNumber = href.startsWith('tel:') ? href.slice(4) : href;
+        trackClickPhone(phoneNumber);
       } else if (href.startsWith('mailto:')) {
         const address = href.slice(7).split('?')[0];
         trackClickEmail(address);
@@ -27,8 +37,8 @@ export default function ClickTracker() {
         trackBookIntent(href);
       }
     };
-    document.addEventListener('click', handler);
-    return () => document.removeEventListener('click', handler);
+    document.addEventListener('click', handler, true);
+    return () => document.removeEventListener('click', handler, true);
   }, []);
 
   return null;
