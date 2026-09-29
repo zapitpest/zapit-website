@@ -28,7 +28,6 @@ const TREATMENTS: Treatment[] = [
   { name: 'General inspection', propertyType: 'All', price: 154, duration: 30 },
   { name: 'German cockroach treatment', propertyType: 'All', price: 330, duration: 60 },
   { name: 'Mice and rat treatment', propertyType: 'All', price: 440, duration: 40 },
-  { name: 'Mice and rat follow up visit', propertyType: 'All', price: 220, duration: 30 },
   { name: 'Mosquito and fly treatment', propertyType: 'All', price: 423.5, duration: 60 },
   { name: 'Possum treatment', propertyType: 'Single-story', price: 495, duration: 30 },
   { name: 'Specialised ant elimination', propertyType: 'All', price: 495, duration: 60 },
