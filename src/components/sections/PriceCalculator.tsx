@@ -92,7 +92,8 @@ export default function PriceCalculator() {
   };
 
   const subtotal = cart.reduce((sum, item) => sum + item.treatment.price, 0);
-  // Two or more services on one booking take 10% off the whole total.
+  // Two or more services on one booking are packaged at 10% below the combined
+  // total. Customer-facing copy says "package", never "discount" (Zaydan, 30 Sep 2026).
   const discount =
     cart.length >= MULTI_SERVICE_MIN ? Math.round(subtotal * MULTI_SERVICE_RATE * 100) / 100 : 0;
   const total = subtotal - discount;
@@ -228,7 +229,7 @@ export default function PriceCalculator() {
                   <dd>{fmtPrice(subtotal)}</dd>
                 </div>
                 <div className="flex justify-between font-bold text-[#0d402e]">
-                  <dt>10% multi-service discount</dt>
+                  <dt>Multi-service package</dt>
                   <dd>&minus;{fmtPrice(discount)}</dd>
                 </div>
               </dl>
@@ -248,13 +249,13 @@ export default function PriceCalculator() {
 
             {discount > 0 && (
               <p className="mb-4 rounded-md bg-[#0d402e] px-4 py-2 text-center text-[16px] font-bold text-white">
-                You save {fmtPrice(discount)} with 10% off for multiple services
+                Package price applied: {fmtPrice(discount)} less than booking each service on its own
               </p>
             )}
 
             {cart.length === 1 && (
               <p className="mb-4 text-center text-[14px] font-medium text-[#0d402e]">
-                Add a second service and get 10% off your total.
+                Add a second service to get package pricing on your whole booking.
               </p>
             )}
 
