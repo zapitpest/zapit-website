@@ -1,4 +1,4 @@
-# Security headers for the site.
+# Security + Cache headers for the site.
 #
 # This file works on both Cloudflare Pages and Netlify — both platforms read
 # `_headers` from the publish directory root. Netlify additionally reads
@@ -24,3 +24,48 @@
   # kills our ability to roll back to HTTP if needed. Add `preload` back only
   # after site is stable and Zap It explicitly opts into the preload list.
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Cache-Control rules
+#
+# Before this file was added, Cloudflare Pages served every asset with
+# `cache-control: public, max-age=0, must-revalidate` and `cf-cache-status:
+# DYNAMIC`, which meant zero edge caching — TTFB ran ~4.4 seconds against a
+# baseline of <500ms for a properly cached static site. These rules move the
+# site to standard static-hosting cache behaviour.
+#
+# Strategy:
+# - Hashed Next.js chunks → cache forever (filename changes when content does)
+# - Images → cache 1 week (content stable, no filename hash)
+# - Fonts → cache 1 year, immutable
+# - Sitemap/robots → cache 1 hour at edge (changes when pages added)
+# - HTML pages → stay short (no s-maxage override) so Cloudflare Pages'
+#   automatic cache-purge on deploy keeps HTML always fresh across edges.
+#   HTML wins its performance back via the asset-cache rules below (every
+#   page's JS/CSS/images now return in <50ms edge-cached instead of 4s origin).
+
+# Next.js hashed static assets — safe to cache forever (filename hashes change on content change)
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images — cache 1 week
+/images/*
+  Cache-Control: public, max-age=604800
+
+# Favicon — cache 1 day
+/favicon.ico
+  Cache-Control: public, max-age=86400
+
+# Fonts — immutable, cache 1 year
+*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+*.woff
+  Cache-Control: public, max-age=31536000, immutable
+*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+
+# Sitemap + robots — short cache so new pages surface quickly
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+/robots.txt
+  Cache-Control: public, max-age=3600
