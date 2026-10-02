@@ -69,3 +69,18 @@
   Cache-Control: public, max-age=3600
 /robots.txt
   Cache-Control: public, max-age=3600
+
+# HTML pages — override Cloudflare Pages' default `max-age=0, must-revalidate`
+# so edge caches briefly. Browser still revalidates every request (max-age=0),
+# but Cloudflare's edge serves cached HTML for 5 minutes between origin trips
+# and keeps serving stale for an hour while fetching fresh. On deploy, the
+# Cloudflare Pages webhook auto-purges the entire edge cache, so content
+# updates propagate immediately — the 5-minute window only applies between
+# deploys, not after one.
+#
+# Why we need this: without `s-maxage`, Cloudflare treats HTML as DYNAMIC
+# (origin round-trip on every request), which measured 4.4–5.5 s TTFB from
+# multiple regions. With `s-maxage=300` the edge should start caching HTML
+# the same way it caches the static assets.
+/
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=3600
